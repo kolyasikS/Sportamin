@@ -1,0 +1,1 @@
+export {default as SocNetsLinks} from '../SocNetsLinks/SocNetsLinks';

@@ -1,0 +1,20 @@
+@import 'src/app/styles/variables';
+@import 'src/app/styles/mixins';
+.featuresSection {
+    padding: 35px 30px 30px;
+    background-color: #f5f5f5;
+}
+.featuresSection__inner {
+    padding: 0 10px;
+    p {
+        text-align: center;
+        font-size: 17px;
+        margin: 40px 0 0;
+        &:nth-child(1) {
+            margin-bottom: 20px;
+        }
+        &:nth-child(2) {
+            margin: 0 0 40px;
+        }
+    }
+}

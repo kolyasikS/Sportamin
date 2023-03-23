@@ -1,0 +1,50 @@
+@import '../../../app/styles/mixins';
+@import '../../../app/styles/variables';
+.list {
+  border: 2px solid $clr-gray500;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  position: relative;
+}
+.defaultOptions {
+  padding: 10px 15px;
+  background: #e4e4e7;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  @include flexCenter();
+  justify-content: flex-start;
+  cursor: pointer;
+  font-size: 17px;
+  p {
+    user-select: none;
+  }
+}
+.options {
+  position: absolute;
+  display: block;
+  border: 2px solid $clr-gray500;
+  width: calc(100% + 4px);
+  left: -2px;
+  z-index: 1;
+  background: #f0f0fa;
+  overflow: hidden;
+  /*height: 0px;
+  overflow: hidden;
+  border: 0px;*/
+
+}
+
+.optionsEnter {
+  max-height: 0px;
+}
+.optionsEnterActive {
+  max-height: 300px;
+  transition: all 700ms;
+}
+.optionsExit {
+  max-height: 300px;
+}
+.optionsExitActive {
+  max-height: 0px;
+  transition: all 300ms;
+}

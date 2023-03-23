@@ -1,0 +1,54 @@
+@import '../../../../app/styles/variables';
+
+.infoItem {
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  &::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #151515;
+    opacity: 0.6;
+    z-index: 0;
+  }
+}
+.infoItem__inner {
+  display: flex;
+  z-index: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 100%;
+  width: 50%;
+  color: #dcd7d7;
+  h1 {
+    color: $header-span;
+    font-size: 30px;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+  p {
+    font-size: 16px;
+    margin: 5px 0 20px;
+  }
+}
+
+.link {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  img {
+    margin-left: 15px;
+  }
+}

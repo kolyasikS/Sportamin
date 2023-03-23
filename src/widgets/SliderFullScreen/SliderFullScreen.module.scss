@@ -1,0 +1,23 @@
+.wrapper {
+  display: flex;
+  min-width: 100%;
+  //transition: all 1s;
+
+}
+.slideWrapper {
+  min-width: 100%;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+.slide {
+  min-width: 100%;
+  padding-left: 40%;
+}
+.sliderArrows {
+  position: absolute;
+  bottom: 7rem;
+  right: 15rem;
+  display: flex;
+}
+

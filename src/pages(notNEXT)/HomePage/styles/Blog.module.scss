@@ -1,0 +1,18 @@
+@import '/src/app/styles/mixins';
+@import '/src/app/styles/variables';
+
+.blogSection {
+  background: #151515;
+}
+.blog {
+  @include flexCenterColumn();
+  padding: 50px 0px;
+}
+.blogItems {
+  @include flexCenter();
+  @include space-x(5);
+  display: flex;
+  color: #fff;
+  margin-top: 20px;
+  margin-bottom: 30px;
+}

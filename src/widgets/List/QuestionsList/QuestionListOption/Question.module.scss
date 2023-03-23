@@ -1,0 +1,51 @@
+@import 'src/app/styles/mixins';
+@import 'src/app/styles/variables';
+
+.question {
+    border: 0px solid rgb(208, 206, 206);
+    border-bottom-width: 2px;
+    overflow: hidden;
+    padding-bottom: 0;
+}
+.questionBtn {
+    cursor: pointer;
+    background: none;
+    padding: 1rem 0;
+    width: 100%;
+    border: none;
+
+}
+.questionBtn__inner {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    p {
+        font-size: 18px;
+        font-family: Arial;
+        font-weight: 700;
+    }
+}
+.answer {
+    transition: all 0.7s;
+}
+.answer__inner {
+    padding: 0.5rem 0;
+    p {
+        line-height: $text-line-height;
+        color: rgb(75 85 99);
+    }
+}
+.textEnter {
+    max-height: 0px;
+}
+.textEnterActive {
+    max-height: 300px;
+    transition: all 700ms;
+}
+.textExit {
+    max-height: 300px;
+}
+.textExitActive {
+    max-height: 0px;
+    transition: all 300ms;
+}

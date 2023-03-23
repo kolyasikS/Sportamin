@@ -1,0 +1,34 @@
+@import 'src/app/styles/mixins';
+@import 'src/app/styles/variables';
+
+.founderSection {
+    background-color: rgb(21, 21, 21);
+    @include flexCenter();
+    padding: 30px 20px 0;
+}
+
+.founderInfo {
+    width: 60%;
+    padding: 0 70px;
+    p {
+        text-align: center;
+        color: darkgray;
+        line-height: $text-line-height;
+    }
+}
+.founderName {
+    color: $header-span;
+    text-align: center;
+    margin-top: 15px;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-family: "Lucida Fax";
+}
+.founderImg {
+    width: 40%;
+}
+.links {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}

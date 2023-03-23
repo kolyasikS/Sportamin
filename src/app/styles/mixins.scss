@@ -1,0 +1,32 @@
+@mixin title ($fs, $clr){
+  color: $clr;
+  text-transform: uppercase;
+  font-weight: 800;
+  font-size: $fs;
+}
+@mixin flexCenter() {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@mixin flexCenterColumn() {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+@mixin space-x($num) {
+  & > :not([hidden]) ~ :not([hidden]) {
+    --tw-space-x-reverse: 0;
+    margin-right: calc(0.25rem * $num * var(--tw-space-x-reverse));
+    margin-left: calc(0.25rem * $num * calc(1 - var(--tw-space-x-reverse)));
+  }
+}
+
+@mixin space-y($num) {
+  & > :not([hidden]) ~ :not([hidden]) {
+    --tw-space-y-reverse: 0;
+    margin-top: calc(0.25rem * $num * calc(1 - var(--tw-space-y-reverse)));
+    margin-bottom: calc(0.25rem * $num * var(--tw-space-y-reverse));
+  }
+}

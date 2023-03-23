@@ -1,5 +1,21 @@
-import '@/styles/globals.css'
+import '@/styles/globals.css';
+import {Provider} from "react-redux";
+import createWrapper from '@/app/lib/store/createStore';
+import {useEffect} from "react";
+import {checkAuth} from "@/app/lib/controllers/authController";
+import HFLayout from "@/processes/Layouts/MainLayout/HFLayout";
 
-export default function App({ Component, pageProps }) {
-  return <Component {...pageProps} />
+const wrapper = createWrapper({});
+function App({ Component, pageProps }) {
+    const {store} = wrapper.useWrappedStore(pageProps);
+
+    return (
+        <Provider store={store}>
+            <HFLayout>
+                <Component {...pageProps} />
+            </HFLayout>
+        </Provider>
+    )
 }
+
+export default App;

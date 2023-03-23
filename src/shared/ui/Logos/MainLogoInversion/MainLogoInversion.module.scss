@@ -1,0 +1,21 @@
+@import '/src/app/styles/mixins';
+@import '/src/app/styles/variables';
+
+.logo {
+  font-size: 18px;
+  text-transform: uppercase;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  h3 {
+    color: #000;
+    margin-top: 3px;
+  }
+  span {
+    color: $header-span;
+  }
+}
+.logo__inner {
+  @include flexCenterColumn();
+  cursor: pointer;
+}

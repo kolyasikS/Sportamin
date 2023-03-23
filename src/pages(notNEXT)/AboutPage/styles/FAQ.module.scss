@@ -1,0 +1,19 @@
+@import 'src/app/styles/mixins';
+@import 'src/app/styles/variables';
+.FAQSection {
+    overflow: hidden;
+    height: auto;
+}
+.FAQ__inner {
+    padding: 40px 30px;
+    @include flexCenter();
+    align-items: flex-start;
+}
+.FAQ__image {
+    width: 40%;
+    @include flexCenter();
+
+}
+.FAQ__Questions {
+    width: 60%;
+}

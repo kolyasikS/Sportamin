@@ -1,0 +1,17 @@
+@import '/src/app/styles/mixins';
+@import '/src/app/styles/variables';
+.trainersSection {
+  width: 100%;
+  padding: 15px 0 35px 0;
+}
+.trainers {
+  @include flexCenterColumn();
+  width: 100%;
+}
+.trainersItems {
+  @include flexCenter();
+  margin-top: 25px;
+  justify-content: space-evenly;
+  width: 100%;
+  margin-bottom: 50px;
+}

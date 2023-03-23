@@ -1,0 +1,33 @@
+@import '/src/app/styles/mixins';
+@import '/src/app/styles/variables';
+.user {
+  @include flexCenterColumn();
+  background: #ebeef3;
+  padding: 20px;
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  img {
+    border-radius: 50%;
+  }
+}
+.name {
+  text-transform: uppercase;
+  margin-top: 10px;
+  color: #2f2d2d;
+}
+.courses {
+  font-size: 20px;
+  color: #565656;
+  margin: 10px 0px 0px 0px;
+  span {
+    font-size: 24px;
+    color: #111436;
+  }
+}
+.rating {
+  font-size: 20px;
+  color: #565656;
+  span {
+    font-size: 24px;
+    color: #111436;
+  }
+}

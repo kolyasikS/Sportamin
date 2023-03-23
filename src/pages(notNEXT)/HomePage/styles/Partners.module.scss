@@ -1,0 +1,19 @@
+@import '/src/app/styles/mixins';
+@import '/src/app/styles/variables';
+
+.partnersSection {
+
+}
+.partners {
+  @include flexCenter();
+  @include space-x(20);
+  padding: 50px 0px;
+  img {
+    cursor: pointer;
+    opacity: 0.5;
+    transition: all, 0.3s;
+    &:hover {
+      opacity: 1;
+    }
+  }
+}

@@ -1,0 +1,26 @@
+@import '/src/app/styles/mixins';
+@import '/src/app/styles/variables';
+
+.anthropometry {
+  @include space-x(5);
+  display: flex;
+}
+.calculatorButtons {
+  @include space-x(5);
+  display: flex;
+}
+.calculatorInner {
+  @include flexCenterColumn();
+  @include space-y(4);
+  padding: 20px 0px 0px;
+}
+.error {
+  font-size: 20px;
+  color: #b40025;
+}
+.result {
+  h2 {
+    color: #030a2c;
+    font-size: 36px;
+  }
+}

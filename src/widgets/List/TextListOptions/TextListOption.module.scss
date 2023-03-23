@@ -1,0 +1,29 @@
+@import '../../../app/styles/mixins';
+@import '../../../app/styles/variables';
+
+.option {
+  border-bottom: 2px dotted $clr-gray500;
+  @include flexCenterColumn();
+  justify-content: flex-start;
+  position: relative;
+  &:nth-last-child(1) {
+    border: none;
+  }
+  h1 {
+    font-size: 20px;
+    color: #fff;
+    text-transform: uppercase;
+    a {
+      transition: all 0.4s;
+    }
+    a:hover {
+      color: $header-span;
+    }
+  }
+  p {
+    user-select: none;
+    width: 100%;
+    text-align: left;
+    padding: 10px 0px;
+  }
+}

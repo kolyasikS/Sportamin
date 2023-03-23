@@ -1,0 +1,8 @@
+@import '/src/app/styles/mixins';
+@import '/src/app/styles/variables';
+.main {
+  background: #f9f8f8;
+  width: 100%;
+  min-height: 100vh;
+  @include flexCenterColumn();
+}

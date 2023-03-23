@@ -1,0 +1,16 @@
+@import '../../../app/styles/mixins.scss';
+@import '../../../app/styles/variables.scss';
+.achievementsSection {
+  @include flexCenter();
+  width: 100%;
+}
+.achievements {
+  @include flexCenterColumn();
+  padding: 60px 0;
+  width: 100%;
+}
+.achievementsItems {
+  @include flexCenter();
+  width: 90%;
+  justify-content: space-between;
+}

@@ -1,0 +1,18 @@
+@import '../../../../app/styles/mixins';
+@import '../../../../app/styles/variables';
+
+.option {
+  padding: 15px 15px;
+  border-bottom: 2px solid $clr-gray500;
+  @include flexCenter();
+  justify-content: flex-start;
+  cursor: pointer;
+  font-size: 17px;
+  position: relative;
+  &:nth-last-child(1) {
+    border: none;
+  }
+  p {
+    user-select: none;
+  }
+}

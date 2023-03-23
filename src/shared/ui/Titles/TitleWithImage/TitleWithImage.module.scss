@@ -1,0 +1,12 @@
+@import '/src/app/styles/mixins.scss';
+@import '/src/app/styles/variables.scss';
+.title {
+  @include flexCenterColumn();
+  h1 {
+    @include title(40px, $titleColorGray);
+  }
+  img {
+    position: relative;
+    top: -10px;
+  }
+}

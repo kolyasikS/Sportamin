@@ -1,0 +1,14 @@
+@import '/src/app/styles/mixins';
+@import '/src/app/styles/variables';
+
+.socnets {
+    display: flex;
+    color: #a2a2a4;
+    a {
+        transition: all 0.4s;
+        &:hover {
+            color: #cacaca;
+        }
+    }
+    @include space-x(2);
+}

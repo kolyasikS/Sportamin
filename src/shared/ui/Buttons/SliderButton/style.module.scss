@@ -1,0 +1,13 @@
+@import '../../../../app/styles/variables';
+.sliderBtn {
+  background: transparent;
+  border: 1px solid $header-span;
+  padding: 15px 15px;
+  cursor: pointer;
+  margin-right: 10px;
+  display: flex;
+  transition: all 0.5s ease;
+  &:hover {
+    background: $header-span;
+  }
+}

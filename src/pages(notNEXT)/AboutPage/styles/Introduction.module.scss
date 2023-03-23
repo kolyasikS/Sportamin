@@ -1,0 +1,19 @@
+@import 'src/app/styles/variables';
+@import 'src/app/styles/mixins';
+.introductionSection {
+    height: auto;
+    overflow: hidden;
+    position: relative;
+    @include flexCenter();
+    h1 {
+        position: absolute;
+        color: #fff;
+        text-transform: uppercase;
+        font-size: 55px;
+        font-weight: 800;
+        left: 25%;
+    }
+    span {
+        color: $header-span;
+    }
+}

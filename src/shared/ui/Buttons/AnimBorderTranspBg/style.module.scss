@@ -1,0 +1,43 @@
+.animBorderTranspBg {
+  background: transparent;
+  color: #fff;
+  border: none;
+  text-transform: uppercase;
+  font-weight: 800;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 0;
+  transition: all 0.8s;
+
+  &:hover {
+    background: rgba(225, 51, 45, 0);
+  }
+  & svg {
+    height: 50px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: -1;
+  }
+  & rect {
+    z-index: -1;
+    fill: none;
+    stroke: #fff;
+    stroke-width: 2;
+    stroke-dasharray: 422, 0;
+    -webkit-transition: all 0.35s linear;
+    transition: all 0.35s linear;
+  }
+  &:hover rect {
+    stroke-width: 3;
+    stroke-dasharray: 15, 340;
+    stroke-dashoffset: 48;
+    -webkit-transition: all 1.35s cubic-bezier(0.19, 1, 0.22, 1);
+    transition: all 1.35s cubic-bezier(0.19, 1, 0.22, 1);
+  }
+}
+

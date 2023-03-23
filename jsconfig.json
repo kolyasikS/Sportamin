@@ -2,7 +2,9 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
-    }
+      "@/*": ["./src/*"],
+      "@assets/*": ["./public/media/images/*"]
+    },
+    "types": ["cypress", "@testing-library/cypress"]
   }
 }

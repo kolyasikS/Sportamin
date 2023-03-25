@@ -1,0 +1,12 @@
+@import '/src/app/styles/mixins';
+@import '/src/app/styles/variables';
+
+.sendMail {
+    width: 50%;
+}
+.sendMail__inner {
+    @include flexCenterColumn();
+    @include space-y(5);
+    width: 100%;
+    padding: 0 40px;
+}

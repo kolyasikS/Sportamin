@@ -18,7 +18,7 @@ const Header = ({isLoading}) => {
                 <li><a href="/trainers">Trainers</a></li>
                 <li><a href="/courses">Courses</a></li>
                 <li><a href="/blogs">Blogs</a></li>
-                <li><a href="/contact">Contact us</a></li>
+                <li><a href="/index.jsx">Contact us</a></li>
             </nav>
             <div className={styles.profile}>
                 {isLoading

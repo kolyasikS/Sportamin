@@ -5,8 +5,6 @@ import hiddenPaths from "@/app/Static Data/HFLayoutPaths/HFLayoutPaths";
 
 const HFLayout = ({children}) => {
     const router = useRouter();
-    console.log(router.pathname);
-    console.log(children);
     const showLayout = !hiddenPaths.includes(router.pathname);
     return (
         showLayout

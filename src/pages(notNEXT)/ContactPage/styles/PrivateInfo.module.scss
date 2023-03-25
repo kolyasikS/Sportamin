@@ -1,0 +1,32 @@
+@import '/src/app/styles/mixins';
+@import '/src/app/styles/variables';
+
+.privateInfo {
+    width: 50%;
+    @include flexCenterColumn();
+    justify-content: flex-start;
+}
+.privateInfo__inner {
+    width: 80%;
+}
+.privateInfo__contact {
+    @include flexCenter();
+    justify-content: flex-start;
+    margin-bottom: 20px;
+    &:nth-child(2) {
+        margin-top: 20px;
+    }
+    img {
+        border: 2px solid red;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        padding: 5px;
+    }
+}
+.privateInfo__item {
+    @include space-y(2);
+    @include flexCenterColumn();
+    align-items: flex-start;
+    margin-left: 15px;
+}

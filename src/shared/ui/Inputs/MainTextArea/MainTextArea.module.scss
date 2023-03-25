@@ -1,0 +1,16 @@
+@import '/src/app/styles/mixins.scss';
+@import '/src/app/styles/variables.scss';
+.textArea {
+    width: 100%;
+    min-height: 200px;
+    border: 2px solid $clr-gray500;
+    border-radius: $radius;
+    font-family: inherit;
+    font-size: inherit;
+    color: #111436;
+    padding: 1.25rem;
+    resize: vertical;
+    &::placeholder {
+        color: #111436;
+    }
+}

@@ -11,7 +11,10 @@ const FormSignUp = () => {
     const passRef = useRef();
     const dispatch = useDispatch();
     const submitRegistration = async () => {
-        await registration(dispatch, emailRef.current.value, passRef.current.value);
+        const isSuccess = await registration(dispatch, emailRef.current.value, passRef.current.value);
+        if (isSuccess) {
+            await router.push('/');
+        }
     }
 
     return (

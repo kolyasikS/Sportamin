@@ -6,7 +6,6 @@ import {API_URL} from "@/app/lib/http";
 export async function login(dispatch, email, password) {
     try {
         const response = await AuthService.login(email, password);
-        console.log(response);
         localStorage.setItem('token', response.data.accessToken);
         dispatch(setAuth(true));
         dispatch(setUser(response.data.user));
@@ -20,10 +19,11 @@ export async function login(dispatch, email, password) {
 export async function registration(dispatch, email, password) {
     try {
         const response = await AuthService.registration(email, password);
-        console.log(response);
         localStorage.setItem('token', response.data.accessToken);
         dispatch(setAuth(true));
         dispatch(setUser(response.data.user));
+
+        return true;
     } catch (e) {
         console.log(e?.response?.data);
     }

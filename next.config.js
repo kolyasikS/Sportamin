@@ -11,6 +11,13 @@ const nextConfig = {
       loader: 'ts-loader',
       options: {allowTsInNodeModules: true}
     });
+    config.resolve.fallback = {
+      fs: false,
+      net: false,
+      dns: false,
+      tls: false,
+      child_process: false,
+    };
     return config;
   }
 }

@@ -6,6 +6,7 @@ import {RBButton} from "@/shared/ui/Buttons/api/Buttons";
 import {useSelector} from "react-redux";
 import {authenticate} from "@/app/lib/controllers/authController";
 import {useRouter} from "next/router";
+import Link from "next/link";
 const Header = ({isLoading}) => {
     const state = useSelector(state => state.authReducer);
     const router = useRouter();
@@ -13,12 +14,12 @@ const Header = ({isLoading}) => {
         <div className={styles.introHeader}>
             <MainLogo/>
             <nav className={styles.navHeader}>
-                <li><a href="/">Home</a></li>
-                <li><a href="/about">About us</a></li>
-                <li><a href="/trainers">Trainers</a></li>
-                <li><a href="/courses">Courses</a></li>
-                <li><a href="/blogs">Blogs</a></li>
-                <li><a href="/index.jsx">Contact us</a></li>
+                <li><Link href="/">Home</Link></li>
+                <li><Link href="/about">About us</Link></li>
+                <li><Link href="/trainers">Trainers</Link></li>
+                <li><Link href="/courses">Courses</Link></li>
+                <li><Link href="/blogs">Blogs</Link></li>
+                <li><Link href="/contact">Contact us</Link></li>
             </nav>
             <div className={styles.profile}>
                 {isLoading

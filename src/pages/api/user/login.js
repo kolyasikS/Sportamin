@@ -8,7 +8,6 @@ async function handler(req, res) {
     await dbConnect();
     switch (method) {
         case 'POST':
-            console.log(1);
             const {email, password} = req.body;
             const userData = await userService.login(email, password);
 

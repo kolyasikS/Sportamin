@@ -5,6 +5,7 @@ import Image from "next/image";
 import email from '@assets/contactEmail.png';
 import phone from '@assets/contactPhone.png';
 import location from '@assets/contactLocation.png';
+import tgBot from '@assets/tgBot.png';
 const PrivateInfo = () => {
     return (
         <div className={styles.privateInfo}>
@@ -33,6 +34,12 @@ const PrivateInfo = () => {
                         <p>Kiev VIC 3051, Ukraine</p>
                         <p>Kiev VIC 3051, Ukraine</p>
                     </div>
+                </div>
+                <div className={styles.tgBot}>
+                    <a href="https://t.me/sportaminBot">
+                        <Image src={tgBot} alt={''} width={40}/>
+                        <span className={'shadow-md'}>Our telegram bot</span>
+                    </a>
                 </div>
             </div>
         </div>

@@ -1,10 +1,14 @@
 @import 'src/app/styles/variables';
 @import 'src/app/styles/mixins';
+
 .introductionSection {
     height: auto;
     overflow: hidden;
     position: relative;
     @include flexCenter();
+    img {
+        width: 100%;
+    }
     h1 {
         position: absolute;
         color: #fff;

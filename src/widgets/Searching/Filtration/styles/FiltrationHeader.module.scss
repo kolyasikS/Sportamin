@@ -1,0 +1,64 @@
+@import 'src/app/styles/mixins';
+@import 'src/app/styles/variables';
+
+.header {
+    @include flexCenter();
+    justify-content: space-between;
+    padding: 40px 100px;
+}
+
+.filterBlock {
+    @include flexCenter();
+    @include space-x(3);
+}
+
+.sortBtn {
+    @include flexCenter();
+    justify-content: space-between;
+    width: 200px;
+    background-color: $bg-btn-1;
+    border: 2px solid #4b4b59;
+    cursor: pointer;
+    padding: 10px 25px; //prop
+    border-radius: 8px;
+    transition: all 0.2s;
+    height: 65px; //prop
+    div {
+        @include flexCenterColumn();
+        @include space-y(1);
+        align-items: flex-start;
+        p {
+            font-family: "Franklin Gothic Book";
+            color: $color-1;
+            font-size: 20px;
+            letter-spacing: 1px;
+        }
+        span {
+            color: $color-1;
+            font-size: 14px;
+            font-weight: bold;
+            color: #f9f8f8;
+        }
+    }
+    &:hover {
+        background-color: #0d1117;
+        color: #b7b7b7;
+    }
+}
+.dropdownCaret {
+    border-bottom-color: #0000;
+    border-left-color: #0000;
+    border-right-color: #0000;
+    border-top-color: #f9f8f8;
+    border-style: solid;
+    border-width: 6px 6px 0;
+    content: "";
+    display: inline-block;
+    height: 0;
+    vertical-align: middle;
+    width: 0;
+    transition: 0.4s all;
+}
+.clearFilterBlock {
+
+}

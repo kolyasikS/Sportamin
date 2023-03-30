@@ -1,0 +1,24 @@
+@import 'src/app/styles/mixins';
+@import 'src/app/styles/variables';
+
+.filterBtn {
+    @include flexCenter();
+    @include space-x(2);
+    background-color: $bg-btn-1;
+    border: 2px solid #4b4b59;
+    cursor: pointer;
+    height: 65px; //prop
+    padding: 10px 25px; //prop
+    border-radius: 8px;
+    transition: all 0.2s;
+    p {
+        font-family: "Franklin Gothic Book";
+        color: $color-1;
+        font-size: 20px;
+        letter-spacing: 1px;
+    }
+    &:hover {
+        background-color: #0d1117;
+        color: #b7b7b7;
+    }
+}

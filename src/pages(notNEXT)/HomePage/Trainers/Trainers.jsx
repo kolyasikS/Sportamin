@@ -1,7 +1,7 @@
 import React from 'react';
 import {TitleWithImage} from "@/shared/ui/Titles/api/Titles";
 import styles from '../styles/Trainers.module.scss';
-import TopTrainers from "@/app/Static Data/TopTrainers(temp)/TopTrainers";
+import TopTrainers from "@/app/Static Data/Trainers(temp)/TopTrainers";
 import {Trainer} from "@/shared/ui/InfoItems/api/Items";
 import RedToBlack from "@/shared/ui/Buttons/Red-to-black/Red-to-black";
 import {RBButton} from "@/shared/ui/Buttons/api/Buttons";

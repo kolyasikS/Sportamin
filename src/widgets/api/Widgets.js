@@ -5,3 +5,6 @@ export {default as BMICalculator} from '../Calculators/BMICalculator/BMICalculat
 export {default as MainList} from '../List/MainList/MainList';
 export {default as TextList} from '../List/TextListOptions/TextListOption';
 export {default as Benefits} from '../Benefits/Benefits';
+export {default as FiltrationItem} from '../Searching/Filtration/FiltrationItem';
+export {default as FiltrationHeader} from '../Searching/Filtration/FiltrationHeader';
+export {default as FiltrationInner} from '../Searching/Filtration/FiltrationInner';

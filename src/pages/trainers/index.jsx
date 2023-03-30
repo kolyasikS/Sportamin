@@ -1,10 +1,9 @@
 import React from 'react';
+import {TrainersPage} from "@/pages(notNEXT)/api/Components";
 
 const Index = () => {
     return (
-        <div>
-            
-        </div>
+        <TrainersPage/>
     );
 };
 

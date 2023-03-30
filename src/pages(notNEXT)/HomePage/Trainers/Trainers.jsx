@@ -2,7 +2,7 @@ import React from 'react';
 import {TitleWithImage} from "@/shared/ui/Titles/api/Titles";
 import styles from '../styles/Trainers.module.scss';
 import TopTrainers from "@/app/Static Data/TopTrainers(temp)/TopTrainers";
-import {User} from "@/shared/ui/InfoItems/api/Items";
+import {Trainer} from "@/shared/ui/InfoItems/api/Items";
 import RedToBlack from "@/shared/ui/Buttons/Red-to-black/Red-to-black";
 import {RBButton} from "@/shared/ui/Buttons/api/Buttons";
 const Trainers = () => {
@@ -12,7 +12,7 @@ const Trainers = () => {
                 <TitleWithImage>our trainers</TitleWithImage>
                 <div className={styles.trainersItems}>
                     {TopTrainers.map(item =>
-                        <User key={item.id} name={item.name}
+                        <Trainer key={item.id} name={item.name}
                             avatar={item.src} amountCourses={item.amountCourses}
                             rating={item.rating}
                         />

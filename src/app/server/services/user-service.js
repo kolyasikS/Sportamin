@@ -34,7 +34,7 @@ class UserService {
     async login(email, password) {
         const user = await UserModel.findOne({email});
         if (!user) {
-            throw ApiError.BadRequest('User is undefined');
+            throw ApiError.BadRequest('Trainer is undefined');
         }
         const isPassEquals = await bcrypt.compare(password, user.password);
         if (!isPassEquals) {

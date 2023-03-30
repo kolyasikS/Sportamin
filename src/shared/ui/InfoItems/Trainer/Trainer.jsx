@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from "next/image";
-import styles from './User.module.scss';
-const User = ({name, amountCourses, avatar, rating}) => {
+import styles from './Trainer.module.scss';
+const Trainer = ({name, amountCourses, avatar, rating}) => {
     return (
         <div className={styles.user}>
             <Image src={avatar} alt={''} width={250} height={250}/>
@@ -12,4 +12,4 @@ const User = ({name, amountCourses, avatar, rating}) => {
     );
 };
 
-export default User;
+export default Trainer;

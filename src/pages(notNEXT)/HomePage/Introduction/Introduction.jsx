@@ -10,20 +10,12 @@ import TestImage from 'public/media/images/muhamed.jpg';
 import {checkAuth} from "@/app/lib/controllers/authController";
 const Introduction = () => {
     const [showSlider, setShowSlider] = useState(false);
-    const [isLoading, setIsLoading] = useState(true);
     const router = useRouter();
     const state = useSelector(state => state.authReducer);
-    const dispatch = useDispatch();
     useEffect(() => {
         setShowSlider(true);
     }, []);
-    useEffect(() => {
-        if (localStorage.getItem('token')) {
-            checkAuth(dispatch, () => setIsLoading(false)).then();
-        } else {
-            setIsLoading(false);
-        }
-    }, []);
+
 
     return (
         <section>

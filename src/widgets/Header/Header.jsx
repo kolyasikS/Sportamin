@@ -10,13 +10,14 @@ import Link from "next/link";
 const Header = ({isLoading}) => {
     const state = useSelector(state => state.authReducer);
     const router = useRouter();
+    console.log(state);
     return (
         <div className={styles.introHeader}>
             <MainLogo/>
             <nav className={styles.navHeader}>
                 <li><Link href="/">Home</Link></li>
                 <li><Link href="/about">About us</Link></li>
-                <li><Link href="/trainers">Trainers</Link></li>
+                <li><Link href="/trainers/index">Trainers</Link></li>
                 <li><Link href="/courses">Courses</Link></li>
                 <li><Link href="/blogs">Blogs</Link></li>
                 <li><Link href="/contact">Contact us</Link></li>

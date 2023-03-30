@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Trainers = () => {
+const Index = () => {
     return (
         <div>
             
@@ -8,4 +8,4 @@ const Trainers = () => {
     );
 };
 
-export default Trainers;
+export default Index;

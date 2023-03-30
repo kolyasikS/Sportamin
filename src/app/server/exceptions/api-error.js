@@ -8,7 +8,7 @@ export default class ApiError extends Error {
     }
 
     static UnauthorizedError() {
-        return new ApiError(401, 'User is unauthorized');
+        return new ApiError(401, 'Trainer is unauthorized');
     }
 
     static BadRequest(message, errors = []) {

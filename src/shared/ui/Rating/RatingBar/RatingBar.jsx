@@ -1,27 +1,29 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import {OutlineRatingStar, SolidRatingStar} from "@/shared/ui/Rating/api/rating";
+import {v4} from "uuid";
 
 const RatingBar = ({rating}) => {
-    const [ratingStars, setRatingStars] = useState([]);
-    useEffect(() => {
+    const ratingStars = useMemo(() => {
         const starsComponents = [];
         let count = 5;
         while (count) {
             if (rating >= 1) {
-                starsComponents.push(<SolidRatingStar/>);
+                starsComponents.push(<SolidRatingStar key={v4()}/>);
                 rating--;
             } else if (rating > 0) {
                 rating -= 0.5;
-                starsComponents.push(<SolidRatingStar isHalf={true}/>);
+                starsComponents.push(<SolidRatingStar key={v4()} isHalf={true}/>);
             } else {
-                starsComponents.push(<OutlineRatingStar/>);
+                starsComponents.push(<OutlineRatingStar key={v4()}/>);
             }
             count--;
         }
-        setRatingStars(starsComponents);
+        return starsComponents;
     }, [rating]);
     return (
-        ratingStars.map(component => component)
+        <span>
+            {ratingStars.map(component => component)}
+        </span>
     );
 };
 

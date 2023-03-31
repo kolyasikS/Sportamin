@@ -1,0 +1,41 @@
+@import 'src/app/styles/mixins';
+@import 'src/app/styles/variables';
+
+.label {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 0.8rem 0;
+    user-select: none;
+    -webkit-user-select: none;
+    min-width: 10rem;
+    max-width: 40rem;
+    p {
+        color: #f9f8f8;
+        margin-left: 6px;
+    }
+}
+.input {
+    position: absolute;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    clip: rect(1px,1px,1px,1px);
+}
+.radioBtn {
+    border-radius: 50%;
+    display: inline-block;
+    flex-shrink: 0;
+
+    width: 1.3rem;
+    height: 1.3rem;
+
+    border: 0.2rem solid #6d6d6e;
+    margin-right: 0.5rem;
+    position: relative;
+    top: -0.1rem;
+}
+.active {
+    background: #6d6d6e;
+    box-shadow: 0 0 0 0.2rem #1c1d1f inset;
+}

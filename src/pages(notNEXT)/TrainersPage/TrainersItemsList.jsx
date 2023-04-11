@@ -11,7 +11,10 @@ const TrainersItemsList = ({isEmpty, searchedTrainers}) => {
         <div className={styles.searchedItemsBlock}>
             <div>
                 {isLoading
-                ? <Loading/>
+                ?
+                    <div className={styles.loadingBlock}>
+                        <Loading/>
+                    </div>
                 : isEmpty
                     ? <h1 className={styles.notFoundResult}>Not found</h1>
                     : <ul className={`${styles.list}`}>

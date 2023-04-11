@@ -1,0 +1,74 @@
+@import 'src/app/styles/mixins';
+@import 'src/app/styles/variables';
+
+.listItem {
+    color: $color-2;
+    list-style: none;
+    padding: 0 0 10px 0;
+    border-bottom: 1px solid #f9f8f8;
+}
+.listItem__name {
+    color: #3e85e0;
+    display: block;
+    width: fit-content;
+    font-size: 18px;
+    letter-spacing: 0.5px;
+    padding-bottom: 3px;
+    margin-bottom: 10px;
+    position: relative;
+    transition: all 0.2s;
+    &::after {
+        transition: all 0.2s;
+        content: '';
+        position: absolute;
+        bottom: 0px;
+        left: 0;
+        height: 1px;
+        width: 100%;
+        background-color: #3e85e0;
+    }
+    &:hover {
+        color: #2764b2;
+    }
+    &:hover::after {
+        background-color: #2764b2;
+    }
+}
+.listItem__activity {
+    margin-bottom: 10px;
+}
+.listItem__inner {
+    display: flex;
+    @include space-x(4);
+}
+.listItem__avatarLink {
+    border-radius: 50%;
+    display: block;
+    img {
+        border-radius: 50%;
+    }
+}
+.listItem__characteristics {
+    @include flexCenterColumn();
+    align-items: flex-start;
+    @include space-y(3);
+}
+.listItem__characteristicsItem {
+    @include flexCenter();
+    @include space-x(3);
+    color: $color-1;
+    img {
+        position: relative;
+        top: -2px;
+    }
+    span {
+        font-size: 18px;
+        color: #acacd3;
+    }
+}
+.listItem__description {
+    font-size: 17px;
+    margin: 10px 0;
+    text-indent: 15px;
+    line-height: 1.3;
+}

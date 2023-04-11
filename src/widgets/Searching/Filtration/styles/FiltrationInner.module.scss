@@ -4,4 +4,20 @@
 .filtrationItemList {
     border-top: 1px solid #cacaca;
     width: fit-content;
+    height: fit-content;
+}
+
+.isLoading {
+    position: relative;
+    &::before {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: calc(100% + 2px);
+        top: -2px;
+        z-index: 1;
+        left: 0;
+        background-color: #0D1117;
+        opacity: 0.6;
+    }
 }

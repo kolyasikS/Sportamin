@@ -6,30 +6,31 @@ export const filtrationItems = [
         items: [
             {
                 id: v4(),
-                rating: 4.5,
+                value: 4.5,
                 title: '4.5 and up',
                 isActive: true,
             },
             {
                 id: v4(),
-                rating: 4,
+                value: 4,
                 title: '4.0 and up',
                 isActive: false,
             },
             {
                 id: v4(),
-                rating: 3.5,
+                value: 3.5,
                 title: '3.5 and up',
                 isActive: false,
             },
             {
                 id: v4(),
-                rating: 3,
+                value: 3,
                 title: '3.0 and up',
                 isActive: false,
             },
         ],
         multiple: false,
+        isRated: true,
     },
     {
         id: 2,
@@ -37,25 +38,25 @@ export const filtrationItems = [
         items: [
             {
                 id: v4(),
-                rating: 'English',
+                value: 'English',
                 title: 'English',
                 isActive: true,
             },
             {
                 id: v4(),
-                rating: 'Ukrainian',
+                value: 'Ukrainian',
                 title: 'Ukrainian',
                 isActive: false,
             },
             {
                 id: v4(),
-                rating: 'French',
+                value: 'French',
                 title: 'French',
                 isActive: false,
             },
             {
                 id: v4(),
-                rating: 'German',
+                value: 'German',
                 title: 'German',
                 isActive: false,
             },

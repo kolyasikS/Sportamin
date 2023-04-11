@@ -5,7 +5,7 @@ import Image from "next/image";
 const IntroductionPage = ({bg, title, titleSpan, height}) => {
     return (
         <section className={styles.introductionSection}>
-            <Image src={bg} alt={''} height={height}>
+            <Image src={bg} alt={''} height={height} priority={true}>
             </Image>
             <h1>{title} <span>{titleSpan}</span></h1>
         </section>

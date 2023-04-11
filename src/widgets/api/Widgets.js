@@ -9,3 +9,4 @@ export {default as FiltrationItem} from '../Searching/Filtration/FiltrationItem'
 export {default as FiltrationHeader} from '../Searching/Filtration/FiltrationHeader';
 export {default as FiltrationInner} from '../Searching/Filtration/FiltrationInner';
 export {default as SearchItemsList} from '../List/SearchItemsList/SearchItemsList';
+export {default as DoubleTitleList} from '../List/DoubleTitleList/DoubleTitleList';

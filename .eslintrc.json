@@ -1,6 +1,7 @@
 {
   "extends": [
     "next/core-web-vitals",
-    "plugin:cypress/recommended"
+    "plugin:cypress/recommended",
+    "eslint:recommended"
   ]
 }

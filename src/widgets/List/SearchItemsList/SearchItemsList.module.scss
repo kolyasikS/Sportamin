@@ -1,0 +1,9 @@
+@import 'src/app/styles/mixins';
+@import 'src/app/styles/variables';
+
+.listSection {
+
+}
+.list {
+    @include space-y(5);
+}

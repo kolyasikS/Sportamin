@@ -31,6 +31,7 @@
     "jest-environment-jsdom": "^29.4.3",
     "joi": "^17.9.0",
     "jsonwebtoken": "^9.0.0",
+    "lodash": "^4.17.21",
     "mongodb": "^5.1.0",
     "mongoose": "^7.0.2",
     "next": "13.2.1",
@@ -50,9 +51,9 @@
   "devDependencies": {
     "@babel/plugin-proposal-export-default-from": "^7.18.10",
     "@testing-library/cypress": "^9.0.0",
-    "autoprefixer": "^10.4.13",
+    "autoprefixer": "^10.4.14",
     "postcss": "^8.4.21",
-    "tailwindcss": "^3.2.7",
+    "tailwindcss": "^3.3.1",
     "ts-loader": "^9.4.2"
   }
 }

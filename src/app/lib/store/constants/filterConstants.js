@@ -1,0 +1,6 @@
+export const SET_RATING = 'SET_RATING';
+export const ADD_LANGUAGE = 'ADD_LANGUAGE';
+export const REMOVE_LANGUAGE = 'REMOVE_LANGUAGE';
+export const CLEAR_FILTERS = 'CLEAR_FILTERS';
+export const ADD_FILTER = 'ADD_FILTER';
+export const REMOVE_FILTER = 'REMOVE_FILTER';

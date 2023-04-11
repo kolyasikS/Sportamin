@@ -10,6 +10,14 @@ export async function getTrainers(query, sort) {
         console.log(e?.response?.data);
     }
 }
+export async function getTrainer(id) {
+    try {
+        const res = await UserService.getTrainer(id).then(res => res.data);
+        return res;
+    } catch (e) {
+        console.log(e?.response?.data);
+    }
+}
 
 export async function updateUser(email, image) {
     try {

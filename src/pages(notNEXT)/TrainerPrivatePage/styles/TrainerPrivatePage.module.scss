@@ -1,0 +1,23 @@
+@import 'src/app/styles/mixins';
+@import 'src/app/styles/variables';
+
+.main {
+    @include flexCenter();
+    @include space-x(15);
+    align-items: flex-start;
+    padding: 40px 0 40px;
+    background-color: $bg-block-1;
+}
+.aside {
+    img {
+        border-radius: 50%;
+        margin-bottom: 20px;
+    }
+}
+.links {
+    @include space-y(2);
+    img {
+        border-radius: 0;
+        margin-bottom: 0px;
+    }
+}

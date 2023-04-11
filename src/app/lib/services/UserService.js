@@ -8,6 +8,12 @@ export default class UserService {
         });
         return res;
     }
+    static getTrainer(id) {
+        const res = $api.post('/trainer', {
+            id,
+        });
+        return res;
+    }
     static updateUser(email, image) {
         return $api.put('/user/edit', {
             email,

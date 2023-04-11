@@ -1,10 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import styles from './style.module.scss';
-import Image from "next/image";
 import useUppercaseButton from "@/app/lib/features/hooks/useUppercaseButton";
-const AnimBorderTranspBg = ({children, onclick,
-                                width = 180,
-                                height = 50, uppercase}) => {
+const AnimBorderTranspBg = ({children, onclick, border='#fff',
+                                width = 180, color, padding=20,
+                                height = 50, uppercase=true}) => {
     const style = useUppercaseButton(uppercase, {
         width,
         height
@@ -12,10 +11,10 @@ const AnimBorderTranspBg = ({children, onclick,
 
     return (
         <button className={styles.animBorderTranspBg} onClick={onclick}
-                style={style}>
+                style={{...style, color, paddingLeft: padding, paddingRight: padding}}>
             {children}
             <svg>
-                <rect x="0" y="0" fill="none" width="100%" height="100%"></rect>
+                <rect x="0" y="0" fill="none" stroke={border} width="100%" height="100%"></rect>
             </svg>
         </button>
     );

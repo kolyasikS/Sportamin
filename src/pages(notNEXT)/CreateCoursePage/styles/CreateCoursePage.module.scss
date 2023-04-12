@@ -1,0 +1,39 @@
+@import '/src/app/styles/mixins';
+@import '/src/app/styles/variables';
+
+.main {
+    background-color: $bg-block-1;
+    @include flexCenter();
+    min-height: 80vh;
+    color: $color-1;
+    padding: 20px 0;
+}
+.section {
+    @include flexCenterColumn();
+    background-color: #161b22;
+    padding: 30px 60px 20px;
+    max-width: 70%;
+    min-width: 40%;
+}
+.formHeader {
+    width: 100%;
+}
+.formTitle {
+    font-size: 34px;
+    font-family: "Lucida Fax";
+    @include flexCenter();
+    @include space-x(3);
+}
+.form {
+    label {
+        font-family: "Microsoft YaHei";
+    }
+}
+.formInner {
+    width: 100%;
+    @include space-y(2);
+}
+.formItemTitle {
+    font-size: 20px;
+    margin-top: 20px;
+}

@@ -1,12 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import styles from './DoubleTitleList.module.scss';
 import DoubleTitleListOption from "@/widgets/List/DoubleTitleList/DoubleTitleListOption/DoubleTitleListOption";
-import {useDispatch} from "react-redux";
-import {setIsLoading} from "@/app/lib/store/actions/sessionActions";
-const DoubleTitleList = ({title, options, sortPath, setSort}) => {
+const DoubleTitleList = ({title, options, sortPath, setSort,
+                             width}) => {
     const [activeOption, setActiveOption] = useState(options[0]);
     const [isShowed, setIsShowed] = useState(false);
-    const dispatch = useDispatch();
     const optionClick = (id) => {
         const newActiveOption = options.find(item => item.id === id);
 
@@ -29,10 +27,11 @@ const DoubleTitleList = ({title, options, sortPath, setSort}) => {
              tabIndex={1}
         >
             <div className={styles.btnList}
+                 style={{width}}
                  onClick={() => setIsShowed(prev => !prev)}
             >
                 <div>
-                    <span>{title}</span>
+                    {title && <span>{title}</span>}
                     <p>{activeOption.title}</p>
                 </div>
                 <span className={styles.dropdownCaret}></span>

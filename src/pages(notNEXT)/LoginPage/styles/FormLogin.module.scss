@@ -19,21 +19,7 @@
   @include flexCenterColumn();
   @include space-y(3);
 }
-.separatorHorizontalLine {
-  display: flex;
-  border-top: 1px solid #cacaca;
-  flex: 1 1 auto;
-  margin-top: 8px;
-  min-width: 1px;
-  padding-top: 8px;
-}
-.separatorText {
-  margin: 0 5px;
-}
-.separator {
-  display: flex;
-  margin: 20px 0 40px;
-}
+
 .spaceY {
   @include space-y(5);
 }

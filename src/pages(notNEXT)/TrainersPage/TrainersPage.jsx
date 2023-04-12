@@ -43,7 +43,6 @@ const TrainersPage = () => {
     return (
         <main>
             <IntroductionPage bg={banner} title={'Trainers'} height={450}/>
-            {/*<SearchTrainers/>*/}
             <SearchItems fetchItems={fetchTrainers} query={query} setQuery={setQuery}
                          sortPath={'trainer.'} filtrationItems={filtrationItems}
                          renderSearchedItem={renderTrainerItem}

@@ -1,14 +1,8 @@
 import React, {useState} from 'react';
 import styles from './styles/FiltrationItem.module.scss';
-import {RadioBox, ComboBox} from "@/shared/ui/Inputs/api/Inputs";
-import RatingBar from "@/shared/ui/Rating/RatingBar/RatingBar";
-import {useDispatch} from "react-redux";
 import FiltrationItemProcess from "@/pages(notNEXT)/TrainersPage/FiltrationItemProcess";
 const FiltrationItem = ({title, items, multiple, isRated}) => {
     const [isInnerShowed, setIsInnerShowed] = useState(false);
-
-
-
 
     return (
         <li className={styles.filtrationItem}>

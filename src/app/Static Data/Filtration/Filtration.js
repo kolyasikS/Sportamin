@@ -1,4 +1,8 @@
 import {v4} from 'uuid';
+import {addLanguage, removeLanguage, setRating} from "@/app/lib/store/actions/filterActions";
+import RatingBar from "@/shared/ui/Rating/RatingBar/RatingBar";
+import React from "react";
+import {value} from "lodash/seq";
 export const filtrationItems = [
     {
         id: 1,
@@ -7,30 +11,36 @@ export const filtrationItems = [
             {
                 id: v4(),
                 value: 4.5,
+                children: <RatingBar rating={4.5}/>,
                 title: '4.5 and up',
                 isActive: true,
             },
             {
                 id: v4(),
                 value: 4,
-                title: '4.0 and up',
+                children: <RatingBar rating={4}/>,
+                title: `4.0 and up`,
                 isActive: false,
             },
             {
                 id: v4(),
                 value: 3.5,
+                children: <RatingBar rating={3.5}/>,
                 title: '3.5 and up',
                 isActive: false,
             },
             {
                 id: v4(),
                 value: 3,
+                children: <RatingBar rating={3}/>,
                 title: '3.0 and up',
                 isActive: false,
             },
         ],
         multiple: false,
-        isRated: true,
+        setActive: (value, dispatch) => {
+            dispatch(setRating(value));
+        }
     },
     {
         id: 2,
@@ -62,5 +72,12 @@ export const filtrationItems = [
             },
         ],
         multiple: true,
+        toggleActive: (value, filterState, dispatch) => {
+            if (filterState.languages.includes(value)) {
+                dispatch(removeLanguage(value));
+            } else {
+                dispatch(addLanguage(value));
+            }
+        }
     }
 ];

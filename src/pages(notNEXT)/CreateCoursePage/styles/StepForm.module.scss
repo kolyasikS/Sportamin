@@ -1,0 +1,14 @@
+@import '/src/app/styles/mixins';
+@import '/src/app/styles/variables';
+
+.form {
+    label {
+        font-family: "Microsoft YaHei";
+    }
+    overflow: hidden;
+    min-width: 100%;
+}
+.formInner {
+    width: 100%;
+    @include space-y(2);
+}

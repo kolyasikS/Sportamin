@@ -64,7 +64,7 @@ const FiltrationHeader = ({setQuery, setSort, sortPath}) => {
             }
         }}>
             <div className={styles.filterBlock}>
-                <DarkBtnWithImg img={filterImg} width={20}>Filter ({amountFilters})</DarkBtnWithImg>
+                <DarkBtnWithImg img={filterImg} widthImg={20}>Filter ({amountFilters})</DarkBtnWithImg>
                 <DoubleTitleList title={'Sort by'} options={sortOptions} sortPath={sortPath} setSort={setSort}/>
                 <MainInput bgColor={'#0d1117'} color={'#c9d1d9'}
                            height={65} ref={nameRef}
@@ -76,10 +76,10 @@ const FiltrationHeader = ({setQuery, setSort, sortPath}) => {
                 >
                     Surname
                 </MainInput>
-                <DarkBtnWithImg img={searchImg} width={30} onClick={search}></DarkBtnWithImg>
+                <DarkBtnWithImg img={searchImg} widthImg={30} onClick={search}></DarkBtnWithImg>
             </div>
             <div className={`${styles.clearFilterBlock} ${isLoading ? styles.isLoading : ''}`}>
-                <DarkBtnWithImg img={cancelImg} width={20} onClick={clearFiltersClick}>Clear filters</DarkBtnWithImg>
+                <DarkBtnWithImg img={cancelImg} widthImg={20} onClick={clearFiltersClick}>Clear filters</DarkBtnWithImg>
             </div>
         </div>
     );

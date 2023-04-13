@@ -2,10 +2,14 @@ import React from 'react';
 import styles from "./DarkBtnWithImg.module.scss";
 import Image from "next/image";
 
-const DarkBtnWithImg = ({width, height, img, children, onClick}) => {
+const DarkBtnWithImg = ({widthImg, heightImg,
+                            img, children,
+                            onClick, width, height}) => {
     return (
-        <button className={styles.filterBtn} onClick={onClick}>
-            <Image src={img} alt={''} width={width} height={height}/>
+        <button className={styles.filterBtn} onClick={onClick}
+                style={{width, height}}
+        >
+            {img && <Image src={img} alt={''} width={widthImg} height={heightImg}/>}
             <p>{children}</p>
         </button>
     );

@@ -1,0 +1,41 @@
+@import 'src/app/styles/mixins';
+@import 'src/app/styles/variables';
+.item {
+    @include flexCenter();
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding-right: 5px;
+    transition: all 0.2s;
+    height: 35px;
+}
+.number {
+    font-size: 20px;
+    font-family: Tahoma;
+}
+.title {
+    font-size: 20px;
+}
+.info {
+    @include flexCenter();
+    justify-content: flex-start;
+    @include space-x(2);
+    height: auto;
+    width: 100%;
+}
+.features {
+    display: flex;
+    justify-content: flex-end;
+    @include space-x(3);
+    min-width: 20%;
+    img {
+        cursor: pointer;
+        &:hover {
+            background-color: #4e4e50;
+        }
+        border-radius: 4px;
+        padding: 5px;
+    }
+    .cancel {
+        transform: rotateZ(45deg);
+    }
+}

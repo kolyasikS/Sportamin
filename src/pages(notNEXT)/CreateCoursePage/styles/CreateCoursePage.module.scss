@@ -6,17 +6,20 @@
     @include flexCenter();
     min-height: 80vh;
     color: $color-1;
-    padding: 20px 0;
+    padding: 40px 0;
 }
 .section {
     @include flexCenterColumn();
     background-color: #161b22;
     padding: 30px 60px 20px;
-    max-width: 70%;
-    min-width: 40%;
+    width: 45%;
+    overflow: hidden;
+    border-radius: 15px;
 }
-.formHeader {
+.container {
     width: 100%;
+    position: relative;
+    overflow: hidden;
 }
 .formTitle {
     font-size: 34px;
@@ -24,16 +27,26 @@
     @include flexCenter();
     @include space-x(3);
 }
-.form {
-    label {
-        font-family: "Microsoft YaHei";
-    }
-}
-.formInner {
-    width: 100%;
-    @include space-y(2);
-}
-.formItemTitle {
-    font-size: 20px;
+
+.navButtons {
     margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+}
+.progress {
+    position: absolute;
+    bottom: 0.5rem;
+    left: 47%;
+    font-size: 20px;
+    font-family: Georgia;
+}
+.formSteps {
+    display: flex;
+    min-width: fit-content;
+    transition: 0.5s all;
+    @include space-x(10);
+}
+.moveStep {
+    transform: translateX(calc(-100% - 2.5rem));
 }

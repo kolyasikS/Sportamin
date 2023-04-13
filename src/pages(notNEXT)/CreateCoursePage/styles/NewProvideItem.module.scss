@@ -1,0 +1,23 @@
+@import 'src/app/styles/mixins';
+@import 'src/app/styles/variables';
+
+.newItem {
+    @include flexCenter();
+    justify-content: flex-start;
+    @include space-x(3);
+    transition: all 0.2s;
+    p {
+        font-size: 17px;
+    }
+}
+.isNotCreating {
+    &:hover {
+        background-color: #20262c;
+    }
+    padding: 15px 20px;
+    cursor: pointer;
+}
+.number {
+    font-size: 24px;
+    font-family: FF;
+}

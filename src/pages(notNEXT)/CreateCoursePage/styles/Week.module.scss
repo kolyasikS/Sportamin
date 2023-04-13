@@ -1,1 +1,21 @@
-
+.title {
+    color: #b2b2b6;
+    font-size: 22px;
+    margin: 0;
+}
+.week {
+    margin-bottom: 15px;
+}
+.weekHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #29343d;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+.weekInner {
+    padding-left: 40px;
+}

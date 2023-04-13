@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import {CSSTransition}  from 'react-transition-group';
 import styles from './Question.module.scss';
+import {ArrowY} from "@/shared/ui/api/icons";
 const Question = ({question, answer}) => {
     const [textIsShowed, setTextIsShowed] = useState(false);
     return (
@@ -8,20 +9,7 @@ const Question = ({question, answer}) => {
             <button onClick={() => setTextIsShowed(!textIsShowed)} className={styles.questionBtn}>
                 <div className={styles.questionBtn__inner}>
                     <p>{question}</p>
-                    {textIsShowed
-                        ? <span aria-hidden="true" role="img" class="material-design-icon chevron-up-icon">
-                        <svg fill="currentColor" width="20" height="20" viewBox="0 0 24 24" class="material-design-icon__svg">
-                            <path d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z">
-                            </path>
-                        </svg>
-                    </span>
-                        : <span aria-hidden="true" role="img" class="material-design-icon chevron-down-icon">
-                        <svg fill="currentColor" width="20" height="20" viewBox="0 0 24 24" class="material-design-icon__svg">
-                            <path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z">
-                            </path>
-                        </svg>
-                    </span>
-                    }
+                    <ArrowY isTrue={textIsShowed}/>
                 </div>
             </button>
             <CSSTransition in={textIsShowed}

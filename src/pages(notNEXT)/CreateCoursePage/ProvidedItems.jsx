@@ -4,7 +4,7 @@ import Image from "next/image";
 import NewProvideItem from "@/pages(notNEXT)/CreateCoursePage/NewProvideItem";
 import ProvideItem from "@/pages(notNEXT)/CreateCoursePage/ProvideItem";
 import {v4} from "uuid";
-const ProvidedItems = () => {
+const ProvidedItems = ({title, indent}) => {
     const [items, setItems] = useState([]);
     const editItems = (id, value) => {
         setItems(items.map(item => item.id === id ? {id, title: value} : item));
@@ -20,7 +20,11 @@ const ProvidedItems = () => {
                              editItems={(value) => editItems(item.id, value)}
                 />
             )}
-            <NewProvideItem number={items.length + 1} setItems={setItems}/>
+            <NewProvideItem number={items.length + 1}
+                            setItems={setItems}
+                            title={title}
+                            indent={indent}
+            />
         </div>
     );
 };

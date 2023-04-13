@@ -13,6 +13,7 @@ import {DarkBtnWithImg} from "@/shared/ui/Buttons/api/Buttons";
 import FirstStepForm from "@/pages(notNEXT)/CreateCoursePage/FirstStepForm";
 import SecondStepForm from "@/pages(notNEXT)/CreateCoursePage/SecondStepForm";
 import {scrollToUp} from "@/app/lib/features/animations/scroll";
+import CreatingExerciseMenu from "@/pages(notNEXT)/CreateCoursePage/Content/CreatingExerciseMenu";
 const CreateCoursePage = () => {
     const [step, setStep] = useState(1);
     const [transform, setTransform] = useState('');
@@ -61,6 +62,7 @@ const CreateCoursePage = () => {
                     </div>
                     <span className={styles.progress}>{step}/2</span>
                 </div>
+                <CreatingExerciseMenu/>
             </section>
         </main>
     );

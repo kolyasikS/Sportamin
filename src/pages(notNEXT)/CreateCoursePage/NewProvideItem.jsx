@@ -6,7 +6,7 @@ import {MainInput} from "@/shared/ui/Inputs/api/Inputs";
 import {v4} from "uuid";
 import useDynamicInput from "@/app/lib/features/hooks/useDynamicInput";
 
-const NewProvideItem = ({number, setItems}) => {
+const NewProvideItem = ({number, setItems, title, indent}) => {
     const [isCreating, setIsCreating] = useState(false);
     const inputRef = useDynamicInput(isCreating);
     const createItem = () => {
@@ -19,7 +19,10 @@ const NewProvideItem = ({number, setItems}) => {
         setIsCreating(false);
     }
     return (
-        <div className={`${styles.newItem} ${isCreating ? '' : styles.isNotCreating}`} onClick={createItem}>
+        <div className={`${styles.newItem} ${isCreating ? '' : styles.isNotCreating}`}
+             onClick={createItem}
+             style={{transform: `translateX(${indent}px)`}}
+        >
             {isCreating
                 ? <>
                     <span className={styles.number}>{number}.</span>
@@ -29,7 +32,7 @@ const NewProvideItem = ({number, setItems}) => {
                 </>
                 : <>
                     <Image src={addItem} alt={''} width={20}/>
-                    <p>New item</p>
+                    <p>New {title ? title : 'item'}</p>
                 </>
             }
         </div>

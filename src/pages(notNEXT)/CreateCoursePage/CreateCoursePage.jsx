@@ -10,11 +10,15 @@ import FirstStepForm from "@/pages(notNEXT)/CreateCoursePage/FirstStepForm";
 import SecondStepForm from "@/pages(notNEXT)/CreateCoursePage/SecondStepForm";
 import {scrollToUp} from "@/app/lib/features/animations/scroll";
 import BackgroundShadow from "@/app/lib/features/contexts/BGShadowContext";
+import {useDispatch, useSelector} from "react-redux";
+import {setStatus} from "@/app/lib/store/actions/courseActions";
+import {statuses} from "@/app/lib/store/constants/courseConstants";
 
 const CreateCoursePage = () => {
     const [step, setStep] = useState(1);
     const [style, setStyle] = useState({});
     const [isBGShadow, setIsBGShadow] = useState(false);
+    const dispatch = useDispatch();
     const nextStep = () => {
         setStep(step + 1);
         scrollToUp(1000, 120, 50);
@@ -23,7 +27,9 @@ const CreateCoursePage = () => {
         setStep(step - 1);
         scrollToUp(1000, 120, 50);
     }
-
+    const createCourse = () => {
+        dispatch(setStatus(statuses.FETCHING));
+    }
     useEffect(() => {
         if (step === 2) {
             setStyle({
@@ -58,7 +64,7 @@ const CreateCoursePage = () => {
                             {step === 2
                             ? <>
                                 <DarkBtnWithImg height={40} img={createCourseImage}
-                                                widthImg={20}
+                                                widthImg={20} onClick={createCourse}
                                 >Create</DarkBtnWithImg>
                                 <DarkBtnWithImg height={40} img={returnImg}
                                                 widthImg={15} onClick={prevStep}

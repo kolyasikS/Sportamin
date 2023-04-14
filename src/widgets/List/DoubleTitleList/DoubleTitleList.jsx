@@ -1,25 +1,15 @@
 import React, {useEffect, useState} from 'react';
 import styles from './DoubleTitleList.module.scss';
 import DoubleTitleListOption from "@/widgets/List/DoubleTitleList/DoubleTitleListOption/DoubleTitleListOption";
-const DoubleTitleList = ({title, options, sortPath, setSort,
+const DoubleTitleList = ({title, options,
+                             setActiveOption, activeOption,
                              width}) => {
-    const [activeOption, setActiveOption] = useState(options[0]);
     const [isShowed, setIsShowed] = useState(false);
     const optionClick = (id) => {
         const newActiveOption = options.find(item => item.id === id);
-
-        const sort = {};
-        sort[sortPath + newActiveOption.title.toLowerCase()] = -1;
-        setSort(sort);
-
         setActiveOption(newActiveOption);
         setIsShowed(false);
     }
-    useEffect(() => {
-        const sort = {};
-        sort[sortPath + options[0].title.toLowerCase()] = -1;
-        setSort(sort);
-    }, [])
     return (
         <div className={styles.listBlock}
              onBlur={() => setIsShowed(false)}

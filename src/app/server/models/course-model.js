@@ -8,22 +8,18 @@ const CourseSchema = new Schema({
     language: {type: String, required: true},
     price: {type: Number, required: true},
     providedItems: [{type: String}],
-    content: [{
-        week: {
-            counted: {type: Number},
-            days: [{
-                dayOfWeek: {type: String},
-                partsOfBody: [{
-                    part: {type: String},
-                    title: {type: String},
-                    technique: {type: String},
-                }],
-                exercises: [{type: Number}],
-            }]
-        }
-    }],
     requirements: [{type: String}],
-    description: {type: String, required: require}
+    description: {type: String, required: require},
+    content: [{
+        days: [{
+            dayOfWeek: {type: String},
+            exercises: [{
+                muscles: [{type: String}],
+                title: {type: String},
+                technique: {type: String},
+            }],
+        }]
+    }],
 });
 
 export default models.Course || model('Course', CourseSchema);

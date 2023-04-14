@@ -9,6 +9,7 @@ import sortOptions from "@/app/Static Data/Filtration/Sorts";
 import {DoubleTitleList} from "@/widgets/api/Widgets";
 import {useDispatch, useSelector} from "react-redux";
 import {clearFilters, setRating} from "@/app/lib/store/actions/filterActions";
+import {FiltrationDoubleTitleList} from "@/features/api/filtration";
 const FiltrationHeader = ({setQuery, setSort, sortPath}) => {
     const nameRef = useRef();
     const surnameRef = useRef();
@@ -65,7 +66,7 @@ const FiltrationHeader = ({setQuery, setSort, sortPath}) => {
         }}>
             <div className={styles.filterBlock}>
                 <DarkBtnWithImg img={filterImg} widthImg={20}>Filter ({amountFilters})</DarkBtnWithImg>
-                <DoubleTitleList title={'Sort by'} options={sortOptions} sortPath={sortPath} setSort={setSort}/>
+                <FiltrationDoubleTitleList title={'Sort by'} options={sortOptions} sortPath={sortPath} setSort={setSort}/>
                 <MainInput bgColor={'#0d1117'} color={'#c9d1d9'}
                            height={65} ref={nameRef}
                 >

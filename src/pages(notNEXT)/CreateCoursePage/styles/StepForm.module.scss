@@ -7,8 +7,14 @@
     }
     min-width: 100%;
     position: relative;
+    &:first-child {
+        margin-right: 0px;
+    }
+
+    z-index: 2;
 }
 .formInner {
-    width: 100%;
+    max-width: 100%;
     @include space-y(2);
+    z-index: 2;
 }

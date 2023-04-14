@@ -9,7 +9,7 @@ import ProvidedItems from "@/pages(notNEXT)/CreateCoursePage/ProvidedItems";
 
 const FirstStepForm = () => {
     return (
-        <form className={styles.form}>
+        <form className={styles.form} style={{width: '100%'}}>
             <HorizontalSeparator color={'#0d8068'}>General information</HorizontalSeparator>
             <div className={styles.formInner}>
                 <MainInput bgColor={'#161b22'} color={'inherit'}

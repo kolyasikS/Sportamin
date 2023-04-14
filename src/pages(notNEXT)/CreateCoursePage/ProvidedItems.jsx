@@ -13,7 +13,7 @@ const ProvidedItems = ({title, indent}) => {
         setItems(items.filter(item => item.id !== id));
     }
     return (
-        <div>
+        <div className={styles.newItem}>
             {items.map((item, num) =>
                 <ProvideItem {...item} key={item.id} number={num + 1}
                              removeItem={() => removeItem(item.id)}

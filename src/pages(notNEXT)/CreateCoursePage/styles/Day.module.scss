@@ -1,5 +1,6 @@
 .day {
     margin-bottom: 10px;
+    z-index: 2;
 }
 .dayHeader {
     display: flex;
@@ -16,4 +17,5 @@
 }
 .dayInner {
     padding-left: 40px;
+    z-index: 2;
 }

@@ -5,6 +5,7 @@
 }
 .week {
     margin-bottom: 15px;
+    z-index: 2;
 }
 .weekHeader {
     display: flex;
@@ -18,4 +19,5 @@
 }
 .weekInner {
     padding-left: 40px;
+    z-index: 2;
 }

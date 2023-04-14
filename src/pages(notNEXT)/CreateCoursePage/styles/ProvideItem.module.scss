@@ -7,6 +7,7 @@
     padding-right: 5px;
     transition: all 0.2s;
     height: 35px;
+    width: 100%;
 }
 .number {
     font-size: 20px;
@@ -21,12 +22,13 @@
     @include space-x(2);
     height: auto;
     width: 100%;
+    padding-right: 30px;
 }
 .features {
     display: flex;
+
     justify-content: flex-end;
     @include space-x(3);
-    min-width: 20%;
     img {
         cursor: pointer;
         &:hover {

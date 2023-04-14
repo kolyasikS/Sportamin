@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import styles from "@/pages(notNEXT)/CreateCoursePage/styles/Day.module.scss";
 import generalStyles from '../styles/general.module.scss';
 import {ArrowY} from "@/shared/ui/api/icons";
@@ -6,17 +6,22 @@ import NewItem from "@/pages(notNEXT)/CreateCoursePage/Content/NewItem";
 import {v4} from "uuid";
 import Exercise from "@/pages(notNEXT)/CreateCoursePage/Content/Exercise";
 import CreatingExerciseMenu from "@/pages(notNEXT)/CreateCoursePage/Content/CreatingExerciseMenu";
+import BackgroundShadowContext from "@/app/lib/features/contexts/BGShadowContext";
 
 const Day = ({number}) => {
     const [exercises, setExercises] = useState([]);
     const [editingExercise, setEditingExercise] = useState(null);
     const [isDayOpen, setIsDayOpen] = useState(number === 1 ? true : false);
     const [isExerciseCreating, setIsExerciseCreating] = useState(false);
+    const toggleBGShadow = useContext(BackgroundShadowContext);
     const toggleDay = () => {
         setIsDayOpen(prev => !prev);
     }
     const startCreatingExercise = () => {
         setIsExerciseCreating(true);
+        if (toggleBGShadow) {
+            toggleBGShadow();
+        }
     }
 
     const addExercise = (newExercise) => {
@@ -33,6 +38,9 @@ const Day = ({number}) => {
         }
         setIsExerciseCreating(false);
         setEditingExercise(null);
+        if (toggleBGShadow) {
+            toggleBGShadow();
+        }
     }
     const editExercise = (exercise) => {
         setEditingExercise(exercise);

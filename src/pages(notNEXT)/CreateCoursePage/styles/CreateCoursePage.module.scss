@@ -7,7 +7,10 @@
     min-height: 80vh;
     color: $color-1;
     padding: 40px 0;
+    position: relative;
+
 }
+
 .section {
     @include flexCenterColumn();
     background-color: #161b22;
@@ -15,11 +18,12 @@
     width: 45%;
     border-radius: 15px;
     position: relative;
-
+    z-index: 2;
 }
 .container {
     width: 100%;
     overflow: hidden;
+    z-index: 2;
 }
 .formTitle {
     font-size: 34px;
@@ -43,9 +47,10 @@
 }
 .formSteps {
     display: flex;
-    min-width: fit-content;
-    transition: 0.5s all;
     @include space-x(10);
+    min-width: 100%;
+    transition: 0.5s all;
+    z-index: 2;
 }
 .moveStep {
     transform: translateX(calc(-100% - 2.5rem));

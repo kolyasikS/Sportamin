@@ -20,7 +20,6 @@ const HFLayout = ({children}) => {
                 setIsLoading(false);
                 return;
             }
-            console.log(1)
             checkAuth(dispatch, () => setIsLoading(false)).then();
         } else {
             setIsLoading(false);

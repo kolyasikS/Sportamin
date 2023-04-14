@@ -16,7 +16,7 @@ import {scrollToUp} from "@/app/lib/features/animations/scroll";
 import CreatingExerciseMenu from "@/pages(notNEXT)/CreateCoursePage/Content/CreatingExerciseMenu";
 const CreateCoursePage = () => {
     const [step, setStep] = useState(1);
-    const [transform, setTransform] = useState('');
+    const [style, setStyle] = useState({});
     const nextStep = () => {
         setStep(step + 1);
         scrollToUp(1000, 120, 50);
@@ -27,9 +27,13 @@ const CreateCoursePage = () => {
     }
     useEffect(() => {
         if (step === 2) {
-            setTransform('translateX(calc(-100% - 2.5rem))');
+            setStyle({
+                transform: 'translateX(calc(-100% - 2.5rem))',
+            });
         } else {
-            setTransform('translateX(0)');
+            setStyle({
+                transform: 'translateX(0)',
+            });
         }
     }, [step])
     return (
@@ -43,7 +47,7 @@ const CreateCoursePage = () => {
                             Creating a course
                         </p>
                     </h1>
-                    <div className={styles.formSteps} style={{transform}}>
+                    <div className={styles.formSteps} style={style}>
                         <FirstStepForm/>
                         <SecondStepForm/>
                     </div>
@@ -62,7 +66,6 @@ const CreateCoursePage = () => {
                     </div>
                     <span className={styles.progress}>{step}/2</span>
                 </div>
-                <CreatingExerciseMenu/>
             </section>
         </main>
     );

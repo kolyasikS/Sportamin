@@ -19,7 +19,6 @@
 }
 .container {
     width: 100%;
-    position: relative;
     overflow: hidden;
 }
 .formTitle {
@@ -37,7 +36,7 @@
 }
 .progress {
     position: absolute;
-    bottom: 0.5rem;
+    bottom: 2rem;
     left: 47%;
     font-size: 20px;
     font-family: Georgia;

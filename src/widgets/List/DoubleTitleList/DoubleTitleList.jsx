@@ -18,7 +18,6 @@ const DoubleTitleList = ({title, options, sortPath, setSort,
     useEffect(() => {
         const sort = {};
         sort[sortPath + options[0].title.toLowerCase()] = -1;
-        console.log('sort', sort);
         setSort(sort);
     }, [])
     return (

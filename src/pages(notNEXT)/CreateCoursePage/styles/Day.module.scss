@@ -1,3 +1,6 @@
+@import 'src/app/styles/mixins';
+@import 'src/app/styles/variables';
+
 .day {
     margin-bottom: 10px;
     z-index: 2;
@@ -18,4 +21,16 @@
 .dayInner {
     padding-left: 40px;
     z-index: 2;
+}
+.features {
+    @include flexCenter();
+    @include space-x(1);
+
+    img {
+        padding: 3px;
+        border-radius: 3px;
+        &:hover {
+            background-color: #6a7073;
+        }
+    }
 }

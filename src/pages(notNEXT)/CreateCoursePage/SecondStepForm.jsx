@@ -20,11 +20,27 @@ const SecondStepForm = () => {
     const addWeek = () => {
         setWeeksState(prev => [...prev, {id: v4()}]);
     }
+    const removeWeek = (id, weekNumArg) => {
+        setWeeksState(weeksState.filter(week => week.id !== id));
+        if (weekNumArg) {
+            setExercisesState(
+                exercisesState
+                    .filter(exer => exer.week !== id)
+                    .map(exer => {
+                        return {
+                            ...exer,
+                            weekNum: weekNumArg < exer.weekNum
+                                ? exer.weekNum - 1
+                                : exer.weekNum
+                        }
+                    })
+            );
+        }
+    }
     const [createStatus, course, user] = useSelector(state => {
         return [state.courseReducer.status, state.courseReducer, state.authReducer.user];
     })
     const dispatch = useDispatch();
-
     useEffect(() => {
         if (createStatus === statuses.FETCHING) {
             dispatch(setExercises(exercisesState));
@@ -42,6 +58,7 @@ const SecondStepForm = () => {
                       number={ind + 1}
                       setExercisesState={setExercisesState}
                       exercisesState={exercisesState}
+                      removeWeek={() => removeWeek(item.id)}
                 />
             )}
             <NewItem title={'week'} setItems={addWeek}/>

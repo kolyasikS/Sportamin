@@ -15,7 +15,6 @@ const CreatingExerciseMenu = ({addExercise, exercise}) => {
     const titleRef = useRef();
     const [options, setOptions] = useState(muscles);
     useEffect(() => {
-        console.log('start');
         if (exercise) {
             titleRef.current.value = exercise.title;
             techniqueRef.current.value = exercise.technique;

@@ -59,29 +59,28 @@ const reducer = createReducer(
             .addCase(setExercises, (state, action) => {
                 console.log(action.payload.exercises);
                 const exercises = action.payload.exercises;
-                const weeks = exercises.reduce((max, exer) => {
-                    if (exer.week > max) {
-                        max = exer.week;
+                const weeks = exercises.reduce((IDs, exer) => {
+                    if (!IDs.includes(exer.week)) {
+                        IDs.push(exer.week);
                     }
-                    return max;
-                }, 0);
+                    return IDs;
+                }, []);
                 if (!state.content.length) {
-                    state.content = [...new Array(weeks)].map(() => ({days: []}));
+                    state.content = [...new Array(weeks.length)].map(() => ({days: []}));
                 }
 
-                for (let i = 0; i < weeks; i++) {
-                    const days = exercises.reduce((max, exer) => {
-                        if (exer.week == i + 1 && exer.day > max) {
-                            max = exer.day;
+                for (let i = 0; i < weeks.length; i++) {
+                    const days = exercises.reduce((IDs, exer) => {
+                        if (exer.week === weeks[i] && !IDs.includes(exer.day)) {
+                            IDs.push(exer.day);
                         }
-                        return max;
-                    }, 0);
-                    console.log('content', state.content);
-                    state.content[i].days = [...new Array(days)].map(() => ({}));
+                        return IDs;
+                    }, []);
+                    state.content[i].days = [...new Array(days.length)].map(() => ({}));
                 }
                 for (let i = 0; i < action.payload.exercises.length; i++) {
-                    const week = action.payload.exercises[i].week;
-                    const day = action.payload.exercises[i].day;
+                    const week = action.payload.exercises[i].weekNum;
+                    const day = action.payload.exercises[i].dayNum;
                     console.log(week, day, state.content);
                     state.content[week - 1].days[day - 1] = {
                         dayOfWeek: nameDayOfWeek(day),

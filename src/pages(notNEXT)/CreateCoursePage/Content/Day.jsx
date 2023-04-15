@@ -10,8 +10,11 @@ import BackgroundShadowContext from "@/app/lib/features/contexts/BGShadowContext
 import {useDispatch, useSelector} from "react-redux";
 import {statuses} from "@/app/lib/store/constants/courseConstants";
 import {setDays, setExercises} from "@/app/lib/store/actions/courseActions";
+import Image from "next/image";
+import cancel from "@assets/cancel2.png";
 
-const Day = ({number, week, setExercisesState, exercisesState}) => {
+const Day = ({number, week, setExercisesState, weekNum,
+                 exercisesState, removeDay, id}) => {
     const [editingExercise, setEditingExercise] = useState(null);
     const [isDayOpen, setIsDayOpen] = useState(number === 1 ? true : false);
     const [isExerciseCreating, setIsExerciseCreating] = useState(false);
@@ -28,14 +31,22 @@ const Day = ({number, week, setExercisesState, exercisesState}) => {
 
     const addExercise = (newExercise) => {
         if (newExercise) {
-            console.log(exercisesState.map(e => e.id), newExercise.id);
+            console.log(exercisesState.map(item => item.id === newExercise.id
+                ? newExercise
+                : item
+            ));
             if (exercisesState.find(exercise => exercise.id === newExercise.id)) {
                 setExercisesState(exercisesState.map(item => item.id === newExercise.id
-                    ? newExercise
+                    ? {...item, ...newExercise}
                     : item
                 ));
             } else {
-                setExercisesState([...exercisesState, {...newExercise, day: number, week: week}]);
+                setExercisesState([...exercisesState, {...newExercise,
+                    day: id,
+                    week: week,
+                    dayNum: number,
+                    weekNum: weekNum,
+                }]);
             }
         }
         setIsExerciseCreating(false);
@@ -54,11 +65,16 @@ const Day = ({number, week, setExercisesState, exercisesState}) => {
                 <h2 className={`${generalStyles.formItemTitle} ${styles.title}`}>
                     Day <span>{number}</span>
                 </h2>
-                <ArrowY isTrue={isDayOpen}/>
+                <div className={styles.features}>
+                    <Image src={cancel} alt={''} width={17}
+                           onClick={removeDay}
+                    />
+                    <ArrowY isTrue={isDayOpen}/>
+                </div>
             </div>
             {isDayOpen && <div className={styles.dayInner}>
-                {exercisesState.map(function (item, num) {
-                    if (item.day === number
+                {exercisesState.map(function (item) {
+                    if (item.day === id
                         && item.week === week) {
                         this.count++;
                         return (<Exercise title={item.title}

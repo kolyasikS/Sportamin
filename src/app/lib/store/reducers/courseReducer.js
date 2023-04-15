@@ -10,21 +10,27 @@ import {
 } from "@/app/lib/store/actions/courseActions";
 import {nameDayOfWeek} from "@/app/lib/features/date";
 
+const defaultState = {
+    status: statuses.CREATING,
+    providingItems: [],
+    requirements: [],
+    description: '',
+    title: '',
+    language: '',
+    subtitle: '',
+    price: '',
+    content: [],
+}
+
 const reducer = createReducer(
-    {
-        status: statuses.CREATING,
-        providingItems: [],
-        requirements: [],
-        title: '',
-        language: '',
-        subtitle: '',
-        price: '',
-        content: [],
-    },
+    defaultState,
     (builder) => {
         builder
             .addCase(setStatus, (state, action) => {
                 state.status = action.payload.status;
+                if (state.status === statuses.CREATING) {
+                    state = defaultState;
+                }
             })
             .addCase(setProvidedItems, (state, action) => {
                 state.providingItems = action.payload.providingItems;
@@ -38,6 +44,7 @@ const reducer = createReducer(
                 state.language = generalInformation.language;
                 state.subtitle = generalInformation.caption;
                 state.price = generalInformation.price;
+                state.description = generalInformation.description;
             })
             .addCase(setWeeks, (state, action) => {
                 state.content = action.payload.weeks.map(() => {

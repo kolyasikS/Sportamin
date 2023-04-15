@@ -71,8 +71,9 @@ class UserService {
 }
 async function AuthData(user) {
     const userDto = new UserDto(user);
-
-    const tokens = tokenService.generateTokens({...userDto});
+    const tokenUserData = {...userDto};
+    delete tokenUserData.avatar;
+    const tokens = tokenService.generateTokens({...tokenUserData});
     await tokenService.saveToken(userDto.id, tokens.refreshToken);
     return {
         ...tokens,

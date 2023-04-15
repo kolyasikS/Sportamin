@@ -9,7 +9,7 @@ const CourseSchema = new Schema({
     price: {type: Number, required: true},
     providedItems: [{type: String}],
     requirements: [{type: String}],
-    description: {type: String, required: require},
+    description: {type: String, required: true},
     content: [{
         days: [{
             dayOfWeek: {type: String},

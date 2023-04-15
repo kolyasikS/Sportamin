@@ -17,7 +17,7 @@ const FirstStepForm = () => {
     const [caption, setCaption] = useState('');
     const [language, setLanguage] = useState(listLanguages[0]);
     const [price, setPrice] = useState('');
-
+    const [description, setDescription] = useState('');
     const createStatus = useSelector(state => state.courseReducer.status);
     const dispatch = useDispatch();
 
@@ -27,7 +27,8 @@ const FirstStepForm = () => {
                 title,
                 caption,
                 language: language.title,
-                price
+                price,
+                description
             }))
         }
     }, [createStatus]);
@@ -75,7 +76,10 @@ const FirstStepForm = () => {
             <ProvidedItems getItems={dispatchRequirementsItems}/>
 
             <h2 className={generalStyles.formItemTitle}>Description of a course</h2>
-            <MainTextArea message={'Type here...'} color={'inherit'} bgColor={'#151a1f'}/>
+            <MainTextArea message={'Type here...'}
+                          color={'inherit'} bgColor={'#151a1f'}
+                          onChange={(e) => setDescription(e.target.value)}
+            />
         </form>
     );
 };

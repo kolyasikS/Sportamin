@@ -7,7 +7,7 @@ const AchievementsItems = [
         id: 1,
         number: 100,
         srcImage: suitcase,
-        title: 'Training courses',
+        title: 'Training course',
     },
     {
         id: 2,

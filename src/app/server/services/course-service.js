@@ -1,12 +1,17 @@
 import CourseModel from "@/app/server/models/course-model";
+import UserService from "@/app/server/services/user-service";
 class CourseService {
-    async create(title, subtitle, language,
-                 price, providedItems, content,
-                 requirements, description, trainerID) {
+    async create({title, subtitle, language,
+                 price, providingItems, content,
+                 requirements, description}, trainerID) {
 
-        const course = await CourseModel.create({title, subtitle,language,
-            price, providedItems, content, requirements, description,
-            trainer: trainerID
+        const course = await CourseModel.create({title, subtitle, language,
+            price,
+            providedItems: providingItems.map(item => item.title),
+            requirements: requirements.map(item => item.title),
+            description,
+            content,
+            trainer: trainerID,
         });
 
         return course;

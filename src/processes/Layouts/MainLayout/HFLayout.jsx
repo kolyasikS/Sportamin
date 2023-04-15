@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 import {Footer, Header} from "@/widgets/api/Widgets";
 import {useRouter} from "next/router";
 import hiddenPaths from "@/app/Static Data/HFLayoutPaths/HFLayoutPaths";
-import User from "@/entities/User/User";
 import {checkAuth} from "@/app/lib/controllers/authController";
 import {useDispatch, useSelector} from "react-redux";
 

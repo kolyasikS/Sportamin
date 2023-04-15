@@ -1,6 +1,7 @@
 import withApiErrorMiddleware from "@/app/server/middlewares/apiErrorMiddleware";
 import dbConnect from "@/app/server/DB/dbConnect";
 import courseService from "@/app/server/services/course-service";
+import withAuthMiddleware from "@/app/server/middlewares/authMiddleware";
 export default async function handler(req, res) {
     return withApiErrorMiddleware(req, res, async () => {
         const { method } = req;
@@ -13,4 +14,5 @@ export default async function handler(req, res) {
         }
     });
 }
+
 

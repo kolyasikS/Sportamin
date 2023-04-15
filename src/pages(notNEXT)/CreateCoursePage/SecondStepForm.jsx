@@ -11,7 +11,8 @@ import NewProvideItem from "@/pages(notNEXT)/CreateCoursePage/NewProvideItem";
 import NewItem from "@/pages(notNEXT)/CreateCoursePage/Content/NewItem";
 import {useDispatch, useSelector} from "react-redux";
 import {statuses} from "@/app/lib/store/constants/courseConstants";
-import {setExercises, setGeneralInformation, setWeeks} from "@/app/lib/store/actions/courseActions";
+import {setExercises, setGeneralInformation, setStatus, setWeeks} from "@/app/lib/store/actions/courseActions";
+import {create, createCourse} from "@/app/lib/controllers/courseController";
 
 const SecondStepForm = () => {
     const [weeksState, setWeeksState] = useState([{id: v4()}]);
@@ -19,12 +20,18 @@ const SecondStepForm = () => {
     const addWeek = () => {
         setWeeksState(prev => [...prev, {id: v4()}]);
     }
-    const createStatus = useSelector(state => state.courseReducer.status);
+    const [createStatus, course, user] = useSelector(state => {
+        return [state.courseReducer.status, state.courseReducer, state.authReducer.user];
+    })
     const dispatch = useDispatch();
 
     useEffect(() => {
         if (createStatus === statuses.FETCHING) {
             dispatch(setExercises(exercisesState));
+            dispatch(setStatus(statuses.CREATED));
+        } else if (createStatus === statuses.CREATED) {
+            console.log('start')
+            createCourse(dispatch, course, user.id).then();
         }
     }, [createStatus]);
     return (

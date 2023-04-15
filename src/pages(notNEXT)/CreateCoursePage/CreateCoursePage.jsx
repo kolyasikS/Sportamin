@@ -42,7 +42,7 @@ const CreateCoursePage = () => {
         }
     }, [step])
     return (
-        <BackgroundShadow.Provider value={() => setIsBGShadow(prev => !prev)}>
+        <BackgroundShadow.Provider value={[isBGShadow, () => setIsBGShadow(prev => !prev)]}>
             <main className={`${styles.main}`}>
                 <div className={`${isBGShadow ? generalStyles.bgShadow : ''}`}></div>
                 <section className={`${styles.section} 

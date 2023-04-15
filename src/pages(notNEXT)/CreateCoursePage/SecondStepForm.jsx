@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {MainInput, MainTextArea} from "@/shared/ui/Inputs/api/Inputs";
 import styles from "@/pages(notNEXT)/CreateCoursePage/styles/StepForm.module.scss";
 import {HorizontalSeparator} from "@/shared/ui/api/separators";
@@ -13,6 +13,8 @@ import {useDispatch, useSelector} from "react-redux";
 import {statuses} from "@/app/lib/store/constants/courseConstants";
 import {setExercises, setGeneralInformation, setStatus, setWeeks} from "@/app/lib/store/actions/courseActions";
 import {create, createCourse} from "@/app/lib/controllers/courseController";
+import generalStyles from "@/pages(notNEXT)/CreateCoursePage/styles/general.module.scss";
+import BackgroundShadowContext from "@/app/lib/features/contexts/BGShadowContext";
 
 const SecondStepForm = () => {
     const [weeksState, setWeeksState] = useState([{id: v4()}]);
@@ -20,6 +22,12 @@ const SecondStepForm = () => {
     const addWeek = () => {
         setWeeksState(prev => [...prev, {id: v4()}]);
     }
+    const [createStatus, course, user] = useSelector(state => {
+        return [state.courseReducer.status, state.courseReducer, state.authReducer.user];
+    })
+    const [isBGShadow, stub] = useContext(BackgroundShadowContext);
+
+    const dispatch = useDispatch();
     const removeWeek = (id, weekNumArg) => {
         setWeeksState(weeksState.filter(week => week.id !== id));
         if (weekNumArg) {
@@ -37,10 +45,6 @@ const SecondStepForm = () => {
             );
         }
     }
-    const [createStatus, course, user] = useSelector(state => {
-        return [state.courseReducer.status, state.courseReducer, state.authReducer.user];
-    })
-    const dispatch = useDispatch();
     useEffect(() => {
         if (createStatus === statuses.FETCHING) {
             dispatch(setExercises(exercisesState));
@@ -52,6 +56,7 @@ const SecondStepForm = () => {
     }, [createStatus]);
     return (
         <form className={styles.form}>
+            <div className={`${isBGShadow ? generalStyles.bgShadow : ''}`}></div>
             <HorizontalSeparator color={'#0d8068'}>Content</HorizontalSeparator>
             {weeksState.map((item, ind) =>
                 <Week {...item} key={item.id}

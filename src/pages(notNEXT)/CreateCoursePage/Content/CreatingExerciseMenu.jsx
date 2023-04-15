@@ -38,7 +38,8 @@ const CreatingExerciseMenu = ({addExercise, exercise}) => {
         addExercise(null);
     }
     return (
-        <div className={`${styles.menu} shadow-gray-700 shadow-md`}>
+        <div className={`${styles.menu} shadow-gray-700 
+        shadow-md`}>
             <h1 className={styles.title}>
                 <Image src={exerciseImg} alt={''} width={45}/>
                 <p>

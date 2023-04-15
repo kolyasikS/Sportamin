@@ -50,7 +50,7 @@
     @include space-x(10);
     min-width: 100%;
     transition: 0.5s all;
-    z-index: 2;
+    z-index: 0;
 }
 .moveStep {
     transform: translateX(calc(-100% - 2.5rem));

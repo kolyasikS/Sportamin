@@ -11,10 +11,10 @@
         margin-right: 0px;
     }
 
-    z-index: 2;
+    z-index: 0;
 }
 .formInner {
     max-width: 100%;
     @include space-y(2);
-    z-index: 2;
+    z-index: 0;
 }

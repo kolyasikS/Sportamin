@@ -18,7 +18,8 @@ const Day = ({number, week, setExercisesState, weekNum,
     const [editingExercise, setEditingExercise] = useState(null);
     const [isDayOpen, setIsDayOpen] = useState(number === 1 ? true : false);
     const [isExerciseCreating, setIsExerciseCreating] = useState(false);
-    const toggleBGShadow = useContext(BackgroundShadowContext);
+    const [stub, toggleBGShadow] = useContext(BackgroundShadowContext);
+
     const toggleDay = () => {
         setIsDayOpen(prev => !prev);
     }
@@ -58,6 +59,9 @@ const Day = ({number, week, setExercisesState, weekNum,
     const editExercise = (exercise) => {
         setEditingExercise(exercise);
         setIsExerciseCreating(true);
+        if (toggleBGShadow) {
+            toggleBGShadow();
+        }
     }
     return (
         <div className={styles.day}>
@@ -89,8 +93,10 @@ const Day = ({number, week, setExercisesState, weekNum,
                 }, {count: 0})}
                 <NewItem title={'exercise'} setItems={startCreatingExercise}/>
             </div>}
-            {isExerciseCreating && <CreatingExerciseMenu exercise={editingExercise}
-                addExercise={(exercise) => addExercise(exercise)}
+            {isExerciseCreating &&
+                <CreatingExerciseMenu exercise={editingExercise}
+                                      addExercise={(exercise) => addExercise(exercise)}
+
             />}
 
         </div>

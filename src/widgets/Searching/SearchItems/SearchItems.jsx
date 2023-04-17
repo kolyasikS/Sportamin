@@ -2,12 +2,13 @@ import React, {useDeferredValue, useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {setIsLoading} from "@/app/lib/store/actions/sessionActions";
 import styles from "@/pages(notNEXT)/TrainersPage/styles/TrainersPage.module.scss";
-import {FiltrationHeader, FiltrationInner, SearchItemsListSection} from "@/widgets/api/Widgets";
+import {FiltrationInner, SearchItemsListSection} from "@/widgets/api/Widgets";
 
-const SearchItems = ({fetchItems, setQuery, query, sortPath, filtrationItems, renderSearchedItem}) => {
+const SearchItems = ({fetchItems, query,
+                         sort, filtrationItems,
+                         renderSearchedItem, children}) => {
     const [filteredItems, setFilteredItems] = useState([]);
     const deferredSearchedItems = useDeferredValue(filteredItems);
-    const [sort, setSort] = useState({})
     const [isEmpty, setIsEmpty] = useState(false);
 
     const dispatch = useDispatch();
@@ -39,8 +40,7 @@ const SearchItems = ({fetchItems, setQuery, query, sortPath, filtrationItems, re
 
     return (
         <section className={styles.trainersSection}>
-            <FiltrationHeader setQuery={setQuery} setSort={setSort}
-                              sortPath={sortPath}/>
+            {children}
             <div className={styles.trainersSectionInner}>
                 <FiltrationInner items={filtrationItems} isLoading={isLoading}/>
                 <SearchItemsListSection isEmpty={isEmpty} searchedItems={deferredSearchedItems}

@@ -10,6 +10,7 @@ const CourseSchema = new Schema({
     providedItems: [{type: String}],
     requirements: [{type: String}],
     description: {type: String, required: true},
+    previewImage: {type: Buffer},
     content: [{
         days: [{
             dayOfWeek: {type: String},

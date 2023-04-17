@@ -7,6 +7,7 @@ import UserDto from "@/app/server/dtos/user-dto";
 import ApiError from "@/app/server/exceptions/api-error";
 import TokenModel from "@/app/server/models/token-model";
 import {func} from "joi";
+import {ObjectId} from "mongodb";
 class UserService {
     async registration(email, password) {
         const candidate = await UserModel.findOne({email});
@@ -58,6 +59,10 @@ class UserService {
         return AuthData(user);
     }
     async getTrainers(query, sort) {
+        if (query && query._id) {
+            query._id = new ObjectId(query._id);
+        }
+        console.log(query);
         const trainers = await UserModel.find({...query, "trainer.isTrainer": true}).sort(sort);
         return trainers;
     }

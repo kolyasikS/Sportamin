@@ -20,8 +20,12 @@ class CourseService {
         const courses = await CourseModel.find({...query}).sort(sort);
         return courses;
     }
-    async update(id, title) {
-        await CourseModel.updateOne({_id: id}, {title});
+    async update(id, updatedCourse) {
+        if (!id) {
+            await CourseModel.updateMany({}, {$set: {previewImage: updatedCourse.previewImage}});
+        } else {
+            await CourseModel.updateOne({_id: id}, updatedCourse);
+        }
     }
 }
 export default new CourseService();

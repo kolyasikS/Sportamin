@@ -6,7 +6,6 @@ export {default as MainList} from '../List/MainList/MainList';
 export {default as TextList} from '../List/TextListOptions/TextListOption';
 export {default as Benefits} from '../Benefits/Benefits';
 export {default as FiltrationItem} from '../Searching/Filtration/FiltrationItem';
-export {default as FiltrationHeader} from '../Searching/Filtration/FiltrationHeader';
 export {default as FiltrationInner} from '../Searching/Filtration/FiltrationInner';
 export {default as SearchItemsList} from '../List/SearchItemsList/SearchItemsList';
 export {default as DoubleTitleList} from '../List/DoubleTitleList/DoubleTitleList';

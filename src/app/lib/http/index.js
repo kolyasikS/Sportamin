@@ -8,7 +8,6 @@ const $api = axios.create({
 });
 
 $api.interceptors.request.use((config) => {
-    console.log(config.url);
     if (config.url === '/course/create') {
         config.headers.Authorization = `Bearer ${localStorage.getItem('token')}`;
     }

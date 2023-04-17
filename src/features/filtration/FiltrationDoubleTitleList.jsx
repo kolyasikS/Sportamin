@@ -8,7 +8,6 @@ const FiltrationDoubleTitleList = ({title, options, sortPath, setSort,
     const [activeOption, setActiveOption] = useState(options[0]);
     const optionClick = (option) => {
         const newActiveOption = options.find(item => item.id === option.id);
-        console.log(newActiveOption);
         const sort = {};
         sort[sortPath + newActiveOption.title.toLowerCase()] = -1;
         setSort(sort);

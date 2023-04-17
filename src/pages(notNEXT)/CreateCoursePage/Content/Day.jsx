@@ -32,10 +32,6 @@ const Day = ({number, week, setExercisesState, weekNum,
 
     const addExercise = (newExercise) => {
         if (newExercise) {
-            console.log(exercisesState.map(item => item.id === newExercise.id
-                ? newExercise
-                : item
-            ));
             if (exercisesState.find(exercise => exercise.id === newExercise.id)) {
                 setExercisesState(exercisesState.map(item => item.id === newExercise.id
                     ? {...item, ...newExercise}

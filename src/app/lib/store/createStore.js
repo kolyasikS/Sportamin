@@ -15,7 +15,6 @@ const rootReducer = combineReducers({
 });
 const logger = store => next => action => {
     let result = next(action);
-    console.log(store.getState().courseReducer);
     return result;
 }
 export function configureAppStore(preloadedState) {

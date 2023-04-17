@@ -50,8 +50,7 @@ const SecondStepForm = () => {
             dispatch(setExercises(exercisesState));
             dispatch(setStatus(statuses.CREATED));
         } else if (createStatus === statuses.CREATED) {
-            console.log('start')
-            createCourse(dispatch, course, user.id).then();
+            createCourse(dispatch, course, '642a86b370ed3faaff3f12e0').then();
         }
     }, [createStatus]);
     return (

@@ -5,7 +5,7 @@ const MyCoursesPage = () => {
     return (
         <main>
             <button>
-                <Link href={'course/create'}>Create</Link>
+                <Link href={'courses/create'}>Create</Link>
             </button>
         </main>
     );

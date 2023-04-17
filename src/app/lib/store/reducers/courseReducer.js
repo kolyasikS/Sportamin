@@ -57,7 +57,6 @@ const reducer = createReducer(
                 });
             })
             .addCase(setExercises, (state, action) => {
-                console.log(action.payload.exercises);
                 const exercises = action.payload.exercises;
                 const weeks = exercises.reduce((IDs, exer) => {
                     if (!IDs.includes(exer.week)) {
@@ -81,11 +80,10 @@ const reducer = createReducer(
                 for (let i = 0; i < action.payload.exercises.length; i++) {
                     const week = action.payload.exercises[i].weekNum;
                     const day = action.payload.exercises[i].dayNum;
-                    console.log(week, day, state.content);
                     state.content[week - 1].days[day - 1] = {
                         dayOfWeek: nameDayOfWeek(day),
                         exercises: action.payload.exercises.filter(item => {
-                            if (item.day === day && item.week === week) {
+                            if (item.dayNum === day && item.weekNum === week) {
                                 return true;
                             } else {
                                 return false;

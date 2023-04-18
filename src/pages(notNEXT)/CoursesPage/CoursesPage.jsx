@@ -19,6 +19,7 @@ const CoursesPage = () => {
         return await getCourses(query, sort);
     }
     useEffect(() => {
+        console.log('gettrainers');
         getTrainers()
             .then(res => {
                 setTrainers(res);
@@ -42,18 +43,18 @@ const CoursesPage = () => {
 
         let languagesMongoDB = null;
         if (languages.length) {
-            languagesMongoDB = {'trainer.languages': {$all: languages}};
+            languagesMongoDB = {languages: {$all: languages}};
         }
         let ratingMongoDB = null;
         if (rating) {
-            ratingMongoDB = {'trainer.rating': {$gte: rating}};
+            ratingMongoDB = {rating: {$gte: 0}}; //testing
         }
         setQuery(prev => {
             if (!ratingMongoDB) {
-                delete prev['trainer.rating'];
+                delete prev.rating;
             }
             if (!languagesMongoDB) {
-                delete prev['trainer.languages'];
+                delete prev.languages;
             }
             return {...prev, ...ratingMongoDB, ...languagesMongoDB};
         });

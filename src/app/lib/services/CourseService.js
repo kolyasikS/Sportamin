@@ -5,7 +5,7 @@ export default class CourseService {
         return $api.post('/course/create', {course, trainerID});
     }
     static async get(query, sort) {
-        console.log('sort', sort);
+        console.log('sort', query);
         let newQuery = {};
         if (query.title) {
             newQuery = {
@@ -13,9 +13,16 @@ export default class CourseService {
                 options: query.title.$options,
             }
         }
+        if (query.rating) {
+            newQuery.rating = query.rating.$gte;
+        }
+        if (query.languages) {
+            newQuery.languages = query.languages.$all.join(',');
+        }
         if (sort) {
             newQuery.sort = sort
         }
+        console.log('newQuery', newQuery);
         return $api.get('/course', {
             params: {
                 ...newQuery

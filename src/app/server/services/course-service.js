@@ -26,7 +26,9 @@ class CourseService {
                     $match: query
                 },
                 {
-                    $addFields: { 'content_count': {$size: "$content" }}
+                    $addFields: {
+                        'content_count': {$size: "$content" },
+                    }
                 },
                 {
                     $sort: sort.duration
@@ -47,11 +49,19 @@ class CourseService {
 
 function getQueryFromReq(reqQuery) {
     const query = {};
+    console.log(reqQuery);
     if (reqQuery.regex) {
         query.title = {$regex: reqQuery.regex}
     }
     if (reqQuery.options) {
         query.title.$options = reqQuery.options;
+    }
+    if (reqQuery.rating) {
+        query.rating = {$gte: +reqQuery.rating};
+    }
+    if (reqQuery.languages) {
+        query.language = {$in: reqQuery.languages.split(',')};
+        console.log(query.language);
     }
     return query;
 }

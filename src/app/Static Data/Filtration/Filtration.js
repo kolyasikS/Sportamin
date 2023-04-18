@@ -186,6 +186,12 @@ export const filtrationCoursesItems = [
                 title: 'German',
                 isActive: false,
             },
+            {
+                id: v4(),
+                value: 'Italian',
+                title: 'Italian',
+                isActive: false,
+            },
         ],
         multiple: true,
         toggleActive: (value, filterState, dispatch) => {

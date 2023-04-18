@@ -5,10 +5,20 @@ export default class CourseService {
         return $api.post('/course/create', {course, trainerID});
     }
     static async get(query, sort) {
-        return $api.get('/course/get', {
+        console.log('sort', sort);
+        let newQuery = {};
+        if (query.title) {
+            newQuery = {
+                regex: query.title.$regex,
+                options: query.title.$options,
+            }
+        }
+        if (sort) {
+            newQuery.sort = sort
+        }
+        return $api.get('/course', {
             params: {
-                query,
-                sort
+                ...newQuery
             }
         });
     }

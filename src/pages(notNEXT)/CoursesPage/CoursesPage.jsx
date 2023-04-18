@@ -26,13 +26,15 @@ const CoursesPage = () => {
             .catch(err => console.log(err));
     }, []);
     const renderCourseItem = (item) => {
-        console.log(trainers);
+        let imageData = item.previewImage.data
+            ? getImageFromBase64(item.previewImage.data)
+            : item.previewImage;
         return <SearchedCourse key={item._id}
                                {...item}
                                trainer={trainers.find(trainer =>
                                    trainer._id === item.trainer)}
                                trainerID={item.trainer}
-                               previewImage={getImageFromBase64(item.previewImage.data)}/>
+                               previewImage={imageData}/>
     }
     useEffect(() => {
         let languages = filterState.languages;
@@ -63,8 +65,7 @@ const CoursesPage = () => {
             <SearchItems fetchItems={fetchCourses} query={query} setQuery={setQuery}
                          sort={sort} filtrationItems={filtrationItems}
                          renderSearchedItem={renderCourseItem}>
-                <FiltrationCoursesHeader setQuery={setQuery} setSort={setSort}
-                                  sortPath={'course.'}/>
+                <FiltrationCoursesHeader setQuery={setQuery} setSort={setSort}/>
             </SearchItems>
         </main>
     );

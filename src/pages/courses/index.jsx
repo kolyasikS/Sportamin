@@ -10,6 +10,7 @@ const Courses = () => {
     );
 };
 export async function getServerSideProps() {
+    //await updateCourse(null, {previewImage: getBase64FromImage('public/media/images/eren.jpg')})
     return {
         props: { name: 'asd' }
     };

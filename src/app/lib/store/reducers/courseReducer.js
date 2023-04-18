@@ -12,7 +12,7 @@ import {nameDayOfWeek} from "@/app/lib/features/date";
 
 const defaultState = {
     status: statuses.CREATING,
-    providingItems: [],
+    providedItems: [],
     requirements: [],
     description: '',
     title: '',
@@ -33,7 +33,7 @@ const reducer = createReducer(
                 }
             })
             .addCase(setProvidedItems, (state, action) => {
-                state.providingItems = action.payload.providingItems;
+                state.providedItems = action.payload.providingItems;
             })
             .addCase(setRequirements, (state, action) => {
                 state.requirements = action.payload.requirements;
@@ -64,10 +64,9 @@ const reducer = createReducer(
                     }
                     return IDs;
                 }, []);
-                if (!state.content.length) {
-                    state.content = [...new Array(weeks.length)].map(() => ({days: []}));
-                }
+                state.content = [...new Array(weeks.length)].map(() => ({days: []}));
 
+                console.log(state.content);
                 for (let i = 0; i < weeks.length; i++) {
                     const days = exercises.reduce((IDs, exer) => {
                         if (exer.week === weeks[i] && !IDs.includes(exer.day)) {
@@ -75,6 +74,7 @@ const reducer = createReducer(
                         }
                         return IDs;
                     }, []);
+                    console.log('i', state.content[i]);
                     state.content[i].days = [...new Array(days.length)].map(() => ({}));
                 }
                 for (let i = 0; i < action.payload.exercises.length; i++) {

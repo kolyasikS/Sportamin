@@ -26,6 +26,7 @@ export const coursesSortOptions = [
     },
     {
         id: v4(),
-        title: 'Duration'
+        title: 'Duration',
+
     }
 ]

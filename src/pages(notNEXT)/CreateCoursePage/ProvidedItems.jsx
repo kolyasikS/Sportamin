@@ -10,7 +10,6 @@ const ProvidedItems = ({title, indent, getItems}) => {
     const [items, setItems] = useState([]);
 
     const createStatus = useSelector(state => state.courseReducer.status);
-
     const editItems = (id, value) => {
         setItems(items.map(item => item.id === id ? {id, title: value} : item));
     }

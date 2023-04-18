@@ -24,6 +24,7 @@ const SearchItems = ({fetchItems, query,
             return;
         }
         fetchItems(query, sort).then(res => {
+            console.log(sort)
             if (!res || res.length === 0) {
                 setIsEmpty(true);
             } else {

@@ -9,48 +9,34 @@ import {coursesSortOptions} from "@/app/Static Data/Filtration/Sorts";
 import {useDispatch, useSelector} from "react-redux";
 import {clearFilters, setRating} from "@/app/lib/store/actions/filterActions";
 import {FiltrationDoubleTitleList} from "@/features/api/filtration";
-const FiltrationCoursesHeader = ({setQuery, setSort, sortPath}) => {
-    const nameRef = useRef();
-    const surnameRef = useRef();
+const FiltrationCoursesHeader = ({setQuery, setSort}) => {
+    const titleRef = useRef();
     const [isLoading, amountFilters] = useSelector(state =>
         [state.sessionReducer.isLoading, state.filterReducer.amountFilters]);
     const dispatch = useDispatch();
-    //const nameDeferredQuery = useDeferredValue(nameQuery);
-    //const surnameDeferredQuery = useDeferredValue(surnameQuery);
     const search = () => {
         if (isLoading) {
             return;
         }
-        const name = nameRef.current.value || null;
-        const surname = surnameRef.current.value || null;
+        const title = titleRef.current.value || null;
 
         const query = {};
-        if (name) {
-            query.name = {$regex: nameRef.current.value, $options: 'i'};
-        }
-        if (surname) {
-            query.surname = surnameRef.current.value;
-
+        if (title) {
+            query.title = {$regex: title, $options: 'i'};
         }
         setQuery(prev => {
-            if (!name) {
-                delete prev.name;
-            }
-            if (!surname) {
-                delete prev.surname;
+            if (!title) {
+                delete prev.title;
             }
             return {...prev, ...query};
         });
     }
     const clearFiltersClick = () => {
-        if (!nameRef.current.value &&
-        !surnameRef.current.value &&
+        if (!titleRef.current.value &&
         amountFilters === 1) {
             return;
         }
-        nameRef.current.value = null;
-        surnameRef.current.value = null;
-
+        titleRef.current.value = null;
 
         dispatch(clearFilters());
         dispatch(setRating(4.5));
@@ -65,9 +51,10 @@ const FiltrationCoursesHeader = ({setQuery, setSort, sortPath}) => {
         }}>
             <div className={styles.filterBlock}>
                 <DarkBtnWithImg img={filterImg} widthImg={20}>Filter ({amountFilters})</DarkBtnWithImg>
-                <FiltrationDoubleTitleList title={'Sort by'} options={coursesSortOptions} sortPath={sortPath} setSort={setSort}/>
+                <FiltrationDoubleTitleList title={'Sort by'} options={coursesSortOptions}
+                                           setSort={setSort}/>
                 <MainInput bgColor={'#0d1117'} color={'#c9d1d9'}
-                           height={65} ref={nameRef}
+                           height={65} ref={titleRef}
                 >
                     Title
                 </MainInput>

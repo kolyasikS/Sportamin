@@ -9,14 +9,15 @@ const FiltrationDoubleTitleList = ({title, options, sortPath, setSort,
     const optionClick = (option) => {
         const newActiveOption = options.find(item => item.id === option.id);
         const sort = {};
-        sort[sortPath + newActiveOption.title.toLowerCase()] = -1;
+        sort[(sortPath || '') + newActiveOption.title.toLowerCase()] = -1;
         setSort(sort);
 
         setActiveOption(newActiveOption);
     }
     useEffect(() => {
         const sort = {};
-        sort[sortPath + options[0].title.toLowerCase()] = -1;
+
+        sort[(sortPath || '') + options[0].title.toLowerCase()] = -1;
         setSort(sort);
     }, [])
     return (

@@ -22,6 +22,7 @@ const Range = () => {
         let rightBtnPos = rightBtn.current.getBoundingClientRect();
         rightBtn.current.style.left = '90%';
         setRightBtnX({left: rightBtnPos.left, width: rightBtnPos.width});
+
     }, []);
 
     function getDistance() {
@@ -41,9 +42,6 @@ const Range = () => {
         let pixelsInOnePercent = distance / 90;
 
         const onMouseMove = (e) => {
-            console.log(leftBtn.current.style.left, ' ', rightBtn.current.style.left);
-
-
             moveAt(eventBtn.target, e.pageX, eventBtn.nativeEvent.offsetX);
         }
         function moveAt(btn, pageX, offsetX) {
@@ -52,24 +50,48 @@ const Range = () => {
             let difference;
             if (btn === leftBtn.current) {
                 pixels = pageX - leftBtnX.left - offsetX;
+
+                if (pixels < 0) {
+                    emptyLineRef.current.style.setProperty('margin-left', `0px`);
+                    emptyLineRef.current.style.width = parseFloat(rightBtn.current.style.left)
+                        - parseFloat(leftBtn.current.style.left) + '%';
+                    btn.style.left = 0 + '%';
+                    return;
+                }
                 percents = Math.round(pixels / pixelsInOnePercent);
+
                 difference = parseFloat(rightBtn.current.style.left) - percents;
+
                 if (difference < 10) {
                     btn.style.left = parseFloat(rightBtn.current.style.left) - 10 + '%';
+                    emptyLineRef.current.style.width = 0 + '%';
                     return;
                 }
                 if (percents >= 0) {
                     emptyLineRef.current.style.setProperty('margin-left', `calc(${percents}% + ${leftBtnX.width}px)`);
-                    console.log(emptyLineRef.current.style.marginLeft);
-                    emptyLineRef.current.style.width = difference + '%';
                 } else {
                     emptyLineRef.current.style.setProperty('margin-left', `calc(0% + ${leftBtnX.width}px)`);
-                    emptyLineRef.current.style.width = 90 + '%';
                 }
+                emptyLineRef.current.style.width = difference + '%';
             } else {
                 pixels = pageX - rightBtnX.left - offsetX;
+
+                console.log(pixels)
+                if (pixels > 0) {
+                    emptyLineRef.current.style.width = parseFloat(rightBtn.current.style.left)
+                        - parseFloat(leftBtn.current.style.left) + '%';
+                    btn.style.left = 90 + '%';
+                    return;
+                }
                 percents = 90 + Math.round( pixels / pixelsInOnePercent);
                 difference = percents - parseFloat(leftBtn.current.style.left);
+
+
+                if (difference < 10) {
+                    btn.style.left = parseFloat(leftBtn.current.style.left) + 10 + '%';
+                    emptyLineRef.current.style.width = 0 + '%';
+                    return;
+                }
                 if (percents - parseFloat(leftBtn.current.style.left) < 10) {
                     btn.style.left = parseFloat(leftBtn.current.style.left) + 10 + '%';
                     return;
@@ -90,10 +112,6 @@ const Range = () => {
             () => document.removeEventListener('mousemove', onMouseMove));
     }
 
-
-    const mouseUp = () => {
-    }
-
     return (
         <div className={styles.wrapper}>
             <div className={styles.range}>
@@ -104,10 +122,10 @@ const Range = () => {
                 </div>
                 <button className={styles.button}
                         onMouseDown={mouseDown} ref={leftBtn} onDragStart={() => false}
-                        onMouseUp={mouseUp}></button>
+                        ></button>
                 <button className={styles.button}
                         onMouseDown={mouseDown} ref={rightBtn}
-                        onMouseUp={mouseUp}></button>
+                        ></button>
             </div>
         </div>
     );

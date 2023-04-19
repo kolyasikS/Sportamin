@@ -169,7 +169,12 @@ export const filtrationCoursesItems = [
         title: 'Price',
         items: [
             {
-                id: v4()
+                id: v4(),
+                minValue: 10,
+                maxValue: 1000,
+                setRange: (dispatch, min, max) => {
+                    console.log(Math.round(min), Math.round(max));
+                },
             }
         ],
         range: true,

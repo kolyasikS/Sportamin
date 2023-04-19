@@ -9,12 +9,11 @@ const FiltrationItemProcess = ({isInnerShowed, items,
                                    setActive, range}) => {
     const dispatch = useDispatch();
     const filterState = useSelector(state => state.filterReducer);
-
     return (
         isInnerShowed && <div className={styles.filtrationItemInner}>
             {items.map(item =>
                 range
-                    ? <Range key={item.id}/>
+                    ? <Range key={item.id} {...item} setRange={(min, max) => item.setRange(dispatch, min, max)}/>
                     : multiple
                         ? <ComboBox key={item.id} id={item.id} isActive={filterState.languages.includes(item.value)}
                                     toggleActive={() => toggleActive(item.value, filterState, dispatch)}

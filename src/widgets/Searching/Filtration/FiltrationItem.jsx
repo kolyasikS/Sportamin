@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import styles from './styles/FiltrationItem.module.scss';
 import FiltrationItemProcess from "@/pages(notNEXT)/TrainersPage/FiltrationItemProcess";
 const FiltrationItem = ({title, items, multiple, isRated,
-                        setActive, toggleActive}) => {
+                        setActive, toggleActive, range}) => {
     const [isInnerShowed, setIsInnerShowed] = useState(false);
 
     return (
@@ -15,7 +15,7 @@ const FiltrationItem = ({title, items, multiple, isRated,
                     d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"></path></svg></span>
             </div>
             <FiltrationItemProcess isInnerShowed={isInnerShowed} items={items}
-                                   multiple={multiple} isRated={isRated}
+                                   multiple={multiple} isRated={isRated} range={range}
                                    setActive={setActive} toggleActive={toggleActive}/>
         </li>
     );

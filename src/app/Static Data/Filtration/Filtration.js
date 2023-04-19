@@ -148,44 +148,6 @@ export const filtrationCoursesItems = [
                 title: 'German',
                 isActive: false,
             },
-        ],
-        multiple: true,
-        toggleActive: (value, filterState, dispatch) => {
-            if (filterState.languages.includes(value)) {
-                dispatch(removeLanguage(value));
-            } else {
-                dispatch(addLanguage(value));
-            }
-        }
-    },
-    {
-        id: 2,
-        title: 'Languages',
-        items: [
-            {
-                id: v4(),
-                value: 'English',
-                title: 'English',
-                isActive: true,
-            },
-            {
-                id: v4(),
-                value: 'Ukrainian',
-                title: 'Ukrainian',
-                isActive: false,
-            },
-            {
-                id: v4(),
-                value: 'French',
-                title: 'French',
-                isActive: false,
-            },
-            {
-                id: v4(),
-                value: 'German',
-                title: 'German',
-                isActive: false,
-            },
             {
                 id: v4(),
                 value: 'Italian',
@@ -201,5 +163,22 @@ export const filtrationCoursesItems = [
                 dispatch(addLanguage(value));
             }
         }
+    },
+    {
+        id: 3,
+        title: 'Price',
+        items: [
+            {
+                id: v4()
+            }
+        ],
+        range: true,
+        /*toggleActive: (value, filterState, dispatch) => {
+            if (filterState.languages.includes(value)) {
+                dispatch(removeLanguage(value));
+            } else {
+                dispatch(addLanguage(value));
+            }
+        }*/
     },
 ]

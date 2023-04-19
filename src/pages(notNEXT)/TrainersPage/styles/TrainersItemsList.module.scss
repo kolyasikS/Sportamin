@@ -23,6 +23,7 @@
     height: 300px;
 }
 .notFoundResult {
+    @include flexCenter();
     color: #f9f8f8;
     font-size: 35px;
 }

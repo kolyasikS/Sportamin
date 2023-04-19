@@ -61,13 +61,11 @@ function getQueryFromReq(reqQuery) {
     }
     if (reqQuery.languages) {
         query.language = {$in: reqQuery.languages.split(',')};
-        console.log(query.language);
     }
     return query;
 }
 function getSortFromReq(reqQuery) {
     const sort = {};
-    console.log(reqQuery);
     if (reqQuery['sort[rating]']) {
         sort.rating = +reqQuery['sort[rating]'];
     } else if (reqQuery['sort[price]']) {

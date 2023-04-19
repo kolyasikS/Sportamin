@@ -1,0 +1,41 @@
+@import 'src/app/styles/variables';
+@import 'src/app/styles/mixins';
+
+.wrapper {
+    @include flexCenter();
+    color: $color-1;
+    width: 100%;
+}
+.range {
+    width: 90%;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+.rangeEmpty {
+    position: relative;
+    width: 100%;
+    height: 2px;
+    background-color: #515159;
+    @include flexCenter();
+    justify-content: flex-start;
+}
+.emptyLine {
+    width: 100%;
+    //margin-left: calc(16% + 20px);
+    height: 2px;
+    background-color: #fff;
+}
+.button {
+    position: absolute;
+    border: none;
+    outline: none;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    border-radius: 50px;
+    left: -10px;
+    &:nth-last-child(1) {
+        left: 90%;
+    }
+}

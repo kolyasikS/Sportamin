@@ -4,7 +4,6 @@ export function getBase64FromImage(pathOrigin) {
     return fs.readFileSync(pathOrigin);
 }
 export function getImageFromBase64(base) {
-    console.log(typeof base);
     let str = base
         .map(bin => String.fromCharCode(bin))
         .join('');

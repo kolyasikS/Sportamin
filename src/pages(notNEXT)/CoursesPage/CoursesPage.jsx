@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import IntroductionPage from "@/shared/ui/Titles/IntroductionPage/IntroductionPage";
 import banner from "@assets/blogbanner.jpg";
 import {SearchItems} from "@/widgets/api/Widgets";
-import {filtrationItems} from "@/app/Static Data/Filtration/Filtration";
+import {filtrationCoursesItems, filtrationItems} from "@/app/Static Data/Filtration/Filtration";
 import {useSelector} from "react-redux";
 import {getBase64FromImage, getImageFromBase64} from "@/app/lib/features/image";
 import {getCourses} from "@/app/lib/controllers/courseController";
@@ -16,10 +16,9 @@ const CoursesPage = () => {
     const filterState = useSelector(state => state.filterReducer);
     const [trainers, setTrainers] = useState([]);
     const fetchCourses = async (query, sort) => {
-        return await getCourses(query, sort);
+        //return await getCourses(query, sort);
     }
     useEffect(() => {
-        console.log('gettrainers');
         getTrainers()
             .then(res => {
                 setTrainers(res);
@@ -64,7 +63,7 @@ const CoursesPage = () => {
         <main>
             <IntroductionPage bg={banner} title={'Courses'} height={450}/>
             <SearchItems fetchItems={fetchCourses} query={query} setQuery={setQuery}
-                         sort={sort} filtrationItems={filtrationItems}
+                         sort={sort} filtrationItems={filtrationCoursesItems}
                          renderSearchedItem={renderCourseItem}>
                 <FiltrationCoursesHeader setQuery={setQuery} setSort={setSort}/>
             </SearchItems>

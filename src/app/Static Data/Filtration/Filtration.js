@@ -1,5 +1,5 @@
 import {v4} from 'uuid';
-import {addLanguage, removeLanguage, setRating} from "@/app/lib/store/actions/filterActions";
+import {addLanguage, removeLanguage, setRange, setRating} from "@/app/lib/store/actions/filterActions";
 import RatingBar from "@/shared/ui/Rating/RatingBar/RatingBar";
 import React from "react";
 import {value} from "lodash/seq";
@@ -171,9 +171,12 @@ export const filtrationCoursesItems = [
             {
                 id: v4(),
                 minValue: 10,
-                maxValue: 1000,
+                maxValue: 150,
                 setRange: (dispatch, min, max) => {
-                    console.log(Math.round(min), Math.round(max));
+                    dispatch(setRange({
+                        min,
+                        max
+                    }))
                 },
             }
         ],

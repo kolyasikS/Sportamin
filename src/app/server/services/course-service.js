@@ -62,6 +62,8 @@ function getQueryFromReq(reqQuery) {
     if (reqQuery.languages) {
         query.language = {$in: reqQuery.languages.split(',')};
     }
+    let range = reqQuery.range.split(',');
+    query.$and = [{price: {$gte: +range[0]}}, {price: {$lte: +range[1]}}];
     return query;
 }
 function getSortFromReq(reqQuery) {

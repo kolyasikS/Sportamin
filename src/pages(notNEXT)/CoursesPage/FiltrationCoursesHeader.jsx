@@ -7,13 +7,15 @@ import searchImg from '@assets/searchImage.png';
 import cancelImg from '@assets/cancelImg.png';
 import {coursesSortOptions} from "@/app/Static Data/Filtration/Sorts";
 import {useDispatch, useSelector} from "react-redux";
-import {clearFilters, setRating} from "@/app/lib/store/actions/filterActions";
+import {clearFilters, setRating, setStatus} from "@/app/lib/store/actions/filterActions";
 import {FiltrationDoubleTitleList} from "@/features/api/filtration";
+import {statuses} from "@/app/lib/store/constants/courseConstants";
 const FiltrationCoursesHeader = ({setQuery, setSort}) => {
     const titleRef = useRef();
     const [isLoading, amountFilters] = useSelector(state =>
         [state.sessionReducer.isLoading, state.filterReducer.amountFilters]);
     const dispatch = useDispatch();
+    const filterState = useSelector(state => state.filterReducer);
     const search = () => {
         if (isLoading) {
             return;
@@ -28,7 +30,7 @@ const FiltrationCoursesHeader = ({setQuery, setSort}) => {
             if (!title) {
                 delete prev.title;
             }
-            return {...prev, ...query};
+            return {...prev, ...query, range: filterState.price};
         });
     }
     const clearFiltersClick = () => {

@@ -3,7 +3,7 @@ import styles from './styles/FiltrationItem.module.scss';
 import FiltrationItemProcess from "@/pages(notNEXT)/TrainersPage/FiltrationItemProcess";
 const FiltrationItem = ({title, items, multiple, isRated,
                         setActive, toggleActive, range}) => {
-    const [isInnerShowed, setIsInnerShowed] = useState(false);
+    const [isInnerShowed, setIsInnerShowed] = useState(false || range);
 
     return (
         <li className={styles.filtrationItem}>

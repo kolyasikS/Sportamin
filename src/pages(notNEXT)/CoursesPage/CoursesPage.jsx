@@ -16,7 +16,7 @@ const CoursesPage = () => {
     const filterState = useSelector(state => state.filterReducer);
     const [trainers, setTrainers] = useState([]);
     const fetchCourses = async (query, sort) => {
-        //return await getCourses(query, sort);
+        return await getCourses(query, sort);
     }
     useEffect(() => {
         getTrainers()

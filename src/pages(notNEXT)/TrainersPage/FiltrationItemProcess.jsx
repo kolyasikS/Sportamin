@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import styles from "@/widgets/Searching/Filtration/styles/FiltrationItem.module.scss";
 import {ComboBox, RadioBox, Range} from "@/shared/ui/Inputs/api/Inputs";
 import {useDispatch, useSelector} from "react-redux";
+import {statuses} from "@/app/lib/store/constants/courseConstants";
 import {addLanguage, removeLanguage, setRating} from "@/app/lib/store/actions/filterActions";
 
 const FiltrationItemProcess = ({isInnerShowed, items,
@@ -13,7 +14,10 @@ const FiltrationItemProcess = ({isInnerShowed, items,
         isInnerShowed && <div className={styles.filtrationItemInner}>
             {items.map(item =>
                 range
-                    ? <Range key={item.id} {...item} setRange={(min, max) => item.setRange(dispatch, min, max)}/>
+                    ? <Range key={item.id} {...item}
+                             setRange={(min, max) => item.setRange(dispatch, min, max)}
+                             isFetching={filterState.status === statuses.FETCHING}
+                    />
                     : multiple
                         ? <ComboBox key={item.id} id={item.id} isActive={filterState.languages.includes(item.value)}
                                     toggleActive={() => toggleActive(item.value, filterState, dispatch)}

@@ -3,7 +3,7 @@ import {
     ADD_FILTER,
     ADD_LANGUAGE,
     CLEAR_FILTERS, REMOVE_FILTER,
-    REMOVE_LANGUAGE,
+    REMOVE_LANGUAGE, SET_STATUS, SET_RANGE,
     SET_RATING
 } from "@/app/lib/store/constants/filterConstants";
 
@@ -45,6 +45,20 @@ export const addFilter = createAction(ADD_FILTER, () => {
 export const removeFilter = createAction(REMOVE_FILTER, () => {
     return {
         payload: {
+        }
+    }
+});
+export const setRange = createAction(SET_RANGE, (range) => {
+    return {
+        payload: {
+            range
+        }
+    }
+});
+export const setStatus = createAction(SET_STATUS, (status) => {
+    return {
+        payload: {
+            status
         }
     }
 });

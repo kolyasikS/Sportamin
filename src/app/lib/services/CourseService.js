@@ -18,6 +18,7 @@ export default class CourseService {
         if (query.languages) {
             newQuery.languages = query.languages.$all.join(',');
         }
+        newQuery.range = [query.range.min, query.range.max].join(',');
         if (sort) {
             newQuery.sort = sort
         }

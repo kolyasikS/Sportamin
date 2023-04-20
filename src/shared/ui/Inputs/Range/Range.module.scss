@@ -2,7 +2,9 @@
 @import 'src/app/styles/mixins';
 
 .wrapper {
-    @include flexCenter();
+    @include flexCenterColumn();
+    align-items: flex-start;
+    @include space-y(5);
     color: $color-1;
     width: 100%;
 }
@@ -47,4 +49,9 @@
     &:nth-last-child(1) {
         left: 100%;
     }
+}
+.inputs {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
 }

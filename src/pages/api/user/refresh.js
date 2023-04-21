@@ -10,7 +10,6 @@ async function handler(req, res) {
         case 'GET':
             const {refreshToken} = req.cookies;
             const userData = await userService.refresh(refreshToken);
-
             const cookies = new Cookies(req, res);
             cookies.set('refreshToken', userData.refreshToken, {
                 maxAge: 30*24*60*60*1000,

@@ -1,0 +1,61 @@
+@import 'src/app/styles/mixins';
+@import 'src/app/styles/variables';
+
+.listBlock {
+    position: relative;
+}
+.btnList {
+    @include flexCenter();
+    justify-content: space-between;
+    width: 200px;
+    background-color: $bg-btn-1;
+    border: 2px solid #4b4b59;
+    cursor: pointer;
+    padding: 10px 25px; //prop
+    border-radius: 8px 8px 0px 0px;
+    transition: all 0.2s;
+    height: 65px; //prop
+    div {
+        @include flexCenterColumn();
+        @include space-y(1);
+        align-items: flex-start;
+        p {
+            font-family: "Franklin Gothic Book";
+            color: $color-1;
+            font-size: 20px;
+            letter-spacing: 1px;
+        }
+        span {
+            color: $color-1;
+            font-size: 14px;
+            font-weight: bold;
+            color: #f9f8f8;
+        }
+    }
+    &:hover {
+        background-color: #0d1117;
+        color: #b7b7b7;
+    }
+}
+.dropdownCaret {
+    border-bottom-color: #0000;
+    border-left-color: #0000;
+    border-right-color: #0000;
+    border-top-color: #f9f8f8;
+    border-style: solid;
+    border-width: 6px 6px 0;
+    content: "";
+    display: inline-block;
+    height: 0;
+    vertical-align: middle;
+    width: 0;
+    transition: 0.4s all;
+}
+.list {
+    position: absolute;
+    background-color: #1a1f26;
+    border-radius: 0 0 5px 5px;
+    width: 100%;
+    top: 100%;
+    z-index: 1;
+}

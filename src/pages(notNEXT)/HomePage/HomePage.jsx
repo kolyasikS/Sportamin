@@ -8,9 +8,6 @@ import TopCourses from "@/pages(notNEXT)/HomePage/TopCourses/TopCourses";
 import Calculator from "@/pages(notNEXT)/HomePage/Calculator/Calculator";
 import Blog from "@/pages(notNEXT)/HomePage/Blog/Blog";
 import Partners from "@/pages(notNEXT)/HomePage/Partners/Partners";
-import {Footer} from "@/widgets/api/Widgets";
-import {checkAuth} from "@/app/lib/controllers/authController";
-import {useDispatch, useSelector} from "react-redux";
 
 const HomePage = () => {
 

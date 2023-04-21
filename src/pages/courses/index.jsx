@@ -1,10 +1,9 @@
 import React from 'react';
+import {CoursesPage} from "@/pages(notNEXT)/api/Components";
 
 const Courses = () => {
     return (
-        <div>
-            
-        </div>
+        <CoursesPage/>
     );
 };
 

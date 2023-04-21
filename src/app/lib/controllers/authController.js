@@ -40,9 +40,7 @@ export async function logout(dispatch) {
 }
 export async function checkAuth(dispatch, cb) {
     try {
-        console.log(2);
         const response = await axios.get(`${API_URL}/user/refresh`, {withCredentials: true});
-        console.log(response);
         localStorage.setItem('token', response.data.accessToken);
         dispatch(setAuth(true));
         dispatch(setUser(response.data.user));

@@ -1,0 +1,28 @@
+@import 'src/app/styles/mixins';
+@import 'src/app/styles/variables';
+
+.filtrationItem {
+    @include flexCenterColumn();
+    align-items: flex-start;
+    width: fit-content;
+    border-bottom: 1px solid #cacaca;
+}
+
+.filtrationItemHeader {
+    width: 100%;
+    @include flexCenter();
+    justify-content: space-between;
+    color: #f9f8f8;
+    padding: 15px 0px 20px;
+    cursor: pointer;
+    min-width: 15rem;
+    user-select: none;
+    h1 {
+        font-size: 20px;
+    }
+}
+
+.filtrationItemInner {
+    padding: 0px 20px 0px 0;
+    margin-bottom: 20px;
+}

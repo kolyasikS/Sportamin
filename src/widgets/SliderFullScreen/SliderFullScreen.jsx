@@ -4,7 +4,7 @@ import styles from './SliderFullScreen.module.scss';
 import {SliderButton} from "@/shared/ui/Buttons/api/Buttons";
 import leftArrow from "../../../public/media/images/arrow-left.png";
 import rightArrow from "../../../public/media/images/arrow-right.png";
-import {useWindowSize} from "@/shared/lib/api/hooks";
+import useWindowSize from "@/app/lib/features/hooks/useWindowSize";
 const TRANSITION_DURATION = 1000;
 const SliderFullScreen = ({slides}) => {
     const [CurrentSlides, setCurrentSlides] = useState([slides]);

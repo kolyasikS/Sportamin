@@ -30,7 +30,6 @@ class UserService {
         user.isActivated = true;
         user.save();
     }
-
     async login(email, password) {
         const user = await UserModel.findOne({email});
         if (!user) {
@@ -42,12 +41,10 @@ class UserService {
         }
         return AuthData(user);
     }
-
     async logout(refreshToken) {
         const token = await tokenService.removeToken(refreshToken);
         return token;
     }
-
     async refresh(refreshToken) {
         if (!refreshToken) {
             throw ApiError.UnauthorizedError();
@@ -60,14 +57,21 @@ class UserService {
         const user = await UserModel.findById(userData.id);
         return AuthData(user);
     }
+    async getTrainers(query, sort) {
+        const trainers = await UserModel.find({...query, "trainer.isTrainer": true}).sort(sort);
+        return trainers;
+    }
+    async update(email, image) {
+        await UserModel.updateOne({email}, {avatar: image});
+    }
 
-    async getAllUsers() {
-        const users = await UserModel.find();
-        return users;
+    async test(email) {
+        return await UserModel.find({email});
     }
 }
 async function AuthData(user) {
     const userDto = new UserDto(user);
+
     const tokens = tokenService.generateTokens({...userDto});
     await tokenService.saveToken(userDto.id, tokens.refreshToken);
     return {

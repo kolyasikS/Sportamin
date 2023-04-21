@@ -1,8 +1,7 @@
 import React, {useRef} from 'react';
 import styles from './styles/SendMail.module.scss';
 import {TitleWithImage} from "@/shared/ui/Titles/api/Titles";
-import {MainInput} from "@/shared/ui/Inputs/api/Inputs";
-import MainTextArea from "@/shared/ui/Inputs/MainTextArea/MainTextArea";
+import {MainInput, MainTextArea} from "@/shared/ui/Inputs/api/Inputs";
 import {RBButton} from "@/shared/ui/Buttons/api/Buttons";
 import sendEmail from "@/app/lib/features/sendEmail/sendEmail";
 

@@ -1,14 +1,14 @@
 import React from 'react';
-import {Footer, Header} from "@/widgets/api/Widgets";
-import Introduction from "@/pages(notNEXT)/AboutPage/Introduction";
 import Features from "@/pages(notNEXT)/AboutPage/Features";
 import FAQ from "@/pages(notNEXT)/AboutPage/FAQ";
 import Founder from "@/pages(notNEXT)/AboutPage/Founder";
+import IntroductionPage from "@/shared/ui/Titles/IntroductionPage/IntroductionPage";
+import bg from '@assets/blogbanner.jpg';
 
 const AboutPage = () => {
     return (
         <main>
-            <Introduction/>
+            <IntroductionPage bg={bg} title={'About'} titleSpan={'Us'} height={450}/>
             <Features/>
             <Founder/>
             <FAQ/>

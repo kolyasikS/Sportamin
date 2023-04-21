@@ -1,11 +1,8 @@
 import React from 'react';
-
-const Index = () => {
+import {TrainersPage} from "@/pages(notNEXT)/api/Components";
+const Trainers = () => {
     return (
-        <div>
-            
-        </div>
+        <TrainersPage/>
     );
 };
-
-export default Index;
+export default Trainers;

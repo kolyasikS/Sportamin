@@ -1,0 +1,22 @@
+@import 'src/app/styles/mixins';
+@import 'src/app/styles/variables';
+
+.searchedItemsBlock {
+    width: 100%;
+    @include flexCenter();
+    align-items: flex-start;
+}
+.list {
+    @include space-y(5);
+}
+.isStale {
+    background-color: #ff0000;
+}
+.loadingBlock {
+    @include flexCenter();
+    height: 300px;
+}
+.notFoundResult {
+    color: #f9f8f8;
+    font-size: 35px;
+}

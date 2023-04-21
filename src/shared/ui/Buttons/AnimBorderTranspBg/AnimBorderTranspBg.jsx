@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import styles from './style.module.scss';
 import Image from "next/image";
-import {useUppercaseButton} from "@/shared/lib/api/hooks";
+import useUppercaseButton from "@/app/lib/features/hooks/useUppercaseButton";
 const AnimBorderTranspBg = ({children, onclick,
                                 width = 180,
                                 height = 50, uppercase}) => {

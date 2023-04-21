@@ -1,0 +1,60 @@
+@import 'src/app/styles/mixins';
+@import 'src/app/styles/variables';
+
+.span {
+    padding: 0.8rem 0;
+    display: block;
+    min-width: 10rem;
+    cursor: pointer;
+}
+.input {
+    display: none;
+}
+.label {
+    @include flexCenter();
+    justify-content: flex-start;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    color: #f9f8f8;
+    font-size: 16px;
+    height: 1.4em;
+
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+.input:hover + .label:before {
+    background: #2e3234;
+    box-shadow: inset 0px 0px 0px 2px #f7f2f2;
+}
+.label:last-child {
+    margin-bottom: 0;
+}
+.label:before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 1.4em;
+    height: 1.4em;
+    border: 1px solid #343a3f;
+    border-radius: 0.2em;
+    left: 0;
+    top: 0;
+    -webkit-transition: all 0.2s, background 0.2s ease-in-out;
+    transition: all 0.2s, background 0.2s ease-in-out;
+    background: #f3f3f3;
+}
+.active {
+    &:before {
+        width: 1.3em;
+        height: 1.3em;
+        border-radius: 0.2em;
+        border: 2px solid #fff;
+        -webkit-transform: rotate(90deg);
+        transform: rotate(90deg);
+        background: #50565a;
+        box-shadow: 0 0 0 1px #000;
+    }
+}

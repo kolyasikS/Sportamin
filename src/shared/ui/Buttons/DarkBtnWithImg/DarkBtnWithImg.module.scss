@@ -16,6 +16,8 @@
         color: $color-1;
         font-size: 20px;
         letter-spacing: 1px;
+        position: relative;
+        top: -1px;
     }
     &:hover {
         background-color: #0d1117;

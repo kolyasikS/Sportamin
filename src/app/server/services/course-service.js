@@ -1,6 +1,7 @@
 import CourseModel from "@/app/server/models/course-model";
 import UserService from "@/app/server/services/user-service";
 import {Schema} from "mongoose";
+import {ObjectId} from "mongodb";
 class CourseService {
     async create({title, subtitle, language,
                  price, providedItems, content,
@@ -17,25 +18,24 @@ class CourseService {
         return course;
     }
     async getCourses(reqQuery) {
-        console.log(reqQuery);
         const query = getQueryFromReq(reqQuery);
         const sort = getSortFromReq(reqQuery);
-        let courses = await CourseModel
-            .aggregate([
-                {
-                    $match: query
-                },
-                {
-                    $addFields: {
-                        'content_count': {$size: "$content" },
-                    }
-                },
-                {
-                    $sort: sort.duration
-                        ? {"content_count": sort.duration}
-                        : {...sort}
+        console.log('query', query);
+        let pipeline = [
+            {
+                $match: query
+            },
+            {
+                $addFields: {
+                    'content_count': {$size: "$content" },
                 }
-            ]);
+            }
+        ];
+        if (sort) {
+            pipeline.push(sort);
+        }
+        let courses = await CourseModel
+            .aggregate(pipeline);
         return courses;
     }
     async update(id, updatedCourse) {
@@ -62,12 +62,17 @@ function getQueryFromReq(reqQuery) {
     if (reqQuery.languages) {
         query.language = {$in: reqQuery.languages.split(',')};
     }
-    let range = reqQuery.range.split(',');
-    query.$and = [{price: {$gte: +range[0]}}, {price: {$lte: +range[1]}}];
+    if (reqQuery.id) {
+        query._id = new ObjectId(reqQuery.id);
+    }
+    if (reqQuery.range) {
+        let range = reqQuery.range.split(',');
+        query.$and = [{price: {$gte: +range[0]}}, {price: {$lte: +range[1]}}];
+    }
     return query;
 }
 function getSortFromReq(reqQuery) {
-    const sort = {};
+    let sort = {};
     if (reqQuery['sort[rating]']) {
         sort.rating = +reqQuery['sort[rating]'];
     } else if (reqQuery['sort[price]']) {
@@ -75,7 +80,16 @@ function getSortFromReq(reqQuery) {
     } else if (reqQuery['sort[duration]']) {
         sort.duration = +reqQuery['sort[duration]'];
     }
-    return sort;
+    if (Object.keys(sort).length) {
+        sort = {
+            $sort: sort.duration
+                ? {"content_count": sort.duration}
+                : {...sort}
+        }
+        return sort;
+    } else {
+        return null;
+    }
 }
 
 export default new CourseService();

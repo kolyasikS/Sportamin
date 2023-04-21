@@ -6,6 +6,7 @@ export default class CourseService {
     }
     static async get(query, sort) {
         let newQuery = {};
+
         if (query.title) {
             newQuery = {
                 regex: query.title.$regex,
@@ -18,7 +19,12 @@ export default class CourseService {
         if (query.languages) {
             newQuery.languages = query.languages.$all.join(',');
         }
-        newQuery.range = [query.range.min, query.range.max].join(',');
+        if (query.id) {
+            newQuery.id = query.id;
+        }
+        if (newQuery.range) {
+            newQuery.range = [query.range.min, query.range.max].join(',');
+        }
         if (sort) {
             newQuery.sort = sort
         }

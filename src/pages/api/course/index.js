@@ -7,6 +7,7 @@ export default async function handler(req, res) {
         await dbConnect();
         switch (method) {
             case 'GET':
+                console.log(req.query);
                 const courses = await CourseService.getCourses(req.query);
                 res.status(200).json(courses);
                 break;

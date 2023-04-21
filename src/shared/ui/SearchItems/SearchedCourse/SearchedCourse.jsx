@@ -27,7 +27,7 @@ const SearchedCourse = ({title, subtitle, _id,
     }, [])
     return (
         <li className={styles.listItem}>
-            <Link href={`course/${_id}`}>
+            <Link href={`courses/${_id}`}>
                 <div className={styles.preview}>
                     <Image src={`data:image/jpg;base64,${previewImage}`}
                            alt={''} width={190} height={150}/>

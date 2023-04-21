@@ -10,7 +10,8 @@
     color: #111436;
     padding: 1.25rem;
     resize: vertical;
+    outline: none;
     &::placeholder {
-        color: #111436;
+        color: inherit;
     }
 }

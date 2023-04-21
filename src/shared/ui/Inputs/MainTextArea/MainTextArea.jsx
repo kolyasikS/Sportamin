@@ -1,11 +1,15 @@
 import React, {forwardRef} from 'react';
 import styles from './MainTextArea.module.scss';
-import MainInput from "@/shared/ui/Inputs/MainInput/MainInput";
-const MainTextArea = forwardRef(({}, ref) => {
+const MainTextArea = forwardRef(({message, bgColor, color,
+                                     height, width, resize, onChange,
+                                 }, ref) => {
     return (
         <textarea className={styles.textArea}
-            placeholder={'Your Message'}
-            ref={ref}
+                  placeholder={message}
+                  ref={ref} onChange={onChange}
+                  style={{backgroundColor: bgColor,
+                      color, width, height, resize
+                  }}
         >
         </textarea>
     );

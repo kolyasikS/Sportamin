@@ -5,10 +5,10 @@ import styles from './styles/FiltrationHeader.module.scss';
 import filterImg from '@assets/filter.png';
 import searchImg from '@assets/searchImage.png';
 import cancelImg from '@assets/cancelImg.png';
-import sortOptions from "@/app/Static Data/Filtration/Sorts";
-import {DoubleTitleList} from "@/widgets/api/Widgets";
+import {sortOptions} from "@/app/Static Data/Filtration/Sorts";
 import {useDispatch, useSelector} from "react-redux";
 import {clearFilters, setRating} from "@/app/lib/store/actions/filterActions";
+import {FiltrationDoubleTitleList} from "@/features/api/filtration";
 const FiltrationHeader = ({setQuery, setSort, sortPath}) => {
     const nameRef = useRef();
     const surnameRef = useRef();
@@ -64,8 +64,8 @@ const FiltrationHeader = ({setQuery, setSort, sortPath}) => {
             }
         }}>
             <div className={styles.filterBlock}>
-                <DarkBtnWithImg img={filterImg} width={20}>Filter ({amountFilters})</DarkBtnWithImg>
-                <DoubleTitleList title={'Sort by'} options={sortOptions} sortPath={sortPath} setSort={setSort}/>
+                <DarkBtnWithImg img={filterImg} widthImg={20}>Filter ({amountFilters})</DarkBtnWithImg>
+                <FiltrationDoubleTitleList title={'Sort by'} options={sortOptions} sortPath={sortPath} setSort={setSort}/>
                 <MainInput bgColor={'#0d1117'} color={'#c9d1d9'}
                            height={65} ref={nameRef}
                 >
@@ -76,10 +76,10 @@ const FiltrationHeader = ({setQuery, setSort, sortPath}) => {
                 >
                     Surname
                 </MainInput>
-                <DarkBtnWithImg img={searchImg} width={30} onClick={search}></DarkBtnWithImg>
+                <DarkBtnWithImg img={searchImg} widthImg={30} onClick={search}></DarkBtnWithImg>
             </div>
             <div className={`${styles.clearFilterBlock} ${isLoading ? styles.isLoading : ''}`}>
-                <DarkBtnWithImg img={cancelImg} width={20} onClick={clearFiltersClick}>Clear filters</DarkBtnWithImg>
+                <DarkBtnWithImg img={cancelImg} widthImg={20} onClick={clearFiltersClick}>Clear filters</DarkBtnWithImg>
             </div>
         </div>
     );

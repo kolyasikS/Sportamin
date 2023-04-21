@@ -13,7 +13,6 @@ export default async function withAuthMiddleware(req, res) {
     }
 
     const userData = tokenService.validateAccessToken(accessToken);
-    console.log(userData);
     if (!userData) {
         throw ApiError.UnauthorizedError();
     }

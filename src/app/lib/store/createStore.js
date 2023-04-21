@@ -4,13 +4,19 @@ import authReducer from "@/app/lib/store/reducers/authReducer";
 import userReducer from "@/app/lib/store/reducers/userReducer";
 import sessionReducer from '@/app/lib/store/reducers/sessionReducer';
 import filterReducer from '@/app/lib/store/reducers/filterReducer';
+import courseReducer from '@/app/lib/store/reducers/courseReducer';
 
 const rootReducer = combineReducers({
     authReducer,
     userReducer,
     sessionReducer,
-    filterReducer
+    filterReducer,
+    courseReducer,
 });
+const logger = store => next => action => {
+    let result = next(action);
+    return result;
+}
 export function configureAppStore(preloadedState) {
     const store = configureStore({
         reducer: rootReducer,
@@ -18,7 +24,7 @@ export function configureAppStore(preloadedState) {
         middleware: (getDefaultMiddleware) => getDefaultMiddleware({ // for DEV
             immutableCheck: false,                                              // for DEV
             serializableCheck: false                                            // for DEV
-        })
+        }).concat(logger),
     });
 
     return store;

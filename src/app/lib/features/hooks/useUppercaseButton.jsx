@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 
-const UseUppercaseButton = (uppercase, size) => {
+const useUppercaseButton = (uppercase, size) => {
     const [style, setStyle] = useState({width: size.width, height: size.height});
     useEffect(() => {
         if (uppercase) {
@@ -14,4 +14,4 @@ const UseUppercaseButton = (uppercase, size) => {
     return style;
 };
 
-export default UseUppercaseButton;
+export default useUppercaseButton;

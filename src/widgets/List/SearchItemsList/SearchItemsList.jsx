@@ -4,7 +4,6 @@ import styles from './SearchItemsList.module.scss';
 const SearchItemsList = memo(({items, isStale}) => {
     const [style, setStyle] = useState({});
     useEffect(() => {
-        console.log(isStale);
         setStyle(isStale ? {backgroundColor: 'red'}: {backgroundColor: 'inherit'});
     }, [isStale])
     return (

@@ -1,0 +1,31 @@
+@import '../../../app/styles/mixins';
+@import '../../../app/styles/variables';
+
+.header {
+    @include flexCenter();
+    justify-content: space-between;
+    padding: 40px 0;
+}
+
+.filterBlock {
+    @include flexCenter();
+    @include space-x(3);
+}
+
+.clearFilterBlock {
+
+}
+.isLoading {
+    position: relative;
+    &::before {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: calc(100% + 2px);
+        top: -2px;
+        z-index: 1;
+        left: 0;
+        background-color: #0D1117;
+        opacity: 0.6;
+    }
+}

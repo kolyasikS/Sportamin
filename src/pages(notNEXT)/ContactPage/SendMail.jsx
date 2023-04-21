@@ -28,7 +28,7 @@ const SendMail = () => {
             <TitleWithImage fontSize={30}>Your feedback</TitleWithImage>
             <div className={styles.sendMail__inner}>
                 <MainInput width={'100%'} ref={nameRef}>Your Full Name</MainInput>
-                <MainTextArea ref={messageRef}/>
+                <MainTextArea ref={messageRef} message={'Your message'}/>
                 <p>*We protect your privacy</p>
                 <RBButton width={150} onclick={() => sendEmail(nameRef.current.value, messageRef.current.value)}>SEND</RBButton>
             </div>

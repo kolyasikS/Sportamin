@@ -1,6 +1,6 @@
 import {v4} from "uuid";
 
-const sortOptions = [
+export const sortOptions = [
     {
         id: v4(),
         title: 'Rating'
@@ -15,4 +15,18 @@ const sortOptions = [
     }
 ];
 
-export default sortOptions;
+export const coursesSortOptions = [
+    {
+        id: v4(),
+        title: 'Rating'
+    },
+    {
+        id: v4(),
+        title: 'Price'
+    },
+    {
+        id: v4(),
+        title: 'Duration',
+
+    }
+]

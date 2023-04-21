@@ -8,6 +8,7 @@ export async function getTrainers(query, sort) {
         return res;
     } catch (e) {
         console.log(e?.response?.data);
+
     }
 }
 export async function getTrainer(id) {

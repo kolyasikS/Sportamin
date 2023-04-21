@@ -7,10 +7,9 @@ import {getImageFromBase64} from "@/app/lib/features/image";
 
 const SearchItemsList = ({isEmpty, searchedItems, renderSearchedItem}) => {
     const isLoading = useSelector(state => state.sessionReducer.isLoading);
-
     return (
         <div className={styles.searchedItemsBlock}>
-            <div>
+            <div className={styles.searchedItemsBlockInner}>
                 {isLoading
                     ?
                     <div className={styles.loadingBlock}>

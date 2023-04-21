@@ -43,7 +43,6 @@ describe('moving slider', () => {
             wrapperSliders = screen.getAllByTestId('slide-test');
         })
         screen.debug();
-        console.log('WRAPPER', wrapperSliders);
         expect(wrapperSliders[1]).toHaveClass('slideWrapper active');
         act(() => {
             leftBtn.click();

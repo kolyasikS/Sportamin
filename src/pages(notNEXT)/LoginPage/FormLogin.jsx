@@ -9,6 +9,7 @@ import Link from "next/link";
 import {useDispatch} from "react-redux";
 import {login} from "@/app/lib/controllers/authController";
 import {useRouter} from "next/router";
+import {HorizontalSeparator} from "@/shared/ui/api/separators";
 const FormLogin = () => {
     const emailRef = useRef();
     const passRef = useRef();
@@ -30,13 +31,9 @@ const FormLogin = () => {
                     <OAuthLink logo={google}>Continue with Google</OAuthLink>
                     <OAuthLink logo={github}>Continue with GitHub</OAuthLink>
                 </div>
-                <span className={styles.separator}>
-                    <span className={styles.separatorHorizontalLine}></span>
-                    <span className={styles.separatorText}>or</span>
-                    <span className={styles.separatorHorizontalLine}></span>
-                </span>
+                <HorizontalSeparator>or</HorizontalSeparator>
                 <div className={styles.spaceY}>
-                    <MainInput width={-1} ref={emailRef} value={'o687801077@gmail.com'}>Email address</MainInput>
+                    <MainInput width={-1} ref={emailRef} value={'o687801078@gmail.com'}>Email address</MainInput>
                     <MainInput width={-1} ref={passRef} value={'123456'}>Password</MainInput>
                     <RBButton width={-1} onclick={submitLogin}>Continue</RBButton>
                 </div>

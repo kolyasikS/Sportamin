@@ -47,5 +47,4 @@ class TokenService {
         return tokenData;
     }
 }
-
 export default new TokenService();

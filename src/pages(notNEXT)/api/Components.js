@@ -4,5 +4,7 @@ export {default as SignUpPage} from '../SignUpPage/SignUpPage';
 export {default as AboutPage} from '../AboutPage/AboutPage';
 export {default as ContactPage} from '../ContactPage/ContactPage';
 export {default as TrainersPage} from '../TrainersPage/TrainersPage';
+export {default as MyCoursesPage} from '../MyCoursesPage/MyCoursesPage';
+export {default as CreateCoursePage} from '../CreateCoursePage/CreateCoursePage';
 export {default as TrainerPrivatePage} from '../TrainerPrivatePage/TrainerPrivatePage';
 export {default as CoursesPage} from '../CoursesPage/CoursesPage';

@@ -1,0 +1,13 @@
+export const SET_GENERAL_INFORMATION = 'SET_GENERAL_INFORMATION';
+export const SET_PROVIDED_ITEMS = 'SET_PROVIDED_ITEMS';
+export const SET_REQUIREMENTS = 'SET_REQUIREMENTS';
+export const SET_STATUS = 'SET_STATUS';
+export const SET_WEEKS = 'SET_WEEKS';
+export const SET_DAYS = 'SET_DAYS';
+export const SET_EXERCISES = 'SET_EXERCISES';
+export const statuses = {
+    CREATING: 'CREATING',
+    FETCHING: 'FETCHING',
+    CREATED: 'CREATED',
+};
+

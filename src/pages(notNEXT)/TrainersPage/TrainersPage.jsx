@@ -7,9 +7,11 @@ import {useSelector} from "react-redux";
 import {SearchItems} from "@/widgets/api/Widgets";
 import {SearchedTrainer} from "@/shared/ui/SearchItems/api/searchedItems";
 import {getImageFromBase64} from "@/app/lib/features/image";
+import FiltrationHeader from "@/pages(notNEXT)/TrainersPage/FiltrationHeader";
 
 const TrainersPage = () => {
-    const [query, setQuery] = useState({})
+    const [query, setQuery] = useState({});
+    const [sort, setSort] = useState({});
     const filterState = useSelector(state => state.filterReducer);
     const fetchTrainers = async (query, sort) => {
         return getTrainers(query, sort);
@@ -43,11 +45,12 @@ const TrainersPage = () => {
     return (
         <main>
             <IntroductionPage bg={banner} title={'Trainers'} height={450}/>
-            {/*<SearchTrainers/>*/}
             <SearchItems fetchItems={fetchTrainers} query={query} setQuery={setQuery}
-                         sortPath={'trainer.'} filtrationItems={filtrationItems}
-                         renderSearchedItem={renderTrainerItem}
-            />
+                         filtrationItems={filtrationItems} sort={sort}
+                         renderSearchedItem={renderTrainerItem}>
+                <FiltrationHeader setQuery={setQuery} setSort={setSort}
+                                  sortPath={'trainer.'}/>
+            </SearchItems>
         </main>
     );
 };

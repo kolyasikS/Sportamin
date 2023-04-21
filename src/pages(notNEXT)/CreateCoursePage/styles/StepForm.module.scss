@@ -1,0 +1,20 @@
+@import '/src/app/styles/mixins';
+@import '/src/app/styles/variables';
+
+.form {
+    label {
+        font-family: "Microsoft YaHei";
+    }
+    min-width: 100%;
+    position: relative;
+    &:first-child {
+        margin-right: 0px;
+    }
+
+    z-index: 0;
+}
+.formInner {
+    max-width: 100%;
+    @include space-y(2);
+    z-index: 0;
+}

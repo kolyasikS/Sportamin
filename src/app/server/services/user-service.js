@@ -7,6 +7,7 @@ import UserDto from "@/app/server/dtos/user-dto";
 import ApiError from "@/app/server/exceptions/api-error";
 import TokenModel from "@/app/server/models/token-model";
 import {func} from "joi";
+import {ObjectId} from "mongodb";
 class UserService {
     async registration(email, password) {
         const candidate = await UserModel.findOne({email});
@@ -58,6 +59,9 @@ class UserService {
         return AuthData(user);
     }
     async getTrainers(query, sort) {
+        if (query && query._id) {
+            query._id = new ObjectId(query._id);
+        }
         const trainers = await UserModel.find({...query, "trainer.isTrainer": true}).sort(sort);
         return trainers;
     }
@@ -75,8 +79,9 @@ class UserService {
 }
 async function AuthData(user) {
     const userDto = new UserDto(user);
-
-    const tokens = tokenService.generateTokens({...userDto});
+    const tokenUserData = {...userDto};
+    delete tokenUserData.avatar;
+    const tokens = tokenService.generateTokens({...tokenUserData});
     await tokenService.saveToken(userDto.id, tokens.refreshToken);
     return {
         ...tokens,

@@ -1,0 +1,18 @@
+.separatorHorizontalLine {
+    display: flex;
+    border-top: 1px solid #cacaca;
+    flex: 1 1 auto;
+    margin-top: 8px;
+    min-width: 1px;
+    padding-top: 8px;
+    user-select: none;
+}
+.separatorText {
+    margin: 0 5px;
+    user-select: none;
+}
+.separator {
+    display: flex;
+    margin: 20px 0 40px;
+    user-select: none;
+}

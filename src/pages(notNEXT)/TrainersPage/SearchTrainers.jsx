@@ -42,14 +42,12 @@ const SearchTrainers = () => {
         } else {
             return;
         }
-        console.log(query);
         fetchTrainers(query, sort);
 
     }, [query, sort]);
     useEffect(() => {
         let languages = filterState.languages;
         let rating = filterState.minRating;
-        console.log(languages, rating);
 
         let languagesMongoDB = null;
         if (languages.length) {

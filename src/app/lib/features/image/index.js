@@ -7,9 +7,9 @@ export function getImageFromBase64(base) {
     let str = base
         .map(bin => String.fromCharCode(bin))
         .join('');
-    try {
+    if (typeof window !== 'undefined') {
         return window.btoa(str);
-    } catch (e) {
+    } else {
         return btoa(str);
     }
 }

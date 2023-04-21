@@ -1,0 +1,37 @@
+@import 'src/app/styles/mixins';
+@import 'src/app/styles/variables';
+.title {
+    color: #b2b2b6;
+    font-size: 22px;
+    margin: 0;
+}
+.week {
+    margin-bottom: 15px;
+    z-index: 0;
+}
+.weekHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #29343d;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+.weekInner {
+    padding-left: 40px;
+    z-index: 2;
+}
+.features {
+    @include flexCenter();
+    @include space-x(1);
+
+    img {
+        padding: 5px;
+        border-radius: 3px;
+        &:hover {
+            background-color: #6a7073;
+        }
+    }
+}

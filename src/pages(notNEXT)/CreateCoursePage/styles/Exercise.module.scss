@@ -1,0 +1,36 @@
+@import 'src/app/styles/mixins';
+@import 'src/app/styles/variables';
+
+.exercise {
+    @include flexCenter();
+    justify-content: space-between;
+    width: 100%;
+    z-index: 1;
+    padding-right: 10px;
+    margin-bottom: 10px;
+}
+
+.features {
+    display: flex;
+    justify-content: flex-end;
+    @include space-x(3);
+    min-width: 20%;
+    img {
+        cursor: pointer;
+        &:hover {
+            background-color: #4e4e50;
+        }
+        border-radius: 4px;
+        padding: 5px;
+    }
+    .cancel {
+        transform: rotateZ(45deg);
+    }
+}
+.info {
+    @include flexCenter();
+    @include space-x(2);
+    justify-content: flex-start;
+    height: auto;
+    width: 100%;
+}

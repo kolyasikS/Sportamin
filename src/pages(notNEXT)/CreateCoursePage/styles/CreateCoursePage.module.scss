@@ -1,0 +1,57 @@
+@import '/src/app/styles/mixins';
+@import '/src/app/styles/variables';
+
+.main {
+    background-color: $bg-block-1;
+    @include flexCenter();
+    min-height: 80vh;
+    color: $color-1;
+    padding: 40px 0;
+    position: relative;
+
+}
+
+.section {
+    @include flexCenterColumn();
+    background-color: #161b22;
+    padding: 30px 60px 20px;
+    width: 45%;
+    border-radius: 15px;
+    position: relative;
+    z-index: 2;
+}
+.container {
+    width: 100%;
+    overflow: hidden;
+    z-index: 2;
+}
+.formTitle {
+    font-size: 34px;
+    font-family: "Lucida Fax";
+    @include flexCenter();
+    @include space-x(3);
+}
+
+.navButtons {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+}
+.progress {
+    position: absolute;
+    bottom: 2rem;
+    left: 47%;
+    font-size: 20px;
+    font-family: Georgia;
+}
+.formSteps {
+    display: flex;
+    @include space-x(10);
+    min-width: 100%;
+    transition: 0.5s all;
+    z-index: 0;
+}
+.moveStep {
+    transform: translateX(calc(-100% - 2.5rem));
+}

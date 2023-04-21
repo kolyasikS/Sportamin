@@ -17,7 +17,7 @@ const Header = ({isLoading}) => {
                 <li><Link href="/">Home</Link></li>
                 <li><Link href="/about">About us</Link></li>
                 <li><Link href="/trainers">Trainers</Link></li>
-                <li><Link href="/courses/courses">Courses</Link></li>
+                <li><Link href="/courses">Courses</Link></li>
                 <li><Link href="/blogs">Blogs</Link></li>
                 <li><Link href="/contact">Contact us</Link></li>
             </nav>

@@ -4,10 +4,12 @@
 .trainersSection {
     background-color: $bg-block-1;
     padding: 0 100px;
+    width: 100%;
 }
 
 .trainersSectionInner {
     display: flex;
     @include space-x(12);
+    width: 100%;
     padding-bottom: 50px;
 }

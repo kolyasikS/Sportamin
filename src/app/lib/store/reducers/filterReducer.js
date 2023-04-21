@@ -4,15 +4,21 @@ import {
     addLanguage,
     clearFilters,
     removeFilter,
-    removeLanguage,
-    setRating
+    removeLanguage, setIsFetching, setRange,
+    setRating, setStatus
 } from "@/app/lib/store/actions/filterActions";
+import {statuses} from "@/app/lib/store/constants/courseConstants";
 
 const reducer = createReducer(
     {
         minRating: 4.5,
         languages: [],
         amountFilters: 1,
+        price: {
+            min: null,
+            max: null
+        },
+        status: statuses.CREATING,
     },
     (builder) => {
         builder
@@ -42,6 +48,12 @@ const reducer = createReducer(
             .addCase(removeFilter, (state, action) => {
                 state.amountFilters--;
             })
+            .addCase(setRange, (state, action) => {
+                state.price = action.payload.range;
+            })
+            .addCase(setStatus, (state, action) => {
+               state.status = action.payload.status;
+            });
     }
 );
 export default reducer;

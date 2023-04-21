@@ -1,5 +1,5 @@
-@import 'src/app/styles/mixins';
-@import 'src/app/styles/variables';
+@import '../../../app/styles/mixins';
+@import '../../../app/styles/variables';
 
 .header {
     @include flexCenter();

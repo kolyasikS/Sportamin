@@ -2,27 +2,23 @@ import React, {useDeferredValue, useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {setIsLoading} from "@/app/lib/store/actions/sessionActions";
 import styles from "@/pages(notNEXT)/TrainersPage/styles/TrainersPage.module.scss";
-import {FiltrationHeader, FiltrationInner, SearchItemsListSection} from "@/widgets/api/Widgets";
+import {FiltrationInner, SearchItemsListSection} from "@/widgets/api/Widgets";
+import {setIsFetching, setStatus} from "@/app/lib/store/actions/filterActions";
+import {statuses} from "@/app/lib/store/constants/courseConstants";
 
-const SearchItems = ({fetchItems, setQuery, query, sortPath, filtrationItems, renderSearchedItem}) => {
+const SearchItems = ({fetchItems, query,
+                         sort, filtrationItems,
+                         renderSearchedItem, children}) => {
     const [filteredItems, setFilteredItems] = useState([]);
     const deferredSearchedItems = useDeferredValue(filteredItems);
-    const [sort, setSort] = useState({})
     const [isEmpty, setIsEmpty] = useState(false);
 
     const dispatch = useDispatch();
     const isLoading = useSelector(state => state.sessionReducer.isLoading);
+    const filterState = useSelector(state => state.filterReducer);
 
-    useEffect(() => {
-        if (!Object.keys(sort).length) {
-            return;
-        }
-        if (!isLoading) {
-            dispatch(setIsLoading(true));
-        } else {
-            return;
-        }
-        fetchItems(query, sort).then(res => {
+    const fetchItemsWrapper = () => {
+        fetchItems({...query, range: filterState.price}, sort).then(res => {
             if (!res || res.length === 0) {
                 setIsEmpty(true);
             } else {
@@ -30,17 +26,42 @@ const SearchItems = ({fetchItems, setQuery, query, sortPath, filtrationItems, re
             }
             setFilteredItems(res);
         })
-        .catch(e => console.log(e))
-        .finally(() => {
-            dispatch(setIsLoading(false));
-        });
+            .catch(e => console.log(e))
+            .finally(() => {
+                dispatch(setIsLoading(false));
+                dispatch(setStatus(statuses.CREATING));
+            });
+    }
+/*    useEffect(() => {
+        fetchItemsWrapper();
+    }, []);*/
+    useEffect(() => {
+        if (filterState.status === statuses.CREATED) {
+            console.log(filterState);
 
+            if (!isLoading) {
+                dispatch(setIsLoading(true));
+            } else {
+                return;
+            }
+            fetchItemsWrapper();
+        } else if (filterState.status === statuses.FETCHING) {
+            dispatch(setStatus(statuses.CREATED));
+        }
+    }, [filterState.status])
+    useEffect(() => {
+        console.log(filterState.status, query, sort);
+        if (!Object.keys(sort).length) {
+            return;
+        }
+        if (filterState.status === statuses.CREATING) {
+            dispatch(setStatus(statuses.FETCHING));
+        }
     }, [query, sort]);
 
     return (
         <section className={styles.trainersSection}>
-            <FiltrationHeader setQuery={setQuery} setSort={setSort}
-                              sortPath={sortPath}/>
+            {children}
             <div className={styles.trainersSectionInner}>
                 <FiltrationInner items={filtrationItems} isLoading={isLoading}/>
                 <SearchItemsListSection isEmpty={isEmpty} searchedItems={deferredSearchedItems}

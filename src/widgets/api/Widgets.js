@@ -10,3 +10,5 @@ export {default as FiltrationHeader} from '../Searching/Filtration/FiltrationHea
 export {default as FiltrationInner} from '../Searching/Filtration/FiltrationInner';
 export {default as SearchItemsList} from '../List/SearchItemsList/SearchItemsList';
 export {default as DoubleTitleList} from '../List/DoubleTitleList/DoubleTitleList';
+export {default as SearchItems} from '../Searching/SearchItems/SearchItems';
+export {default as SearchItemsListSection} from '../Searching/SearchItemsList/SearchItemsList';

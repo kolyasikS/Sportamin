@@ -8,7 +8,7 @@ import cancelImg from '@assets/cancelImg.png';
 import sortOptions from "@/app/Static Data/Filtration/Sorts";
 import {DoubleTitleList} from "@/widgets/api/Widgets";
 import {useDispatch, useSelector} from "react-redux";
-import {clearFilter, removeFilter, setRating} from "@/app/lib/store/actions/filterActions";
+import {clearFilters, setRating} from "@/app/lib/store/actions/filterActions";
 const FiltrationHeader = ({setQuery, setSort, sortPath}) => {
     const nameRef = useRef();
     const surnameRef = useRef();
@@ -42,12 +42,17 @@ const FiltrationHeader = ({setQuery, setSort, sortPath}) => {
             return {...prev, ...query};
         });
     }
-    const clearFilters = () => {
+    const clearFiltersClick = () => {
+        if (!nameRef.current.value &&
+        !surnameRef.current.value &&
+        amountFilters === 1) {
+            return;
+        }
         nameRef.current.value = null;
         surnameRef.current.value = null;
 
 
-        dispatch(clearFilter());
+        dispatch(clearFilters());
         dispatch(setRating(4.5));
 
         setQuery({});
@@ -73,8 +78,8 @@ const FiltrationHeader = ({setQuery, setSort, sortPath}) => {
                 </MainInput>
                 <DarkBtnWithImg img={searchImg} width={30} onClick={search}></DarkBtnWithImg>
             </div>
-            <div className={styles.clearFilterBlock}>
-                <DarkBtnWithImg img={cancelImg} width={20} onClick={clearFilters}>Clear filters</DarkBtnWithImg>
+            <div className={`${styles.clearFilterBlock} ${isLoading ? styles.isLoading : ''}`}>
+                <DarkBtnWithImg img={cancelImg} width={20} onClick={clearFiltersClick}>Clear filters</DarkBtnWithImg>
             </div>
         </div>
     );

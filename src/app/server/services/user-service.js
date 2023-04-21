@@ -62,6 +62,7 @@ class UserService {
         if (query && query._id) {
             query._id = new ObjectId(query._id);
         }
+        console.log(query);
         const trainers = await UserModel.find({...query, "trainer.isTrainer": true}).sort(sort);
         return trainers;
     }

@@ -49,7 +49,6 @@ const Range = ({minValue, maxValue, setRange, isFetching}) => {
         maxResult = difference <= 10 ? minResult : maxResult; //100 - (difference === 10 ? difference - 10 : difference);
         let newMinValue = (minResult)  * value.current + minValue;
         let newMaxValue = maxResult * value.current + minValue;
-        console.log(difference, minResult, newMaxValue, value.current);
         newMinValue = newMinValue > newMaxValue ? newMaxValue : newMinValue;
         return {min: newMinValue, max: newMaxValue};
     }
@@ -77,7 +76,6 @@ const Range = ({minValue, maxValue, setRange, isFetching}) => {
             return;
         }
 
-        console.log(emptyLineRef.current.getBoundingClientRect(), pixelsInOnePercent);
         const onMouseMove = (e) => {
 
             moveAt(eventBtn.target, e.pageX, eventBtn.nativeEvent.offsetX);

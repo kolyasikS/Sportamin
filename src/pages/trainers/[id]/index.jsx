@@ -13,7 +13,6 @@ const Trainer = ({trainer}) => {
 export async function getServerSideProps(context) {
     const { id } = context.query;
     const trainer = await getTrainer(id);
-    console.log(trainer);
     return {
         props: {
             trainer

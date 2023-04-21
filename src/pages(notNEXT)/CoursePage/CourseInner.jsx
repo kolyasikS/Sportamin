@@ -6,7 +6,6 @@ import {getImageFromBase64} from "@/app/lib/features/image";
 
 const CourseInner = ({providedItems, requirements,
                          description, content, trainer}) => {
-    console.log(trainer);
     return (
         <section className={styles.courseInner}>
             <div className={styles.container}>

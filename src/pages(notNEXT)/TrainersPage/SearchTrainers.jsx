@@ -18,6 +18,7 @@ const SearchTrainers = () => {
     const filterState = useSelector(state => state.filterReducer);
 
     const fetchTrainers = (query, sort) => {
+
         getTrainers(query, sort)
             .then(res => {
                 if (!res || res.length === 0) {

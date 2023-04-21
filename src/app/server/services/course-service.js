@@ -20,7 +20,6 @@ class CourseService {
     async getCourses(reqQuery) {
         const query = getQueryFromReq(reqQuery);
         const sort = getSortFromReq(reqQuery);
-        console.log('query', query);
         let pipeline = [
             {
                 $match: query
@@ -49,7 +48,6 @@ class CourseService {
 
 function getQueryFromReq(reqQuery) {
     const query = {};
-    console.log(reqQuery);
     if (reqQuery.regex) {
         query.title = {$regex: reqQuery.regex}
     }

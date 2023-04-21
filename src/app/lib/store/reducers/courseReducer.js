@@ -66,7 +66,6 @@ const reducer = createReducer(
                 }, []);
                 state.content = [...new Array(weeks.length)].map(() => ({days: []}));
 
-                console.log(state.content);
                 for (let i = 0; i < weeks.length; i++) {
                     const days = exercises.reduce((IDs, exer) => {
                         if (exer.week === weeks[i] && !IDs.includes(exer.day)) {
@@ -74,7 +73,6 @@ const reducer = createReducer(
                         }
                         return IDs;
                     }, []);
-                    console.log('i', state.content[i]);
                     state.content[i].days = [...new Array(days.length)].map(() => ({}));
                 }
                 for (let i = 0; i < action.payload.exercises.length; i++) {

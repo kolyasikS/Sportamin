@@ -10,7 +10,6 @@ const SearchItems = ({fetchItems, query,
                          sort, filtrationItems,
                          renderSearchedItem, children}) => {
     const [filteredItems, setFilteredItems] = useState([]);
-    const deferredSearchedItems = useDeferredValue(filteredItems);
     const [isEmpty, setIsEmpty] = useState(false);
 
     const dispatch = useDispatch();
@@ -18,7 +17,10 @@ const SearchItems = ({fetchItems, query,
     const filterState = useSelector(state => state.filterReducer);
 
     const fetchItemsWrapper = () => {
-        fetchItems({...query, range: filterState.price}, sort).then(res => {
+        if (filterState.price.min && filterState.price.max) {
+            query.range = filterState.price;
+        }
+        fetchItems(query, sort).then(res => {
             if (!res || res.length === 0) {
                 setIsEmpty(true);
             } else {
@@ -37,7 +39,6 @@ const SearchItems = ({fetchItems, query,
     }, []);*/
     useEffect(() => {
         if (filterState.status === statuses.CREATED) {
-            console.log(filterState);
 
             if (!isLoading) {
                 dispatch(setIsLoading(true));
@@ -50,7 +51,6 @@ const SearchItems = ({fetchItems, query,
         }
     }, [filterState.status])
     useEffect(() => {
-        console.log(filterState.status, query, sort);
         if (!Object.keys(sort).length) {
             return;
         }
@@ -64,7 +64,7 @@ const SearchItems = ({fetchItems, query,
             {children}
             <div className={styles.trainersSectionInner}>
                 <FiltrationInner items={filtrationItems} isLoading={isLoading}/>
-                <SearchItemsListSection isEmpty={isEmpty} searchedItems={deferredSearchedItems}
+                <SearchItemsListSection isEmpty={isEmpty} searchedItems={filteredItems}
                                         renderSearchedItem={renderSearchedItem}
                 />
             </div>

@@ -65,6 +65,10 @@ class UserService {
         const trainers = await UserModel.find({...query, "trainer.isTrainer": true}).sort(sort);
         return trainers;
     }
+    async getTrainer(id) {
+        const trainer = await UserModel.findOne({_id: id});
+        return trainer;
+    }
     async update(email, image) {
         await UserModel.updateOne({email}, {avatar: image});
     }

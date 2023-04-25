@@ -22,6 +22,9 @@ export default class CourseService {
         if (query.id) {
             newQuery.id = query.id;
         }
+        if (query.trainer) {
+            newQuery.trainer = query.trainer;
+        }
         if (newQuery.range) {
             newQuery.range = [query.range.min, query.range.max].join(',');
         }
@@ -34,10 +37,15 @@ export default class CourseService {
             }
         });
     }
-    static update(id, updatedCourse) {
+    static async update(id, updatedCourse) {
         return $api.put('/course/edit', {
             id,
             updatedCourse
+        });
+    }
+    static async delete(id) {
+        return $api.delete('/course/delete', {
+            id
         });
     }
 }

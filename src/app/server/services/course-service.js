@@ -39,10 +39,14 @@ class CourseService {
     }
     async update(id, updatedCourse) {
         if (!id) {
-            await CourseModel.updateMany({}, {$set: {previewImage: updatedCourse.previewImage}});
+            //await CourseModel.updateMany({}, {$set: {previewImage: updatedCourse.previewImage}});
         } else {
+            console.log(updatedCourse);
             await CourseModel.updateOne({_id: id}, updatedCourse);
         }
+    }
+    async delete(id) {
+        CourseModel.deleteOne({_id: new ObjectId(id)});
     }
 }
 
@@ -62,6 +66,9 @@ function getQueryFromReq(reqQuery) {
     }
     if (reqQuery.id) {
         query._id = new ObjectId(reqQuery.id);
+    }
+    if (reqQuery.trainer) {
+        query.trainer = new ObjectId(reqQuery.trainer);
     }
     if (reqQuery.range) {
         let range = reqQuery.range.split(',');

@@ -8,6 +8,7 @@
     color: $color-2;
     list-style: none;
     padding: 0 0 10px 0;
+    position: relative;
     border-bottom: 1px solid #f9f8f8;
     a {
         @include flexCenter();

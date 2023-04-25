@@ -4,12 +4,12 @@
   font-weight: 800;
   font-size: $fs;
 }
-@mixin flexCenter() {
+@mixin flexCenter {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-@mixin flexCenterColumn() {
+@mixin flexCenterColumn {
   display: flex;
   flex-direction: column;
   justify-content: center;

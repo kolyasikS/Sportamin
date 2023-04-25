@@ -8,18 +8,35 @@ import editImg from "@assets/editItem.png";
 import cancel from "@assets/cancel.png";
 import {useRouter} from "next/router";
 import {deleteCourse} from "@/app/lib/controllers/courseController";
+import {WarningModalW} from "@/widgets/api/Modals";
 
 const MyCoursesPage = ({courses, trainer, trainerID}) => {
     const [coursesState, setCoursesState] = useState(courses);
-    const remove = (id) => {
-       /* deleteCourse(id)
-            .then(() => {
-                setCoursesState(coursesState.filter(item => item._id !== id));
-            })
-            .catch((e) => {
-                console.log(e);
-            })*/
+    const [warningModalW, setWarningModalW] = useState({course: null, isActive: false});
+    const setDefaultModal = () => {
+        setWarningModalW({
+            isActive: false,
+            course: null
+        });
     }
+    const remove = (id) => {
+        if (!warningModalW.isActive) {
+            setWarningModalW({
+                isActive: true,
+                course: id,
+            });
+        } else {
+            setDefaultModal();
+            deleteCourse(warningModalW.course)
+                .then(() => {
+                    setCoursesState(coursesState.filter(item => item._id !== warningModalW.course));
+                })
+                .catch((e) => {
+                    console.log(e);
+                })
+        }
+    }
+
     return (
         <main className={styles.main}>
             <div className={styles.inner}>
@@ -40,6 +57,12 @@ const MyCoursesPage = ({courses, trainer, trainerID}) => {
                     )}
                 </ul>
             </div>
+            <WarningModalW open={warningModalW.isActive} title={'Are you absolutely sure?'}
+                           cancel={setDefaultModal}
+                           apply={remove}>
+                This action cannot be undone.
+                This will permanently delete your course and remove its data from our servers.
+            </WarningModalW>
         </main>
     );
 };

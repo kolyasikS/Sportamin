@@ -41,12 +41,12 @@ class CourseService {
         if (!id) {
             //await CourseModel.updateMany({}, {$set: {previewImage: updatedCourse.previewImage}});
         } else {
-            console.log(updatedCourse);
             await CourseModel.updateOne({_id: id}, updatedCourse);
         }
     }
     async delete(id) {
-        CourseModel.deleteOne({_id: new ObjectId(id)});
+        const result = await CourseModel.deleteOne({_id: new ObjectId(id)});
+        console.log(result);
     }
 }
 

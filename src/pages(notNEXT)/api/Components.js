@@ -8,3 +8,4 @@ export {default as MyCoursesPage} from '../MyCoursesPage/MyCoursesPage';
 export {default as CreateCoursePage} from '../CreateCoursePage/CreateCoursePage';
 export {default as TrainerPrivatePage} from '../TrainerPrivatePage/TrainerPrivatePage';
 export {default as CoursesPage} from '../CoursesPage/CoursesPage';
+export {default as ProfilePage} from '../ProfilePage/ProfilePage';

@@ -58,12 +58,14 @@ class UserService {
         const user = await UserModel.findById(userData.id);
         return AuthData(user);
     }
-    async getTrainers(query, sort) {
-        if (query && query._id) {
-            query._id = new ObjectId(query._id);
+    async getUsers(query, sort) {
+        if (query && query.id) {
+            query._id = new ObjectId(query.id);
+            delete query.id;
         }
+        //"trainer.isTrainer": true
         console.log(query);
-        const trainers = await UserModel.find({...query, "trainer.isTrainer": true}).sort(sort);
+        const trainers = await UserModel.find({...query}).sort(sort);
         return trainers;
     }
     async getTrainer(id) {

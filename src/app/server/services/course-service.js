@@ -46,7 +46,6 @@ class CourseService {
     }
     async delete(id) {
         const result = await CourseModel.deleteOne({_id: new ObjectId(id)});
-        console.log(result);
     }
 }
 

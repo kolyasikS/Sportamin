@@ -30,3 +30,9 @@
     margin-bottom: calc(0.25rem * $num * var(--tw-space-y-reverse));
   }
 }
+@mixin modalOverlay {
+  background-color: #000;
+  opacity: 0.7;
+  position: fixed;
+  inset: 0;
+}

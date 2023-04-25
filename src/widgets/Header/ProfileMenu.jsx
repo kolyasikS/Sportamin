@@ -28,7 +28,7 @@ const ProfileMenu = () => {
                     </Link>
                     <Link href={`/profile/${userID}/courses`} className={styles.menuItem}>
                         <DropdownMenu.Item>
-                            Your courses
+                            Your bought courses
                         </DropdownMenu.Item>
                     </Link>
                     <DropdownMenu.Separator className={styles.menuSeparator}/>

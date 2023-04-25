@@ -8,7 +8,7 @@ export default async function handler(req, res) {
         switch (method) {
             case 'POST':
                 const {query, sort} = req.body;
-                const trainers = await userService.getTrainers(query, sort);
+                const trainers = await userService.getUsers(query, sort);
                 res.status(200).json(trainers);
         }
     });

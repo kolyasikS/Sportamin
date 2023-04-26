@@ -1,44 +1,166 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import styles from './styles/ProfilePage.module.scss';
 import Image from "next/image";
 import SocNet from "@/pages(notNEXT)/ProfilePage/SocNet";
 import {getImageFromBase64} from "@/app/lib/features/image";
 import RatingBar from "@/shared/ui/Rating/RatingBar/RatingBar";
 import {DarkBtnWithImg} from "@/shared/ui/Buttons/api/Buttons";
-
+import EditNameModal from "@/pages(notNEXT)/ProfilePage/Modals/EditNameModal";
+import EditTrainerTitleModal from "@/pages(notNEXT)/ProfilePage/Modals/EditTrainerTitleModal";
+import editImage from '@assets/editItem.png';
+import instagram from '@assets/profile/instagram.png';
+import github from '@assets/profile/github.png';
+import telegram from '@assets/profile/telegram.png';
+import youtube from '@assets/profile/youtube.png';
+import website from '@assets/profile/website.png';
+import AvatarIcon from "@/pages(notNEXT)/ProfilePage/AvatarIcon";
+import {updateUser} from "@/app/lib/controllers/userController";
+import trainer from "@/shared/ui/InfoItems/Trainer/Trainer";
+import _ from 'lodash';
 const ProfilePage = ({user}) => {
+    const [isEditingProfile, setIsEditingProfile] = useState(false);
+    const [actualUser, setActualUser] = useState(user);
+    const [fullName, setFullName] = useState({
+        name: user.name,
+        surname: user.surname
+    });
+    const [title, setTitle] = useState(user.trainer.title);
+    const [isCanceling, setIsCanceling] = useState(false);
+    const [isApplying, setIsApplying] = useState(false);
+    const [updatedValues, setUpdatedValues] = useState();
+    const edit = () => {
+        setIsEditingProfile(!isEditingProfile);
+    }
+    const cancel = () => {
+        setIsCanceling(true);
+    }
+    const apply = () => {
+        setIsApplying(true);
+        setIsEditingProfile(false);
+    }
+    useEffect(() => {
+        if (isCanceling) {
+            setIsCanceling(false);
+            setIsEditingProfile(false);
+            setFullName({
+                name: actualUser.name,
+                surname: actualUser.surname
+            });
+            setTitle(actualUser.trainer.title);
+        }
+    }, [isCanceling])
+    useEffect(() => {
+        if (updatedValues) {
+            let tempUpdatedValue = updatedValues;
+            let trainerObject = tempUpdatedValue.trainer;
+            delete tempUpdatedValue.trainer;
+            let defaultObject = tempUpdatedValue;
+            let updatedUser = {...actualUser, ...defaultObject, trainer: {...actualUser.trainer, ...trainerObject}};
+            updateUser({id: actualUser._id}, updatedUser)
+                .then(() => {
+                    setActualUser(updatedUser);
+                })
+                .catch((e) => {
+                    console.log(e);
+                });
+        }
+    }, [updatedValues]);
+    console.log('user', actualUser);
+    useEffect(() => {
+        if (isApplying) {
+            let newUpdatedValues = {
+                name: fullName.name,
+                surname: fullName.surname,
+                trainer: {
+                    title
+                }
+            };
+            let oldUpdatedValues = {
+                name: actualUser.name,
+                surname: actualUser.surname,
+                trainer: {
+                    title: actualUser.trainer.title
+                }
+            }
+            if (!_.isEqual(newUpdatedValues, oldUpdatedValues)) {
+                setNewUpdatedUser(() => newUpdatedValues);
+            }
+        }
+    }, [isApplying])
+    const setNewUpdatedUser = (callback) => {
+        setIsApplying(false);
+        let newUpdatedValues = callback(actualUser);
+        if (newUpdatedValues) {
+            if (newUpdatedValues.trainer) {
+                let trainerObject = newUpdatedValues.trainer;
+                delete newUpdatedValues.trainer;
+                let defaultObject = newUpdatedValues;
+                setUpdatedValues((prev) => {
+                    return {...prev, ...defaultObject, trainer: {...prev?.trainer, ...trainerObject}}
+                });
+            } else {
+                setUpdatedValues((prev) => ({...prev, ...newUpdatedValues}));
+            }
+        }
+    }
     return (
         <main className={styles.main}>
             <div className={styles.inner}>
                 <div className={styles.topInner}>
                     <div className={`${styles.container} ${styles.introduction}`}>
-                        <Image src={`data:image/jpg;base64,${getImageFromBase64(user.avatar.data)}`}
-                               alt={''} width={120} height={120}/>
-                        <h1>{user.name} {user.surname}</h1>
-                        {user.trainer && <h2>{user.trainer.title}</h2>}
+                        <AvatarIcon image={`${getImageFromBase64(actualUser.avatar.data)}`}
+                                    isEditing={isEditingProfile} isCanceling={isCanceling}
+                                    setUpdatedUser={setNewUpdatedUser} isApplying={isApplying}
+                        />
+                        <h1>
+                            {fullName.name} {fullName.surname}
+                                { isEditingProfile
+                                    ? <EditNameModal fullName={fullName}
+                                                     setFullname={setFullName}>
+                                        <Image src={editImage} alt={''}
+                                                 width={30}
+                                                 className={`${styles.editImg}`}
+                                        />
+                                    </EditNameModal>
+                                    : null
+                                }
+                        </h1>
+                        {actualUser.trainer && <h2>
+                            {title}
+                            {isEditingProfile
+                                ? <EditTrainerTitleModal title={title}
+                                                         setTitle={setTitle}>
+                                    <Image src={editImage} alt={''}
+                                           width={30}
+                                           className={`${styles.editImg} -top-[4px]`}
+                                    />
+                                </EditTrainerTitleModal>
+                                : null
+                            }
+                        </h2>}
                     </div>
                     <div className={`${styles.container} ${styles.info}`}>
                         <div className={styles.infoItem}>
                             <h2>Full Name</h2>
-                            <p>{user.name} {user.surname}</p>
+                            <p>{fullName.name} {fullName.surname}</p>
                         </div>
                         <div className={styles.infoItem}>
                             <h2>Email</h2>
-                            <p>{user.email}</p>
+                            <p>{actualUser.email}</p>
                         </div>
-                        {user.trainer && <div className={styles.infoItem}>
+                        {actualUser.trainer && <div className={styles.infoItem}>
                             <h2>Rating</h2>
-                            <p>{user.trainer.rating}</p>
-                            <RatingBar rating={user.trainer.rating}/>
+                            <p>{actualUser.trainer.rating}</p>
+                            <RatingBar rating={actualUser.trainer.rating}/>
                         </div>}
-                        {user.trainer && <div className={styles.infoItem}>
+                        {actualUser.trainer && <div className={styles.infoItem}>
                             <h2>Students</h2>
-                            <p>{user.trainer.students}</p>
+                            <p>{actualUser.trainer.students}</p>
                         </div>}
                         <div className={styles.infoItem}>
                             <h2>Languages</h2>
-                            <p>{user.trainer.languages.map((item, ind) => (
-                                ind === user.trainer.languages.length - 1
+                            <p>{actualUser.trainer.languages.map((item, ind) => (
+                                ind === actualUser.trainer.languages.length - 1
                                     ? `${item}`
                                     : `${item}, `
                             ))}</p>
@@ -47,14 +169,30 @@ const ProfilePage = ({user}) => {
                 </div>
                 <div className={styles.bottomInner}>
                     <div className={`${styles.container} ${styles.links}`}>
-                        <SocNet image={''} title={'Website'}></SocNet>
-                        <SocNet image={''} title={'GitHub'}></SocNet>
-                        <SocNet image={''} title={'Instagram'}></SocNet>
-                        <SocNet image={''} title={'Telegram'}></SocNet>
-                        <SocNet image={''} title={'YouTube'}></SocNet>
+                        <SocNet image={website} title={'Website'} links={actualUser.trainer?.links}
+                                isCanceling={isCanceling} isEditing={isEditingProfile}
+                                setUpdatedUser={setNewUpdatedUser} isApplying={isApplying}></SocNet>
+                        <SocNet image={github} title={'GitHub'} links={actualUser.trainer?.links}
+                                isCanceling={isCanceling} isEditing={isEditingProfile}
+                                setUpdatedUser={setNewUpdatedUser} isApplying={isApplying}></SocNet>
+                        <SocNet image={instagram} title={'Instagram'} links={actualUser.trainer?.links}
+                                isCanceling={isCanceling} isEditing={isEditingProfile}
+                                setUpdatedUser={setNewUpdatedUser} isApplying={isApplying}></SocNet>
+                        <SocNet image={telegram} title={'Telegram'} links={actualUser.trainer?.links}
+                                isCanceling={isCanceling} isEditing={isEditingProfile}
+                                setUpdatedUser={setNewUpdatedUser} isApplying={isApplying}></SocNet>
+                        <SocNet image={youtube} title={'YouTube'} links={actualUser.trainer?.links}
+                                isCanceling={isCanceling} isEditing={isEditingProfile}
+                                setUpdatedUser={setNewUpdatedUser} isApplying={isApplying}></SocNet>
                     </div>
                     <div className={`${styles.container} ${styles.features}`}>
-                        <DarkBtnWithImg width={'100%'} height={50}>Edit</DarkBtnWithImg>
+                        {isEditingProfile
+                            ? <div className={styles.editFeatures}>
+                                <DarkBtnWithImg width={'100%'} height={50} onClick={apply}>OK</DarkBtnWithImg>
+                                <DarkBtnWithImg width={'100%'} height={50} onClick={cancel}>Cancel</DarkBtnWithImg>
+                            </div>
+                            : <DarkBtnWithImg width={'100%'} height={50} onClick={edit}>Edit</DarkBtnWithImg>
+                        }
                         <DarkBtnWithImg width={'100%'} height={50}>Change password</DarkBtnWithImg>
                         <DarkBtnWithImg width={'100%'} height={50}>My courses</DarkBtnWithImg>
                     </div>

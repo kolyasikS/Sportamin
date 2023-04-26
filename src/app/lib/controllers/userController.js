@@ -20,9 +20,9 @@ export async function getTrainer(id) {
     }
 }
 
-export async function updateUser(email, image) {
+export async function updateUser(query, updatedUser) {
     try {
-        await UserService.updateUser(email, image);
+        await UserService.updateUser(query, updatedUser);
     } catch (e) {
         console.log(e?.response?.data);
     }

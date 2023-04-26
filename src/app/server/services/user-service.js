@@ -72,8 +72,12 @@ class UserService {
         const trainer = await UserModel.findOne({_id: id});
         return trainer;
     }
-    async update(email, image) {
-        await UserModel.updateOne({email}, {avatar: image});
+    async update(query, updatedUser) {
+        if (query && query.id) {
+            query._id = new ObjectId(query.id);
+            delete query.id;
+        }
+        await UserModel.updateOne(query, updatedUser);
     }
 
     async test(email) {

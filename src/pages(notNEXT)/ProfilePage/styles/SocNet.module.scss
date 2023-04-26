@@ -1,97 +1,18 @@
 @import 'src/app/styles/variables';
 @import 'src/app/styles/mixins';
 
-.triggerBtn {
+.notIndicated {
     background-color: transparent;
     border: none;
     outline: none;
-    cursor: pointer;
     height: 55px;
+    width: 100%;
     color: $color-1;
     @include flexCenter;
     @include space-x(3);
     justify-content: flex-start;
-    width: 100%;
     align-items: center;
     padding: 15px 15px 15px 30px;
     transition: all 0.2s;
-    &:hover {
-        background-color: #333a3d;
-    }
-    div {
 
-    }
-}
-.triggerTitle {
-    font-size: 15px;
-}
-.content {
-    font-size: 18px;
-}
-.overlay {
-    @include modalOverlay;
-}
-.dialogContent {
-    background-color: #161b22;
-    color: $color-1;
-    border-radius: 8px;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 90vw;
-    max-width: 500px;
-    max-height: 85vh;
-    padding: 25px 30px;
-}
-.title {
-    margin-bottom: 10px;
-}
-.description {
-    margin-bottom: 30px;
-}
-.form {
-    @include space-y(3);
-}
-@mixin button {
-    @include flexCenter();
-    @include space-x(2);
-    background-color: $bg-btn-1;
-    border: 2px solid #4b4b59;
-    cursor: pointer;
-    height: fit-content;
-    width: fit-content;
-    border-radius: 8px;
-    transition: all 0.2s;
-    &:hover {
-        background-color: #0d1117;
-        color: #b7b7b7;
-    }
-}
-.submit {
-    width: 100%;
-    @include flexCenter;
-    justify-content: flex-end;
-    margin-top: 15px;
-    button {
-        @include button;
-        p {
-            font-family: "Franklin Gothic Book";
-            color: $color-1;
-            font-size: 20px;
-            letter-spacing: 1px;
-            position: relative;
-            padding: 10px 25px; //prop
-            top: -2px;
-            right: 0;
-        }
-    }
-}
-.crossClose {
-    @include button;
-    position: absolute;
-    background-color: #3f161d;
-    right: 10px;
-    top: 10px;
-    padding: 5px 5px; //prop
 }

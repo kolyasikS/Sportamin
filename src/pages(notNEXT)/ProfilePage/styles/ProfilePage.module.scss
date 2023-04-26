@@ -42,17 +42,17 @@
 .introduction {
     justify-content: center;
     padding: 20px 40px;
-    img {
-        border-radius: 50%;
-    }
     h1 {
         font-size: 24px;
         margin: 20px 0px 10px;
+        position: relative;
+
     }
     h2 {
         font-size: 18px;
         color: #7d8791;
         text-align: center;
+        position: relative;
     }
 }
 .infoItem {
@@ -91,4 +91,27 @@
     width: fit-content;
     padding: 15px 25px;
     @include space-y(3);
+}
+.editImg {
+    cursor: pointer;
+    &:hover {
+        background-color: #4e4e50;
+    }
+    border-radius: 4px;
+    padding: 5px;
+    height: fit-content;
+}
+.editFeatures {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    @include space-x(2);
+    & button:nth-child(1) p {
+        color: #14b234;
+        font-weight: bold;
+    }
+    & button:nth-child(2) p {
+        color: #c51040;
+        font-weight: bold;
+    }
 }

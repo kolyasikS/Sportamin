@@ -23,7 +23,12 @@ const UserSchema = new Schema({
             type: Number,
             default: 0.0
         },
-        languages: [{type: String}]
+        languages: [{type: String}],
+        links: [{
+            title: {type: String},
+            username: {type: String},
+            link: {type: String}
+        }]
     }
 });
 export default models.User || model('User', UserSchema);

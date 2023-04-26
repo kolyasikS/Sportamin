@@ -14,10 +14,10 @@ export default class UserService {
         });
         return res;
     }
-    static updateUser(email, image) {
+    static updateUser(query, updatedUser) {
         return $api.put('/user/edit', {
-            email,
-            image
+            query,
+            updatedUser
         });
     }
 }

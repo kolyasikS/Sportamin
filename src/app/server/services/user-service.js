@@ -8,6 +8,8 @@ import ApiError from "@/app/server/exceptions/api-error";
 import TokenModel from "@/app/server/models/token-model";
 import {func} from "joi";
 import {ObjectId} from "mongodb";
+import {atob} from "buffer";
+import ValidError from "@/app/server/exceptions/valid-error";
 class UserService {
     async registration(email, password) {
         const candidate = await UserModel.findOne({email});
@@ -63,8 +65,6 @@ class UserService {
             query._id = new ObjectId(query.id);
             delete query.id;
         }
-        //"trainer.isTrainer": true
-        console.log(query);
         const trainers = await UserModel.find({...query}).sort(sort);
         return trainers;
     }
@@ -77,7 +77,19 @@ class UserService {
             query._id = new ObjectId(query.id);
             delete query.id;
         }
-        await UserModel.updateOne(query, updatedUser);
+        if (updatedUser.avatar) {
+            updatedUser.avatar = Buffer.from(updatedUser.avatar, 'base64');
+        }
+        if (updatedUser.password.current) {
+            console.log(updatedUser);
+            const isPassEquals = await bcrypt.compare(updatedUser.password.prev, updatedUser.password.current);
+            if (!isPassEquals) {
+                throw ValidError.MismatchedData('Password do not match!');
+            } else {
+                updatedUser.password = await bcrypt.hash(updatedUser.password.new, 3)
+            }
+        }
+        let result = await UserModel.updateOne(query, updatedUser);
     }
 
     async test(email) {

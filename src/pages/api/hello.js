@@ -7,10 +7,10 @@ export default async function handler(req, res) {
     await dbConnect();
     switch (method) {
       case 'POST':
-        const {email} = req.body;
-        const user = await userService.test(email);
-        const data = user[0].avatar;
-        res.status(200).json(data);
+        const {file} = req.body;
+        //const user = await userService.test(email);
+        //const data = user[0].avatar;
+        res.status(200).json('');
     }
   });
 }

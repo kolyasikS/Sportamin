@@ -21,13 +21,13 @@ const ProfileMenu = () => {
                 <DropdownMenu.Content className={styles.content} sideOffset={5}>
                     {/*<DropdownMenu.Label>
                     </DropdownMenu.Label>*/}
-                    <Link href={`/profile/${userID}`} className={styles.menuItem}>
-                        <DropdownMenu.Item>
-                            Profile
+                    <Link href={`/profile/${userID}`} className={'w-full'}>
+                        <DropdownMenu.Item className={styles.menuItem}>
+                                    Profile
                         </DropdownMenu.Item>
                     </Link>
-                    <Link href={`/profile/${userID}/courses`} className={styles.menuItem}>
-                        <DropdownMenu.Item>
+                    <Link href={`/profile/${userID}/courses`} className={'w-full'}>
+                        <DropdownMenu.Item  className={styles.menuItem}>
                             Your bought courses
                         </DropdownMenu.Item>
                     </Link>

@@ -17,6 +17,7 @@ import AvatarIcon from "@/pages(notNEXT)/ProfilePage/AvatarIcon";
 import {updateUser} from "@/app/lib/controllers/userController";
 import trainer from "@/shared/ui/InfoItems/Trainer/Trainer";
 import _ from 'lodash';
+import EditPasswordModal from "@/pages(notNEXT)/ProfilePage/Modals/EditPasswordModal";
 const ProfilePage = ({user}) => {
     const [isEditingProfile, setIsEditingProfile] = useState(false);
     const [actualUser, setActualUser] = useState(user);
@@ -65,7 +66,6 @@ const ProfilePage = ({user}) => {
                 });
         }
     }, [updatedValues]);
-    console.log('user', actualUser);
     useEffect(() => {
         if (isApplying) {
             let newUpdatedValues = {
@@ -103,12 +103,19 @@ const ProfilePage = ({user}) => {
             }
         }
     }
+    const changePassword = async (password) => {
+        let updatedUser = {...actualUser, password: {
+            current: actualUser.password,
+            ...password
+        }};
+        return await updateUser({id: actualUser._id}, updatedUser);
+    }
     return (
         <main className={styles.main}>
             <div className={styles.inner}>
                 <div className={styles.topInner}>
                     <div className={`${styles.container} ${styles.introduction}`}>
-                        <AvatarIcon image={`${getImageFromBase64(actualUser.avatar.data)}`}
+                        <AvatarIcon image={`${getImageFromBase64(actualUser.avatar)}`}
                                     isEditing={isEditingProfile} isCanceling={isCanceling}
                                     setUpdatedUser={setNewUpdatedUser} isApplying={isApplying}
                         />
@@ -193,7 +200,10 @@ const ProfilePage = ({user}) => {
                             </div>
                             : <DarkBtnWithImg width={'100%'} height={50} onClick={edit}>Edit</DarkBtnWithImg>
                         }
-                        <DarkBtnWithImg width={'100%'} height={50}>Change password</DarkBtnWithImg>
+                        <EditPasswordModal updateUser={changePassword}>
+                            <p>Change password</p>
+                            {/*<DarkBtnWithImg width={'100%'} height={50}>Change password</DarkBtnWithImg>*/}
+                        </EditPasswordModal>
                         <DarkBtnWithImg width={'100%'} height={50}>My courses</DarkBtnWithImg>
                     </div>
                 </div>

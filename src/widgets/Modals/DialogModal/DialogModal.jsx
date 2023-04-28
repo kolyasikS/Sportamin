@@ -5,7 +5,7 @@ import Image from "next/image";
 import AddImage from "@assets/profile/add.png";
 import {MainInput} from "@/shared/ui/Inputs/api/Inputs";
 
-const DialogModal = ({isOpen, children, setIsOpen, trigger,
+const DialogModal = ({isOpen, children, setIsOpen, trigger, error,
                          title, description, close, triggerStyle}) => {
     return (
         <Dialog.Root open={isOpen}>
@@ -23,7 +23,8 @@ const DialogModal = ({isOpen, children, setIsOpen, trigger,
                         {children}
                     </form>
                     <div className={styles.submit}>
-                        <Dialog.Close onClick={close}>
+                        <p className={styles.error}>{error}</p>
+                        <Dialog.Close onClick={() => close(true)}>
                             <p>
                                 Apply
                             </p>

@@ -5,7 +5,6 @@ import {useSelector} from "react-redux";
 
 const Courses = ({courses, trainerID}) => {
     const trainer = useSelector(state => state.authReducer.user);
-    console.log(trainer);
     return (
         <MyCoursesPage courses={courses} trainer={trainer}
                        trainerID={trainerID}/>

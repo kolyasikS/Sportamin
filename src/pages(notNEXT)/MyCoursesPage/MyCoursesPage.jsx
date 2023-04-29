@@ -59,9 +59,10 @@ const MyCoursesPage = ({courses, trainer, trainerID}) => {
             </div>
             <WarningModalW open={warningModalW.isActive} title={'Are you absolutely sure?'}
                            cancel={setDefaultModal}
-                           apply={remove}>
-                This action cannot be undone.
-                This will permanently delete your course and remove its data from our servers.
+                           apply={remove} applyTitle={'Yes, delete the course'}
+                           description={' This action cannot be undone.\n' +
+                               '                This will permanently delete your course and remove its data from our servers.'}
+            >
             </WarningModalW>
         </main>
     );

@@ -19,10 +19,8 @@ const HFLayout = ({children}) => {
                 setIsLoading(false);
                 return;
             }
-            checkAuth(dispatch, () => setIsLoading(false)).then();
-        } else {
-            setIsLoading(false);
         }
+        checkAuth(dispatch, () => setIsLoading(false)).then();
     }, []);
 
     return (

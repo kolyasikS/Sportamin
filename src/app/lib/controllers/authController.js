@@ -3,17 +3,23 @@ import {setAuth, setUser} from "@/app/lib/store/actions/authActions";
 import axios from "axios";
 import {API_URL} from "@/app/lib/http";
 
-export async function login(dispatch, email, password) {
+export async function login(dispatch, email, password, redirect) {
     try {
         const response = await AuthService.login(email, password);
         localStorage.setItem('token', response.data.accessToken);
         dispatch(setAuth(true));
         dispatch(setUser(response.data.user));
-
-        return true;
+        redirect();
     } catch (e) {
         console.log(e?.response?.data);
-        return false;
+        redirect(e?.response?.data);
+    }
+}
+export async function sendActivationLink(email) {
+    try {
+        const response = await AuthService.sendActivationLink(email);
+    } catch (e) {
+        console.log(e?.response?.data);
     }
 }
 export async function registration(dispatch, email, password) {

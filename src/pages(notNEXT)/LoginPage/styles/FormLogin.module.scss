@@ -49,3 +49,8 @@
     }
   }
 }
+.warningBtn {
+  @include button;
+  color: #c9cbcc;
+  border-color: #506ca2;
+}

@@ -31,7 +31,9 @@ class UserService {
             throw ApiError.BadRequest('Invalid activation link');
         }
         user.isActivated = true;
-        user.save();
+        await user.save();
+
+        return AuthData(user);
     }
     async login(email, password) {
         const user = await UserModel.findOne({email});
@@ -41,6 +43,9 @@ class UserService {
         const isPassEquals = await bcrypt.compare(password, user.password);
         if (!isPassEquals) {
             throw ApiError.BadRequest('An incorrect password');
+        }
+        if (!user.isActivated) {
+            throw ApiError.BadRequest('Account is not activated');
         }
         return AuthData(user);
     }

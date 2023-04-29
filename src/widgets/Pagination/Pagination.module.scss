@@ -1,0 +1,13 @@
+@import 'src/app/styles/mixins';
+@import 'src/app/styles/variables';
+
+.pagination {
+    @include flexCenter;
+    list-style: none;
+    width: 100%;
+    padding-top: 20px;
+    ul {
+        @include flexCenter;
+        @include space-x(2);
+    }
+}

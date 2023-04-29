@@ -2,8 +2,7 @@ import React from 'react';
 import {useSelector} from "react-redux";
 import styles from "@/pages(notNEXT)/TrainersPage/styles/TrainersItemsList.module.scss";
 import {Loading} from "@/shared/ui/Logos/api/Logos";
-import {SearchedTrainer} from "@/shared/ui/SearchItems/api/searchedItems";
-import {getImageFromBase64} from "@/app/lib/features/image";
+import {Pagination} from "@/widgets/api/Widgets";
 
 const SearchItemsList = ({isEmpty, searchedItems, renderSearchedItem}) => {
     const isLoading = useSelector(state => state.sessionReducer.isLoading);
@@ -17,9 +16,12 @@ const SearchItemsList = ({isEmpty, searchedItems, renderSearchedItem}) => {
                     </div>
                     : isEmpty
                         ? <h1 className={styles.notFoundResult}>Not found</h1>
-                        : <ul className={`${styles.list}`}>
-                            {searchedItems.map(renderSearchedItem)}
-                        </ul>
+                        : <>
+                            <ul className={`${styles.list}`}>
+                                {searchedItems.map(renderSearchedItem)}
+                            </ul>
+                            <Pagination/>
+                        </>
                 }
             </div>
         </div>

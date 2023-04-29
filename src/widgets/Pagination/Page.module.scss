@@ -1,0 +1,23 @@
+@import 'src/app/styles/mixins';
+@import 'src/app/styles/variables';
+.page {
+    list-style: none;
+    color: #f9f8f8;
+    border-radius: 5px;
+    border: 2px solid #142328;
+    padding: 8px 16px;
+    user-select: none;
+    cursor: pointer;
+    &:hover {
+        color: $header-span;
+        border-color: #274e5d;
+    }
+}
+.isActive {
+    color: $header-span;
+    border-color: #274e5d;
+}
+.number {
+    font-family: Tahoma;
+    font-size: 18px;
+}

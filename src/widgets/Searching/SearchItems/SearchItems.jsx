@@ -1,9 +1,9 @@
-import React, {useDeferredValue, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {setIsLoading} from "@/app/lib/store/actions/sessionActions";
 import styles from "@/pages(notNEXT)/TrainersPage/styles/TrainersPage.module.scss";
 import {FiltrationInner, SearchItemsListSection} from "@/widgets/api/Widgets";
-import {setIsFetching, setStatus} from "@/app/lib/store/actions/filterActions";
+import {setStatus} from "@/app/lib/store/actions/filterActions";
 import {statuses} from "@/app/lib/store/constants/courseConstants";
 
 const SearchItems = ({fetchItems, query,

@@ -6,6 +6,9 @@ import {MainInput} from "@/shared/ui/Inputs/api/Inputs";
 import Link from "next/link";
 import {useDispatch, useSelector} from "react-redux";
 import {checkAuth, login, registration} from "@/app/lib/controllers/authController";
+import google from "@assets/google.png";
+import github from "@assets/github.png";
+import {HorizontalSeparator} from "@/shared/ui/api/separators";
 const FormSignUp = () => {
     const emailRef = useRef();
     const passRef = useRef();
@@ -22,6 +25,11 @@ const FormSignUp = () => {
             <div className={styles.formLoginInner}>
                 <MainLogoInversion/>
                 <h1>Registration</h1>
+                <div className={styles.OAuthLinks}>
+                    <OAuthLink logo={google}>Sign up with Google</OAuthLink>
+                    <OAuthLink logo={github}>Sign up with GitHub</OAuthLink>
+                </div>
+                <HorizontalSeparator>or</HorizontalSeparator>
                 <p className={styles.privacy}>By registering, I accept the terms of the&nbsp;
                     <Link href={'#'}>Privacy Policy</Link>
                     &nbsp;and&nbsp;

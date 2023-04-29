@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import IntroductionPage from "@/shared/ui/Titles/IntroductionPage/IntroductionPage";
 import banner from '@assets/blogbanner.jpg';
-import {getTrainers} from "@/app/lib/controllers/userController";
+import {getUsers} from "@/app/lib/controllers/userController";
 import {filtrationItems} from "@/app/Static Data/Filtration/Filtration";
 import {useSelector} from "react-redux";
 import {SearchItems} from "@/widgets/api/Widgets";
@@ -14,11 +14,11 @@ const TrainersPage = () => {
     const [sort, setSort] = useState({});
     const filterState = useSelector(state => state.filterReducer);
     const fetchTrainers = async (query, sort) => {
-        return getTrainers(query, sort);
+        return getUsers(query, sort);
     }
     const renderTrainerItem = (item) => {
         return <SearchedTrainer key={item._id} trainer={item.trainer} _id={item._id}
-                         src={getImageFromBase64(item.avatar.data)} name={item.name} surname={item.surname}/>
+                         src={getImageFromBase64(item.avatar)} name={item.name} surname={item.surname}/>
     }
     useEffect(() => {
         let languages = filterState.languages;

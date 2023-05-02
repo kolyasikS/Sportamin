@@ -17,7 +17,6 @@ const Header = ({isLoading}) => {
     useEffect(() => {
         setIsAuth(isAuthState);
     }, [isAuthState]);
-
     return (
         <div className={styles.introHeader}>
             <MainLogo/>

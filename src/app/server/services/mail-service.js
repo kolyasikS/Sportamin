@@ -19,7 +19,6 @@ class MailService {
         if (!link) {
             link = v4();
         }
-        console.log(to, link);
         await this.transporter.sendMail({
             from: process.env.SMTP_USER,
             to,

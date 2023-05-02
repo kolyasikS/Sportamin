@@ -2,6 +2,7 @@ import userService from "@/app/server/services/user-service";
 import dbConnect from "@/app/server/DB/dbConnect";
 import Cookies from 'cookies';
 import withApiErrorMiddleware from "@/app/server/middlewares/apiErrorMiddleware";
+import jwt from 'jsonwebtoken';
 import apiErrorMiddleware from "@/app/server/middlewares/apiErrorMiddleware";
 async function handler(req, res) {
     const { method } = req;
@@ -15,7 +16,10 @@ async function handler(req, res) {
                 maxAge: 30*24*60*60*1000,
                 httpOnly: true
             });
-            res.json(userData);
+            res.json({...userData, refreshToken: {
+                token: userData.refreshToken,
+                maxAge: 30*24*60*60*1000
+            }});
     }
 }
 

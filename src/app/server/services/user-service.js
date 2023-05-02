@@ -5,12 +5,11 @@ import mailService from "@/app/server/services/mail-service";
 import tokenService from "@/app/server/services/token-service";
 import UserDto from "@/app/server/dtos/user-dto";
 import ApiError from "@/app/server/exceptions/api-error";
-import TokenModel from "@/app/server/models/token-model";
-import {func} from "joi";
 import {ObjectId} from "mongodb";
-import {atob} from "buffer";
 import ValidError from "@/app/server/exceptions/valid-error";
+
 class UserService {
+
     async registration(email, password) {
         const candidate = await UserModel.findOne({email});
 
@@ -35,14 +34,20 @@ class UserService {
 
         return AuthData(user);
     }
-    async login(email, password) {
+    async login(email, auth) {
         const user = await UserModel.findOne({email});
         if (!user) {
-            throw ApiError.BadRequest('Trainer is undefined');
+            throw ApiError.BadRequest('User is not registered');
         }
-        const isPassEquals = await bcrypt.compare(password, user.password);
-        if (!isPassEquals) {
-            throw ApiError.BadRequest('An incorrect password');
+        if (auth.password) {
+            const isPassEquals = await bcrypt.compare(auth.password, user.password);
+            if (!isPassEquals) {
+                throw ApiError.BadRequest('An incorrect password');
+            }
+        } else {
+            if (!auth.clientId || auth.clientId !== process.env.CLIENT_ID) {
+                throw ApiError.BadRequest('An incorrect client id');
+            }
         }
         if (!user.isActivated) {
             throw ApiError.BadRequest('Account is not activated');
@@ -86,7 +91,6 @@ class UserService {
             updatedUser.avatar = Buffer.from(updatedUser.avatar, 'base64');
         }
         if (updatedUser.password.current) {
-            console.log(updatedUser);
             const isPassEquals = await bcrypt.compare(updatedUser.password.prev, updatedUser.password.current);
             if (!isPassEquals) {
                 throw ValidError.MismatchedData('Password do not match!');
@@ -94,9 +98,8 @@ class UserService {
                 updatedUser.password = await bcrypt.hash(updatedUser.password.new, 3)
             }
         }
-        let result = await UserModel.updateOne(query, updatedUser);
+        await UserModel.updateOne(query, updatedUser);
     }
-
     async test(email) {
         return await UserModel.find({email});
     }

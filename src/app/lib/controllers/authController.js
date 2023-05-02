@@ -1,18 +1,27 @@
 import AuthService from "@/app/lib/services/AuthService";
-import {setAuth, setUser} from "@/app/lib/store/actions/authActions";
+import {setAuth, setIsSigningOut, setUser} from "@/app/lib/store/actions/authActions";
 import axios from "axios";
 import {API_URL} from "@/app/lib/http";
 
-export async function login(dispatch, email, password, redirect) {
+export async function login(dispatch, email, auth, redirect) {
     try {
-        const response = await AuthService.login(email, password);
-        localStorage.setItem('token', response.data.accessToken);
+        const response = await AuthService.login(email, auth);
+        if (typeof localStorage !== 'undefined') {
+            localStorage.setItem('token', response.data.accessToken);
+        }
         dispatch(setAuth(true));
         dispatch(setUser(response.data.user));
-        redirect();
+        dispatch(setIsSigningOut(false));
+        if (redirect) {
+            redirect();
+        }
+        return response.data;
     } catch (e) {
         console.log(e?.response?.data);
-        redirect(e?.response?.data);
+        if (redirect) {
+            redirect(e?.response?.data);
+        }
+        return e?.response?.data;
     }
 }
 export async function sendActivationLink(email) {
@@ -40,6 +49,7 @@ export async function logout(dispatch) {
         localStorage.removeItem('token');
         dispatch(setAuth(false));
         dispatch(setUser({}));
+        dispatch(setIsSigningOut(true));
         return response;
     } catch (e) {
         console.log(e?.response?.data);
@@ -51,6 +61,7 @@ export async function checkAuth(dispatch, cb) {
         localStorage.setItem('token', response.data.accessToken);
         dispatch(setAuth(true));
         dispatch(setUser(response.data.user));
+        dispatch(setIsSigningOut(false));
     } catch (e) {
         console.log(e?.response?.data);
     } finally {

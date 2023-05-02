@@ -11,7 +11,6 @@ async function handler(req, res) {
         switch (method) {
             case 'DELETE':
                 const {id} = req.body;
-                //console.log(req.body);
                 await courseService.delete(id);
                 res.status(200).json({isSuccess: true});
         }

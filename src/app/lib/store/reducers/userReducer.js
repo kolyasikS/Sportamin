@@ -1,4 +1,4 @@
-import {createReducer} from "@reduxjs/toolkit/src";
+import {createReducer} from "@reduxjs/toolkit";
 import {setTrainers} from "@/app/lib/store/actions/userActions";
 
 const reducer = createReducer(

@@ -6,11 +6,20 @@ import styles from './styles/ProfileMenu.module.scss';
 import Link from "next/link";
 import {logout} from "@/app/lib/controllers/authController";
 import {useDispatch, useSelector} from "react-redux";
+import {signOut, useSession} from "next-auth/react";
+import {useRouter} from "next/router";
 const ProfileMenu = () => {
     const dispatch = useDispatch();
+    const router = useRouter();
     const userID = useSelector(state => state.authReducer.user.id);
+    const {data: session} = useSession();
     const toLogout = async () => {
         await logout(dispatch);
+        if (session) {
+            await signOut();
+        } else {
+            await router.push('/login');
+        }
     }
     return (
         <DropdownMenu.Root>

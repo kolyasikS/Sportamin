@@ -1,4 +1,4 @@
-import {createAction} from "@reduxjs/toolkit/src";
+import {createAction} from "@reduxjs/toolkit";
 import {
     ADD_FILTER,
     ADD_LANGUAGE,

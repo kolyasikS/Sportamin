@@ -10,7 +10,6 @@ import Blog from "@/pages(notNEXT)/HomePage/Blog/Blog";
 import Partners from "@/pages(notNEXT)/HomePage/Partners/Partners";
 
 const HomePage = () => {
-
     return (
         <main className={'space-y-2'}>
             <Introduction/>

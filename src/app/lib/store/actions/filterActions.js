@@ -4,7 +4,7 @@ import {
     ADD_LANGUAGE,
     CLEAR_FILTERS, REMOVE_FILTER,
     REMOVE_LANGUAGE, SET_STATUS, SET_RANGE,
-    SET_RATING
+    SET_RATING, SET_PAGE, SET_AMOUNT_PAGES
 } from "@/app/lib/store/constants/filterConstants";
 
 export const setRating = createAction(SET_RATING, (rating) => {
@@ -59,6 +59,20 @@ export const setStatus = createAction(SET_STATUS, (status) => {
     return {
         payload: {
             status
+        }
+    }
+});
+export const setPage = createAction(SET_PAGE, (page) => {
+    return {
+        payload: {
+            page
+        }
+    }
+});
+export const setAmountPages = createAction(SET_AMOUNT_PAGES, (amount) => {
+    return {
+        payload: {
+            amount
         }
     }
 });

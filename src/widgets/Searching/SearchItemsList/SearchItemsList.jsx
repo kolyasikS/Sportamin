@@ -1,27 +1,35 @@
-import React from 'react';
-import {useSelector} from "react-redux";
+import React, {useEffect, useState} from 'react';
+import {useDispatch, useSelector} from "react-redux";
 import styles from "@/pages(notNEXT)/TrainersPage/styles/TrainersItemsList.module.scss";
 import {Loading} from "@/shared/ui/Logos/api/Logos";
 import {Pagination} from "@/widgets/api/Widgets";
+import {setPage} from "@/app/lib/store/actions/filterActions";
+import {getCourses} from "@/app/lib/controllers/courseController";
 
 const SearchItemsList = ({isEmpty, searchedItems, renderSearchedItem}) => {
     const isLoading = useSelector(state => state.sessionReducer.isLoading);
+    const filterReducer = useSelector(state => state.filterReducer);
+    const dispatch = useDispatch();
+    console.log(filterReducer.amountPages);
     return (
         <div className={styles.searchedItemsBlock}>
+            {isLoading
+                ? <div className={styles.loadingBlock}>
+                    <Loading/>
+                </div>
+                : null
+            }
             <div className={styles.searchedItemsBlockInner}>
-                {isLoading
-                    ?
-                    <div className={styles.loadingBlock}>
-                        <Loading/>
-                    </div>
-                    : isEmpty
-                        ? <h1 className={styles.notFoundResult}>Not found</h1>
-                        : <>
-                            <ul className={`${styles.list}`}>
-                                {searchedItems.map(renderSearchedItem)}
-                            </ul>
-                            <Pagination/>
-                        </>
+                {isEmpty
+                    ? <h1 className={styles.notFoundResult}>Not found</h1>
+                    : <>
+                        <ul className={`${styles.list}`}>
+                            {searchedItems.map(renderSearchedItem)}
+                        </ul>
+                        <Pagination setPage={(page) => dispatch(setPage(page))}
+                                    page={filterReducer.page}
+                                    amountPages={filterReducer.amountPages}/>
+                    </>
                 }
             </div>
         </div>

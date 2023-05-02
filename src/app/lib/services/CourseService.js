@@ -4,11 +4,14 @@ export default class CourseService {
     static async create(course, trainerID) {
         return $api.post('/course/create', {course, trainerID});
     }
-    static async get(query, sort) {
-        let newQuery = {};
-
+    static async get(query, sort, limit, skip) {
+        let newQuery = {
+            limit,
+            skip
+        };
         if (query.title) {
             newQuery = {
+                ...newQuery,
                 regex: query.title.$regex,
                 options: query.title.$options,
             }

@@ -2,9 +2,7 @@ import React, {useMemo, useState} from 'react';
 import Page from "@/widgets/Pagination/Page";
 import styles from './Pagination.module.scss';
 
-const amountPages = 2;
-const Pagination = ({}) => {
-    const [page, setPage] = useState(1);
+const Pagination = ({page, setPage, amountPages}) => {
     const setActive = (num) => {
         setPage(num);
     }

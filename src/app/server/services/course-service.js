@@ -1,3 +1,4 @@
+
 import CourseModel from "@/app/server/models/course-model";
 import UserService from "@/app/server/services/user-service";
 import {Schema} from "mongoose";
@@ -20,22 +21,32 @@ class CourseService {
     async getCourses(reqQuery) {
         const query = getQueryFromReq(reqQuery);
         const sort = getSortFromReq(reqQuery);
-        let pipeline = [
-            {
+        let pipeline = [{
                 $match: query
-            },
-            {
+            }, {
                 $addFields: {
                     'content_count': {$size: "$content" },
                 }
-            }
+            },
         ];
         if (sort) {
             pipeline.push(sort);
         }
+        if (reqQuery.limit && reqQuery.skip) {
+            pipeline.push({
+                $limit: +reqQuery.limit + +reqQuery.skip,
+            });
+            pipeline.push({
+                $skip: +reqQuery.skip,
+            });
+        }
         let courses = await CourseModel
             .aggregate(pipeline);
-        return courses;
+        let count = await CourseModel.countDocuments(query);
+        return {
+            courses,
+            count
+        };
     }
     async update(id, updatedCourse) {
         if (!id) {

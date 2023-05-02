@@ -17,9 +17,10 @@ export async function createCourse(dispatch, course, trainerID) {
         return null;
     }
 }
-export async function getCourses(query, sort) {
+export async function getCourses(query, sort, limit, skip) {
     try {
-        const res = await CourseService.get(query, sort).then(res => res.data);
+        const res = await CourseService.get(query, sort, limit, skip)
+            .then(res => res.data);
         return res;
     } catch (e) {
         console.log(e?.response?.data);

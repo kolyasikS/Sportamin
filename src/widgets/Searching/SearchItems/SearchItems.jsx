@@ -3,8 +3,8 @@ import {useDispatch, useSelector} from "react-redux";
 import {setIsLoading} from "@/app/lib/store/actions/sessionActions";
 import styles from "@/pages(notNEXT)/TrainersPage/styles/TrainersPage.module.scss";
 import {FiltrationInner, SearchItemsListSection} from "@/widgets/api/Widgets";
-import {setStatus} from "@/app/lib/store/actions/filterActions";
-import {statuses} from "@/app/lib/store/constants/courseConstants";
+import {setAmountPages, setPage, setStatus} from "@/app/lib/store/actions/filterActions";
+import {itemsPerPage, statuses} from "@/app/lib/store/constants/generalConstants";
 
 const SearchItems = ({fetchItems, query,
                          sort, filtrationItems,
@@ -20,13 +20,17 @@ const SearchItems = ({fetchItems, query,
         if (filterState.price.min && filterState.price.max) {
             query.range = filterState.price;
         }
-        fetchItems(query, sort).then(res => {
+        let limit = itemsPerPage;
+        let skip = (filterState.page - 1) * itemsPerPage;
+
+        fetchItems(query, sort, limit, skip).then(res => {
             if (!res || res.length === 0) {
                 setIsEmpty(true);
             } else {
                 setIsEmpty(false);
             }
-            setFilteredItems(res);
+            dispatch(setAmountPages(res.count));
+            setFilteredItems(res.courses);
         })
             .catch(e => console.log(e))
             .finally(() => {
@@ -34,12 +38,8 @@ const SearchItems = ({fetchItems, query,
                 dispatch(setStatus(statuses.CREATING));
             });
     }
-/*    useEffect(() => {
-        fetchItemsWrapper();
-    }, []);*/
     useEffect(() => {
         if (filterState.status === statuses.CREATED) {
-
             if (!isLoading) {
                 dispatch(setIsLoading(true));
             } else {
@@ -57,7 +57,7 @@ const SearchItems = ({fetchItems, query,
         if (filterState.status === statuses.CREATING) {
             dispatch(setStatus(statuses.FETCHING));
         }
-    }, [query, sort]);
+    }, [query, sort, filterState.page]);
 
     return (
         <section className={styles.trainersSection}>

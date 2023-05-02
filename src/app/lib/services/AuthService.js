@@ -9,8 +9,10 @@ export default class AuthService {
            email
         });
     }
-    static async registration(email, password) {
-        return $api.post('/user/registration', {email, password});
+    static async registration(user) {
+        return $api.post('/user/registration', {
+            ...user
+        });
     }
     static async logout() {
         return $api.post('/user/logout');

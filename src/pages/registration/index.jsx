@@ -10,17 +10,19 @@ const SignUp = ({credentials}) => {
     );
 };
 export async function getServerSideProps(context) {
-    const cookies = cookie.parse(context.req.headers.cookie);
-    if (cookies.credentials) {
+    let cookies;
+    if (context.req.headers.cookie) {
+        cookies = cookie.parse(context.req.headers.cookie);
+    }
+    if (cookies?.credentials) {
         return {
             props: {
-                credentials: cookies.credentials
+                credentials: JSON.parse(cookies.credentials)
             }
         }
     }
     return {
         props: {
-            credentials: cookies.credentials
         }
     }
 }

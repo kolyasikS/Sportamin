@@ -26,22 +26,18 @@ async function handler(req, res) {
                 })
                 .catch(error => console.error(error));
 
-            let email = (await oauth2Client.getTokenInfo(tokens.access_token)).email;
+            let {email, aud: clientId} = await oauth2Client.getTokenInfo(tokens.access_token);
 
             const cookies = Cookies(req, res);
-            cookies.set('credentials', JSON.stringify({email, avatar: avatarUrl}), {
+            cookies.set('credentials', JSON.stringify(
+                {
+                    email,
+                    avatar: avatarUrl,
+                    clientId
+                }), {
                 httpOnly: true
             });
-            res.redirect(307, '/registration', {
-                email,
-                avatar: avatarUrl,
-            });
-          /*res.status(200).json({
-                email,
-                avatar: avatarUrl
-            });*/
+            res.redirect(307, '/registration');
     }
 }
 export default (req, res) => apiErrorMiddleware(req, res, handler);
-
-

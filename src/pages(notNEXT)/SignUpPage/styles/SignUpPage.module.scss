@@ -1,5 +1,72 @@
 @import '/src/app/styles/mixins';
 @import '/src/app/styles/variables';
+
+.formLogin {
+  background: #fff;
+  width: 450px;
+  margin: 10px 0;
+}
+.formLoginInner {
+  width: 100%;
+  padding: 30px 40px;
+  h1 {
+    color: #171313;
+    text-align: center;
+    font-weight: 100;
+    margin: 30px 0px 35px;
+    letter-spacing: 1.1px;
+    font-family: Verdana;
+  }
+}
+.OAuthLinks {
+  @include flexCenterColumn();
+  @include space-y(3);
+}
+.separatorHorizontalLine {
+  display: flex;
+  border-top: 1px solid #cacaca;
+  flex: 1 1 auto;
+  margin-top: 8px;
+  min-width: 1px;
+  padding-top: 8px;
+}
+.separatorText {
+  margin: 0 5px;
+}
+.separator {
+  display: flex;
+  margin: 20px 0 40px;
+}
+.spaceY {
+  @include space-y(5);
+}
+.privacy {
+  color: $clr-gray400;
+  font-size: 14px;
+  text-align: center;
+  margin-bottom: 20px;
+  a {
+    text-decoration: underline;
+    transition: all 0.2s;
+    &:hover {
+      color: #111436;
+    }
+  }
+}
+.signUp {
+  color: $clr-gray400;
+  margin: 30px;
+  text-align: center;
+  a {
+    color: #4255ff;
+    text-decoration: underline;
+    transition: all 0.2s;
+    margin-left: 5px;
+    &:hover {
+      color: #111436;
+    }
+  }
+}
 .main {
   background: #f9f8f8;
   width: 100%;

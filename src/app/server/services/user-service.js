@@ -7,19 +7,33 @@ import UserDto from "@/app/server/dtos/user-dto";
 import ApiError from "@/app/server/exceptions/api-error";
 import {ObjectId} from "mongodb";
 import ValidError from "@/app/server/exceptions/valid-error";
+import {getBase64FromImage} from "@/app/lib/features/image";
 
 class UserService {
 
-    async registration(email, password) {
+    async registration(email, password, avatarUrl) {
         const candidate = await UserModel.findOne({email});
-
         if (candidate) {
             //await UserModel.deleteOne({email});
             throw ApiError.BadRequest(`User already exists with ${email} address`);
         }
-        const hashPassword = await bcrypt.hash(password, 3);
+        let avatar = await fetch(avatarUrl)
+            .then(response => response.arrayBuffer())
+            .then(buffer => {
+                const base64 = Buffer.from(buffer).toString('base64');
+                return Buffer.from(base64, 'base64');
+            })
+            .catch(error => {
+                console.error('Error fetching image:', error);
+            });
+        let user;
+        if (password) {
+            let hashPassword = await bcrypt.hash(password, 3);
+            user = await UserModel.create({email, password: hashPassword, avatar});
+        } else {
+            user = await UserModel.create({email, avatar});
+        }
         const activationLink = v4();
-        const user = await UserModel.create({email, password: hashPassword});
         await mailService.sendActivationMail(email, `${process.env.CLIENT_URL}/api/activate/${activationLink}`);
 
         return AuthData(user);

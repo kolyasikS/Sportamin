@@ -10,14 +10,13 @@ async function handler(req, res) {
     await dbConnect();
     switch (method) {
         case 'POST':
-            const {email, password} = req.body;
-
-            if (validateRegistration(email, password).error) {
-                throw ApiError.BadRequest(`Invalid email or password`, [validateRegistration(email, password).error]);
-            }
-
-            const userData = await userService.registration(email, password);
+            const {email, password, clientId, avatar} = req.body;
             const cookies = new Cookies(req, res);
+            cookies.set('credentials', '', {
+                maxAge: 0
+            });
+            validateRegistration(email, password, clientId)//
+            const userData = await userService.registration(email, password, avatar);
             cookies.set('refreshToken', userData.refreshToken, {
                 maxAge: 30*24*60*60*1000,
                 httpOnly: true

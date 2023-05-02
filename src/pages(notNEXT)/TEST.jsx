@@ -5,7 +5,7 @@ import {useRouter} from "next/router";
 const Test = () => {
     const router = useRouter()
     const handler = async () => {
-        await router.push('api/hello');
+        await router.push('api/auth/google/signup');
     }
     return (
         <div>

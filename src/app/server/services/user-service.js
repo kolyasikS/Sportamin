@@ -8,6 +8,7 @@ import ApiError from "@/app/server/exceptions/api-error";
 import {ObjectId} from "mongodb";
 import ValidError from "@/app/server/exceptions/valid-error";
 import {getBase64FromImage} from "@/app/lib/features/image";
+import CourseModel from "@/app/server/models/course-model";
 
 class UserService {
 
@@ -90,7 +91,13 @@ class UserService {
             delete query.id;
         }
         const trainers = await UserModel.find({...query}).sort(sort);
-        return trainers;
+        let count = await UserModel.countDocuments(query);
+        console.log(trainers.length);
+        console.log(query);
+        return {
+            items: trainers,
+            count
+        };
     }
     async getTrainer(id) {
         const trainer = await UserModel.findOne({_id: id});
@@ -113,6 +120,13 @@ class UserService {
             }
         }
         await UserModel.updateOne(query, updatedUser);
+    }
+    async buyCourse(userId, courseId) {
+        let res = await UserModel.updateOne(
+            {_id: new ObjectId(userId), boughtCourses: { $ne: new ObjectId(courseId) }},
+            {$push: { boughtCourses: {courseId: new ObjectId(courseId)}}},
+            {new: true});
+        //console.log(res, userId, courseId);
     }
     async test(email) {
         return await UserModel.find({email});

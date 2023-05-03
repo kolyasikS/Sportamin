@@ -10,7 +10,6 @@ const SearchItemsList = ({isEmpty, searchedItems, renderSearchedItem}) => {
     const isLoading = useSelector(state => state.sessionReducer.isLoading);
     const filterReducer = useSelector(state => state.filterReducer);
     const dispatch = useDispatch();
-    console.log(filterReducer.amountPages);
     return (
         <div className={styles.searchedItemsBlock}>
             {isLoading

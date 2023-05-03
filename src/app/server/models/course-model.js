@@ -3,7 +3,10 @@ const CourseSchema = new Schema({
     trainer: {type: Schema.Types.ObjectId, ref: 'User'},
     title: {type: String, required: true},
     subtitle: {type: String, required: true},
-    rating: {type: Number, default: 0},
+    rating: {
+        avgValue: {type: Number, default: 0},
+        count: {type: Number, default: 0},
+    },
     students: {type: Number, default: 0},
     language: {type: String, required: true},
     price: {type: Number, required: true},

@@ -20,4 +20,10 @@ export default class UserService {
             updatedUser
         });
     }
+    static buyCourse(userId, courseId) {
+        return $api.put('/user/buy', {
+            userId,
+           courseId
+        });
+    }
 }

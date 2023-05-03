@@ -65,7 +65,9 @@ export async function checkAuth(dispatch, cb) {
     } catch (e) {
         console.log(e?.response?.data);
     } finally {
-        cb();
+        if (cb) {
+            cb();
+        }
     }
 }
 export const authenticate = async (router) => {

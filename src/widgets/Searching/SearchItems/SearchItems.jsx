@@ -17,20 +17,18 @@ const SearchItems = ({fetchItems, query,
     const filterState = useSelector(state => state.filterReducer);
 
     const fetchItemsWrapper = () => {
-        if (filterState.price.min && filterState.price.max) {
-            query.range = filterState.price;
-        }
         let limit = itemsPerPage;
         let skip = (filterState.page - 1) * itemsPerPage;
 
         fetchItems(query, sort, limit, skip).then(res => {
-            if (!res || res.length === 0) {
+            if (!res || res.items.length === 0) {
                 setIsEmpty(true);
             } else {
                 setIsEmpty(false);
             }
+            console.log(res.items.length);
             dispatch(setAmountPages(res.count));
-            setFilteredItems(res.courses);
+            setFilteredItems(res.items);
         })
             .catch(e => console.log(e))
             .finally(() => {
@@ -40,6 +38,7 @@ const SearchItems = ({fetchItems, query,
     }
     useEffect(() => {
         if (filterState.status === statuses.CREATED) {
+            console.log(isLoading);
             if (!isLoading) {
                 dispatch(setIsLoading(true));
             } else {
@@ -55,6 +54,7 @@ const SearchItems = ({fetchItems, query,
             return;
         }
         if (filterState.status === statuses.CREATING) {
+            dispatch(setAmountPages(0));
             dispatch(setStatus(statuses.FETCHING));
         }
     }, [query, sort, filterState.page]);

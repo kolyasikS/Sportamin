@@ -21,6 +21,8 @@ class CourseService {
     async getCourses(reqQuery) {
         const query = getQueryFromReq(reqQuery);
         const sort = getSortFromReq(reqQuery);
+        console.log(query);
+
         let pipeline = [{
                 $match: query
             }, {
@@ -44,7 +46,7 @@ class CourseService {
             .aggregate(pipeline);
         let count = await CourseModel.countDocuments(query);
         return {
-            courses,
+            items: courses,
             count
         };
     }
@@ -56,7 +58,7 @@ class CourseService {
         }
     }
     async delete(id) {
-        const result = await CourseModel.deleteOne({_id: new ObjectId(id)});
+        await CourseModel.deleteOne({_id: new ObjectId(id)});
     }
 }
 

@@ -1,0 +1,1 @@
+export {default as RatingFeature} from '../rating/RatingFeature';

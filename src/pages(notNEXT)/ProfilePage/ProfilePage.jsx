@@ -18,6 +18,7 @@ import {updateUser} from "@/app/lib/controllers/userController";
 import trainer from "@/shared/ui/InfoItems/Trainer/Trainer";
 import _ from 'lodash';
 import EditPasswordModal from "@/pages(notNEXT)/ProfilePage/Modals/EditPasswordModal";
+import Link from "next/link";
 const ProfilePage = ({user}) => {
     const [isEditingProfile, setIsEditingProfile] = useState(false);
     const [actualUser, setActualUser] = useState(user);
@@ -202,9 +203,12 @@ const ProfilePage = ({user}) => {
                         }
                         <EditPasswordModal updateUser={changePassword}>
                             <p>Change password</p>
-                            {/*<DarkBtnWithImg width={'100%'} height={50}>Change password</DarkBtnWithImg>*/}
                         </EditPasswordModal>
-                        <DarkBtnWithImg width={'100%'} height={50}>My courses</DarkBtnWithImg>
+                            <Link href={`/profile/${actualUser._id}/courses`} className={'w-full'}>
+                                <DarkBtnWithImg width={'100%'} height={50}>
+                                    My courses
+                                </DarkBtnWithImg>
+                            </Link>
                     </div>
                 </div>
             </div>

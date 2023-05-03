@@ -16,12 +16,15 @@ const CoursesPage = () => {
     const filterState = useSelector(state => state.filterReducer);
     const [trainers, setTrainers] = useState([]);
     const fetchCourses = async (query, sort, limit, skip) => {
+        if (filterState.price.min && filterState.price.max) {
+            query.range = filterState.price;
+        }
         return await getCourses(query, sort, limit, skip);
     }
     useEffect(() => {
         getUsers({'trainer.isTrainer': true})
             .then(res => {
-                setTrainers(res);
+                setTrainers(res.items);
             })
             .catch(err => console.log(err));
     }, []);

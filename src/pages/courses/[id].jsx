@@ -1,12 +1,20 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {useRouter} from "next/router";
 import CoursePage from "@/pages(notNEXT)/CoursePage/CoursePage";
 import {getCourses} from "@/app/lib/controllers/courseController";
-import {getTrainers} from "@/app/lib/controllers/userController";
+import {getTrainers, getUsers} from "@/app/lib/controllers/userController";
+import Head from "next/head";
+import {useSelector} from "react-redux";
+import {statuses} from "@/app/lib/store/constants/generalConstants";
 
 const Course = ({course, trainer}) => {
     return (
-        <CoursePage {...course} trainer={trainer}/>
+        <>
+            <Head>
+                <title>Course</title>
+            </Head>
+            <CoursePage {...course} trainer={trainer}/>
+        </>
     );
 };
 
@@ -15,8 +23,8 @@ export async function getServerSideProps(context) {
     let course;
     await getCourses({id})
         .then(res => {
-            if (res && res.length) {
-                course = res[0];
+            if (res && res.items.length) {
+                course = res.items[0];
             }
         })
         .catch(err => {
@@ -24,10 +32,10 @@ export async function getServerSideProps(context) {
         });
 
     let trainer;
-    await getTrainers({_id: course.trainer})
+    await getUsers({_id: course.trainer, 'trainer.isTrainer': true})
         .then(res => {
-            if (res && res.length) {
-                trainer = res[0];
+            if (res && res.items.length) {
+                trainer = res.items[0];
             }
         })
         .catch(err => {

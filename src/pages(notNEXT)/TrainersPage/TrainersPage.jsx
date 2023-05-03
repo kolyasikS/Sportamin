@@ -14,6 +14,7 @@ const TrainersPage = () => {
     const [sort, setSort] = useState({});
     const filterState = useSelector(state => state.filterReducer);
     const fetchTrainers = async (query, sort) => {
+        query['trainer.isTrainer'] = true;
         return getUsers(query, sort);
     }
     const renderTrainerItem = (item) => {

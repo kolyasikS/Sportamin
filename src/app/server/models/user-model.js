@@ -7,6 +7,11 @@ const UserSchema = new Schema({
     name: {type: String, default: 'New'},
     surname: {type: String, default: 'user'},
     avatar: {type: Buffer},
+    boughtCourses: [{
+        courseId: {type: Schema.Types.ObjectId, ref: 'Course'},
+        isRated: {type: Boolean, default: false},
+        isDone: {type: Boolean, default: false},
+    }],
     trainer: {
         isTrainer: {type: Boolean, default: false},
         title: {type: String, default: ''},

@@ -15,7 +15,7 @@ export async function getServerSideProps(context) {
     const courses = await getCourses({trainer: context.query.id});
     return {
         props: {
-            courses,
+            courses: courses.items,
             trainerID: context.query.id
         }
     }

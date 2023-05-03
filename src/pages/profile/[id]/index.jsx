@@ -11,7 +11,7 @@ const Profile = ({user}) => {
 };
 export async function getServerSideProps(context) {
     const result = await getUsers({id: context.query.id});
-    const user = result[0];
+    const user = result.items[0];
     return {
         props: {
             user

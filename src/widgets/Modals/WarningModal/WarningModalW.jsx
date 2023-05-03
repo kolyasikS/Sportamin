@@ -4,9 +4,10 @@ import {DarkBtnWithImg} from "@/shared/ui/Buttons/api/Buttons";
 import styles from './WarningModalW.module.scss';
 
 const WarningModalW = ({open, title, children, applyTitle,
-                           cancel, apply, description}) => {
+                           cancel, apply, description, onClosed,
+                           cancelTitle='Cancel'}) => {
     return (
-        <AlertDialog.Root open={open}>
+        <AlertDialog.Root open={open} onOpenChange={onClosed}>
             <AlertDialog.Portal>
                 <AlertDialog.Overlay className={styles.overlay}/>
                 <AlertDialog.Content className={styles.content}>
@@ -19,7 +20,7 @@ const WarningModalW = ({open, title, children, applyTitle,
                         <div className={styles.defaultFeatures}>
                             <AlertDialog.Cancel className={styles.cancelBtn}
                                                 onClick={cancel}>
-                                Cancel
+                                {cancelTitle}
                             </AlertDialog.Cancel>
                             <AlertDialog.Action className={styles.actionBtn}
                                                 onClick={apply}>

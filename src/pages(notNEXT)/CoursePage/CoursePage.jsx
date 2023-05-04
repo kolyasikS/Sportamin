@@ -3,6 +3,7 @@ import CourseHeader from "@/pages(notNEXT)/CoursePage/CourseHeader";
 import CourseInner from "@/pages(notNEXT)/CoursePage/CourseInner";
 import {useDispatch, useSelector} from "react-redux";
 import {setIsLoading} from "@/app/lib/store/actions/sessionActions";
+import Comments from "@/pages(notNEXT)/CoursePage/Comments/Comments";
 
 const CoursePage = ({title, subtitle, price,
                         rating, students, trainer,
@@ -10,7 +11,6 @@ const CoursePage = ({title, subtitle, price,
                         content, description, _id}) => {
     const [courseStatus, setCourseStatus] = useState(null);
     const boughtCourses = useSelector((state) => state.authReducer?.user?.boughtCourses);
-    const user = useSelector((state) => state.authReducer?.user);
     const [isLoading, setIsLoading] = useState(true);
     useEffect(() => {
         if (boughtCourses) {
@@ -22,16 +22,19 @@ const CoursePage = ({title, subtitle, price,
 
     return (
         <main>
-            <CourseHeader title={title} subtitle={subtitle}
-                          price={price} rating={rating} isLoading={isLoading}
-                          students={students} trainer={trainer}
-                          language={language} id={_id}
-                          courseStatus={courseStatus}
-            />
-            <CourseInner providedItems={providedItems} isBought={courseStatus !== null && courseStatus !== undefined}
-                         content={content} requirements={requirements}
-                         description={description} trainer={trainer}
-            />
+            <div className={'relative'}>
+                <CourseHeader title={title} subtitle={subtitle}
+                              price={price} rating={rating} isLoading={isLoading}
+                              students={students} trainer={trainer}
+                              language={language} id={_id}
+                              courseStatus={courseStatus}
+                />
+                <CourseInner providedItems={providedItems} isBought={courseStatus !== null && courseStatus !== undefined}
+                             content={content} requirements={requirements}
+                             description={description} trainer={trainer}
+                />
+            </div>
+            <Comments/>
         </main>
     );
 };

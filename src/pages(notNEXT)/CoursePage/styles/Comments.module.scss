@@ -1,0 +1,16 @@
+@import 'src/app/styles/variables';
+@import 'src/app/styles/mixins';
+
+.comments {
+    background-color: $bg-block-1;
+    padding: 30px 15%;
+    overflow: hidden;
+}
+.commentsHeader {
+    display: flex;
+    align-items: center;
+    @include space-x(3);
+    h1 {
+        color: $color-1;
+    }
+}

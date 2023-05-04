@@ -12,15 +12,14 @@ const CoursePage = ({title, subtitle, price,
     const boughtCourses = useSelector((state) => state.authReducer?.user?.boughtCourses);
     const user = useSelector((state) => state.authReducer?.user);
     const [isLoading, setIsLoading] = useState(true);
-    const dispatch = useDispatch();
-
     useEffect(() => {
-        if ((courseStatus === null || courseStatus === undefined) && boughtCourses) {
-            setCourseStatus(boughtCourses && boughtCourses.find(course => course.courseId === _id));
-        } else if (courseStatus !== null && courseStatus !== undefined) {
+        if (boughtCourses) {
+            let result = boughtCourses && boughtCourses.find(course => course.courseId === _id);
+            setCourseStatus(result);
             setIsLoading(false);
         }
-    }, [boughtCourses]);
+    }, [boughtCourses, courseStatus]);
+
     return (
         <main>
             <CourseHeader title={title} subtitle={subtitle}

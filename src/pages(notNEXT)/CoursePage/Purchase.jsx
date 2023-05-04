@@ -7,7 +7,8 @@ import {WarningModalW} from "@/widgets/api/Modals";
 import RatingBar from "@/shared/ui/Rating/RatingBar/RatingBar";
 import {RatingFeature} from "@/features/api/rating";
 import {rateCourse, updateCourse} from "@/app/lib/controllers/courseController";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {updateBoughtCourseStatus, updateUser} from "@/app/lib/controllers/userController";
 
 const Purchase = ({courseId, rating, isDone, isRated}) => {
     const [isDoneState, setIsDone] = useState(isDone);
@@ -15,6 +16,7 @@ const Purchase = ({courseId, rating, isDone, isRated}) => {
     const [warning, setWarning] = useState(false);
     const ratingRef = useRef(1);
     const dispatch = useDispatch();
+    const userId = useSelector(state => state.authReducer?.user?.id);
     const markAsDone = () => {
         setWarning({
             applyTitle: 'Rate',
@@ -22,7 +24,9 @@ const Purchase = ({courseId, rating, isDone, isRated}) => {
             description: 'Please, rate it for promotion',
             cancelTitle: 'Later...',
             apply: rateWindow,
-            cancel: () => setIsDone(true),
+            cancel: () => {
+                updateBoughtCourseStatus({id: userId}, courseId, {isDone: true}).then();
+            },
         })
     }
     const rateWindow = () => {
@@ -37,6 +41,7 @@ const Purchase = ({courseId, rating, isDone, isRated}) => {
             cancel: () => setIsRated(false),
             onClosed: () => {
                 setIsDone(true);
+                updateBoughtCourseStatus({id: userId}, courseId, {isDone: true}).then();
             },
         })
     }
@@ -46,6 +51,7 @@ const Purchase = ({courseId, rating, isDone, isRated}) => {
             .then(res => {
                 if (res.isSuccess) {
                     setIsRated(true);
+                    updateBoughtCourseStatus({id: userId}, courseId, {isRated: true}).then();
                 } else {
                     setIsRated(false);
                 }

@@ -4,11 +4,11 @@ import {DarkBtnWithImg} from "@/shared/ui/Buttons/api/Buttons";
 import {buyCourse} from "@/app/lib/controllers/userController";
 import {useDispatch, useSelector} from "react-redux";
 
-const PurchaseAdv = ({price, courseId}) => {
+const PurchaseAdv = ({price, courseId, trainerId}) => {
     const userId = useSelector(state => state.authReducer?.user?.id);
     const dispatch = useDispatch();
     const buy = async () => {
-        await buyCourse(dispatch, userId, courseId);
+        await buyCourse(dispatch, trainerId, userId, courseId);
     }
 
     return (

@@ -12,6 +12,7 @@ $api.interceptors.request.use((config) => {
         case '/course/create':
         case '/course/delete':
         case '/user/buy':
+        case '/user/updateStatus':
             config.headers.Authorization = `Bearer ${localStorage.getItem('token')}`;
     }
     return config;

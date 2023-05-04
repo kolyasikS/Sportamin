@@ -121,10 +121,28 @@ class UserService {
         }
         await UserModel.updateOne(query, updatedUser);
     }
-    async buyCourse(userId, courseId) {
+    async buyCourse(trainerId, userId, courseId) {
         let res = await UserModel.updateOne(
             {_id: new ObjectId(userId), boughtCourses: { $ne: new ObjectId(courseId) }},
             {$push: { boughtCourses: {courseId: new ObjectId(courseId)}}},
+            {new: true});
+        //await this.update({id: trainerId}, {$inc: {students: 1}});
+        //console.log(res, userId, courseId);
+    }
+    async updateStatus(userId, courseId, status) {
+        let update = {
+            $set: {
+            }
+        }
+        if (status.isDone) {
+            update.$set['boughtCourses.$.isDone'] = status.isDone;
+        }
+        if (status.isRated) {
+            update.$set['boughtCourses.$.isRated'] = status.isRated;
+        }
+        await UserModel.updateOne(
+            {_id: new ObjectId(userId), boughtCourses: {$elemMatch: {courseId}}},
+            {...update},
             {new: true});
         //console.log(res, userId, courseId);
     }

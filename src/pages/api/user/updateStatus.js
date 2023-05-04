@@ -14,8 +14,8 @@ async function handler(req, res) {
     await dbConnect();
     switch (method) {
         case 'PUT':
-            const {trainerId, userId, courseId} = req.body;
-            const users = await userService.buyCourse(trainerId, userId, courseId);
+            const {userId, courseId, status} = req.body;
+            const users = await userService.updateStatus(userId, courseId, status);
             return res.json(users);
     }
 }

@@ -3,6 +3,7 @@ import CourseModel from "@/app/server/models/course-model";
 import UserService from "@/app/server/services/user-service";
 import {Schema} from "mongoose";
 import {ObjectId} from "mongodb";
+import {updateCourse} from "@/app/lib/controllers/courseController";
 class CourseService {
     async create({title, subtitle, language,
                  price, providedItems, content,
@@ -51,11 +52,11 @@ class CourseService {
         };
     }
     async update(id, updatedCourse) {
-        if (!id) {
-            //await CourseModel.updateMany({}, {$set: {previewImage: updatedCourse.previewImage}});
-        } else {
-            await CourseModel.updateOne({_id: id}, updatedCourse);
-        }
+        console.log(id, updatedCourse);
+        await CourseModel.updateOne({_id: id}, updatedCourse);
+    }
+    async subscribe(id) {
+        await this.update(id, {$inc: {students: 1}});
     }
     async delete(id) {
         await CourseModel.deleteOne({_id: new ObjectId(id)});

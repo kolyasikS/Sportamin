@@ -1,4 +1,5 @@
 import $api from "@/app/lib/http";
+import {newSubscriber} from "@/app/lib/controllers/courseController";
 
 export default class CourseService {
     static async create(course, trainerID) {
@@ -52,6 +53,11 @@ export default class CourseService {
             data: {
                 id
             }
+        });
+    }
+    static async newSubscriber(id) {
+        return $api.put('/course/subscribe', {
+            id
         });
     }
 }

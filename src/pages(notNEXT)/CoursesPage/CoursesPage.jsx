@@ -49,7 +49,7 @@ const CoursesPage = () => {
         }
         let ratingMongoDB = null;
         if (rating) {
-            ratingMongoDB = {rating: {$gte: 0}}; //testing
+            ratingMongoDB = {'rating.avgValue': {$gte: 0}}; //testing
         }
         setQuery(prev => {
             if (!ratingMongoDB) {

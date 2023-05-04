@@ -20,7 +20,7 @@ const HFLayout = ({children}) => {
             return;
         }
         if (localStorage.getItem('token')) {
-            if (auth.user || !showLayout) {
+            if (!showLayout) {
                 setIsLoading(false);
                 return;
             }

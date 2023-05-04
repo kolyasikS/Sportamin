@@ -32,7 +32,9 @@ export async function getCourses(query, sort, limit, skip) {
 export async function updateCourse(dispatch, id, updatedCourse) {
     try {
         await CourseService.update(id, updatedCourse);
-        dispatch(setStatus(statuses.CREATING));
+        if (dispatch) {
+            dispatch(setStatus(statuses.CREATING));
+        }
     } catch (e) {
         console.log(e?.response?.data);
     }
@@ -44,6 +46,16 @@ export async function rateCourse(dispatch, id, rating, newRating) {
             count: rating.count + 1
         }
         await CourseService.update(id, {$set: {rating}});
+        return {isSuccess: true};
+    } catch (e) {
+        console.log(e?.response?.data);
+        console.log(e);
+        return {isSuccess: false};
+    }
+}
+export async function newSubscriber(courseId) {
+    try {
+        await CourseService.newSubscriber(courseId);
         return {isSuccess: true};
     } catch (e) {
         console.log(e?.response?.data);

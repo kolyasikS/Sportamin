@@ -37,7 +37,7 @@ const CourseHeader = ({title, subtitle, price,
                                 isRated={courseStatus.isRated}
                                 isDone={courseStatus.isDone}
                     />
-                    : <PurchaseAdv price={price} courseId={id}/>
+                    : <PurchaseAdv price={price} courseId={id} trainerId={trainer._id}/>
             }
         </section>
     );

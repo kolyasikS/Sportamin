@@ -29,7 +29,6 @@ export default class CourseService {
         if (query.trainer) {
             newQuery.trainer = query.trainer;
         }
-        console.log('nq', query);
         if (query.range) {
             newQuery.range = [query.range.min, query.range.max].join(',');
         }

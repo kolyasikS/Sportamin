@@ -20,4 +20,3 @@ export const oauth2Client = new google.auth.OAuth2(
     web.client_secret,
     web.redirect_uris[0]
 );
-console.log(oauth2Client);

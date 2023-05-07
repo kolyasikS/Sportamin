@@ -60,7 +60,6 @@ const reducer = createReducer(
                state.page = action.payload.page;
             })
             .addCase(setAmountPages, (state, action) => {
-                console.log(action.payload.amount, itemsPerPage)
                state.amountPages = Math.ceil(action.payload.amount / itemsPerPage);
             });
     }

@@ -14,7 +14,6 @@ export default async function handler(req, res) {
                     scope: scopes,
                     include_granted_scopes: true
                 });
-                console.log(authorizationUrl);
                 await res.redirect(301, authorizationUrl);
         }
     });

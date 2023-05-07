@@ -37,7 +37,6 @@ export const authOptions = {
         },
         async jwt({token, user, account, profile, isNewUser}) {
             if (profile) {
-                //console.log(token, user, account, profile);
                 token.clientId = profile.aud;
             }
             return token;
@@ -46,7 +45,6 @@ export const authOptions = {
             return {...session, clientId: token?.clientId}
         },
         async redirect({url, baseUrl }) {
-            //console.log(url, baseUrl);
             return '/login';
         },
     },

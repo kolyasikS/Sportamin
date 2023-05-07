@@ -22,7 +22,6 @@ class CourseService {
     async getCourses(reqQuery) {
         const query = getQueryFromReq(reqQuery);
         const sort = getSortFromReq(reqQuery);
-        console.log(query);
 
         let pipeline = [{
                 $match: query
@@ -52,7 +51,6 @@ class CourseService {
         };
     }
     async update(id, updatedCourse) {
-        console.log(id, updatedCourse);
         await CourseModel.updateOne({_id: id}, updatedCourse);
     }
     async subscribe(id) {

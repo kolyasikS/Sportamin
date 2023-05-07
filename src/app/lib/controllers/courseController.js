@@ -20,7 +20,6 @@ export async function createCourse(dispatch, course, trainerID) {
 }
 export async function getCourses(query, sort, limit, skip) {
     try {
-        console.log('query', query);
         const res = await CourseService.get(query, sort, limit, skip)
             .then(res => res.data);
         return res;

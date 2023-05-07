@@ -4,6 +4,7 @@ import CourseInner from "@/pages(notNEXT)/CoursePage/CourseInner";
 import {useDispatch, useSelector} from "react-redux";
 import {setIsLoading} from "@/app/lib/store/actions/sessionActions";
 import Comments from "@/pages(notNEXT)/CoursePage/Comments/Comments";
+import {getImageFromBase64} from "@/app/lib/features/image";
 
 const CoursePage = ({title, subtitle, price,
                         rating, students, trainer,
@@ -11,6 +12,7 @@ const CoursePage = ({title, subtitle, price,
                         content, description, _id}) => {
     const [courseStatus, setCourseStatus] = useState(null);
     const boughtCourses = useSelector((state) => state.authReducer?.user?.boughtCourses);
+    const avatar = useSelector((state) => state.authReducer?.user?.avatar);
     const [isLoading, setIsLoading] = useState(true);
     useEffect(() => {
         if (boughtCourses) {
@@ -21,7 +23,7 @@ const CoursePage = ({title, subtitle, price,
     }, [boughtCourses, courseStatus]);
 
     return (
-        <main>
+        <main className={'bg-[#0d1117] pb-10'}>
             <div className={'relative'}>
                 <CourseHeader title={title} subtitle={subtitle}
                               price={price} rating={rating} isLoading={isLoading}
@@ -34,7 +36,8 @@ const CoursePage = ({title, subtitle, price,
                              description={description} trainer={trainer}
                 />
             </div>
-            <Comments/>
+            <Comments avatar={`data:image/jpg;base64,${getImageFromBase64(avatar || {data: ''})}`}
+                      postId={_id}/>
         </main>
     );
 };

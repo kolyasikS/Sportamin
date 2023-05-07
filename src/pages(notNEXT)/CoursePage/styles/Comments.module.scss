@@ -4,7 +4,6 @@
 .comments {
     background-color: $bg-block-1;
     padding: 30px 15%;
-    overflow: hidden;
 }
 .commentsHeader {
     display: flex;
@@ -13,4 +12,23 @@
     h1 {
         color: $color-1;
     }
+}
+.generalInfo {
+    margin: 30px 0 25px;
+    p {
+        color: #b5bdc5;
+        font-size: 18px;
+        font-weight: bold;
+    }
+    &::after {
+        content: '';
+        width: 100%;
+        height: 2px;
+        background-color: #cacaca;
+        display: block;
+        margin-top: 10px;
+    }
+}
+.commentsInner {
+
 }

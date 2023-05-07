@@ -92,8 +92,6 @@ class UserService {
         }
         const trainers = await UserModel.find({...query}).sort(sort);
         let count = await UserModel.countDocuments(query);
-        console.log(trainers.length);
-        console.log(query);
         return {
             items: trainers,
             count

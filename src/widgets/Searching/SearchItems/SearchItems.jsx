@@ -26,7 +26,6 @@ const SearchItems = ({fetchItems, query,
             } else {
                 setIsEmpty(false);
             }
-            console.log(res.items.length);
             dispatch(setAmountPages(res.count));
             setFilteredItems(res.items);
         })
@@ -38,7 +37,6 @@ const SearchItems = ({fetchItems, query,
     }
     useEffect(() => {
         if (filterState.status === statuses.CREATED) {
-            console.log(isLoading);
             if (!isLoading) {
                 dispatch(setIsLoading(true));
             } else {

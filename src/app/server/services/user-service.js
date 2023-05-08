@@ -90,10 +90,15 @@ class UserService {
             query._id = new ObjectId(query.id);
             delete query.id;
         }
-        const trainers = await UserModel.find({...query}).sort(sort);
+        if (query && query.ids) {
+            query._id = {$in: query.ids};
+            delete query.ids;
+        }
+        console.log(query);
+        const users = await UserModel.find({...query}).sort(sort);
         let count = await UserModel.countDocuments(query);
         return {
-            items: trainers,
+            items: users,
             count
         };
     }

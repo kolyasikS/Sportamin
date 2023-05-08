@@ -17,12 +17,37 @@ class CommentService {
     async delete(id) {
 
     }
-    async get(postId, repliedCommentId, limit, skip) {
-        let repliedOn = repliedCommentId ? repliedCommentId : {$exists: false};
+    async get(postId, limit, skip) {
+        let repliedOn = {$exists: false};
         let comments = await CommentModel.find({courseId: postId, repliedOn})
-            .limit(limit).skip(skip);
+            .limit(limit)
+            .skip(skip)
 
-        return comments;
+        let repliesComments = [];
+        for (let i = 0; i < comments.length; i++) {
+            let res = await CommentModel.find({courseId: postId, repliedOn: comments[i]._id});
+            repliesComments.push(res);
+        }
+        let totalComments = await CommentModel.countDocuments({courseId: postId});
+        return {
+            comments,
+            repliesComments,
+            totalComments
+        };
+    }
+    async getReplies(postId, repliedCommentId) {
+        let comments = await CommentModel.find({courseId: postId, repliedOn: repliedCommentId});
+        if (comments.length) {
+            for (let i = 0; i < comments.length; i++) {
+                let newComments = await this.getReplies(postId, comments[i]._id);
+                if (newComments && newComments.length) {
+                    comments.push(...newComments);
+                }
+            }
+            return comments;
+        } else {
+            return comments;
+        }
     }
 }
 

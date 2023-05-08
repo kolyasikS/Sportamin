@@ -1,0 +1,42 @@
+@import 'src/app/styles/variables';
+@import 'src/app/styles/mixins';
+
+.blockItem {
+    margin-bottom: 20px;
+}
+.toggleBtn {
+    @include flexCenter;
+    position: relative;
+    left: 50px;
+    cursor: pointer;
+    color: #3ea6ff;
+    font-size: 14px;
+    line-height: 36px;
+    margin-left: 10px;
+    word-spacing: 20px;
+    background-color: transparent;
+    border: none;
+    font-family: Roboto;
+    font-weight: bold;
+    border-radius: 20px;
+    padding: 0px 15px 0px 8px;
+    transition: all 0.1s;
+    &:hover {
+        background-color: #1a3852;
+    }
+    svg {
+        width: 24px;
+        height: 24px;
+        fill: #3ea6ff;
+    }
+    span {
+        margin-right: 5px;
+        margin-left: 10px;
+    }
+}
+.activeBtn {
+
+    svg {
+        transform: rotateZ(180deg);
+    }
+}

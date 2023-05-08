@@ -19,3 +19,63 @@ export const nameDayOfWeek = (number) => {
             return null;
     }
 }
+
+export const getDateDifference = (dateOne, dateSecond) => {
+    if (!dateSecond) {
+        dateSecond = new Date();
+    }
+    const differenceInMilliseconds = Math.abs(dateSecond - dateOne);
+    const differenceInSeconds = differenceInMilliseconds / 1000;
+
+    const differenceInMinutes = differenceInSeconds / 60;
+    if (Math.trunc(differenceInMinutes) < 1) {
+        return {
+            diff: Math.trunc(differenceInMilliseconds),
+            term: 'seconds'
+        };
+    }
+
+    const differenceInHours = differenceInMinutes / 60;
+    if (Math.trunc(differenceInHours) < 1) {
+        return {
+            diff: Math.trunc(differenceInMinutes),
+            term: 'minutes'
+        };
+    }
+
+    const differenceInDays = differenceInHours / 24;
+    if (Math.trunc(differenceInDays) < 1) {
+        return {
+            diff: Math.trunc(differenceInHours),
+            term: 'hours'
+        };
+    }
+
+    const differenceInMonths = differenceInDays / (365 / 12);
+    if (Math.trunc(differenceInMonths) < 1) {
+        return {
+            diff: Math.trunc(differenceInDays),
+            term: 'days'
+        };
+    }
+
+    const differenceInYears = differenceInMonths / 12;
+    if (Math.trunc(differenceInMonths) < 1) {
+        return {
+            diff: Math.trunc(differenceInYears),
+            term: 'months'
+        };
+    }
+}
+export const getCurrentTimeFromStamp = (timestamp) => {
+    let date = new Date(timestamp);
+/*    let currentTime = {
+        year: date.getFullYear(),
+        month: date.getMonth(),
+        days: date.getDate(),
+        hours: date.getHours(),
+        minutes: date.getMinutes(),
+        seconds: date.getSeconds(),
+    };*/
+    return date;
+}

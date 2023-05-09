@@ -36,8 +36,8 @@ const CoursePage = ({title, subtitle, price,
                              description={description} trainer={trainer}
                 />
             </div>
-            <Comments avatar={`data:image/jpg;base64,${getImageFromBase64(avatar || {data: ''})}`}
-                      postId={_id}/>
+            {avatar && <Comments avatar={`data:image/jpg;base64,${getImageFromBase64(avatar)}`}
+                      postId={_id}/>}
         </main>
     );
 };

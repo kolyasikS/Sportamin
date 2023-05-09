@@ -26,9 +26,7 @@
     align-items: center;
     width: 100%;
     bottom: 6px;
-    background-color: #fff;
-    border: 2px solid $clr-gray500;
-    border-top: 2px solid #cacaca;
+    background-color: transparent;
     border-radius: 0 0 0.5rem 0.5rem;
     padding: 5px;
     overflow: hidden;
@@ -54,7 +52,10 @@
         }
     }
 }
-
 .closed {
     opacity: 0;
+}
+.repliedSection {
+    padding-left: 75px;
+    margin-top: 10px;
 }

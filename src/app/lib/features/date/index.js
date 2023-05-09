@@ -30,7 +30,7 @@ export const getDateDifference = (dateOne, dateSecond) => {
     const differenceInMinutes = differenceInSeconds / 60;
     if (Math.trunc(differenceInMinutes) < 1) {
         return {
-            diff: Math.trunc(differenceInMilliseconds),
+            diff: Math.trunc(differenceInSeconds),
             term: 'seconds'
         };
     }

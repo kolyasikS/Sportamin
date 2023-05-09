@@ -1,26 +1,55 @@
-import React, {useState} from 'react';
+import React, {useRef, useState} from 'react';
 import Image from "next/image";
 import styles from '../styles/WritingComment.module.scss';
 import {MainTextArea} from "@/shared/ui/Inputs/api/Inputs";
 import {DarkBtnWithImg} from "@/shared/ui/Buttons/api/Buttons";
 import sendImg from '@assets/course/send.png';
+import {createComment} from "@/app/lib/controllers/commentController";
 
-const WritingComment = ({avatar, isRepliedComment, isOpened}) => {
+const WritingComment = ({avatar, isRepliedComment, setIsOpened, initCommId,
+                            userId, postId, repliedCommentId, sendClbk}) => {
     const [isExpanded, setIsExpanded] = useState(false);
+    const messageRef = useRef();
+    const sendComment = async () => {
+        if (!messageRef.current.value) {
+            return;
+        }
+        if (isRepliedComment) {
+            await createComment(userId, postId, messageRef.current.value, repliedCommentId, initCommId)
+                .then(res => sendClbk(res));
+            messageRef.current.value = '';
+            setIsExpanded(false)
+        } else {
+            await createComment(userId, postId, messageRef.current.value, initCommId)
+                .then(res => sendClbk(res));
+            messageRef.current.value = '';
+            setIsExpanded(false)
+        }
+        if (setIsOpened) {
+            setIsOpened(false);
+        }
+    }
+    const cancel = () => {
+        if (!isRepliedComment) {
+            setIsExpanded(false);
+        } else {
+            setIsOpened(false);
+        }
+    }
     return (
-        <section className={styles.writingSection}>
-            <div className={styles.user}>
+        <section className={`${styles.writingSection} ${isRepliedComment && styles.repliedSection}`}>
+            {avatar && <div className={styles.user}>
                 <Image src={avatar} alt={''} width={60} height={60}/>
-            </div>
+            </div>}
             <div className={styles.messageArea}>
-                {isOpened && <div className={styles.writingArea} onClick={() => {setIsExpanded(true)}}>
-                    <MainTextArea minHeight={isRepliedComment || isExpanded ? 130 : 65}
-                                  height={isRepliedComment || isExpanded ? null : 65}
-                                  resize={'none'}
-                                  message={'Join to discussion'}
+                <div className={styles.writingArea} onClick={() => {setIsExpanded(true)}}>
+                    <MainTextArea minHeight={isRepliedComment ? 80 : isExpanded ? 130 : 65}
+                                  height={isRepliedComment ? 80 : isExpanded ? null : 65}
+                                  resize={'none'} ref={messageRef} paddingY={isRepliedComment ? 10 : null}
+                                  message={isRepliedComment ? 'Reply...' : 'Join to discussion'}
                                   borderRadius={'0.5rem 0.5rem 0 0'}
                     />
-                </div>}
+                </div>
                 <div className={`${styles.features} ${isRepliedComment || isExpanded ? '' : styles.closed}`}>
                     <div className={styles.featuresStyleBtns}>
                         <div className={styles.featuresStyleBtn}>
@@ -40,11 +69,18 @@ const WritingComment = ({avatar, isRepliedComment, isOpened}) => {
                             </svg>
                         </div>
                     </div>
-                    <DarkBtnWithImg img={sendImg} height={35}
-                                    widthImg={20}
-                    >
-                        Send
-                    </DarkBtnWithImg>
+                    <div className={'flex space-x-2'}>
+                        <DarkBtnWithImg height={35}
+                                        widthImg={20} onClick={cancel}
+                        >
+                            Cancel
+                        </DarkBtnWithImg>
+                        <DarkBtnWithImg img={sendImg} height={35}
+                                        widthImg={20} onClick={sendComment}
+                        >
+                            Send
+                        </DarkBtnWithImg>
+                    </div>
                 </div>
             </div>
         </section>

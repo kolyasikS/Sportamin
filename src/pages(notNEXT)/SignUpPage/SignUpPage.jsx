@@ -29,7 +29,6 @@ const SignUpPage = ({credentials}) => {
     }
     useEffect(() => {
         if (credentials) {
-            console.log(typeof  credentials, credentials);
             registration(dispatch, credentials)
             .then(async () => {
                 await router.push('/');

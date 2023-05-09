@@ -1,4 +1,5 @@
 import {Schema, model, models} from 'mongoose';
+import {number} from "joi";
 
 const CommentSchema = new Schema({
     trainerId: {type: Schema.Types.ObjectId, ref: 'User'},
@@ -6,6 +7,7 @@ const CommentSchema = new Schema({
     repliedOn: {type: Schema.Types.ObjectId, ref: 'Comment'},
     disliked: [{type: Schema.Types.ObjectId, ref: 'User'}],
     liked: [{type: Schema.Types.ObjectId, ref: 'User'}],
+    amountReplies: {type: Number, default: 0},
     message: {type: String},
     publishedTime: {type: Date},
 });

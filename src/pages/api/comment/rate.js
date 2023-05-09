@@ -8,8 +8,8 @@ async function handler(req, res) {
         await dbConnect();
         switch (method) {
             case 'PATCH':
-                const {rating} = req.body;
-                const result = await commentService.rate(rating);
+                const {userId, postId, commentId, rating} = req.body;
+                const result = await commentService.rate(userId, postId, commentId, rating);
                 res.status(200).json(result);
         }
     });

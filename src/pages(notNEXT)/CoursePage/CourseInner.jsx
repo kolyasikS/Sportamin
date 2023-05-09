@@ -1,10 +1,10 @@
-import React from 'react';
+import React, {memo} from 'react';
 import styles from './styles/CourseInner.module.scss';
 import CourseContent from "@/pages(notNEXT)/CoursePage/Content/CourseContent";
 import {SearchedTrainer} from "@/shared/ui/SearchItems/api/searchedItems";
 import {getImageFromBase64} from "@/app/lib/features/image";
 
-const CourseInner = ({providedItems, requirements, isBought,
+const CourseInner = memo(({providedItems, requirements, isBought,
                          description, content, trainer}) => {
 
     return (
@@ -33,6 +33,6 @@ const CourseInner = ({providedItems, requirements, isBought,
             </div>
         </section>
     );
-};
-
+});
+CourseInner.displayName = 'CourseInner';
 export default CourseInner;

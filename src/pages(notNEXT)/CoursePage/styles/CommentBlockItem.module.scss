@@ -40,3 +40,7 @@
         transform: rotateZ(180deg);
     }
 }
+.replies {
+    @include space-y(3);
+    margin-top: 10px;
+}

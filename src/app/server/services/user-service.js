@@ -94,7 +94,6 @@ class UserService {
             query._id = {$in: query.ids};
             delete query.ids;
         }
-        console.log(query);
         const users = await UserModel.find({...query}).sort(sort);
         let count = await UserModel.countDocuments(query);
         return {

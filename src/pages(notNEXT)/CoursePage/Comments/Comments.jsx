@@ -77,8 +77,6 @@ const Comments = memo(({avatar, postId}) => {
     const deleteCommentClick = async (id, cb) => {
         await deleteComment(id);
         cb(id);
-
-
     }
     return (
         <section className={styles.comments} ref={headerRef}>

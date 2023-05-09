@@ -22,7 +22,7 @@ const Comment = ({trainerId, disliked, postId, userId, createReply,
             id: v4(),
             title: 'Delete',
             onClick: async () => {
-                await deleteComment(_id);
+                //await deleteComment(_id);
             }
         }
     ]);
@@ -92,7 +92,7 @@ const Comment = ({trainerId, disliked, postId, userId, createReply,
                         <button className={styles.reply} onClick={() => setIsWritingReply(true)}>Reply</button>
                     </div>
                 </div>
-                <MenuButton items={}/>
+                <MenuButton items={menuItems}/>
             </div>
             {isWritingReply &&
                 <WritingComment postId={postId} repliedCommentId={_id}

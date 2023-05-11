@@ -10,7 +10,7 @@ async function handler(req, res) {
         await dbConnect();
         switch (method) {
             case 'DELETE':
-                const {id} = req.body;
+                const {id} = req.query;
                 await courseService.delete(id);
                 res.status(200).json({isSuccess: true});
         }

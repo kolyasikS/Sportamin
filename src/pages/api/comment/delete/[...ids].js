@@ -8,8 +8,8 @@ async function handler(req, res) {
         await dbConnect();
         switch (method) {
             case 'DELETE':
-                const {id} = req.body;
-                const result = await commentService.delete(id);
+                const {ids} = req.query;
+                const result = await commentService.delete(ids);
                 res.status(200).json(result);
         }
     });

@@ -28,12 +28,15 @@ export async function createComment(userId, postId, message, repliedCommentId, i
         console.log(e?.response?.data);
     }
 }
-export async function deleteComment(id) {
+export async function deleteComment(id, initCommId) {
     try {
-        const res = await CommentService.delete(id)
+        const res = await CommentService.delete(id, initCommId)
             .then(res => res.data);
         return res;
     } catch (e) {
         console.log(e?.response?.data);
+        return {
+            error: e
+        };
     }
 }

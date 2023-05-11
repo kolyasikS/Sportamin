@@ -38,8 +38,21 @@ class CommentService {
             {courseId: postId, _id: new ObjectId(commentId)},
             update);
     }
-    async delete(id) {
+    async delete(ids) {
+        if (ids[1]) {
+            await CommentModel.deleteOne({_id: new ObjectId(ids[0])});
+            await CommentModel.updateOne({_id: new ObjectId(ids[1])},
+                {$inc: {amountReplies: -1}});
+        } else {
+            await this.deleteReplies(ids[0]);
+        }
+    }
+    async deleteReplies(id) {
         await CommentModel.deleteOne({_id: new ObjectId(id)});
+        let replies = await CommentModel.find({repliedOn: new ObjectId(id)});
+        for (let i = 0; i < replies.length; i++) {
+            await this.deleteReplies(replies[i]._id);
+        }
     }
     async get(postId, limit, skip) {
         let repliedOn = {$exists: false};
@@ -47,7 +60,6 @@ class CommentService {
             .limit(limit)
             .skip(skip)
 
-        console.log(limit, skip, comments);
         let totalComments = await CommentModel.countDocuments({courseId: postId});
         return {
             comments,

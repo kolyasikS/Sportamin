@@ -48,11 +48,7 @@ export default class CourseService {
         });
     }
     static async delete(id) {
-        return $api.delete('/course/delete', {
-            data: {
-                id
-            }
-        });
+        return $api.delete(`/course/delete/${id}`);
     }
     static async newSubscriber(id) {
         return $api.put('/course/subscribe', {

@@ -21,12 +21,12 @@ export default class CourseService {
             trainerId, courseId, message, repliedCommentId, initCommId
         });
     }
-    static async delete(id) {
-        return $api.delete('/comment/delete',   {
-            data: {
-                id
-            }
-        });
+    static async delete(id, initCommId) {
+        if (initCommId) {
+            return $api.delete(`/comment/delete/${id}/${initCommId}`);
+        } else {
+            return $api.delete(`/comment/delete/${id}`);
+        }
     }
 }
 

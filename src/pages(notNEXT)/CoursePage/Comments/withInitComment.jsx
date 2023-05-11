@@ -5,7 +5,7 @@ import Comment from "@/pages(notNEXT)/CoursePage/Comments/Comment";
 import {getUsers} from "@/app/lib/controllers/userController";
 import {Loading} from "@/shared/ui/Logos/api/Logos";
 const withInitComment = (InitComment) => {
-    const WithInitComment = ({ postId, initComm, userId}) => {
+    const WithInitComment = ({ postId, initComm, userId, deleteInitComment}) => {
         const [isLoading, setIsLoading] = useState(true);
         const [repliesComments, setRepliesComments] = useState([]);
         const [isRepliesShowed, setIsRepliesShowed] = useState(false);
@@ -61,9 +61,15 @@ const withInitComment = (InitComment) => {
             setRepliesComments([comment, ...repliesComments]);
             await showReplies();
         }
+        const deleteComment = async (commentId) => {
+            amountReplies.current--;
+            setRepliesComments(repliesComments.filter(item => item._id !== commentId));
+        }
         return (
             <div className={styles.blockItem}>
-                <InitComment {...initComm} postId={postId} userId={userId} createReply={createComment}/>
+                <InitComment {...initComm} postId={postId} userId={userId}
+                             createReply={createComment} deleteCommentUI={deleteInitComment}
+                />
                 {amountReplies.current
                     ? <button onClick={showReplies}
                               className={`${styles.toggleBtn} ${isRepliesShowed ? styles.activeBtn : ''}`}>
@@ -86,7 +92,7 @@ const withInitComment = (InitComment) => {
                             {repliesComments.map(comment =>
                                 <Comment key={comment._id} postId={postId} userId={userId} initCommId={initComm._id}
                                          {...comment} isReplyComment={true} createReply={createComment}
-                                         repliedUserFullname={comment.repliedUserFullname}
+                                         repliedUserFullname={comment.repliedUserFullname} deleteCommentUI={deleteComment}
                                 />)}
                         </ul>
                     : null}

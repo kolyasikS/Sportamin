@@ -3,8 +3,7 @@
 
 .comment {
     color: #f1f1f1;
-    align-items: flex-start;
-
+    width: 100%;
     &:hover {
         .container button {
             opacity: 1;
@@ -17,7 +16,7 @@
     }
 }
 .commentInner {
-
+    width: 100%;
 }
 .commentInfo {
     display: flex;
@@ -136,6 +135,6 @@
 }
 .container {
     display: flex;
-
+    width: 100%;
     @include space-x(4);
 }

@@ -3,14 +3,14 @@ import Image from "next/image";
 import styles from '../styles/Comment.module.scss';
 import {getImageFromBase64} from "@/app/lib/features/image";
 import {getCurrentTimeFromStamp, getDateDifference} from "@/app/lib/features/date";
-import {rateComment} from "@/app/lib/controllers/commentController";
+import {deleteComment, rateComment} from "@/app/lib/controllers/commentController";
 import {useSelector} from "react-redux";
 import WritingComment from "@/pages(notNEXT)/CoursePage/Comments/WritingComment";
 import Link from "next/link";
 import {MenuButton} from "@/shared/ui/Buttons/api/Buttons";
 import {v4} from "uuid";
 
-const Comment = ({trainerId, disliked, postId, userId, createReply,
+const Comment = ({trainerId, disliked, postId, userId, createReply, deleteCommentUI,
                      liked, message, trainer, _id, avatar, initCommId,
                      publishedTime, isReplyComment, repliedUserFullname}) => {
     const [commentAge, setCommentAge] = useState(getDateDifference(getCurrentTimeFromStamp(publishedTime)));
@@ -22,7 +22,12 @@ const Comment = ({trainerId, disliked, postId, userId, createReply,
             id: v4(),
             title: 'Delete',
             onClick: async () => {
-                //await deleteComment(_id);
+                deleteComment(_id, initCommId)
+                    .then(res => {
+                        if (!res.error) {
+                            deleteCommentUI(_id);
+                        }
+                    });
             }
         }
     ]);
@@ -45,7 +50,7 @@ const Comment = ({trainerId, disliked, postId, userId, createReply,
     }
 
     return (
-        <div className={`${styles.comment} ${isReplyComment && styles.replyComment}`}>
+        <div className={`${styles.comment} ${isReplyComment ? styles.replyComment : ''}`}>
             <div className={styles.container}>
                 <div className={styles.avatar}>
                     <Link href={`/trainers/${trainerId}`}>
@@ -92,7 +97,7 @@ const Comment = ({trainerId, disliked, postId, userId, createReply,
                         <button className={styles.reply} onClick={() => setIsWritingReply(true)}>Reply</button>
                     </div>
                 </div>
-                <MenuButton items={menuItems}/>
+                <MenuButton items={menuItems.current}/>
             </div>
             {isWritingReply &&
                 <WritingComment postId={postId} repliedCommentId={_id}

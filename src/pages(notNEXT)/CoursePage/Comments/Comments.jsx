@@ -74,9 +74,14 @@ const Comments = memo(({avatar, postId}) => {
             return block;
         }))
     }
-    const deleteCommentClick = async (id, cb) => {
+    const deleteCommentClick = async (id) => {
         await deleteComment(id);
-        cb(id);
+        setCommentBlocks(commentBlocks.map(block => {
+            return {
+                ...block,
+                comments: block.comments.filter(comment => comment._id !== id)
+            };
+        }))
     }
     return (
         <section className={styles.comments} ref={headerRef}>

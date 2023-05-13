@@ -1,4 +1,14 @@
+@import 'src/app/styles/mixins';
+@import 'src/app/styles/variables';
 .main {
     display: flex;
     padding: 80px 50px;
+}
+
+@media screen and (max-width: 768px) {
+    .main {
+        display: block;
+        @include space-y(10);
+        padding-top: 40px;
+    }
 }

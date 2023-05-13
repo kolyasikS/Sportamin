@@ -11,7 +11,6 @@ const Benefits = () => {
                                 description={item.description}
                                 title={item.title}
                                 src={item.src}
-                                amount={AboutUsInfoItems.length}
                 />
             )}
         </div>

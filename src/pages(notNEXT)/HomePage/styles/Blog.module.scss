@@ -12,7 +12,9 @@
   @include flexCenter();
   @include space-x(5);
   display: flex;
+  flex-wrap: wrap;
   color: #fff;
   margin-top: 20px;
   margin-bottom: 30px;
+  padding: 0 10px;
 }

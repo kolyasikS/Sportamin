@@ -14,19 +14,7 @@
   position: relative;
   color: #fff;
   font-family: Verdana;
-  h1 {
-    font-size: 100px;
-    text-transform: uppercase;
-    line-height: 1;
-  }
-  p {
-    color: #cacaca;
-    font-style: italic;
-    margin-bottom: 30px;
-  }
-  span {
-    color: $header-span;
-  }
+
 }
 .introItem {
   width: 60%;
@@ -37,4 +25,5 @@
   align-items: flex-end;
   height: 100%;
 }
-
+@media screen and (max-width: 1280px) {
+}

@@ -1,5 +1,6 @@
-@import '../../../app/styles/mixins.scss';
-@import '../../../app/styles/variables.scss';
+@import 'src/app/styles/mixins.scss';
+@import 'src/app/styles/variables.scss';
+
 .achievementsSection {
   @include flexCenter();
   width: 100%;
@@ -13,4 +14,10 @@
   @include flexCenter();
   width: 90%;
   justify-content: space-between;
+}
+@media screen and (max-width: 1024px) {
+  .achievementsItems {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 }

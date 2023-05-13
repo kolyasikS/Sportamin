@@ -20,5 +20,9 @@
     padding: 20px 0 35px;
   }
 }
-
+@media screen and (max-width: 1024px) {
+  .aboutUsText {
+    width: 80%;
+  }
+}
 

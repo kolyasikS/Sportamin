@@ -9,7 +9,7 @@ import Calculator from "@/pages(notNEXT)/HomePage/Calculator/Calculator";
 import Blog from "@/pages(notNEXT)/HomePage/Blog/Blog";
 import Partners from "@/pages(notNEXT)/HomePage/Partners/Partners";
 
-const HomePage = () => {
+const HomePage = ({courses}) => {
     return (
         <main className={'space-y-2'}>
             <Introduction/>
@@ -17,7 +17,7 @@ const HomePage = () => {
             <Categories/>
             <Achievements/>
             <Trainers/>
-            <TopCourses/>
+            <TopCourses courses={courses}/>
             <Calculator/>
             <Blog/>
             <Partners/>

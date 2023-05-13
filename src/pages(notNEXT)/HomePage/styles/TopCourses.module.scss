@@ -1,9 +1,8 @@
-@import '/src/app/styles/mixins';
-@import '/src/app/styles/variables';
+@import 'src/app/styles/mixins';
+@import 'src/app/styles/variables';
 .topCoursesSection {
-  background: url("/media/images/membershipbg.jpg") no-repeat;
-  background-size: 100%;
-  padding: 40px 10px;
+  background-color: $bg-block-1;
+  padding: 40px;
   margin-top: 40px;
   position: relative;
   overflow: hidden;
@@ -25,7 +24,10 @@
 }
 .topCoursesItems {
   z-index: 1;
-  display: flex;
   align-items: flex-start;
   justify-content: space-evenly;
+  @include space-y(5);
+}
+@media screen and (max-width: 1280px) {
+
 }

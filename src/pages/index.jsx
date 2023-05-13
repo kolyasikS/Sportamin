@@ -1,7 +1,8 @@
 import Head from 'next/head'
 import {HomePage} from "@/pages(notNEXT)/api/Components";
 import Test from "@/pages(notNEXT)/TEST";
-export default function Home() {
+import {getCourses} from "@/app/lib/controllers/courseController";
+export default function Home({courses}) {
   return (
     <>
       <Head>
@@ -10,7 +11,15 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <HomePage/>
+      <HomePage courses={courses}/>
     </>
   )
+}
+export async function getServerSideProps(context) {
+    let courses = await getCourses(null, {rating: -1}, 3, 0);
+    return {
+        props: {
+            courses: courses.items
+        },
+    };
 }

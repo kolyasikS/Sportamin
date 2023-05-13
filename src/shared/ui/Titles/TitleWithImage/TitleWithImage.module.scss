@@ -4,6 +4,7 @@
   @include flexCenterColumn();
   h1 {
     @include title(40px, $titleColorGray);
+    text-align: center;
   }
   img {
     position: relative;

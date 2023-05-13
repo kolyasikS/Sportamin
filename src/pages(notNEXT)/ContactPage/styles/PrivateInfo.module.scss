@@ -1,5 +1,5 @@
-@import '/src/app/styles/mixins';
-@import '/src/app/styles/variables';
+@import 'src/app/styles/mixins';
+@import 'src/app/styles/variables';
 
 .privateInfo {
     width: 50%;
@@ -50,8 +50,19 @@
         &:hover {
             --tw-shadow: 1px 12px 15px -3px rgb(0 0 0 / 0.1), 1px 14px 6px -4px rgb(0 0 0 / 0.1);
             --tw-shadow-colored: 10px 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
-            box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+            box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-shadow);
             color: #d5d4d4;
+        }
+    }
+}
+@media screen and (max-width: 768px) {
+    .privateInfo {
+        width: 100%;
+    }
+    .tgBot {
+        width: 100%;
+        a {
+            @include flexCenter;
         }
     }
 }

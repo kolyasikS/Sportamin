@@ -5,12 +5,14 @@ import styles from "@/pages(notNEXT)/TrainersPage/styles/TrainersPage.module.scs
 import {FiltrationInner, SearchItemsListSection} from "@/widgets/api/Widgets";
 import {setAmountPages, setPage, setStatus} from "@/app/lib/store/actions/filterActions";
 import {itemsPerPage, statuses} from "@/app/lib/store/constants/generalConstants";
+import useWindowSize from "@/app/lib/features/hooks/useWindowSize";
 
 const SearchItems = ({fetchItems, query,
                          sort, filtrationItems,
                          renderSearchedItem, children}) => {
     const [filteredItems, setFilteredItems] = useState([]);
     const [isEmpty, setIsEmpty] = useState(false);
+    const [width, height] = useWindowSize(false);
 
     const dispatch = useDispatch();
     const isLoading = useSelector(state => state.sessionReducer.isLoading);
@@ -61,10 +63,12 @@ const SearchItems = ({fetchItems, query,
         <section className={styles.trainersSection}>
             {children}
             <div className={styles.trainersSectionInner}>
-                <FiltrationInner items={filtrationItems} isLoading={isLoading}/>
+                {width > 1280
+                    ? <FiltrationInner items={filtrationItems} isLoading={isLoading}/>
+                    : null
+                }
                 <SearchItemsListSection isEmpty={isEmpty} searchedItems={filteredItems}
-                                        renderSearchedItem={renderSearchedItem}
-                />
+                                        renderSearchedItem={renderSearchedItem}/>
             </div>
         </section>
     );

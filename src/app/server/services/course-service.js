@@ -22,7 +22,6 @@ class CourseService {
     async getCourses(reqQuery) {
         const query = getQueryFromReq(reqQuery);
         const sort = getSortFromReq(reqQuery);
-
         let pipeline = [{
                 $match: query
             }, {

@@ -1,5 +1,5 @@
-@import '/src/app/styles/mixins';
-@import '/src/app/styles/variables';
+@import 'src/app/styles/mixins';
+@import 'src/app/styles/variables';
 .infoItem {
   display: flex;
   flex-direction: column;
@@ -9,6 +9,8 @@
   h1 {
     @include title(24px, $titleColorGray);
     margin-top: 10px;
+    text-align: center;
+    max-width: 200px;
   }
 }
 .infoItem__number {
@@ -31,5 +33,11 @@
     width: 100%;
     height: 100%;
     font-size: 85px;
+  }
+}
+@media screen and (max-width: 1024px) {
+  .infoItem {
+    width: 50%;
+    margin-bottom: 20px;
   }
 }

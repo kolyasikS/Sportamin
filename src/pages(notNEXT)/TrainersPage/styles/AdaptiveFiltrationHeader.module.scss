@@ -1,0 +1,44 @@
+@import 'src/app/styles/variables';
+@import 'src/app/styles/mixins';
+.aside {
+    position: fixed;
+    background-color: #161b22;
+    z-index: 2;
+    right: 0px;
+    top: 0;
+    height: 100vh;
+    overflow: auto;
+    transition: width 0.3s;
+    width: 0px;
+}
+.searchBtn {
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px;
+    background-color: #1e2125;
+    opacity: 0;
+    transition: all 0.4s;
+}
+.menu {
+    @include space-y(3);
+    overflow: auto;
+    height: 100vh;
+    padding: 20px 15px 0px;
+    opacity: 0;
+    transition: all 0.4s;
+}
+.active {
+    width: 400px;
+}
+.active {
+    .searchBtn {
+        transition-delay: 300ms;
+        opacity: 1;
+    }
+    .menu {
+        transition-delay: 300ms;
+        opacity: 1;
+    }
+}

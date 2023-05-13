@@ -43,6 +43,7 @@ const TrainersPage = () => {
             return {...prev, ...ratingMongoDB, ...languagesMongoDB};
         });
     }, [filterState.minRating, filterState.languages.length])
+
     return (
         <main>
             <IntroductionPage bg={banner} title={'Trainers'} height={450}/>

@@ -10,6 +10,7 @@
     overflow: auto;
     transition: width 0.3s;
     width: 0px;
+    overflow: hidden;
 }
 .searchBtn {
     position: sticky;
@@ -28,11 +29,13 @@
     padding: 20px 15px 0px;
     opacity: 0;
     transition: all 0.4s;
+    overflow-x: hidden;
 }
 .active {
     width: 400px;
 }
 .active {
+    overflow-y: auto;
     .searchBtn {
         transition-delay: 300ms;
         opacity: 1;
@@ -41,4 +44,8 @@
         transition-delay: 300ms;
         opacity: 1;
     }
+}
+
+.disabled {
+
 }

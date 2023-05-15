@@ -13,7 +13,7 @@
 }
 
 .clearFilterBlock {
-
+    margin-left: 10px;
 }
 .isLoading {
     position: relative;
@@ -27,5 +27,51 @@
         left: 0;
         background-color: #0D1117;
         opacity: 0.6;
+    }
+}
+.blackout {
+    position: fixed;
+    width: 100vw;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background-color: #000000;
+    opacity: 0.6;
+    z-index: 1;
+}
+@media screen and (max-width: 1280px) {
+    .header {
+        justify-content: flex-start;
+    }
+}
+@media screen and (max-width: 768px) {
+    .filterBlock {
+        flex-direction: column;
+        align-items: flex-start;
+        @include space-x(0);
+        & button {
+            width: 100%;
+        }
+        & div {
+            width: 100%;
+        }
+        & button {
+            margin-bottom: 10px;
+        }
+    }
+    .header {
+        align-items: flex-start;
+    }
+
+}
+@media screen and (max-width: 640px) {
+    .header {
+        display: block;
+    }
+    .clearFilterBlock {
+        margin: 20px 0 0;
+        button {
+            width: 100%;
+        }
     }
 }

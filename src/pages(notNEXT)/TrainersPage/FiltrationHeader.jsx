@@ -9,7 +9,7 @@ import {sortOptions} from "@/app/Static Data/Filtration/Sorts";
 import {useDispatch, useSelector} from "react-redux";
 import {clearFilters, setRating} from "@/app/lib/store/actions/filterActions";
 import {FiltrationDoubleTitleList} from "@/features/api/filtration";
-import AdaptiveFiltrationHeader from "@/pages(notNEXT)/TrainersPage/AdaptiveFiltrationHeader";
+import {AdaptiveFiltrationHeader} from "@/widgets/api/Searching";
 const FiltrationHeader = ({setQuery, setSort, sortPath}) => {
     const nameRef = useRef();
     const surnameRef = useRef();
@@ -54,9 +54,9 @@ const FiltrationHeader = ({setQuery, setSort, sortPath}) => {
     }
     const clearFiltersClick = () => {
         if (!nameRef.current.value &&
-        !surnameRef.current.value &&
-        amountFilters === 1) {
-            return;
+            !surnameRef.current.value &&
+            amountFilters === 1) {
+                return;
         }
         nameRef.current.value = null;
         surnameRef.current.value = null;
@@ -74,22 +74,37 @@ const FiltrationHeader = ({setQuery, setSort, sortPath}) => {
             }
         }}>
             {isAdaptiveMenuOpen
-                ? <div className={styles.blackout} onClick={() => setIsAdaptiveMenuOpen(false)}></div>
+                ? <div className={styles.blackout} onClick={() => {
+                    setIsAdaptiveMenuOpen(false)
+                }}></div>
                 : null
             }
             <div className={styles.filterBlock}>
-
                 <DarkBtnWithImg img={filterImg}
                                 widthImg={20}
-                                onClick={() => setIsAdaptiveMenuOpen(true)}
+                                onClick={() => {
+                                    setIsAdaptiveMenuOpen(true);
+                                    document.body.style.overflowY = 'hidden';
+                                    document.documentElement.style.overflowY = 'hidden';
+                                }}
                 >
                     Filter ({amountFilters})
                 </DarkBtnWithImg>
                 <FiltrationDoubleTitleList title={'Sort by'} options={sortOptions} sortPath={sortPath} setSort={setSort}/>
                 <AdaptiveFiltrationHeader search={search}
-                                          nameRef={nameRef} isOpen={isAdaptiveMenuOpen}
-                                          surnameRef={surnameRef}
-                />
+                                          isOpen={isAdaptiveMenuOpen}
+                >
+                    <MainInput bgColor={'#161b22'} color={'#c9d1d9'}
+                               height={65} ref={nameRef} width={'100%'}
+                    >
+                        Name
+                    </MainInput>
+                    <MainInput bgColor={'#161b22'} color={'#c9d1d9'}
+                               height={65} ref={surnameRef} width={'100%'}
+                    >
+                        Surname
+                    </MainInput>
+                </AdaptiveFiltrationHeader>
             </div>
             <div className={`${styles.clearFilterBlock} ${isLoading ? styles.isLoading : ''}`}>
                 <DarkBtnWithImg img={cancelImg} widthImg={20} onClick={clearFiltersClick}>Clear filters</DarkBtnWithImg>

@@ -3,13 +3,13 @@ import styles from './Footer.module.scss';
 import {MainLogo} from "@/shared/ui/Logos/api/Logos";
 import Image from "next/image";
 import Blogs from "@/app/Static Data/Blogs/Blogs";
-import gps from '../../../public/media/images/gps.png';
-import phone from '../../../public/media/images/phone.png';
-import mail from '../../../public/media/images/mail.png';
-import bg from '../../../public/media/images/footerBg.png';
+import gps from '@assets/gps.png';
+import phone from '@assets/phone.png';
+import mail from '@assets/mail.png';
+import bg from '@assets/footerBg.png';
 import {TitleWithImage} from "@/shared/ui/Titles/api/Titles";
 import {TextList} from "@/widgets/api/Widgets";
-import muhamed from '../../../public/media/images/muhamed.jpg';
+import muhamed from '@assets/muhamed.jpg';
 import {SocNetsLinks} from "@/shared/ui/Links/api/Links";
 const Footer = () => {
     return (
@@ -17,7 +17,9 @@ const Footer = () => {
             <div className={styles.footer__inner}>
                 <div className={styles.footer__innerItem}>
                     <MainLogo/>
-                    <p>Sportamin is for build and fitness body sed do eiusmod, adipisicing elit</p>
+                    <p>Sportamin is for build and fitness body
+                        sed do eiusmod, adipisicing elit
+                    </p>
                     <div className={styles.footer__listItem}>
                         <Image src={gps} alt={''} width={20}/>
                         <p>Lincoln Park Chicago, Illinois</p>
@@ -35,9 +37,12 @@ const Footer = () => {
                     </div>
                 </div>
                 <div className={styles.footer__innerItem}>
-                    <TitleWithImage image={false} color={'#D4000D'}
-                        fontSize={26}
-                    >Recent blog posts</TitleWithImage>
+                    <TitleWithImage image={false}
+                                    color={'#D4000D'}
+                                    fontSize={26}
+                    >
+                        Recent blog posts
+                    </TitleWithImage>
                     {Blogs.slice(0, 3).map(item =>
                         <TextList key={item.id} date={item.date}
                                   title={item.title}

@@ -1,6 +1,6 @@
 import React, {useEffect, useRef} from 'react';
 import styles from './styles/SignUpPage.module.scss';
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {registration} from "@/app/lib/controllers/authController";
 import {MainLogoInversion} from "@/shared/ui/Logos/api/Logos";
 import {OAuthLink, RBButton} from "@/shared/ui/Buttons/api/Buttons";
@@ -10,12 +10,14 @@ import {HorizontalSeparator} from "@/shared/ui/api/separators";
 import Link from "next/link";
 import {MainInput} from "@/shared/ui/Inputs/api/Inputs";
 import {useRouter} from "next/router";
-import avatar from "@/shared/ui/Logos/Avatar/Avatar";
+import {setIsSigningOut} from "@/app/lib/store/actions/authActions";
+
 const SignUpPage = ({credentials}) => {
     const emailRef = useRef();
     const passRef = useRef();
     const dispatch = useDispatch();
     const router = useRouter();
+    const auth = useSelector(state => state.authReducer);
     const submitRegistration = async () => {
         let email = emailRef.current.value;
         let password = passRef.current.value;
@@ -35,7 +37,11 @@ const SignUpPage = ({credentials}) => {
             })
         }
     }, [credentials])
-
+    useEffect(() => {
+        if (auth.isSigningOut) {
+            dispatch(setIsSigningOut(false));
+        }
+    }, [auth.isSigningOut])
     return (
         <main className={styles.main}>
             <div className={styles.formLogin}>

@@ -46,7 +46,7 @@
         font-size: 24px;
         margin: 20px 0px 10px;
         position: relative;
-
+        text-align: center;
     }
     h2 {
         font-size: 18px;
@@ -113,5 +113,31 @@
     & button:nth-child(2) p {
         color: #c51040;
         font-weight: bold;
+    }
+}
+@media screen and (max-width: 1024px) {
+    .inner {
+        padding: 20px 0px 30px;
+    }
+}
+@media screen and (max-width: 768px) {
+    .topInner {
+        display: block;
+        @include space-x(0);
+        @include space-y(5);
+    }
+    .bottomInner {
+        display: block;
+        @include space-x(0);
+        @include space-y(5);
+    }
+    .container {
+        width: 100%;
+    }
+}
+@media screen and (max-width: 520px) {
+    .infoItem {
+        display: block;
+        @include space-y(2);
     }
 }

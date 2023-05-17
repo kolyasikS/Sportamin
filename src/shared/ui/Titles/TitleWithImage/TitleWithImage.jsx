@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from "next/image";
 import styles from './TitleWithImage.module.scss';
-import dumbbell from "../../../../../public/media/images/dumbbell.png";
+import dumbbell from "@assets/dumbbell.png";
 
 const TitleWithImage = ({children, color, fontSize, image = true}) => {
     return (

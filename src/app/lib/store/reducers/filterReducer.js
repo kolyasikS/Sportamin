@@ -4,7 +4,7 @@ import {
     addLanguage,
     clearFilters,
     removeFilter,
-    removeLanguage, setAmountPages, setIsFetching, setPage, setRange,
+    removeLanguage, setAmountPages, setPage, setRange,
     setRating, setStatus
 } from "@/app/lib/store/actions/filterActions";
 import {itemsPerPage, statuses} from "@/app/lib/store/constants/generalConstants";

@@ -3,14 +3,13 @@ import {MainInput} from "@/shared/ui/Inputs/api/Inputs";
 import {DarkBtnWithImg} from "@/shared/ui/Buttons/api/Buttons";
 import styles from './styles/FiltrationCoursesHeader.module.scss';
 import filterImg from '@assets/filter.png';
-import searchImg from '@assets/searchImage.png';
 import cancelImg from '@assets/cancelImg.png';
 import {coursesSortOptions} from "@/app/Static Data/Filtration/Sorts";
 import {useDispatch, useSelector} from "react-redux";
-import {clearFilters, setRating, setStatus} from "@/app/lib/store/actions/filterActions";
+import {clearFilters, setRating} from "@/app/lib/store/actions/filterActions";
 import {FiltrationDoubleTitleList} from "@/features/api/filtration";
-import {statuses} from "@/app/lib/store/constants/courseConstants";
 import {AdaptiveFiltrationHeader} from "@/widgets/api/Searching";
+
 const FiltrationCoursesHeader = ({setQuery, setSort}) => {
     const titleRef = useRef();
     const [isLoading, amountFilters] = useSelector(state =>

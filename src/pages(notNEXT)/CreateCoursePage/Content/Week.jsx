@@ -1,13 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import styles from '../styles/Week.module.scss';
 import generalStyles from '../styles/general.module.scss';
-import ProvidedItems from "@/pages(notNEXT)/CreateCoursePage/ProvidedItems";
 import {v4} from "uuid";
 import Day from "@/pages(notNEXT)/CreateCoursePage/Content/Day";
 import {ArrowY} from "@/shared/ui/api/icons";
 import NewItem from "@/pages(notNEXT)/CreateCoursePage/Content/NewItem";
 import Image from "next/image";
 import cancel from '@assets/cancel2.png'
+
 const Week = ({number, exercisesState, days,
                   setExercisesState, removeWeek, id}) => {
     const [daysState, setDaysState] = useState([{id: v4(), week: number}]);

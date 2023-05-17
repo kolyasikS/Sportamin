@@ -48,3 +48,19 @@
     letter-spacing: 0.6px;
     font-family: Raleway;
 }
+
+@media screen and (max-width: 768px) {
+    .courseInner {
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+}
+@media screen and (max-width: 768px) {
+    .providedItem {
+        margin-right: 20px;
+        width: 100%;
+    }
+    .providedItemsList {
+        width: 100%;
+    }
+}

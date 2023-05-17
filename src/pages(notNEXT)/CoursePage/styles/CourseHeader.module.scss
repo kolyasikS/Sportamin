@@ -60,3 +60,22 @@
     @include space-x(2);
     margin-top: 10px;
 }
+
+@media screen and (max-width: 768px) {
+    .header {
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+        @include space-y(7);
+        @include space-x(0);
+    }
+    .headerInfo {
+        width: 100%;
+    }
+}

@@ -1,9 +1,7 @@
 import userService from "@/app/server/services/user-service";
 import dbConnect from "@/app/server/DB/dbConnect";
 import Cookies from 'cookies';
-import withApiErrorMiddleware from "@/app/server/middlewares/apiErrorMiddleware";
 import {validateRegistration} from "@/app/server/validations/registrationValidation";
-import ApiError from "@/app/server/exceptions/api-error";
 import apiErrorMiddleware from "@/app/server/middlewares/apiErrorMiddleware";
 async function handler(req, res) {
     const { method } = req;

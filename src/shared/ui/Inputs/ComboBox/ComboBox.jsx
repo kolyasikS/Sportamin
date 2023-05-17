@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import styles from './ComboBox.module.scss';
 const ComboBox = ({id, children, isActive, toggleActive}) => {
     return (

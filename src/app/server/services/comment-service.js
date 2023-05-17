@@ -1,4 +1,3 @@
-import {Schema} from "mongoose";
 import CommentModel from "@/app/server/models/comment-model";
 import {ObjectId} from "mongodb";
 

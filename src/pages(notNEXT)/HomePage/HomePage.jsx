@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import Introduction from "@/pages(notNEXT)/HomePage/Introduction/Introduction";
 import AboutUs from "@/pages(notNEXT)/HomePage/AboutUs/AboutUs";
 import Categories from "@/pages(notNEXT)/HomePage/Categories/Categories";

@@ -10,7 +10,6 @@
     position: relative;
 
 }
-
 .section {
     @include flexCenterColumn();
     background-color: #161b22;
@@ -31,7 +30,6 @@
     @include flexCenter();
     @include space-x(3);
 }
-
 .navButtons {
     margin-top: 20px;
     display: flex;
@@ -41,7 +39,7 @@
 .progress {
     position: absolute;
     bottom: 2rem;
-    left: 47%;
+    left: calc(50% - 15px);
     font-size: 20px;
     font-family: Georgia;
 }
@@ -54,4 +52,24 @@
 }
 .moveStep {
     transform: translateX(calc(-100% - 2.5rem));
+}
+@media screen and (max-width: 1280px) {
+    .section {
+        width: 55%;
+    }
+}
+@media screen and (max-width: 1024px) {
+    .section {
+        width: 60%;
+    }
+}
+@media screen and (max-width: 768px) {
+    .section {
+        width: 75%;
+    }
+}
+@media screen and (max-width: 640px) {
+    .section {
+        width: 85%;
+    }
 }

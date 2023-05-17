@@ -1,6 +1,6 @@
 import React from 'react';
 import {LoginPage} from "@/pages(notNEXT)/api/Components";
-import {getProviders, signIn, getCsrfToken, getSession, signOut} from "next-auth/react";
+import {getProviders, signIn, getCsrfToken, getSession} from "next-auth/react";
 import {login} from "@/app/lib/controllers/authController";
 
 const Login = ({providers, csrfToken, session, error}) => {

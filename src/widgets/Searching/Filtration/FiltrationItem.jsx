@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import styles from './styles/FiltrationItem.module.scss';
 import FiltrationItemProcess from "@/pages(notNEXT)/TrainersPage/FiltrationItemProcess";
+
 const FiltrationItem = ({title, items, multiple, isRated, fullWidth,
                         setActive, toggleActive, range}) => {
     const [isInnerShowed, setIsInnerShowed] = useState(false || range);

@@ -1,9 +1,6 @@
-import React, {useState} from 'react';
+import React from 'react';
 import styles from '../styles/Exercise.module.scss';
-import useDynamicInput from "@/app/lib/features/hooks/useDynamicInput";
-import {MainInput} from "@/shared/ui/Inputs/api/Inputs";
 import Image from "next/image";
-import apply from "@assets/apply.png";
 import editImg from "@assets/editItem.png";
 import cancel from "@assets/cancel.png";
 const Exercise = ({number, title, remove, edit}) => {

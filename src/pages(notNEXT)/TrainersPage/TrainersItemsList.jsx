@@ -1,4 +1,4 @@
-import React, {useMemo} from 'react';
+import React from 'react';
 import {getImageFromBase64} from "@/app/lib/features/image";
 import {SearchedTrainer} from "@/shared/ui/SearchItems/api/searchedItems";
 import styles from './styles/TrainersItemsList.module.scss';

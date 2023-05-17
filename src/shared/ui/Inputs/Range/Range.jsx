@@ -1,4 +1,4 @@
-import React, {useEffect, useMemo, useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import styles from './Range.module.scss';
 import {MainInput} from "@/shared/ui/Inputs/api/Inputs";
 
@@ -13,13 +13,7 @@ const Range = ({minValue, maxValue, setRange, isFetching}) => {
     const emptyLineRef = useRef();
     const [currentMinValue, setMinValue] = useState(minValue);
     const [currentMaxValue, setMaxValue] = useState(maxValue);
-/*    const distance = useMemo(() => {
-        if (!leftBtn.current || !rightBtn.current) {
-            return null;
-        }
 
-        return getDistance();
-    }, [leftBtn.current?.style.left, rightBtn.current?.style.left]);*/
     useEffect(() => {
         pixelsInOnePercent.current = emptyLineRef.current.getBoundingClientRect().width / 100;
     }, []);
@@ -61,15 +55,7 @@ const Range = ({minValue, maxValue, setRange, isFetching}) => {
         setMinValue(Math.round(range.min));
         setMaxValue(Math.round(range.max));
     }
-/*    function getDistance() {
-        let {left, width} = leftBtn.current.getBoundingClientRect();
-        let leftX = left + width / 2;
 
-        let rightBtnPos = rightBtn.current.getBoundingClientRect();
-        let rightX = rightBtnPos.left + rightBtnPos.width / 2;
-
-        return rightX - leftX;
-    }*/
     const mouseDown = (eventBtn) => {
         if (!leftBtn.current || !rightBtn.current
         || !leftBtnX || !rightBtnX) {

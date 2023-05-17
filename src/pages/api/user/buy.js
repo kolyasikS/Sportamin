@@ -1,13 +1,7 @@
 import userService from "@/app/server/services/user-service";
 import dbConnect from "@/app/server/DB/dbConnect";
-import { RequestCookies, ResponseCookies } from '@edge-runtime/cookies'
 import withApiErrorMiddleware from "@/app/server/middlewares/apiErrorMiddleware";
-import {validateRegistration} from "@/app/server/validations/registrationValidation";
-import ApiError from "@/app/server/exceptions/api-error";
-import Cookies from "cookies";
-import stackMiddlewares from "@/app/server/middlewares/stackMiddlewares";
 import withAuthMiddleware from "@/app/server/middlewares/authMiddleware";
-import {func} from "joi";
 
 async function handler(req, res) {
     const { method } = req;

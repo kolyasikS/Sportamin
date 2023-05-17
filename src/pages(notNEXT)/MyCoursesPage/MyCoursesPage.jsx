@@ -2,13 +2,12 @@ import React, {useState} from 'react';
 import Link from "next/link";
 import styles from './styles/MyCoursesPage.module.scss';
 import SearchedCourse from "@/shared/ui/SearchItems/SearchedCourse/SearchedCourse";
-import {useSelector} from "react-redux";
 import Image from "next/image";
 import editImg from "@assets/editItem.png";
 import cancel from "@assets/cancel.png";
-import {useRouter} from "next/router";
 import {deleteCourse} from "@/app/lib/controllers/courseController";
 import {WarningModalW} from "@/widgets/api/Modals";
+import {DarkBtnWithImg} from "@/shared/ui/Buttons/api/Buttons";
 
 const MyCoursesPage = ({courses, trainer, trainerID}) => {
     const [coursesState, setCoursesState] = useState(courses);
@@ -40,6 +39,9 @@ const MyCoursesPage = ({courses, trainer, trainerID}) => {
     return (
         <main className={styles.main}>
             <div className={styles.inner}>
+                <Link href={`/profile/${trainerID}/courses/create`}>
+                    <DarkBtnWithImg width={350}>Create a new</DarkBtnWithImg>
+                </Link>
                 <ul className={styles.list}>
                     {coursesState.map(item =>
                         <SearchedCourse key={item._id}

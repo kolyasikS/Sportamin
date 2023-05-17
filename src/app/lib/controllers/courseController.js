@@ -1,12 +1,6 @@
-import AuthService from "@/app/lib/services/AuthService";
-import {setAuth, setUser} from "@/app/lib/store/actions/authActions";
-import axios from "axios";
-import {API_URL} from "@/app/lib/http";
 import {setStatus} from "@/app/lib/store/actions/courseActions";
-import {statuses} from "@/app/lib/store/constants/courseConstants";
+import {statuses} from "@/app/lib/store/constants/generalConstants";
 import CourseService from "@/app/lib/services/CourseService";
-import UserService from "@/app/lib/services/UserService";
-import {checkAuth} from "@/app/lib/controllers/authController";
 
 export async function createCourse(dispatch, course, trainerID) {
     try {

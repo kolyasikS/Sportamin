@@ -10,9 +10,9 @@ import FirstStepForm from "@/pages(notNEXT)/CreateCoursePage/FirstStepForm";
 import SecondStepForm from "@/pages(notNEXT)/CreateCoursePage/SecondStepForm";
 import {scrollToUp} from "@/app/lib/features/animations/scroll";
 import BackgroundShadow from "@/app/lib/features/contexts/BGShadowContext";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {setStatus} from "@/app/lib/store/actions/courseActions";
-import {statuses} from "@/app/lib/store/constants/courseConstants";
+import {statuses} from "@/app/lib/store/constants/generalConstants";
 
 const CreateCoursePage = ({course}) => {
     const [step, setStep] = useState(1);
@@ -64,10 +64,10 @@ const CreateCoursePage = ({course}) => {
                             {step === 2
                             ? <>
                                 <DarkBtnWithImg height={40} img={createCourseImage}
-                                                widthImg={20} onClick={createCourse}
+                                                widthImg={20} onClick={createCourse} width={140}
                                 >Create</DarkBtnWithImg>
                                 <DarkBtnWithImg height={40} img={returnImg}
-                                                widthImg={15} onClick={prevStep}
+                                                widthImg={15} onClick={prevStep} width={140}
                                 >Back</DarkBtnWithImg>
                             </>
                             : <DarkBtnWithImg height={40} onClick={nextStep}>Continue</DarkBtnWithImg>

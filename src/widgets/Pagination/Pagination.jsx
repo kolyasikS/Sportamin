@@ -1,4 +1,4 @@
-import React, {useMemo, useState} from 'react';
+import React, {useMemo} from 'react';
 import Page from "@/widgets/Pagination/Page";
 import styles from './Pagination.module.scss';
 

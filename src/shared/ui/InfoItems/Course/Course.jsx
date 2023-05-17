@@ -1,9 +1,10 @@
 import React from 'react';
 import Image from "next/image";
 import styles from './Course.module.scss';
-import checkMark from '../../../../../public/media/images/check-mark.png';
-import cross from '../../../../../public/media/images/close.png';
+import checkMark from '@assets/check-mark.png';
+import cross from '@assets/close.png';
 import {RBButton} from "@/shared/ui/Buttons/api/Buttons";
+
 const Course = ({title, price, facilities}) => {
     return (
         <div className={styles.course}>

@@ -1,11 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import styles from './styles/ProvidedItems.module.scss';
-import Image from "next/image";
 import NewProvideItem from "@/pages(notNEXT)/CreateCoursePage/NewProvideItem";
 import ProvideItem from "@/pages(notNEXT)/CreateCoursePage/ProvideItem";
 import {v4} from "uuid";
-import {useDispatch, useSelector} from "react-redux";
-import {statuses} from "@/app/lib/store/constants/courseConstants";
+import {useSelector} from "react-redux";
+import {statuses} from "@/app/lib/store/constants/generalConstants";
 const ProvidedItems = ({title, indent, getItems, initItems}) => {
     const [items, setItems] = useState([]);
 

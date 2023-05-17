@@ -1,9 +1,5 @@
-
 import CourseModel from "@/app/server/models/course-model";
-import UserService from "@/app/server/services/user-service";
-import {Schema} from "mongoose";
 import {ObjectId} from "mongodb";
-import {updateCourse} from "@/app/lib/controllers/courseController";
 class CourseService {
     async create({title, subtitle, language,
                  price, providedItems, content,

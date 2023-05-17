@@ -3,7 +3,7 @@
 
 .comment {
     color: #f1f1f1;
-    width: 100%;
+    max-width: 100%;
     &:hover {
         .container button {
             opacity: 1;
@@ -37,6 +37,7 @@
     font-family: Roboto;
     letter-spacing: 0.05px;
     line-height: 1.2;
+    width: 100%;
     a {
         margin: 0 10px;
         color: #3ea6ff;

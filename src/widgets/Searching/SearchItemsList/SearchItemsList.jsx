@@ -1,10 +1,9 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import styles from "@/pages(notNEXT)/TrainersPage/styles/TrainersItemsList.module.scss";
 import {Loading} from "@/shared/ui/Logos/api/Logos";
 import {Pagination} from "@/widgets/api/Widgets";
 import {setPage} from "@/app/lib/store/actions/filterActions";
-import {getCourses} from "@/app/lib/controllers/courseController";
 
 const SearchItemsList = ({isEmpty, searchedItems, renderSearchedItem}) => {
     const isLoading = useSelector(state => state.sessionReducer.isLoading);

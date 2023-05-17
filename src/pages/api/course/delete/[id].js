@@ -1,5 +1,4 @@
 import dbConnect from "@/app/server/DB/dbConnect";
-import apiErrorMiddleware from "@/app/server/middlewares/apiErrorMiddleware";
 import courseService from "@/app/server/services/course-service";
 import withAuthMiddleware from "@/app/server/middlewares/authMiddleware";
 import withApiErrorMiddleware from "@/app/server/middlewares/apiErrorMiddleware";

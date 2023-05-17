@@ -1,5 +1,6 @@
 import React, {forwardRef} from 'react';
 import styles from './MainInput.module.scss';
+
 const MainInput = forwardRef(({children, id, width = 250, height = 50,
                                   type = 'text', value, onChange, placeholder, bgColor,
                                   color, onBlur, paddingY, paddingX, defaultValue}, ref) => {

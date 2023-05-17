@@ -7,8 +7,6 @@ import UserDto from "@/app/server/dtos/user-dto";
 import ApiError from "@/app/server/exceptions/api-error";
 import {ObjectId} from "mongodb";
 import ValidError from "@/app/server/exceptions/valid-error";
-import {getBase64FromImage} from "@/app/lib/features/image";
-import CourseModel from "@/app/server/models/course-model";
 
 class UserService {
 

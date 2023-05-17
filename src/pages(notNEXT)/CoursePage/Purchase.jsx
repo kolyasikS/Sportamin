@@ -4,11 +4,10 @@ import verify from '@assets/course/verify.png';
 import styles from './styles/Purchase.module.scss';
 import {DarkBtnWithImg} from "@/shared/ui/Buttons/api/Buttons";
 import {WarningModalW} from "@/widgets/api/Modals";
-import RatingBar from "@/shared/ui/Rating/RatingBar/RatingBar";
 import {RatingFeature} from "@/features/api/rating";
-import {rateCourse, updateCourse} from "@/app/lib/controllers/courseController";
+import {rateCourse} from "@/app/lib/controllers/courseController";
 import {useDispatch, useSelector} from "react-redux";
-import {updateBoughtCourseStatus, updateUser} from "@/app/lib/controllers/userController";
+import {updateBoughtCourseStatus} from "@/app/lib/controllers/userController";
 
 const Purchase = ({courseId, rating, isDone, isRated}) => {
     const [isDoneState, setIsDone] = useState(isDone);

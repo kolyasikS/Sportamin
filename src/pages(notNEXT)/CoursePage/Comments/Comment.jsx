@@ -4,7 +4,6 @@ import styles from '../styles/Comment.module.scss';
 import {getImageFromBase64} from "@/app/lib/features/image";
 import {getCurrentTimeFromStamp, getDateDifference} from "@/app/lib/features/date";
 import {deleteComment, rateComment} from "@/app/lib/controllers/commentController";
-import {useSelector} from "react-redux";
 import WritingComment from "@/pages(notNEXT)/CoursePage/Comments/WritingComment";
 import Link from "next/link";
 import {MenuButton} from "@/shared/ui/Buttons/api/Buttons";

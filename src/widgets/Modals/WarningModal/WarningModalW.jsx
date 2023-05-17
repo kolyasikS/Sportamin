@@ -1,6 +1,5 @@
 import React from 'react';
 import * as AlertDialog from '@radix-ui/react-alert-dialog';
-import {DarkBtnWithImg} from "@/shared/ui/Buttons/api/Buttons";
 import styles from './WarningModalW.module.scss';
 
 const WarningModalW = ({open, title, children, applyTitle,

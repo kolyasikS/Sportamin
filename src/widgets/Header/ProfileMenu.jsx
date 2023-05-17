@@ -1,6 +1,5 @@
 import React from 'react';
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
-import TestImage from "@assets/muhamed.jpg";
 import {Avatar} from "@/shared/ui/Logos/api/Logos";
 import styles from './styles/ProfileMenu.module.scss';
 import Link from "next/link";
@@ -8,7 +7,9 @@ import {logout} from "@/app/lib/controllers/authController";
 import {useDispatch, useSelector} from "react-redux";
 import {signOut, useSession} from "next-auth/react";
 import {useRouter} from "next/router";
-const ProfileMenu = () => {
+import {getImageFromBase64} from "@/app/lib/features/image";
+
+const ProfileMenu = ({avatar}) => {
     const dispatch = useDispatch();
     const router = useRouter();
     const userID = useSelector(state => state.authReducer.user.id);
@@ -24,7 +25,7 @@ const ProfileMenu = () => {
     return (
         <DropdownMenu.Root>
             <DropdownMenu.Trigger className={styles.menuBtn}>
-                <Avatar src={TestImage}/>
+                <Avatar src={getImageFromBase64(avatar)}/>
             </DropdownMenu.Trigger>
             <DropdownMenu.Portal>
                 <DropdownMenu.Content className={styles.content} sideOffset={5}>

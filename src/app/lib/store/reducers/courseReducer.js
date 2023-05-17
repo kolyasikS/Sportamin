@@ -1,5 +1,4 @@
 import {createReducer} from "@reduxjs/toolkit";
-import {setAuth, setUser} from "@/app/lib/store/actions/authActions";
 import {statuses} from "@/app/lib/store/constants/generalConstants";
 import {
     setDays, setExercises,

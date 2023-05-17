@@ -1,4 +1,4 @@
-import React, {memo, useEffect, useRef, useState} from 'react';
+import React, {memo, useRef, useState} from 'react';
 import styles from '../styles/Comments.module.scss';
 import Image from "next/image";
 import commentImage from '@assets/course/comments.png';
@@ -101,7 +101,7 @@ const Comments = memo(({avatar, postId}) => {
                             isRepliedComment={!isGlobalCommentWriting}
                             postId={postId} sendClbk={createComment}
                 />
-                <ul>
+                <ul className={styles.blockList}>
                     {commentBlocks.map(block =>
                         <CommentBlock key={v4()} deleteComment={deleteCommentClick}
                                       userId={userId} postId={postId}

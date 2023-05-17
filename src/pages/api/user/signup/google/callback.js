@@ -1,7 +1,6 @@
 import dbConnect from "@/app/server/DB/dbConnect";
 import url from 'url';
 import apiErrorMiddleware from "@/app/server/middlewares/apiErrorMiddleware";
-import UserService from "@/app/server/services/user-service";
 import {oauth2Client} from "@/app/server/authAPIs/googleAPI";
 import Cookies from "cookies";
 async function handler(req, res) {

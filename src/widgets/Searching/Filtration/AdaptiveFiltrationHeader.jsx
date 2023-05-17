@@ -1,5 +1,4 @@
-import React, {useLayoutEffect, useState} from 'react';
-import {MainInput} from "@/shared/ui/Inputs/api/Inputs";
+import React from 'react';
 import {DarkBtnWithImg} from "@/shared/ui/Buttons/api/Buttons";
 import searchImg from "@assets/searchImage.png";
 import useWindowSize from "@/app/lib/features/hooks/useWindowSize";

@@ -1,6 +1,5 @@
 import Head from 'next/head'
 import {HomePage} from "@/pages(notNEXT)/api/Components";
-import Test from "@/pages(notNEXT)/TEST";
 import {getCourses} from "@/app/lib/controllers/courseController";
 export default function Home({courses}) {
   return (

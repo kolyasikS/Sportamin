@@ -1,15 +1,15 @@
-import React, {useDeferredValue, useEffect, useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {MainInput} from "@/shared/ui/Inputs/api/Inputs";
 import {DarkBtnWithImg} from "@/shared/ui/Buttons/api/Buttons";
 import styles from './styles/FiltrationHeader.module.scss';
 import filterImg from '@assets/filter.png';
-import searchImg from '@assets/searchImage.png';
 import cancelImg from '@assets/cancelImg.png';
 import {sortOptions} from "@/app/Static Data/Filtration/Sorts";
 import {useDispatch, useSelector} from "react-redux";
 import {clearFilters, setRating} from "@/app/lib/store/actions/filterActions";
 import {FiltrationDoubleTitleList} from "@/features/api/filtration";
 import {AdaptiveFiltrationHeader} from "@/widgets/api/Searching";
+
 const FiltrationHeader = ({setQuery, setSort, sortPath}) => {
     const nameRef = useRef();
     const surnameRef = useRef();

@@ -1,12 +1,8 @@
-import React, {useEffect} from 'react';
-import {useRouter} from "next/router";
+import React from 'react';
 import CoursePage from "@/pages(notNEXT)/CoursePage/CoursePage";
 import {getCourses} from "@/app/lib/controllers/courseController";
-import {getTrainers, getUsers} from "@/app/lib/controllers/userController";
+import {getUsers} from "@/app/lib/controllers/userController";
 import Head from "next/head";
-import {useDispatch, useSelector} from "react-redux";
-import {statuses} from "@/app/lib/store/constants/generalConstants";
-import {checkAuth} from "@/app/lib/controllers/authController";
 
 const Course = ({course, trainer}) => {
     return (

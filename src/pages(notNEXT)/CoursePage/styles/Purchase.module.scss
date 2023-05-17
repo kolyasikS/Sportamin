@@ -29,3 +29,13 @@
         color: #bd0d36;
     }
 }
+
+@media screen and (max-width: 640px) {
+    .purchase {
+        width: 100%;
+        margin-left: 0;
+    }
+    .purchaseInner {
+        justify-content: flex-start;
+    }
+}

@@ -48,3 +48,9 @@
     font-size: 17px;
     line-height: 1.25;
 }
+@media screen and (max-width: 640px) {
+    .info {
+        max-width: 100%;
+        padding: 20px 15%;
+    }
+}

@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {setIsLoading} from "@/app/lib/store/actions/sessionActions";
 import styles from "@/pages(notNEXT)/TrainersPage/styles/TrainersPage.module.scss";
 import {FiltrationInner, SearchItemsListSection} from "@/widgets/api/Widgets";
-import {setAmountPages, setPage, setStatus} from "@/app/lib/store/actions/filterActions";
+import {setAmountPages, setStatus} from "@/app/lib/store/actions/filterActions";
 import {itemsPerPage, statuses} from "@/app/lib/store/constants/generalConstants";
 import useWindowSize from "@/app/lib/features/hooks/useWindowSize";
 

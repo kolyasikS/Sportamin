@@ -1,4 +1,4 @@
-import React, {useEffect, useMemo, useState} from 'react';
+import React, {useMemo} from 'react';
 import {OutlineRatingStar, SolidRatingStar} from "@/shared/ui/Rating/api/rating";
 import {v4} from "uuid";
 

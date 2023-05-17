@@ -1,10 +1,5 @@
 import NextAuth from "next-auth";
 import GoogleProvider from 'next-auth/providers/google';
-import $api from "@/app/lib/http";
-import jwt from "jsonwebtoken";
-import TokenService from "@/app/server/services/token-service";
-import userService from "@/app/server/services/user-service";
-import { setCookie } from 'next-cookies';
 import dbConnect from "@/app/server/DB/dbConnect";
 import UserModel from "@/app/server/models/user-model";
 import ApiError from "@/app/server/exceptions/api-error";

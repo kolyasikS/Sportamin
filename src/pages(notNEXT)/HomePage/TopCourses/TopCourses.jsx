@@ -1,9 +1,8 @@
 import React from 'react';
 import {TitleWithImage} from "@/shared/ui/Titles/api/Titles";
 import styles from '../styles/TopCourses.module.scss';
-import TopCoursesItems from "@/app/Static Data/TopCourses(temp)/TopCoursesItems";
-import {Course} from "@/shared/ui/InfoItems/api/Items";
 import SearchedCourse from "@/shared/ui/SearchItems/SearchedCourse/SearchedCourse";
+
 const TopCourses = ({courses}) => {
     return (
         <section className={styles.topCoursesSection}>

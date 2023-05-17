@@ -1,4 +1,3 @@
-import userService from "@/app/server/services/user-service";
 import dbConnect from "@/app/server/DB/dbConnect";
 import apiErrorMiddleware from "@/app/server/middlewares/apiErrorMiddleware";
 import courseService from "@/app/server/services/course-service";

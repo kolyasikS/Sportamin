@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useRef, useState} from 'react';
 import {getComments} from "@/app/lib/controllers/commentController";
 import styles from '../styles/CommentBlockItem.module.scss';
 import Comment from "@/pages(notNEXT)/CoursePage/Comments/Comment";

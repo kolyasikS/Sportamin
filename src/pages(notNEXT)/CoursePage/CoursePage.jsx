@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import CourseHeader from "@/pages(notNEXT)/CoursePage/CourseHeader";
 import CourseInner from "@/pages(notNEXT)/CoursePage/CourseInner";
-import {useDispatch, useSelector} from "react-redux";
-import {setIsLoading} from "@/app/lib/store/actions/sessionActions";
+import {useSelector} from "react-redux";
 import Comments from "@/pages(notNEXT)/CoursePage/Comments/Comments";
+import styles from './styles/CoursePage.module.scss';
 import {getImageFromBase64} from "@/app/lib/features/image";
 
 const CoursePage = ({title, subtitle, price,
@@ -36,8 +36,10 @@ const CoursePage = ({title, subtitle, price,
                              description={description} trainer={trainer}
                 />
             </div>
-            {avatar && <Comments avatar={`data:image/jpg;base64,${getImageFromBase64(avatar)}`}
-                      postId={_id}/>}
+            <div className={styles.comments}>
+                {avatar && <Comments avatar={`data:image/jpg;base64,${getImageFromBase64(avatar)}`}
+                          postId={_id}/>}
+            </div>
         </main>
     );
 };

@@ -1,7 +1,6 @@
-import React, {useRef, useState} from 'react';
+import React from 'react';
 import styles from './RadioBox.module.scss';
 const RadioBox = ({id, children, isActive, setActive}) => {
-    //const ref = useRef();
     return (
         <label className={styles.label} htmlFor={id} onClick={(e) => {
             e.preventDefault();

@@ -1,9 +1,6 @@
 import React from 'react';
-import {useRouter} from "next/router";
-import Image from "next/image";
-import {AnimBorderTranspBgButton} from "@/shared/ui/Buttons/api/Buttons";
 import {TrainerPrivatePage} from "@/pages(notNEXT)/api/Components";
-import {getTrainer, getTrainers} from "@/app/lib/controllers/userController";
+import {getTrainer} from "@/app/lib/controllers/userController";
 
 const Trainer = ({trainer}) => {
     return (
@@ -16,7 +13,7 @@ export async function getServerSideProps(context) {
     return {
         props: {
             trainer
-        }, // will be passed to the page component as props
+        },
     }
 }
 export default Trainer;

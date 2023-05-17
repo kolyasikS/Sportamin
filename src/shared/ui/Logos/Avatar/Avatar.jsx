@@ -3,7 +3,11 @@ import Image from "next/image";
 import styles from '../Avatar/Avatar.module.scss';
 const Avatar = ({src, onClick}) => {
     return (
-        <Image src={src} alt={''} className={styles.avatar} onClick={onClick}/>
+        <Image src={`data:image/jpg;base64,${src}`} alt={''}
+               className={styles.avatar}
+               onClick={onClick}
+               width={30}
+               height={30}/>
     );
 };
 

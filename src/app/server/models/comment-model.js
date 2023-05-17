@@ -1,5 +1,4 @@
 import {Schema, model, models} from 'mongoose';
-import {number} from "joi";
 
 const CommentSchema = new Schema({
     trainerId: {type: Schema.Types.ObjectId, ref: 'User'},

@@ -1,9 +1,7 @@
 import React, {useRef, useState} from 'react';
 import styles from '../styles/EditNameModal.module.scss';
-import Image from "next/image";
-import AddImage from "@assets/profile/add.png";
 import {MainInput} from "@/shared/ui/Inputs/api/Inputs";
-import DialogModal from "@/widgets/Modals/DialogModal/DialogModal";
+import {DialogModalW} from "@/widgets/api/Modals";
 
 const EditNameModal = ({title, setTitle, children}) => {
     const titleRef = useRef(null);
@@ -13,7 +11,7 @@ const EditNameModal = ({title, setTitle, children}) => {
         setTitle(titleRef.current?.value);
     }
     return (
-        <DialogModal isOpen={isOpen} setIsOpen={setIsOpen}
+        <DialogModalW isOpen={isOpen} setIsOpen={setIsOpen}
                      description={`You can change your title as trainer here`}
                      title={`Edit title`}
                      trigger={children} close={close} triggerStyle={`${styles.trigger} -top-[4px]`}
@@ -24,7 +22,7 @@ const EditNameModal = ({title, setTitle, children}) => {
             >
                 Title
             </MainInput>
-        </DialogModal>
+        </DialogModalW>
     );
 };
 

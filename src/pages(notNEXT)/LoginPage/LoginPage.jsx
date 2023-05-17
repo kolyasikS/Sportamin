@@ -1,6 +1,6 @@
 import React, {useEffect, useRef, useState} from 'react';
 import styles from './styles/LoginPage.module.scss';
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {useRouter} from "next/router";
 import {login, sendActivationLink} from "@/app/lib/controllers/authController";
 import {MainLogoInversion} from "@/shared/ui/Logos/api/Logos";
@@ -11,13 +11,16 @@ import {HorizontalSeparator} from "@/shared/ui/api/separators";
 import {MainInput} from "@/shared/ui/Inputs/api/Inputs";
 import Link from "next/link";
 import {WarningModalW} from "@/widgets/api/Modals";
-import {signOut, useSession} from "next-auth/react";
+import {useSession} from "next-auth/react";
+import {setIsSigningOut} from "@/app/lib/store/actions/authActions";
+
 const LoginPage = ({providers, csrfToken, sessionFromServer, error, signIn}) => {
     const emailRef = useRef();
     const passRef = useRef();
     const dispatch = useDispatch();
     const router = useRouter();
     const [warning, setWarning] = useState(null);
+    const auth = useSelector(state => state.authReducer);
     const {data: session} = useSession();
     const submitLogin = async () => {
         let email = emailRef.current.value;
@@ -49,6 +52,11 @@ const LoginPage = ({providers, csrfToken, sessionFromServer, error, signIn}) => 
             })
         }
     }, [error]);
+    useEffect(() => {
+        if (auth.isSigningOut) {
+            dispatch(setIsSigningOut(false));
+        }
+    }, [auth.isSigningOut])
     useEffect(() => {
         if ((sessionFromServer || session) && !error) {
             let clientId;

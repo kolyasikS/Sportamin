@@ -8,6 +8,8 @@ import ApiError from "@/app/server/exceptions/api-error";
 import TokenModel from "@/app/server/models/token-model";
 import {func} from "joi";
 import {ObjectId} from "mongodb";
+import {atob} from "buffer";
+import ValidError from "@/app/server/exceptions/valid-error";
 class UserService {
     async registration(email, password) {
         const candidate = await UserModel.findOne({email});
@@ -58,20 +60,36 @@ class UserService {
         const user = await UserModel.findById(userData.id);
         return AuthData(user);
     }
-    async getTrainers(query, sort) {
-        if (query && query._id) {
-            query._id = new ObjectId(query._id);
+    async getUsers(query, sort) {
+        if (query && query.id) {
+            query._id = new ObjectId(query.id);
+            delete query.id;
         }
-        console.log(query);
-        const trainers = await UserModel.find({...query, "trainer.isTrainer": true}).sort(sort);
+        const trainers = await UserModel.find({...query}).sort(sort);
         return trainers;
     }
     async getTrainer(id) {
         const trainer = await UserModel.findOne({_id: id});
         return trainer;
     }
-    async update(email, image) {
-        await UserModel.updateOne({email}, {avatar: image});
+    async update(query, updatedUser) {
+        if (query && query.id) {
+            query._id = new ObjectId(query.id);
+            delete query.id;
+        }
+        if (updatedUser.avatar) {
+            updatedUser.avatar = Buffer.from(updatedUser.avatar, 'base64');
+        }
+        if (updatedUser.password.current) {
+            console.log(updatedUser);
+            const isPassEquals = await bcrypt.compare(updatedUser.password.prev, updatedUser.password.current);
+            if (!isPassEquals) {
+                throw ValidError.MismatchedData('Password do not match!');
+            } else {
+                updatedUser.password = await bcrypt.hash(updatedUser.password.new, 3)
+            }
+        }
+        let result = await UserModel.updateOne(query, updatedUser);
     }
 
     async test(email) {

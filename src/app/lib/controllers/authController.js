@@ -34,6 +34,7 @@ export async function logout(dispatch) {
         localStorage.removeItem('token');
         dispatch(setAuth(false));
         dispatch(setUser({}));
+        return response;
     } catch (e) {
         console.log(e?.response?.data);
     }

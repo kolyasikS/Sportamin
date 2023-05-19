@@ -8,8 +8,10 @@ const $api = axios.create({
 });
 
 $api.interceptors.request.use((config) => {
-    if (config.url === '/course/create') {
-        config.headers.Authorization = `Bearer ${localStorage.getItem('token')}`;
+    switch (config.url) {
+        case '/course/create':
+        case '/course/delete':
+            config.headers.Authorization = `Bearer ${localStorage.getItem('token')}`;
     }
     return config;
 });

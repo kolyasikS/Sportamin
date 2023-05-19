@@ -1,0 +1,38 @@
+@import 'src/app/styles/variables';
+@import 'src/app/styles/mixins';
+
+.main {
+    background-color: $bg-block-1;
+    position: relative;
+}
+.inner {
+    width: 100%;
+    padding: 30px 10px;
+    @include flexCenter();
+}
+.list {
+    @include flexCenter();
+    flex-wrap: wrap;
+    width: 80%;
+    li {
+        margin-bottom: 20px;
+    }
+}
+.features {
+    position: absolute;
+    right: -50px;
+    bottom: 50px;
+    @include flexCenterColumn();
+    @include space-y(3);
+    img {
+        cursor: pointer;
+        &:hover {
+            background-color: #4e4e50;
+        }
+        border-radius: 4px;
+        padding: 5px;
+    }
+    .cancel {
+        transform: rotateZ(45deg);
+    }
+}

@@ -6,7 +6,7 @@ import ProvideItem from "@/pages(notNEXT)/CreateCoursePage/ProvideItem";
 import {v4} from "uuid";
 import {useDispatch, useSelector} from "react-redux";
 import {statuses} from "@/app/lib/store/constants/courseConstants";
-const ProvidedItems = ({title, indent, getItems}) => {
+const ProvidedItems = ({title, indent, getItems, initItems}) => {
     const [items, setItems] = useState([]);
 
     const createStatus = useSelector(state => state.courseReducer.status);
@@ -21,6 +21,11 @@ const ProvidedItems = ({title, indent, getItems}) => {
             getItems(items);
         }
     }, [createStatus]);
+    useEffect(() => {
+        if (initItems) {
+            setItems(initItems.map(item => ({title: item, id: v4()})));
+        }
+    }, [initItems])
     return (
         <div className={styles.newItem}>
             {items.map((item, num) =>

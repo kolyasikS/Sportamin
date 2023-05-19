@@ -14,7 +14,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {setStatus} from "@/app/lib/store/actions/courseActions";
 import {statuses} from "@/app/lib/store/constants/courseConstants";
 
-const CreateCoursePage = () => {
+const CreateCoursePage = ({course}) => {
     const [step, setStep] = useState(1);
     const [style, setStyle] = useState({});
     const [isBGShadow, setIsBGShadow] = useState(false);
@@ -57,8 +57,8 @@ const CreateCoursePage = () => {
                         </h1>
                         <div className={`${isBGShadow ? generalStyles.bgShadow : ''}`}></div>
                         <div className={styles.formSteps} style={style}>
-                            <FirstStepForm/>
-                            <SecondStepForm/>
+                            <FirstStepForm course={course}/>
+                            <SecondStepForm content={course?.content} courseID={course?._id}/>
                         </div>
                         <div className={styles.navButtons}>
                             {step === 2

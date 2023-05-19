@@ -6,8 +6,8 @@ async function handler(req, res) {
     await dbConnect();
     switch (method) {
         case 'PUT':
-            const {email, image} = req.body;
-            await userService.update(email, image);
+            const {query, updatedUser} = req.body;
+            await userService.update(query, updatedUser);
             res.status(200).json({isSuccess: true});
     }
 }

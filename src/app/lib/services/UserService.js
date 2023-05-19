@@ -1,8 +1,8 @@
 import $api from "@/app/lib/http";
 
 export default class UserService {
-    static getTrainers(query, sort) {
-        const res = $api.post('/trainers', {
+    static getUsers(query, sort) {
+        const res = $api.post('/users', {
             query,
             sort
         });
@@ -14,10 +14,10 @@ export default class UserService {
         });
         return res;
     }
-    static updateUser(email, image) {
+    static updateUser(query, updatedUser) {
         return $api.put('/user/edit', {
-            email,
-            image
+            query,
+            updatedUser
         });
     }
 }

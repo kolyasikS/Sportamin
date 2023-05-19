@@ -2,9 +2,9 @@ import axios from "axios";
 import {API_URL} from "@/app/lib/http";
 import UserService from "@/app/lib/services/UserService";
 
-export async function getTrainers(query, sort) {
+export async function getUsers(query, sort) {
     try {
-        const res = await UserService.getTrainers(query, sort).then(res => res.data);
+        const res = await UserService.getUsers(query, sort).then(res => res.data);
         return res;
     } catch (e) {
         console.log(e?.response?.data);
@@ -20,9 +20,9 @@ export async function getTrainer(id) {
     }
 }
 
-export async function updateUser(email, image) {
+export async function updateUser(query, updatedUser) {
     try {
-        await UserService.updateUser(email, image);
+        await UserService.updateUser(query, updatedUser);
     } catch (e) {
         console.log(e?.response?.data);
     }

@@ -8,7 +8,7 @@ import {ArrowY} from "@/shared/ui/api/icons";
 import NewItem from "@/pages(notNEXT)/CreateCoursePage/Content/NewItem";
 import Image from "next/image";
 import cancel from '@assets/cancel2.png'
-const Week = ({number, exercisesState,
+const Week = ({number, exercisesState, days,
                   setExercisesState, removeWeek, id}) => {
     const [daysState, setDaysState] = useState([{id: v4(), week: number}]);
     const [isWeekOpen, setIsWeekOpen] = useState(number === 1 ? true : false);
@@ -18,6 +18,11 @@ const Week = ({number, exercisesState,
     const addDay = () => {
         setDaysState(prev => [...prev, {id: v4()}]);
     }
+    useEffect(() => {
+        if (days) {
+            setDaysState(days.map((item) => ({id: item._id, week: number})));
+        }
+    }, [days]);
     const removeDay = (id, dayNumArg) => {
         setDaysState(daysState.filter(day => day.id !== id));
         if (id && dayNumArg) {
@@ -55,7 +60,7 @@ const Week = ({number, exercisesState,
                          exercisesState={exercisesState}
                          setExercisesState={setExercisesState}
                          week={id} number={num + 1}
-                         weekNum={number}
+                         weekNum={number} exercises={days ? days[num].exercises : null}
                          removeDay={() => removeDay(item.id, num + 1)}
                     />
                 )}

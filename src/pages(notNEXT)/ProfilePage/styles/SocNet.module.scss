@@ -1,0 +1,18 @@
+@import 'src/app/styles/variables';
+@import 'src/app/styles/mixins';
+
+.notIndicated {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    height: 55px;
+    width: 100%;
+    color: $color-1;
+    @include flexCenter;
+    @include space-x(3);
+    justify-content: flex-start;
+    align-items: center;
+    padding: 15px 15px 15px 30px;
+    transition: all 0.2s;
+
+}

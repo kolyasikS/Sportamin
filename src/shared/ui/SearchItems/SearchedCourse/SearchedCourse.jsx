@@ -8,7 +8,7 @@ import courses from '@assets/videoPlay.png';
 import {getTrainers} from "@/app/lib/controllers/userController";
 import RatingBar from "@/shared/ui/Rating/RatingBar/RatingBar";
 
-const SearchedCourse = ({title, subtitle, _id,
+const SearchedCourse = ({title, subtitle, _id, children,
                             trainer, trainerID, previewImage,
                         rating, price, content, language}) => {
     const [countExercises, setCountExercises] = useState(0);
@@ -27,7 +27,7 @@ const SearchedCourse = ({title, subtitle, _id,
     }, [])
     return (
         <li className={styles.listItem}>
-            <Link href={`courses/${_id}`}>
+            <Link href={`/courses/${_id}`}>
                 <div className={styles.preview}>
                     <Image src={`data:image/jpg;base64,${previewImage}`}
                            alt={''} width={190} height={150}/>
@@ -58,6 +58,7 @@ const SearchedCourse = ({title, subtitle, _id,
                     </div>
                 </div>
             </Link>
+            {children}
         </li>
     );
 };

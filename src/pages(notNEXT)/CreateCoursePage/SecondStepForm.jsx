@@ -12,11 +12,11 @@ import NewItem from "@/pages(notNEXT)/CreateCoursePage/Content/NewItem";
 import {useDispatch, useSelector} from "react-redux";
 import {statuses} from "@/app/lib/store/constants/courseConstants";
 import {setExercises, setGeneralInformation, setStatus, setWeeks} from "@/app/lib/store/actions/courseActions";
-import {create, createCourse} from "@/app/lib/controllers/courseController";
+import {create, createCourse, updateCourse} from "@/app/lib/controllers/courseController";
 import generalStyles from "@/pages(notNEXT)/CreateCoursePage/styles/general.module.scss";
 import BackgroundShadowContext from "@/app/lib/features/contexts/BGShadowContext";
 
-const SecondStepForm = () => {
+const SecondStepForm = ({content, courseID}) => {
     const [weeksState, setWeeksState] = useState([{id: v4()}]);
     const [exercisesState, setExercisesState] = useState([]);
     const addWeek = () => {
@@ -28,6 +28,32 @@ const SecondStepForm = () => {
     const [isBGShadow, stub] = useContext(BackgroundShadowContext);
 
     const dispatch = useDispatch();
+    useEffect(() => {
+        if (content) {
+            setWeeksState(content.map((week) => ({id: week._id})));
+            let newExercises = [];
+
+            for (let i = 0; i < content.length; i++) {
+                let days = content[i].days;
+                for (let j = 0; j < days.length; j++) {
+                    let exercises = days[j].exercises;
+                    for (let k = 0; k < exercises.length; k++) {
+                        newExercises.push({
+                            day: days[j]._id,
+                            week: content[i]._id,
+                            dayNum: j + 1,
+                            weekNum: i + 1,
+                            id: exercises[k]._id,
+                            title: exercises[k].title,
+                            technique: exercises[k].technique,
+                            muscles: exercises[k].muscles,
+                        });
+                    }
+                }
+            }
+            setExercisesState(newExercises);
+        }
+    }, []);
     const removeWeek = (id, weekNumArg) => {
         setWeeksState(weeksState.filter(week => week.id !== id));
         if (weekNumArg) {
@@ -50,7 +76,11 @@ const SecondStepForm = () => {
             dispatch(setExercises(exercisesState));
             dispatch(setStatus(statuses.CREATED));
         } else if (createStatus === statuses.CREATED) {
-            createCourse(dispatch, course, '642a86b370ed3faaff3f12e0').then();
+            if (content) {
+                updateCourse(dispatch, courseID, course).then();
+            } else {
+                createCourse(dispatch, course, '642a86b370ed3faaff3f12e0').then(); // testing id of trainer
+            }
         }
     }, [createStatus]);
     return (
@@ -62,6 +92,7 @@ const SecondStepForm = () => {
                       number={ind + 1}
                       setExercisesState={setExercisesState}
                       exercisesState={exercisesState}
+                      days={content ? content[ind].days : null}
                       removeWeek={() => removeWeek(item.id)}
                 />
             )}

@@ -26,9 +26,18 @@ export async function getCourses(query, sort) {
     }
 }
 
-export async function updateCourse(id, updatedCourse) {
+export async function updateCourse(dispatch, id, updatedCourse) {
     try {
         await CourseService.update(id, updatedCourse);
+        dispatch(setStatus(statuses.CREATING));
+    } catch (e) {
+        console.log(e?.response?.data);
+    }
+}
+
+export async function deleteCourse(id) {
+    try {
+        await CourseService.delete(id);
     } catch (e) {
         console.log(e?.response?.data);
     }

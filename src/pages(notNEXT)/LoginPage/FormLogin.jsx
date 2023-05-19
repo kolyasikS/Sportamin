@@ -34,7 +34,7 @@ const FormLogin = () => {
                 <HorizontalSeparator>or</HorizontalSeparator>
                 <div className={styles.spaceY}>
                     <MainInput width={-1} ref={emailRef} value={'o687801078@gmail.com'}>Email address</MainInput>
-                    <MainInput width={-1} ref={passRef} value={'123456'}>Password</MainInput>
+                    <MainInput width={-1} ref={passRef} value={'1234567'}>Password</MainInput>
                     <RBButton width={-1} onclick={submitLogin}>Continue</RBButton>
                 </div>
                 <p className={styles.signUp}>Don&apos;t have an account? <Link href="/registration">Sign up</Link></p>

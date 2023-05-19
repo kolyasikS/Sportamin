@@ -14,11 +14,12 @@ import Image from "next/image";
 import cancel from "@assets/cancel2.png";
 
 const Day = ({number, week, setExercisesState, weekNum,
-                 exercisesState, removeDay, id}) => {
+                 exercisesState, removeDay, id, exercises}) => {
     const [editingExercise, setEditingExercise] = useState(null);
     const [isDayOpen, setIsDayOpen] = useState(number === 1 ? true : false);
     const [isExerciseCreating, setIsExerciseCreating] = useState(false);
     const [stub, toggleBGShadow] = useContext(BackgroundShadowContext);
+
 
     const toggleDay = () => {
         setIsDayOpen(prev => !prev);

@@ -12,12 +12,15 @@ import {setGeneralInformation, setProvidedItems, setRequirements} from "@/app/li
 
 const listLanguages = languages.map((lang, num) =>
     ({...lang, isActive: !num ? true : false}));
-const FirstStepForm = () => {
-    const [title, setTitle] = useState('');
-    const [caption, setCaption] = useState('');
-    const [language, setLanguage] = useState(listLanguages[0]);
-    const [price, setPrice] = useState('');
-    const [description, setDescription] = useState('');
+const FirstStepForm = ({course}) => {
+    const [title, setTitle] = useState(course ? course.title : '');
+    const [caption, setCaption] = useState(course ? course.subtitle : '');
+    const [language, setLanguage] = useState(
+        course
+            ? listLanguages.find(lang => lang.title === course.language)
+            : listLanguages[0]);
+    const [price, setPrice] = useState(course ? course.price : '');
+    const [description, setDescription] = useState(course ? course.description : '');
     const createStatus = useSelector(state => state.courseReducer.status);
     const dispatch = useDispatch();
 
@@ -70,15 +73,16 @@ const FirstStepForm = () => {
                 </MainInput>
             </div>
             <h2 className={generalStyles.formItemTitle}>What does course provide?</h2>
-            <ProvidedItems getItems={dispatchProvidedItems}/>
+            <ProvidedItems getItems={dispatchProvidedItems} initItems={course?.providedItems}/>
 
             <h2 className={generalStyles.formItemTitle}>What does course require?</h2>
-            <ProvidedItems getItems={dispatchRequirementsItems}/>
+            <ProvidedItems getItems={dispatchRequirementsItems} initItems={course?.requirements}/>
 
             <h2 className={generalStyles.formItemTitle}>Description of a course</h2>
             <MainTextArea message={'Type here...'}
                           color={'inherit'} bgColor={'#151a1f'}
                           onChange={(e) => setDescription(e.target.value)}
+                          value={description}
             />
         </form>
     );

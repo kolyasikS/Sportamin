@@ -19,7 +19,6 @@
     width: fit-content;
   }
 }
-
 .footer__listItem {
   display: flex;
   color: #fff;
@@ -83,3 +82,20 @@
   justify-content: space-between;
 }
 
+@media screen and (max-width: 1024px) {
+    .footer__inner {
+        flex-wrap: wrap;
+        padding-bottom: 3rem;
+    }
+    .footer__innerItem {
+        width: 50%;
+        max-width: 100%;
+        margin-bottom: 30px;
+    }
+}
+@media screen and (max-width: 768px) {
+    .footer__innerItem {
+        width: 100%;
+        margin-bottom: 30px;
+    }
+}

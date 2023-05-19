@@ -1,5 +1,5 @@
-@import '../../../app/styles/mixins';
-@import '../../../app/styles/variables';
+@import 'src/app/styles/mixins';
+@import 'src/app/styles/variables';
 
 .option {
   border-bottom: 2px dotted $clr-gray500;
@@ -25,5 +25,10 @@
     width: 100%;
     text-align: left;
     padding: 10px 0px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .option {
+    align-items: flex-start;
   }
 }

@@ -2,16 +2,19 @@
 @import '/src/app/styles/variables.scss';
 .textArea {
     width: 100%;
-    min-height: 200px;
     border: 2px solid $clr-gray500;
     border-radius: $radius;
     font-family: inherit;
     font-size: inherit;
     color: #111436;
+    font-family: Roboto;
     padding: 1.25rem;
     resize: vertical;
     outline: none;
+    transition: all 0.2s;
     &::placeholder {
-        color: inherit;
+        font-weight: bold;
+        font-size: 18px;
+        color: #596672;
     }
 }

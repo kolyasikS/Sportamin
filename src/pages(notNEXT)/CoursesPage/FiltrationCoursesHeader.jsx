@@ -1,22 +1,33 @@
-import React, {useRef} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {MainInput} from "@/shared/ui/Inputs/api/Inputs";
 import {DarkBtnWithImg} from "@/shared/ui/Buttons/api/Buttons";
 import styles from './styles/FiltrationCoursesHeader.module.scss';
 import filterImg from '@assets/filter.png';
-import searchImg from '@assets/searchImage.png';
 import cancelImg from '@assets/cancelImg.png';
 import {coursesSortOptions} from "@/app/Static Data/Filtration/Sorts";
 import {useDispatch, useSelector} from "react-redux";
-import {clearFilters, setRating, setStatus} from "@/app/lib/store/actions/filterActions";
+import {clearFilters, setRating} from "@/app/lib/store/actions/filterActions";
 import {FiltrationDoubleTitleList} from "@/features/api/filtration";
-import {statuses} from "@/app/lib/store/constants/courseConstants";
+import {AdaptiveFiltrationHeader} from "@/widgets/api/Searching";
+
 const FiltrationCoursesHeader = ({setQuery, setSort}) => {
     const titleRef = useRef();
     const [isLoading, amountFilters] = useSelector(state =>
         [state.sessionReducer.isLoading, state.filterReducer.amountFilters]);
     const dispatch = useDispatch();
     const filterState = useSelector(state => state.filterReducer);
+    const [isAdaptiveMenuOpen, setIsAdaptiveMenuOpen] = useState(false);
+    useEffect(() => {
+        if (isAdaptiveMenuOpen) {
+            document.body.style.overflowY = 'hidden';
+            document.documentElement.style.overflowY = 'hidden';
+        } else {
+            document.body.style.overflowY = 'auto';
+            document.documentElement.style.overflowY = 'auto';
+        }
+    }, [isAdaptiveMenuOpen])
     const search = () => {
+        setIsAdaptiveMenuOpen(false);
         if (isLoading) {
             return;
         }
@@ -35,7 +46,7 @@ const FiltrationCoursesHeader = ({setQuery, setSort}) => {
     }
     const clearFiltersClick = () => {
         if (!titleRef.current.value &&
-        amountFilters === 1) {
+            amountFilters === 1) {
             return;
         }
         titleRef.current.value = null;
@@ -51,16 +62,33 @@ const FiltrationCoursesHeader = ({setQuery, setSort}) => {
                 search();
             }
         }}>
+            {isAdaptiveMenuOpen
+                ? <div className={styles.blackout} onClick={() => {
+                    setIsAdaptiveMenuOpen(false)
+                }}></div>
+                : null
+            }
             <div className={styles.filterBlock}>
-                <DarkBtnWithImg img={filterImg} widthImg={20}>Filter ({amountFilters})</DarkBtnWithImg>
+                <DarkBtnWithImg img={filterImg} widthImg={20}
+                                onClick={() => {
+                                    setIsAdaptiveMenuOpen(true);
+                                    document.body.style.overflowY = 'hidden';
+                                    document.documentElement.style.overflowY = 'hidden';
+                                }}
+                >
+                    Filter ({amountFilters})
+                </DarkBtnWithImg>
                 <FiltrationDoubleTitleList title={'Sort by'} options={coursesSortOptions}
                                            setSort={setSort}/>
-                <MainInput bgColor={'#0d1117'} color={'#c9d1d9'}
-                           height={65} ref={titleRef}
+                <AdaptiveFiltrationHeader search={search}
+                                          isOpen={isAdaptiveMenuOpen}
                 >
-                    Title
-                </MainInput>
-                <DarkBtnWithImg img={searchImg} widthImg={30} onClick={search}></DarkBtnWithImg>
+                    <MainInput bgColor={'#161b22'} color={'#c9d1d9'}
+                               height={65} ref={titleRef}
+                    >
+                        Title
+                    </MainInput>
+                </AdaptiveFiltrationHeader>
             </div>
             <div className={`${styles.clearFilterBlock} ${isLoading ? styles.isLoading : ''}`}>
                 <DarkBtnWithImg img={cancelImg} widthImg={20} onClick={clearFiltersClick}>Clear filters</DarkBtnWithImg>

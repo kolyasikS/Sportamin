@@ -1,9 +1,9 @@
 import React from 'react';
 import Image from "next/image";
 import styles from './InfoItem.module.scss';
-import {urlParser} from "next/dist/build/webpack/loaders/css-loader/src/plugins";
 import {AnimBorderTranspBgButton} from "@/shared/ui/Buttons/api/Buttons";
-import arrow from '../../../../../public/media/images/arrow-right.png';
+import arrow from '@assets/arrow-right.png';
+
 const InfoItem = ({description, title, src, link}) => {
     return (
         <div className={`${styles.infoItem}`}

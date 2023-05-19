@@ -1,5 +1,4 @@
 import React, {useEffect} from 'react';
-import {HomePage} from "@/pages(notNEXT)/api/Components";
 import {useRouter} from "next/router";
 
 const Custom404 = () => {

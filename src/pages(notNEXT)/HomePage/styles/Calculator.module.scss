@@ -1,5 +1,5 @@
-@import '/src/app/styles/mixins';
-@import '/src/app/styles/variables';
+@import 'src/app/styles/mixins';
+@import 'src/app/styles/variables';
 
 .calculatorSection {
   padding: 40px 0px;
@@ -44,4 +44,12 @@
 .headerRow {
   width: 100%;
   border-bottom: 2px solid $header-span;
+}
+@media screen and (max-width: 768px) {
+  .titleForTable {
+    width: 70%;
+    p {
+      padding: 0;
+    }
+  }
 }

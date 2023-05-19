@@ -21,3 +21,17 @@
         margin-bottom: 0px;
     }
 }
+
+@media screen and (max-width: 640px) {
+    .main {
+        flex-direction: column-reverse;
+        justify-content: center;
+        width: 100%;
+        @include space-x(0);
+    }
+    .aside {
+        @include flexCenter;
+        width: 100%;
+        @include space-x(5);
+    }
+}

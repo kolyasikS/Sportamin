@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
 
 const useUppercaseButton = (uppercase, size) => {
     const [style, setStyle] = useState({width: size.width, height: size.height});

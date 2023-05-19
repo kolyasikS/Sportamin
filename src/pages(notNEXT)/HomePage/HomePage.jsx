@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import Introduction from "@/pages(notNEXT)/HomePage/Introduction/Introduction";
 import AboutUs from "@/pages(notNEXT)/HomePage/AboutUs/AboutUs";
 import Categories from "@/pages(notNEXT)/HomePage/Categories/Categories";
@@ -9,7 +9,7 @@ import Calculator from "@/pages(notNEXT)/HomePage/Calculator/Calculator";
 import Blog from "@/pages(notNEXT)/HomePage/Blog/Blog";
 import Partners from "@/pages(notNEXT)/HomePage/Partners/Partners";
 
-const HomePage = () => {
+const HomePage = ({courses}) => {
     return (
         <main className={'space-y-2'}>
             <Introduction/>
@@ -17,7 +17,7 @@ const HomePage = () => {
             <Categories/>
             <Achievements/>
             <Trainers/>
-            <TopCourses/>
+            <TopCourses courses={courses}/>
             <Calculator/>
             <Blog/>
             <Partners/>

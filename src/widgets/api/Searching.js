@@ -1,0 +1,1 @@
+export {default as AdaptiveFiltrationHeader} from '../Searching/Filtration/AdaptiveFiltrationHeader';

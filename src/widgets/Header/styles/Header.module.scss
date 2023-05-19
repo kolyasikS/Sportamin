@@ -10,41 +10,6 @@
     position: relative;
 }
 
-.navHeader {
-    display: flex;
-    justify-content: space-evenly;
-    li {
-        text-transform: uppercase;
-        color: #fff;
-        width: fit-content;
-        margin-right: 2rem;
-        a {
-            width: 100%;
-            font-size: 16px;
-            font-family: Verdana;
-            font-weight: 600;
-            position: relative;
-            &::after {
-                bottom: 5px;
-                display: none;
-            }
-            &:active::after, &:hover::after {
-                transition: all 1s linear;
-                content: '';
-                display: block;
-                position: absolute;
-                width: 100%;
-                height: 2px;
-                background-color: $header-span;
-                animation: ease 0.2s fadein forwards;
-            }
-        }
-    }
-}
-@keyframes fadein {
-    from { opacity: 0; bottom: 5px}
-    to { opacity: 1; bottom: -3px}
-}
 
 .profile {
     min-width: 120px;
@@ -57,4 +22,8 @@
     opacity: 0.7;
     position: absolute;
     z-index: 1;
+}
+
+@media screen and (max-width: 1024px) {
+
 }

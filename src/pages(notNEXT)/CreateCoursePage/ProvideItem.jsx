@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useState} from 'react';
 import styles from "@/pages(notNEXT)/CreateCoursePage/styles/ProvideItem.module.scss";
 import Image from "next/image";
 import cancel from '@assets/cancel.png';
@@ -6,7 +6,6 @@ import edit from '@assets/editItem.png';
 import apply from '@assets/apply.png';
 import {MainInput} from "@/shared/ui/Inputs/api/Inputs";
 import useDynamicInput from "@/app/lib/features/hooks/useDynamicInput";
-import {v4} from "uuid";
 const ProvideItem = ({title, number, removeItem, editItems}) => {
     const [isEditing, setIsEditing] = useState(false);
     const inputRef = useDynamicInput(isEditing, title);

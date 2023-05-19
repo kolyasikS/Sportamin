@@ -4,6 +4,7 @@
 .infoItem {
   cursor: pointer;
   transition: all 0.5s;
+  margin-bottom: 20px;
   &:hover {
     transform: scale(1.1);
   }

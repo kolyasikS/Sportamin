@@ -9,6 +9,7 @@
     width: 100%;
     padding: 30px 10px;
     @include flexCenter();
+    flex-direction: column;
 }
 .list {
     @include flexCenter();
@@ -17,6 +18,7 @@
     li {
         margin-bottom: 20px;
     }
+    margin-top: 40px;
 }
 .features {
     position: absolute;
@@ -34,5 +36,13 @@
     }
     .cancel {
         transform: rotateZ(45deg);
+    }
+}
+@media screen and (max-width: 768px) {
+    .list {
+        width: 90%;
+    }
+    .features {
+        right: 0;
     }
 }

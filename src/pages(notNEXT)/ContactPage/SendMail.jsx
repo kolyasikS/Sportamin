@@ -3,7 +3,6 @@ import styles from './styles/SendMail.module.scss';
 import {TitleWithImage} from "@/shared/ui/Titles/api/Titles";
 import {MainInput, MainTextArea} from "@/shared/ui/Inputs/api/Inputs";
 import {RBButton} from "@/shared/ui/Buttons/api/Buttons";
-import sendEmail from "@/app/lib/features/sendEmail/sendEmail";
 
 const SendMail = () => {
     const nameRef = useRef();

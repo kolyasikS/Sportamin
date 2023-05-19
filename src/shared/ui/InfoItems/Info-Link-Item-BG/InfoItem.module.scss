@@ -1,9 +1,9 @@
-@import '../../../../app/styles/variables';
+@import 'src/app/styles/variables';
 
 .infoItem {
   background-repeat: no-repeat;
   background-size: 100% 100%;
-  width: 100%;
+  width: 50%;
   height: 400px;
   overflow: hidden;
   display: flex;
@@ -41,7 +41,6 @@
     margin: 5px 0 20px;
   }
 }
-
 .link {
   height: 100%;
   width: 100%;
@@ -50,5 +49,21 @@
   align-items: center;
   img {
     margin-left: 15px;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .infoItem {
+    width: 80%;
+  }
+}
+@media screen and (max-width: 768px) {
+  .infoItem {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 640px) {
+  .infoItem {
+    height: 350px;
   }
 }

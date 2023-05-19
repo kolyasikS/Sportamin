@@ -2,7 +2,7 @@ import '@/styles/globals.css';
 import {Provider} from "react-redux";
 import createWrapper from '@/app/lib/store/createStore';
 import HFLayout from "@/processes/Layouts/MainLayout/HFLayout";
-import {getSession, SessionProvider} from "next-auth/react"
+import {SessionProvider} from "next-auth/react"
 
 const wrapper = createWrapper({});
 function App({ Component, pageProps}) {

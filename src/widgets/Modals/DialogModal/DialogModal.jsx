@@ -1,9 +1,6 @@
-import React, {useState} from 'react';
+import React from 'react';
 import * as Dialog from "@radix-ui/react-dialog";
 import styles from './DialogModal.module.scss';
-import Image from "next/image";
-import AddImage from "@assets/profile/add.png";
-import {MainInput} from "@/shared/ui/Inputs/api/Inputs";
 
 const DialogModal = ({isOpen, children, setIsOpen, trigger, error,
                          title, description, close, triggerStyle}) => {

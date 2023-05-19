@@ -1,5 +1,4 @@
 import dbConnect from "@/app/server/DB/dbConnect";
-import apiErrorMiddleware from "@/app/server/middlewares/apiErrorMiddleware";
 import courseService from "@/app/server/services/course-service";
 import withAuthMiddleware from "@/app/server/middlewares/authMiddleware";
 import withApiErrorMiddleware from "@/app/server/middlewares/apiErrorMiddleware";
@@ -10,7 +9,7 @@ async function handler(req, res) {
         await dbConnect();
         switch (method) {
             case 'DELETE':
-                const {id} = req.body;
+                const {id} = req.query;
                 await courseService.delete(id);
                 res.status(200).json({isSuccess: true});
         }

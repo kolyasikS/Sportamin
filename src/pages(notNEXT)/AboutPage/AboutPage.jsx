@@ -2,7 +2,7 @@ import React from 'react';
 import Features from "@/pages(notNEXT)/AboutPage/Features";
 import FAQ from "@/pages(notNEXT)/AboutPage/FAQ";
 import Founder from "@/pages(notNEXT)/AboutPage/Founder";
-import IntroductionPage from "@/shared/ui/Titles/IntroductionPage/IntroductionPage";
+import {IntroductionPage} from "@/shared/ui/Titles/api/Titles";
 import bg from '@assets/blogbanner.jpg';
 
 const AboutPage = () => {

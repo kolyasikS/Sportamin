@@ -2,7 +2,6 @@ import React, {useEffect, useRef, useState} from 'react';
 import Image from "next/image";
 import styles from './styles/AvatarIcon.module.scss';
 import camera from '@assets/profile/camera.png';
-import {getBase64FromImage, getImageFromBase64} from "@/app/lib/features/image";
 const srcImageDefaultValue = 'data:image/jpg;base64,'
 const AvatarIcon = ({image, isEditing,
                     isCanceling, isApplying,

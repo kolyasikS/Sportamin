@@ -1,5 +1,4 @@
-import React, {useEffect, useRef} from 'react';
-import {value} from "lodash/seq";
+import {useEffect, useRef} from 'react';
 
 const useDynamicInput = (dependObject, value) => {
     const inputRef = useRef();

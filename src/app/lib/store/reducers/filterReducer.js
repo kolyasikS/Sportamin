@@ -4,7 +4,7 @@ import {
     addLanguage,
     clearFilters,
     removeFilter,
-    removeLanguage, setAmountPages, setIsFetching, setPage, setRange,
+    removeLanguage, setAmountPages, setPage, setRange,
     setRating, setStatus
 } from "@/app/lib/store/actions/filterActions";
 import {itemsPerPage, statuses} from "@/app/lib/store/constants/generalConstants";
@@ -60,7 +60,6 @@ const reducer = createReducer(
                state.page = action.payload.page;
             })
             .addCase(setAmountPages, (state, action) => {
-                console.log(action.payload.amount, itemsPerPage)
                state.amountPages = Math.ceil(action.payload.amount / itemsPerPage);
             });
     }

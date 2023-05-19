@@ -1,5 +1,5 @@
-@import '/src/app/styles/mixins';
-@import '/src/app/styles/variables';
+@import 'src/app/styles/mixins';
+@import 'src/app/styles/variables';
 
 .sendMail {
     width: 50%;
@@ -9,4 +9,9 @@
     @include space-y(5);
     width: 100%;
     padding: 0 40px;
+}
+@media screen and (max-width: 768px) {
+    .sendMail {
+        width: 100%;
+    }
 }

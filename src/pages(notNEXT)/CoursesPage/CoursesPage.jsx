@@ -1,14 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import IntroductionPage from "@/shared/ui/Titles/IntroductionPage/IntroductionPage";
-import banner from "@assets/blogbanner.jpg";
+import {IntroductionPage} from "@/shared/ui/Titles/api/Titles";import banner from "@assets/blogbanner.jpg";
 import {SearchItems} from "@/widgets/api/Widgets";
-import {filtrationCoursesItems, filtrationItems} from "@/app/Static Data/Filtration/Filtration";
+import {filtrationCoursesItems} from "@/app/Static Data/Filtration/Filtration";
 import {useSelector} from "react-redux";
-import {getBase64FromImage, getImageFromBase64} from "@/app/lib/features/image";
+import {getImageFromBase64} from "@/app/lib/features/image";
 import {getCourses} from "@/app/lib/controllers/courseController";
 import SearchedCourse from "@/shared/ui/SearchItems/SearchedCourse/SearchedCourse";
-import erenJaeger from '@assets/eren.jpg';
-import {getTrainers, getUsers} from "@/app/lib/controllers/userController";
+import {getUsers} from "@/app/lib/controllers/userController";
 import FiltrationCoursesHeader from "@/pages(notNEXT)/CoursesPage/FiltrationCoursesHeader";
 const CoursesPage = () => {
     const [query, setQuery] = useState({})

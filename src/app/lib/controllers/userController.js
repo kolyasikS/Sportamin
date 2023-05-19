@@ -1,9 +1,6 @@
-import axios from "axios";
-import {API_URL} from "@/app/lib/http";
 import UserService from "@/app/lib/services/UserService";
-import {setUser} from "@/app/lib/store/actions/authActions";
 import {checkAuth} from "@/app/lib/controllers/authController";
-import {newSubscriber, updateCourse} from "@/app/lib/controllers/courseController";
+import {newSubscriber} from "@/app/lib/controllers/courseController";
 
 export async function getUsers(query, sort) {
     try {

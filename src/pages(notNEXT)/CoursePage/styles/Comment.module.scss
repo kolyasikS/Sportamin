@@ -1,0 +1,141 @@
+@import 'src/app/styles/variables';
+@import 'src/app/styles/mixins';
+
+.comment {
+    color: #f1f1f1;
+    max-width: 100%;
+    &:hover {
+        .container button {
+            opacity: 1;
+        }
+    }
+}
+.avatar {
+    img {
+        border-radius: 50%;
+    }
+}
+.commentInner {
+    width: 100%;
+}
+.commentInfo {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    @include space-x(2);
+    h1 {
+        font-size: 14px;
+    }
+    span {
+        color: #aaa;
+        font-size: 12px;
+    }
+
+}
+.message {
+    margin: 5px 0 10px;
+    font-family: Roboto;
+    letter-spacing: 0.05px;
+    line-height: 1.2;
+    width: 100%;
+    a {
+        margin: 0 10px;
+        color: #3ea6ff;
+        position: relative;
+        &:hover {
+            &::after {
+                position: absolute;
+                width: 100%;
+                height: 1px;
+                content: '';
+                background-color: #3ea6ff;
+                display: block;
+                left: 0;
+            }
+        }
+    }
+}
+.amountRatings {
+
+}
+.features {
+    display: flex;
+    align-items: center;
+}
+@mixin ratingBtn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    transition: all 0.1s;
+    svg {
+        width: 24px;
+        height: 24px;
+        stroke: #fff;
+        fill: #0d1117;
+    }
+    &:hover {
+        & svg {
+            transition: all 0.1s;
+            fill: #444c50;
+        }
+        background-color: #444c50;
+    }
+}
+.likeBtn {
+    @include ratingBtn;
+}
+.dislikeBtn {
+    @include ratingBtn;
+    & svg {
+        transform: rotateZ(180deg);
+    }
+}
+.featuresItem {
+    @include flexCenter;
+    @include space-x(0.5);
+    &:first-child {
+        margin-right: 15px;
+    }
+}
+.reply {
+    cursor: pointer;
+    margin-left: 10px;
+    color: #fff;
+    background-color: transparent;
+    border: none;
+    font-weight: bold;
+    border-radius: 20px;
+    padding: 8px 15px;
+    transition: all 0.1s;
+    &:hover {
+        background-color: #444c50;
+    }
+}
+.btnActive {
+    svg {
+        fill: #fff;
+        stroke: transparent;
+    }
+    &:hover {
+        & svg {
+            transition: all 0.1s;
+            fill: #fff;
+        }
+        background-color: #444c50;
+    }
+}
+.replyComment {
+    margin-left: 70px;
+    .avatar img {
+        width: 50px;
+        height: 50px;
+    }
+}
+.container {
+    display: flex;
+    width: 100%;
+    @include space-x(4);
+}

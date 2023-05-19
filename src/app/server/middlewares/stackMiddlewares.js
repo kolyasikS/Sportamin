@@ -1,6 +1,3 @@
-import { NextResponse } from "next/server";
-import {func} from "joi";
-
 export default async function stackMiddlewares(
     req, res,
     functions = []

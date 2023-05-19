@@ -1,10 +1,8 @@
 import React from 'react';
 import * as Accordion from '@radix-ui/react-accordion';
 import Week from "@/pages(notNEXT)/CoursePage/Content/Week";
-import {ChevronDownIcon} from "@radix-ui/react-icons";
 
 const CourseContent = ({content, isBought}) => {
-    console.log('Content', isBought);
 
     return (
         <div className='mt-4 mb-8'>

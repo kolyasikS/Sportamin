@@ -1,5 +1,5 @@
 import * as fs from 'fs';
-import {btoa, atob} from "buffer";
+import {btoa} from "buffer";
 export function getBase64FromImage(pathOrigin) {
     return fs.readFileSync(pathOrigin);
 }

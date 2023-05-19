@@ -7,8 +7,6 @@ import UserDto from "@/app/server/dtos/user-dto";
 import ApiError from "@/app/server/exceptions/api-error";
 import {ObjectId} from "mongodb";
 import ValidError from "@/app/server/exceptions/valid-error";
-import {getBase64FromImage} from "@/app/lib/features/image";
-import CourseModel from "@/app/server/models/course-model";
 
 class UserService {
 
@@ -90,12 +88,14 @@ class UserService {
             query._id = new ObjectId(query.id);
             delete query.id;
         }
-        const trainers = await UserModel.find({...query}).sort(sort);
+        if (query && query.ids) {
+            query._id = {$in: query.ids};
+            delete query.ids;
+        }
+        const users = await UserModel.find({...query}).sort(sort);
         let count = await UserModel.countDocuments(query);
-        console.log(trainers.length);
-        console.log(query);
         return {
-            items: trainers,
+            items: users,
             count
         };
     }

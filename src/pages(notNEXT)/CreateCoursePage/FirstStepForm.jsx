@@ -7,7 +7,7 @@ import {DoubleTitleList} from "@/widgets/api/Widgets";
 import languages from "@/app/Static Data/Languages/Languages";
 import ProvidedItems from "@/pages(notNEXT)/CreateCoursePage/ProvidedItems";
 import {useDispatch, useSelector} from "react-redux";
-import {statuses} from "@/app/lib/store/constants/courseConstants";
+import {statuses} from "@/app/lib/store/constants/generalConstants";
 import {setGeneralInformation, setProvidedItems, setRequirements} from "@/app/lib/store/actions/courseActions";
 
 const listLanguages = languages.map((lang, num) =>

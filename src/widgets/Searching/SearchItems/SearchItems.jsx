@@ -3,14 +3,16 @@ import {useDispatch, useSelector} from "react-redux";
 import {setIsLoading} from "@/app/lib/store/actions/sessionActions";
 import styles from "@/pages(notNEXT)/TrainersPage/styles/TrainersPage.module.scss";
 import {FiltrationInner, SearchItemsListSection} from "@/widgets/api/Widgets";
-import {setAmountPages, setPage, setStatus} from "@/app/lib/store/actions/filterActions";
+import {setAmountPages, setStatus} from "@/app/lib/store/actions/filterActions";
 import {itemsPerPage, statuses} from "@/app/lib/store/constants/generalConstants";
+import useWindowSize from "@/app/lib/features/hooks/useWindowSize";
 
 const SearchItems = ({fetchItems, query,
                          sort, filtrationItems,
                          renderSearchedItem, children}) => {
     const [filteredItems, setFilteredItems] = useState([]);
     const [isEmpty, setIsEmpty] = useState(false);
+    const [width, height] = useWindowSize(false);
 
     const dispatch = useDispatch();
     const isLoading = useSelector(state => state.sessionReducer.isLoading);
@@ -26,7 +28,6 @@ const SearchItems = ({fetchItems, query,
             } else {
                 setIsEmpty(false);
             }
-            console.log(res.items.length);
             dispatch(setAmountPages(res.count));
             setFilteredItems(res.items);
         })
@@ -38,7 +39,6 @@ const SearchItems = ({fetchItems, query,
     }
     useEffect(() => {
         if (filterState.status === statuses.CREATED) {
-            console.log(isLoading);
             if (!isLoading) {
                 dispatch(setIsLoading(true));
             } else {
@@ -63,10 +63,12 @@ const SearchItems = ({fetchItems, query,
         <section className={styles.trainersSection}>
             {children}
             <div className={styles.trainersSectionInner}>
-                <FiltrationInner items={filtrationItems} isLoading={isLoading}/>
+                {width > 1280
+                    ? <FiltrationInner items={filtrationItems} isLoading={isLoading}/>
+                    : null
+                }
                 <SearchItemsListSection isEmpty={isEmpty} searchedItems={filteredItems}
-                                        renderSearchedItem={renderSearchedItem}
-                />
+                                        renderSearchedItem={renderSearchedItem}/>
             </div>
         </section>
     );

@@ -1,19 +1,25 @@
-@import '/src/app/styles/mixins';
-@import '/src/app/styles/variables';
+@import 'src/app/styles/mixins';
+@import 'src/app/styles/variables';
 
 .partnersSection {
 
 }
 .partners {
   @include flexCenter();
-  @include space-x(20);
-  padding: 50px 0px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 50px 10px;
   img {
     cursor: pointer;
     opacity: 0.5;
     transition: all, 0.3s;
+    margin-bottom: 15px;
     &:hover {
       opacity: 1;
     }
   }
+}
+
+@media screen and (max-width: 1268px) {
+  
 }

@@ -1,5 +1,4 @@
 import $api from "@/app/lib/http";
-import {newSubscriber} from "@/app/lib/controllers/courseController";
 
 export default class CourseService {
     static async create(course, trainerID) {
@@ -10,32 +9,32 @@ export default class CourseService {
             limit,
             skip
         };
-        if (query.title) {
+        if (query?.title) {
             newQuery = {
                 ...newQuery,
                 regex: query.title.$regex,
                 options: query.title.$options,
             }
         }
-        if (query.rating) {
+        if (query?.rating) {
             newQuery.rating = query.rating.$gte;
         }
-        if (query.languages) {
+        if (query?.languages) {
             newQuery.languages = query.languages.$all.join(',');
         }
-        if (query.id) {
+        if (query?.id) {
             newQuery.id = query.id;
         }
-        if (query.trainer) {
+        if (query?.trainer) {
             newQuery.trainer = query.trainer;
         }
-        console.log('nq', query);
-        if (query.range) {
+        if (query?.range) {
             newQuery.range = [query.range.min, query.range.max].join(',');
         }
         if (sort) {
             newQuery.sort = sort
         }
+
         return $api.get('/course', {
             params: {
                 ...newQuery
@@ -49,11 +48,7 @@ export default class CourseService {
         });
     }
     static async delete(id) {
-        return $api.delete('/course/delete', {
-            data: {
-                id
-            }
-        });
+        return $api.delete(`/course/delete/${id}`);
     }
     static async newSubscriber(id) {
         return $api.put('/course/subscribe', {

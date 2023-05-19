@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useState} from 'react';
 import styles from "@/pages(notNEXT)/CreateCoursePage/styles/NewProvideItem.module.scss";
 import Image from "next/image";
 import addItem from '@assets/add.png';

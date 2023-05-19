@@ -1,24 +1,24 @@
 import React, {useEffect, useState} from 'react';
-import styles from './styles/ProfilePage.module.scss';
-import Image from "next/image";
-import SocNet from "@/pages(notNEXT)/ProfilePage/SocNet";
-import {getImageFromBase64} from "@/app/lib/features/image";
-import RatingBar from "@/shared/ui/Rating/RatingBar/RatingBar";
-import {DarkBtnWithImg} from "@/shared/ui/Buttons/api/Buttons";
-import EditNameModal from "@/pages(notNEXT)/ProfilePage/Modals/EditNameModal";
-import EditTrainerTitleModal from "@/pages(notNEXT)/ProfilePage/Modals/EditTrainerTitleModal";
 import editImage from '@assets/editItem.png';
 import instagram from '@assets/profile/instagram.png';
 import github from '@assets/profile/github.png';
 import telegram from '@assets/profile/telegram.png';
 import youtube from '@assets/profile/youtube.png';
 import website from '@assets/profile/website.png';
-import AvatarIcon from "@/pages(notNEXT)/ProfilePage/AvatarIcon";
-import {updateUser} from "@/app/lib/controllers/userController";
-import trainer from "@/shared/ui/InfoItems/Trainer/Trainer";
-import _ from 'lodash';
-import EditPasswordModal from "@/pages(notNEXT)/ProfilePage/Modals/EditPasswordModal";
+import Image from "next/image";
 import Link from "next/link";
+import styles from './styles/ProfilePage.module.scss';
+import SocNet from "@/pages(notNEXT)/ProfilePage/SocNet";
+import EditNameModal from "@/pages(notNEXT)/ProfilePage/Modals/EditNameModal";
+import EditPasswordModal from "@/pages(notNEXT)/ProfilePage/Modals/EditPasswordModal";
+import EditTrainerTitleModal from "@/pages(notNEXT)/ProfilePage/Modals/EditTrainerTitleModal";
+import AvatarIcon from "@/pages(notNEXT)/ProfilePage/AvatarIcon";
+import RatingBar from "@/shared/ui/Rating/RatingBar/RatingBar";
+import {DarkBtnWithImg} from "@/shared/ui/Buttons/api/Buttons";
+import {getImageFromBase64} from "@/app/lib/features/image";
+import {updateUser} from "@/app/lib/controllers/userController";
+import _ from 'lodash';
+
 const ProfilePage = ({user}) => {
     const [isEditingProfile, setIsEditingProfile] = useState(false);
     const [actualUser, setActualUser] = useState(user);
@@ -111,6 +111,7 @@ const ProfilePage = ({user}) => {
         }};
         return await updateUser({id: actualUser._id}, updatedUser);
     }
+    console.log(actualUser.trainer.links);
     return (
         <main className={styles.main}>
             <div className={styles.inner}>
@@ -158,8 +159,10 @@ const ProfilePage = ({user}) => {
                         </div>
                         {actualUser.trainer && <div className={styles.infoItem}>
                             <h2>Rating</h2>
-                            <p>{actualUser.trainer.rating}</p>
-                            <RatingBar rating={actualUser.trainer.rating}/>
+                            <div className={'flex'}>
+                                <p>{actualUser.trainer.rating}</p>
+                                <RatingBar rating={actualUser.trainer.rating}/>
+                            </div>
                         </div>}
                         {actualUser.trainer && <div className={styles.infoItem}>
                             <h2>Students</h2>

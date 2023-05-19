@@ -1,0 +1,62 @@
+@import 'src/app/styles/variables';
+@import 'src/app/styles/mixins';
+$size: 24px;
+
+.button {
+    @include space-y(1);
+    @include flexCenter;
+    opacity: 0;
+    width: 28px;
+    min-width: 28px;
+    height: 28px;
+    svg {
+        width: $size;
+        height: $size;
+        fill: #fff;
+    }
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: all .2s;
+    &:hover {
+        background-color: #1d2f3a;
+    }
+}
+.active {
+    opacity: 1;
+}
+.content {
+    background-color: #20272d;
+    color: $color-1;
+    padding: 5px 0px 5px;
+    border-radius: 7px;
+    border: 1px solid #575e6e;
+    min-width: 150px;
+    font-size: 16px;
+    @include flexCenterColumn();
+}
+.menuItem {
+    @include flexCenter();
+    width: 100%;
+    justify-content: flex-start;
+    padding: 6px 10px;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    &:hover {
+        background-color: #313d41;
+    }
+    font-family: Roboto;
+
+    btn {
+        outline: none;
+    }
+}
+.menuSeparator {
+    width: 100%;
+    height: 1px;
+    background-color: #575e6e;
+    margin: 10px 0;
+    width: 90%;
+}

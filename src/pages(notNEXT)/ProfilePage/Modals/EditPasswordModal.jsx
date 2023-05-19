@@ -1,8 +1,8 @@
 import React, {useRef, useState} from 'react';
-import DialogModal from "@/widgets/Modals/DialogModal/DialogModal";
+import {DialogModalW} from "@/widgets/api/Modals";
 import {MainInput} from "@/shared/ui/Inputs/api/Inputs";
-import {updateUser} from "@/app/lib/controllers/userController";
 import styles from '../styles/EditPasswordModal.module.scss';
+
 const EditPasswordModal = ({children, updateUser}) => {
     const newPasswordRef = useRef(null);
     const prevPasswordRef = useRef(null);
@@ -29,7 +29,7 @@ const EditPasswordModal = ({children, updateUser}) => {
             });
     }
     return (
-        <DialogModal isOpen={isOpen} setIsOpen={setIsOpen}
+        <DialogModalW isOpen={isOpen} setIsOpen={setIsOpen}
                      description={`You can change your password here`}
                      title={`Change password`} triggerStyle={styles.trigger}
                      trigger={children} close={close} error={error}
@@ -46,7 +46,7 @@ const EditPasswordModal = ({children, updateUser}) => {
             >
                 New
             </MainInput>
-        </DialogModal>
+        </DialogModalW>
     );
 };
 

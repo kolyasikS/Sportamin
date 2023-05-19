@@ -6,6 +6,7 @@ import email from '@assets/contactEmail.png';
 import phone from '@assets/contactPhone.png';
 import location from '@assets/contactLocation.png';
 import tgBot from '@assets/tgBot.png';
+
 const PrivateInfo = () => {
     return (
         <div className={styles.privateInfo}>

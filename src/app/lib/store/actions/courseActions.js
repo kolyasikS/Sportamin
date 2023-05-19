@@ -2,7 +2,6 @@ import {createAction} from "@reduxjs/toolkit";
 import {
     SET_DAYS, SET_EXERCISES,
     SET_GENERAL_INFORMATION, SET_PROVIDED_ITEMS,
-    SET_PROVIDING_ITEMS,
     SET_REQUIREMENTS,
     SET_STATUS, SET_WEEKS
 } from "@/app/lib/store/constants/courseConstants";

@@ -1,5 +1,7 @@
-.categoriesSection {
+@import 'src/app/styles/variables';
 
+.categoriesSection {
+    background-color: $bg-block-1;
 }
 
 .categories {
@@ -11,4 +13,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
+}
+
+@media screen and (max-width: 1024px) {
+
 }

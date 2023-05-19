@@ -1,7 +1,5 @@
 import React from 'react';
 import styles from '../styles/AboutUs.module.scss';
-import AboutUsInfoItems from '../../../app/Static Data/AboutUs/AboutUsInfoItems.js'
-import {InfoTopicItem1} from "@/shared/ui/InfoItems/api/Items";
 import {TitleWithImage} from "@/shared/ui/Titles/api/Titles";
 import {Benefits} from "@/widgets/api/Widgets";
 const AboutUs = () => {

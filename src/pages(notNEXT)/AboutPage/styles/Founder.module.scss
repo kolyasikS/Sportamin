@@ -32,3 +32,30 @@
     justify-content: center;
     margin-top: 20px;
 }
+
+@media screen and (max-width: 1280px) {
+    .founderInfo {
+        padding-right: 0;
+    }
+    .founderImg {
+        margin-right: 70px;
+    }
+}
+@media screen and (max-width: 1024px) {
+    .founderInfo {
+        padding-left: 20px;
+    }
+    .founderImg {
+        margin-right: 70px;
+        img {
+            width: 300px;
+            height: 350px;
+        }
+    }
+
+}
+@media screen and (max-width: 768px) {
+    .founderSection {
+        align-items: flex-end;
+    }
+}

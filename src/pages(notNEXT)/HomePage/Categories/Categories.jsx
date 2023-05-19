@@ -9,14 +9,7 @@ const Categories = () => {
         <section className={styles.categoriesSection}>
             <div className={styles.categories}>
                 <div className={styles.categoriesBlock}>
-                    {CategoryItems.slice(0, 2).map(item =>
-                        <InfoLinkItemBg key={item.id}
-                        title={item.title} description={item.description}
-                        link={item.link} src={item.srcImage}/>
-                    )}
-                </div>
-                <div className={styles.categoriesBlock}>
-                    {CategoryItems.slice(2, 4).map(item =>
+                    {CategoryItems.map(item =>
                         <InfoLinkItemBg key={item.id}
                         title={item.title} description={item.description}
                         link={item.link} src={item.srcImage}/>

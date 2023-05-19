@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import IntroductionPage from "@/shared/ui/Titles/IntroductionPage/IntroductionPage";
 import banner from '@assets/blogbanner.jpg';
 import {getUsers} from "@/app/lib/controllers/userController";
 import {filtrationItems} from "@/app/Static Data/Filtration/Filtration";
@@ -8,6 +7,7 @@ import {SearchItems} from "@/widgets/api/Widgets";
 import {SearchedTrainer} from "@/shared/ui/SearchItems/api/searchedItems";
 import {getImageFromBase64} from "@/app/lib/features/image";
 import FiltrationHeader from "@/pages(notNEXT)/TrainersPage/FiltrationHeader";
+import {IntroductionPage} from "@/shared/ui/Titles/api/Titles";
 
 const TrainersPage = () => {
     const [query, setQuery] = useState({});
@@ -43,6 +43,7 @@ const TrainersPage = () => {
             return {...prev, ...ratingMongoDB, ...languagesMongoDB};
         });
     }, [filterState.minRating, filterState.languages.length])
+
     return (
         <main>
             <IntroductionPage bg={banner} title={'Trainers'} height={450}/>

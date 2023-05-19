@@ -1,6 +1,7 @@
 import React from 'react';
 import Image from "next/image";
 import styles from './Trainer.module.scss';
+
 const Trainer = ({name, amountCourses, avatar, rating}) => {
     return (
         <div className={styles.user}>

@@ -15,7 +15,7 @@ const TrainerPrivatePage = ({name, surname, trainer, avatar}) => {
                 trainer={trainer}
             />
             <aside className={styles.aside}>
-                <Image src={`data:image/jpg;base64,${getImageFromBase64(avatar.data)}`} alt={''}
+                <Image src={`data:image/jpg;base64,${getImageFromBase64(avatar)}`} alt={''}
                     width={200} height={200}
                 />
                 <div className={styles.links}>

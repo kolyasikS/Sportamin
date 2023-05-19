@@ -1,23 +1,33 @@
-import React, {useDeferredValue, useEffect, useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {MainInput} from "@/shared/ui/Inputs/api/Inputs";
 import {DarkBtnWithImg} from "@/shared/ui/Buttons/api/Buttons";
 import styles from './styles/FiltrationHeader.module.scss';
 import filterImg from '@assets/filter.png';
-import searchImg from '@assets/searchImage.png';
 import cancelImg from '@assets/cancelImg.png';
 import {sortOptions} from "@/app/Static Data/Filtration/Sorts";
 import {useDispatch, useSelector} from "react-redux";
 import {clearFilters, setRating} from "@/app/lib/store/actions/filterActions";
 import {FiltrationDoubleTitleList} from "@/features/api/filtration";
+import {AdaptiveFiltrationHeader} from "@/widgets/api/Searching";
+
 const FiltrationHeader = ({setQuery, setSort, sortPath}) => {
     const nameRef = useRef();
     const surnameRef = useRef();
     const [isLoading, amountFilters] = useSelector(state =>
         [state.sessionReducer.isLoading, state.filterReducer.amountFilters]);
     const dispatch = useDispatch();
-    //const nameDeferredQuery = useDeferredValue(nameQuery);
-    //const surnameDeferredQuery = useDeferredValue(surnameQuery);
+    const [isAdaptiveMenuOpen, setIsAdaptiveMenuOpen] = useState(false);
+    useEffect(() => {
+        if (isAdaptiveMenuOpen) {
+            document.body.style.overflowY = 'hidden';
+            document.documentElement.style.overflowY = 'hidden';
+        } else {
+            document.body.style.overflowY = 'auto';
+            document.documentElement.style.overflowY = 'auto';
+        }
+    }, [isAdaptiveMenuOpen])
     const search = () => {
+        setIsAdaptiveMenuOpen(false);
         if (isLoading) {
             return;
         }
@@ -44,9 +54,9 @@ const FiltrationHeader = ({setQuery, setSort, sortPath}) => {
     }
     const clearFiltersClick = () => {
         if (!nameRef.current.value &&
-        !surnameRef.current.value &&
-        amountFilters === 1) {
-            return;
+            !surnameRef.current.value &&
+            amountFilters === 1) {
+                return;
         }
         nameRef.current.value = null;
         surnameRef.current.value = null;
@@ -63,20 +73,38 @@ const FiltrationHeader = ({setQuery, setSort, sortPath}) => {
                 search();
             }
         }}>
+            {isAdaptiveMenuOpen
+                ? <div className={styles.blackout} onClick={() => {
+                    setIsAdaptiveMenuOpen(false)
+                }}></div>
+                : null
+            }
             <div className={styles.filterBlock}>
-                <DarkBtnWithImg img={filterImg} widthImg={20}>Filter ({amountFilters})</DarkBtnWithImg>
+                <DarkBtnWithImg img={filterImg}
+                                widthImg={20}
+                                onClick={() => {
+                                    setIsAdaptiveMenuOpen(true);
+                                    document.body.style.overflowY = 'hidden';
+                                    document.documentElement.style.overflowY = 'hidden';
+                                }}
+                >
+                    Filter ({amountFilters})
+                </DarkBtnWithImg>
                 <FiltrationDoubleTitleList title={'Sort by'} options={sortOptions} sortPath={sortPath} setSort={setSort}/>
-                <MainInput bgColor={'#0d1117'} color={'#c9d1d9'}
-                           height={65} ref={nameRef}
+                <AdaptiveFiltrationHeader search={search}
+                                          isOpen={isAdaptiveMenuOpen}
                 >
-                    Name
-                </MainInput>
-                <MainInput bgColor={'#0d1117'} color={'#c9d1d9'}
-                           height={65} ref={surnameRef}
-                >
-                    Surname
-                </MainInput>
-                <DarkBtnWithImg img={searchImg} widthImg={30} onClick={search}></DarkBtnWithImg>
+                    <MainInput bgColor={'#161b22'} color={'#c9d1d9'}
+                               height={65} ref={nameRef} width={'100%'}
+                    >
+                        Name
+                    </MainInput>
+                    <MainInput bgColor={'#161b22'} color={'#c9d1d9'}
+                               height={65} ref={surnameRef} width={'100%'}
+                    >
+                        Surname
+                    </MainInput>
+                </AdaptiveFiltrationHeader>
             </div>
             <div className={`${styles.clearFilterBlock} ${isLoading ? styles.isLoading : ''}`}>
                 <DarkBtnWithImg img={cancelImg} widthImg={20} onClick={clearFiltersClick}>Clear filters</DarkBtnWithImg>

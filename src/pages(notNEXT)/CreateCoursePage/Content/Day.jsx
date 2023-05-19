@@ -1,15 +1,11 @@
-import React, {useContext, useEffect, useRef, useState} from 'react';
+import React, {useContext, useState} from 'react';
 import styles from "@/pages(notNEXT)/CreateCoursePage/styles/Day.module.scss";
 import generalStyles from '../styles/general.module.scss';
 import {ArrowY} from "@/shared/ui/api/icons";
 import NewItem from "@/pages(notNEXT)/CreateCoursePage/Content/NewItem";
-import {v4} from "uuid";
 import Exercise from "@/pages(notNEXT)/CreateCoursePage/Content/Exercise";
 import CreatingExerciseMenu from "@/pages(notNEXT)/CreateCoursePage/Content/CreatingExerciseMenu";
 import BackgroundShadowContext from "@/app/lib/features/contexts/BGShadowContext";
-import {useDispatch, useSelector} from "react-redux";
-import {statuses} from "@/app/lib/store/constants/courseConstants";
-import {setDays, setExercises} from "@/app/lib/store/actions/courseActions";
 import Image from "next/image";
 import cancel from "@assets/cancel2.png";
 

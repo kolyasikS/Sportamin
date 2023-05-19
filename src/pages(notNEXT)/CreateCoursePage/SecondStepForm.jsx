@@ -1,18 +1,13 @@
 import React, {useContext, useEffect, useState} from 'react';
-import {MainInput, MainTextArea} from "@/shared/ui/Inputs/api/Inputs";
 import styles from "@/pages(notNEXT)/CreateCoursePage/styles/StepForm.module.scss";
 import {HorizontalSeparator} from "@/shared/ui/api/separators";
-import {DoubleTitleList} from "@/widgets/api/Widgets";
-import languages from "@/app/Static Data/Languages/Languages";
-import ProvidedItems from "@/pages(notNEXT)/CreateCoursePage/ProvidedItems";
 import {v4} from "uuid";
 import Week from "@/pages(notNEXT)/CreateCoursePage/Content/Week";
-import NewProvideItem from "@/pages(notNEXT)/CreateCoursePage/NewProvideItem";
 import NewItem from "@/pages(notNEXT)/CreateCoursePage/Content/NewItem";
 import {useDispatch, useSelector} from "react-redux";
-import {statuses} from "@/app/lib/store/constants/courseConstants";
-import {setExercises, setGeneralInformation, setStatus, setWeeks} from "@/app/lib/store/actions/courseActions";
-import {create, createCourse, updateCourse} from "@/app/lib/controllers/courseController";
+import {statuses} from "@/app/lib/store/constants/generalConstants";
+import {setExercises, setStatus} from "@/app/lib/store/actions/courseActions";
+import {createCourse, updateCourse} from "@/app/lib/controllers/courseController";
 import generalStyles from "@/pages(notNEXT)/CreateCoursePage/styles/general.module.scss";
 import BackgroundShadowContext from "@/app/lib/features/contexts/BGShadowContext";
 

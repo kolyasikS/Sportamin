@@ -1,12 +1,13 @@
 import React, {useState} from 'react';
 import styles from './styles/FiltrationItem.module.scss';
 import FiltrationItemProcess from "@/pages(notNEXT)/TrainersPage/FiltrationItemProcess";
-const FiltrationItem = ({title, items, multiple, isRated,
+
+const FiltrationItem = ({title, items, multiple, isRated, fullWidth,
                         setActive, toggleActive, range}) => {
     const [isInnerShowed, setIsInnerShowed] = useState(false || range);
 
     return (
-        <li className={styles.filtrationItem}>
+        <li className={`${styles.filtrationItem} ${fullWidth ? styles.fullWidth : ''}`}>
             <div className={styles.filtrationItemHeader} onClick={() => setIsInnerShowed(prev => !prev)}>
                 <h1>{title}</h1>
                 <span aria-hidden="true" role="img" className="material-design-icon chevron-down-icon"><svg

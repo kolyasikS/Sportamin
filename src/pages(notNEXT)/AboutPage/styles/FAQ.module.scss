@@ -12,8 +12,26 @@
 .FAQ__image {
     width: 40%;
     @include flexCenter();
-
 }
 .FAQ__Questions {
     width: 60%;
+}
+@media screen and (max-width: 1024px) {
+    .FAQ__image {
+        img {
+            height: 350px;
+            width: 250px;
+        }
+    }
+    .FAQ__inner {
+        align-items: flex-end;
+    }
+}
+@media screen and (max-width: 768px) {
+    .FAQ__image {
+        display: none;
+    }
+    .FAQ__Questions {
+        width: 100%;
+    }
 }

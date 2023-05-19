@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import styles from './style.module.scss';
 import useUppercaseButton from "@/app/lib/features/hooks/useUppercaseButton";
 const AnimBorderTranspBg = ({children, onclick, border='#fff',

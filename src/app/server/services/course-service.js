@@ -1,9 +1,5 @@
-
 import CourseModel from "@/app/server/models/course-model";
-import UserService from "@/app/server/services/user-service";
-import {Schema} from "mongoose";
 import {ObjectId} from "mongodb";
-import {updateCourse} from "@/app/lib/controllers/courseController";
 class CourseService {
     async create({title, subtitle, language,
                  price, providedItems, content,
@@ -22,8 +18,6 @@ class CourseService {
     async getCourses(reqQuery) {
         const query = getQueryFromReq(reqQuery);
         const sort = getSortFromReq(reqQuery);
-        console.log(query);
-
         let pipeline = [{
                 $match: query
             }, {
@@ -52,7 +46,6 @@ class CourseService {
         };
     }
     async update(id, updatedCourse) {
-        console.log(id, updatedCourse);
         await CourseModel.updateOne({_id: id}, updatedCourse);
     }
     async subscribe(id) {

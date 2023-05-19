@@ -1,0 +1,61 @@
+@import 'src/app/styles/variables';
+@import 'src/app/styles/mixins';
+
+.writingSection {
+    width: 100%;
+    display: flex;
+    @include space-x(3);
+}
+.user {
+    height: 60px;
+    img {
+        border-radius: 50%;
+    }
+}
+.messageArea {
+    width: 100%;
+    position: relative;
+}
+.writingArea {
+    width: 100%;
+}
+.features {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    bottom: 6px;
+    background-color: transparent;
+    border-radius: 0 0 0.5rem 0.5rem;
+    padding: 5px;
+    overflow: hidden;
+    transition: all 0.15s;
+}
+.featuresStyleBtns {
+    display: flex;
+    @include space-x(1);
+    padding-left: 10px;
+}
+.featuresStyleBtn {
+    @include flexCenter;
+    width: fit-content;
+    height: 30px;
+    cursor: pointer;
+    path {
+        transition: all 0.2s;
+        fill: #8c98a1;
+    }
+    &:hover {
+        path {
+            fill: #404b50;
+        }
+    }
+}
+.closed {
+    opacity: 0;
+}
+.repliedSection {
+    padding-left: 75px;
+    margin-top: 10px;
+}

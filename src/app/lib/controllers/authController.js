@@ -62,8 +62,10 @@ export async function checkAuth(dispatch, cb) {
         dispatch(setAuth(true));
         dispatch(setUser(response.data.user));
         dispatch(setIsSigningOut(false));
+        return response.data.user;
     } catch (e) {
         console.log(e?.response?.data);
+        return {error: e};
     } finally {
         if (cb) {
             cb();

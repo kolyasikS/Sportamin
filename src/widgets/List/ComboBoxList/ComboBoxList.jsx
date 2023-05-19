@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {ComboBox} from "@/shared/ui/Inputs/api/Inputs";
 
 const ComboBoxList = ({options, setOptions}) => {

@@ -1,5 +1,4 @@
 import $api from "@/app/lib/http";
-import {updateBoughtCourseStatus} from "@/app/lib/controllers/userController";
 
 export default class UserService {
     static getUsers(query, sort) {

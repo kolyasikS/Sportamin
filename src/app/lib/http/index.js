@@ -10,11 +10,17 @@ const $api = axios.create({
 $api.interceptors.request.use((config) => {
     switch (config.url) {
         case '/course/create':
-        case '/course/delete':
         case '/user/buy':
         case '/user/updateStatus':
+        case '/comment/rate':
+        case '/comment/create':
             config.headers.Authorization = `Bearer ${localStorage.getItem('token')}`;
     }
+    if (config.url.startsWith(`/comment/delete`) ||
+        config.url.startsWith(`/course/delete`)) {
+            config.headers.Authorization = `Bearer ${localStorage.getItem('token')}`;
+    }
+    console.log(config);
     return config;
 });
 

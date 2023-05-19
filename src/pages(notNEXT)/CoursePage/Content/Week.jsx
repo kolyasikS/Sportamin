@@ -6,7 +6,6 @@ import {ChevronDownIcon} from "@radix-ui/react-icons";
 import padlock from '@assets/course/padlock.png';
 import Image from "next/image";
 const Week = ({num, days, isBought}) => {
-    console.log('Week', isBought);
 
     return (
         <Accordion.Item className={`${styles.week}`}

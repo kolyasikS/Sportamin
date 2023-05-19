@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {RBButton} from "@/shared/ui/Buttons/api/Buttons";
 import styles from './SliderFullScreen.module.scss';
 const SlideFs = ({title, mainWords, description, onClick, active}) => {

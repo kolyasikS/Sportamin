@@ -1,10 +1,16 @@
 import React, {useState} from 'react';
 import OutlineRatingStar from "@/shared/ui/Rating/RatingStar/OutlineRatingStar";
 
-const SolidRatingStar = ({isHalf, isDark, fillColor, size = 16}) => {
+const SolidRatingStar = ({isHalf, isDark, fillColor,
+                             setRating, count, size}) => {
     const [stroke, setStroke] = useState(isDark ? '#161621' : '#ffce31');
     const [fillStar, setFillStar] = useState(isDark ? '#4669ea' : '#ffce31');
     const [fillRect, setFillRect] = useState(isDark ? fillColor : '#0D1117FF');
+    const toRateOnHover = () => {
+        if (setRating) {
+            setRating(count);
+        }
+    }
     return (
         isHalf
         ? <svg width={size} height={size}>
@@ -26,8 +32,8 @@ const SolidRatingStar = ({isHalf, isDark, fillColor, size = 16}) => {
         </svg>
         : <svg width={size} height={size} viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"
               xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img"
-              className="iconify iconify--emojione" preserveAspectRatio="xMidYMid meet" fill="#000000"
-              stroke={stroke} strokeWidth={2}
+              className={`hover:cursor-pointer`} preserveAspectRatio="xMidYMid meet" fill="#000000"
+              stroke={stroke} strokeWidth={2} onMouseEnter={toRateOnHover}
             >
                 <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
                 <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>

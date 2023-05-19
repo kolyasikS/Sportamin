@@ -1,7 +1,9 @@
+
 import CourseModel from "@/app/server/models/course-model";
 import UserService from "@/app/server/services/user-service";
 import {Schema} from "mongoose";
 import {ObjectId} from "mongodb";
+import {updateCourse} from "@/app/lib/controllers/courseController";
 class CourseService {
     async create({title, subtitle, language,
                  price, providedItems, content,
@@ -20,32 +22,44 @@ class CourseService {
     async getCourses(reqQuery) {
         const query = getQueryFromReq(reqQuery);
         const sort = getSortFromReq(reqQuery);
-        let pipeline = [
-            {
+        console.log(query);
+
+        let pipeline = [{
                 $match: query
-            },
-            {
+            }, {
                 $addFields: {
                     'content_count': {$size: "$content" },
                 }
-            }
+            },
         ];
         if (sort) {
             pipeline.push(sort);
         }
+        if (reqQuery.limit && reqQuery.skip) {
+            pipeline.push({
+                $limit: +reqQuery.limit + +reqQuery.skip,
+            });
+            pipeline.push({
+                $skip: +reqQuery.skip,
+            });
+        }
         let courses = await CourseModel
             .aggregate(pipeline);
-        return courses;
+        let count = await CourseModel.countDocuments(query);
+        return {
+            items: courses,
+            count
+        };
     }
     async update(id, updatedCourse) {
-        if (!id) {
-            //await CourseModel.updateMany({}, {$set: {previewImage: updatedCourse.previewImage}});
-        } else {
-            await CourseModel.updateOne({_id: id}, updatedCourse);
-        }
+        console.log(id, updatedCourse);
+        await CourseModel.updateOne({_id: id}, updatedCourse);
+    }
+    async subscribe(id) {
+        await this.update(id, {$inc: {students: 1}});
     }
     async delete(id) {
-        const result = await CourseModel.deleteOne({_id: new ObjectId(id)});
+        await CourseModel.deleteOne({_id: new ObjectId(id)});
     }
 }
 

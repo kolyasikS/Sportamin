@@ -6,6 +6,7 @@ import {setStatus} from "@/app/lib/store/actions/courseActions";
 import {statuses} from "@/app/lib/store/constants/courseConstants";
 import CourseService from "@/app/lib/services/CourseService";
 import UserService from "@/app/lib/services/UserService";
+import {checkAuth} from "@/app/lib/controllers/authController";
 
 export async function createCourse(dispatch, course, trainerID) {
     try {
@@ -17,9 +18,11 @@ export async function createCourse(dispatch, course, trainerID) {
         return null;
     }
 }
-export async function getCourses(query, sort) {
+export async function getCourses(query, sort, limit, skip) {
     try {
-        const res = await CourseService.get(query, sort).then(res => res.data);
+        console.log('query', query);
+        const res = await CourseService.get(query, sort, limit, skip)
+            .then(res => res.data);
         return res;
     } catch (e) {
         console.log(e?.response?.data);
@@ -29,9 +32,35 @@ export async function getCourses(query, sort) {
 export async function updateCourse(dispatch, id, updatedCourse) {
     try {
         await CourseService.update(id, updatedCourse);
-        dispatch(setStatus(statuses.CREATING));
+        if (dispatch) {
+            dispatch(setStatus(statuses.CREATING));
+        }
     } catch (e) {
         console.log(e?.response?.data);
+    }
+}
+export async function rateCourse(dispatch, id, rating, newRating) {
+    try {
+        rating = {
+            avgValue: (rating.count * rating.avgValue + newRating) / (rating.count + 1),
+            count: rating.count + 1
+        }
+        await CourseService.update(id, {$set: {rating}});
+        return {isSuccess: true};
+    } catch (e) {
+        console.log(e?.response?.data);
+        console.log(e);
+        return {isSuccess: false};
+    }
+}
+export async function newSubscriber(courseId) {
+    try {
+        await CourseService.newSubscriber(courseId);
+        return {isSuccess: true};
+    } catch (e) {
+        console.log(e?.response?.data);
+        console.log(e);
+        return {isSuccess: false};
     }
 }
 

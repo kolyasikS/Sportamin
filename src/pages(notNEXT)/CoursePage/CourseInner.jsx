@@ -4,8 +4,10 @@ import CourseContent from "@/pages(notNEXT)/CoursePage/Content/CourseContent";
 import {SearchedTrainer} from "@/shared/ui/SearchItems/api/searchedItems";
 import {getImageFromBase64} from "@/app/lib/features/image";
 
-const CourseInner = ({providedItems, requirements,
+const CourseInner = ({providedItems, requirements, isBought,
                          description, content, trainer}) => {
+    console.log('Inner', isBought);
+
     return (
         <section className={styles.courseInner}>
             <div className={styles.container}>
@@ -24,11 +26,11 @@ const CourseInner = ({providedItems, requirements,
                     </li>)}
                 </ul>
                 <h2 className={styles.title}>Course content</h2>
-                <CourseContent content={content}/>
+                <CourseContent content={content} isBought={isBought}/>
                 <h2 className={styles.title}>Description</h2>
                 <p className={styles.description}>{description}</p>
                 <h2 className={`${styles.title} mt-10 mb-3`}>Trainer</h2>
-                <SearchedTrainer {...trainer} src={getImageFromBase64(trainer.avatar.data)}/>
+                <SearchedTrainer {...trainer} src={getImageFromBase64(trainer.avatar)}/>
             </div>
         </section>
     );

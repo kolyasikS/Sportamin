@@ -7,7 +7,8 @@
     ],
     "paths": {
       "@/*": ["./src/*"],
-      "@assets/*": ["./public/media/images/*"]
+      "@assets/*": ["./public/media/images/*"],
+      "@reduxjs/toolkit/*": ["node_modules/@reduxjs/toolkit/*"]
     },
     "allowJs": true,
     "skipLibCheck": true,

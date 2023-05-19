@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import styles from "@/widgets/Searching/Filtration/styles/FiltrationItem.module.scss";
 import {ComboBox, RadioBox, Range} from "@/shared/ui/Inputs/api/Inputs";
 import {useDispatch, useSelector} from "react-redux";
-import {statuses} from "@/app/lib/store/constants/courseConstants";
+import {statuses} from "@/app/lib/store/constants/generalConstants";
 import {addLanguage, removeLanguage, setRating} from "@/app/lib/store/actions/filterActions";
 
 const FiltrationItemProcess = ({isInnerShowed, items,

@@ -11,15 +11,16 @@ import ProfileMenu from "@/widgets/Header/ProfileMenu";
 import {bool} from "joi";
 const Header = ({isLoading}) => {
     const isAuthState = useSelector(state => state.authReducer.isAuth);
+    const isFetching = useSelector(state => state.sessionReducer.isLoading);
     const [isAuth, setIsAuth] = useState(isAuthState);
     const router = useRouter();
 
     useEffect(() => {
         setIsAuth(isAuthState);
     }, [isAuthState]);
-
     return (
         <div className={styles.introHeader}>
+            {isFetching && <div className={styles.fetching}></div>}
             <MainLogo/>
             <nav className={styles.navHeader}>
                 <li><Link href="/">Home</Link></li>

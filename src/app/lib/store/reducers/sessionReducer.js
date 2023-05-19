@@ -1,4 +1,4 @@
-import {createReducer} from "@reduxjs/toolkit/src";
+import {createReducer} from "@reduxjs/toolkit";
 import {setIsLoading} from "@/app/lib/store/actions/sessionActions";
 
 const reducer = createReducer(

@@ -8,15 +8,17 @@ async function handler(req, res) {
     await dbConnect();
     switch (method) {
         case 'POST':
-            const {email, password} = req.body;
-            const userData = await userService.login(email, password);
-
+            const {email, auth} = req.body;
+            const userData = await userService.login(email, auth);
             const cookies = new Cookies(req, res);
             cookies.set('refreshToken', userData.refreshToken, {
                 maxAge: 30*24*60*60*1000,
                 httpOnly: true
             });
-            res.json(userData);
+            res.json({...userData, refreshToken: {
+                token: userData.refreshToken,
+                maxAge: 30*24*60*60*1000
+            }});
     }
 }
 

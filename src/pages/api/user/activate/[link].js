@@ -9,7 +9,12 @@ export default async function handler(req, res) {
         switch (method) {
             case 'GET':
                 const {activationLink} = req.query;
-                await userService.activate(activationLink);
+                let userData = await userService.activate(activationLink);
+                const cookies = new Cookies(req, res);
+                cookies.set('refreshToken', userData.refreshToken, {
+                    maxAge: 30*24*60*60*1000,
+                    httpOnly: true
+                });
                 res.redirect(process.env.CLIENT_URL);
         }
     });

@@ -1,0 +1,30 @@
+@import 'src/app/styles/variables';
+@import 'src/app/styles/mixins';
+
+.headerPurchase {
+    width: fit-content;
+    min-width: 20%;
+    right: 15%;
+    background-color: #c9d0d7;
+    padding: 20px;
+    border-radius: 10px;
+    position: fixed;
+    z-index: 10;
+}
+.headerPurchaseInfo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 10px;
+    p {
+        font-weight: bold;
+        color: #5c5c5d;
+        margin-left: 10px;
+    }
+    margin-bottom: 0px;
+}
+.price {
+    font-size: 30px;
+    color: $titleColorGray;
+    font-weight: bold;
+}

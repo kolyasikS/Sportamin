@@ -6,6 +6,7 @@ export default class UserDto {
     avatar;
     id;
     isActivated;
+    boughtCourses;
 
     constructor(model) {
         this.email = model.email;
@@ -15,6 +16,7 @@ export default class UserDto {
         this.surname = model.surname;
         this.trainer = model.trainer;
         this.avatar = model.avatar;
+        this.boughtCourses = model.boughtCourses;
     }
 
 }

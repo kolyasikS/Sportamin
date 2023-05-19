@@ -42,10 +42,10 @@ const SearchedCourse = ({title, subtitle, _id, children,
                         </h2>
                         <h3 className={styles.trainer}>{trainer?.name} {trainer?.surname}</h3>
                         <div className={styles.rating}>
-                            <span>{Math.trunc(rating) === rating
-                                ? `${rating}.0`
-                                : rating}</span>
-                            <RatingBar rating={rating}/>
+                            <span>{Math.trunc(rating.avgValue) === rating.avgValue
+                                ? `${rating.avgValue}.0`
+                                : rating.avgValue?.toFixed(1)}</span>
+                            <RatingBar rating={rating.avgValue?.toFixed(1)}/>
                         </div>
                         <div className={styles.content}>
                             <p>{content.length} total weeks</p>

@@ -1,0 +1,31 @@
+@import 'src/app/styles/variables';
+@import 'src/app/styles/mixins';
+
+.purchase {
+    width: 30%;
+    height: 100%;
+    @include space-y(2);
+}
+.purchaseInner {
+    width: 100%;
+    @include flexCenter;
+    @include space-x(2);
+    h1 {
+        color: #026027;
+        font-weight: bold;
+        font-family: Georgia;
+    }
+    img {
+        position: relative;
+        top: -1px;
+    }
+}
+.doneInfo {
+    @include flexCenterColumn;
+    align-items: flex-start;
+    @include space-y(1);
+    & > p {
+        font-weight: bold;
+        color: #bd0d36;
+    }
+}

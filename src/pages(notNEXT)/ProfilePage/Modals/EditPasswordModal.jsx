@@ -12,7 +12,6 @@ const EditPasswordModal = ({children, updateUser}) => {
         let newPass = newPasswordRef.current.value;
         let prevPass = prevPasswordRef.current.value;
         if ((!newPass || !prevPass) && isApply === true) {
-            console.log(isApply);
             setError('Both fields must be filled!');
             return;
         }

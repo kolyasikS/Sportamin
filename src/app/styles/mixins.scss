@@ -36,3 +36,23 @@
   position: fixed;
   inset: 0;
 }
+@mixin button {
+  @include flexCenter();
+  background-color: $bg-btn-1;
+  border: 2px solid #4b4b59;
+  cursor: pointer;
+  height: 45px;
+  padding: 10px 25px;
+  border-radius: 8px;
+  transition: all 0.2s;
+  font-family: "Franklin Gothic Book";
+  color: $color-1;
+  font-size: 20px;
+  letter-spacing: 1px;
+  position: relative;
+  top: -1px;
+  &:hover {
+    background-color: #0d1117;
+    color: #b7b7b7;
+  }
+}

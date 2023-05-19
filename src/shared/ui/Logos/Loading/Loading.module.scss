@@ -4,6 +4,7 @@
     height: 3rem;
     transform-style: preserve-3d;
     perspective: 800px;
+    z-index: 1;
 }
 .arc {
     position: absolute;

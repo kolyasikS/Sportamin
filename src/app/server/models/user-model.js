@@ -1,12 +1,17 @@
 import {Schema, model, models} from 'mongoose';
 const UserSchema = new Schema({
     email: {type: String, unique: true, required: true},
-    password: {type: String, required: true},
+    password: {type: String},
     isActivated: {type: Boolean, default: false},
     activationLink: {type: String},
     name: {type: String, default: 'New'},
     surname: {type: String, default: 'user'},
     avatar: {type: Buffer},
+    boughtCourses: [{
+        courseId: {type: Schema.Types.ObjectId, ref: 'Course'},
+        isRated: {type: Boolean, default: false},
+        isDone: {type: Boolean, default: false},
+    }],
     trainer: {
         isTrainer: {type: Boolean, default: false},
         title: {type: String, default: ''},

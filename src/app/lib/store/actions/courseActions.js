@@ -1,4 +1,4 @@
-import {createAction} from "@reduxjs/toolkit/src";
+import {createAction} from "@reduxjs/toolkit";
 import {
     SET_DAYS, SET_EXERCISES,
     SET_GENERAL_INFORMATION, SET_PROVIDED_ITEMS,

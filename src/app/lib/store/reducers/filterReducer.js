@@ -1,13 +1,13 @@
-import {createReducer} from "@reduxjs/toolkit/src";
+import {createReducer} from "@reduxjs/toolkit";
 import {
     addFilter,
     addLanguage,
     clearFilters,
     removeFilter,
-    removeLanguage, setIsFetching, setRange,
+    removeLanguage, setAmountPages, setIsFetching, setPage, setRange,
     setRating, setStatus
 } from "@/app/lib/store/actions/filterActions";
-import {statuses} from "@/app/lib/store/constants/courseConstants";
+import {itemsPerPage, statuses} from "@/app/lib/store/constants/generalConstants";
 
 const reducer = createReducer(
     {
@@ -19,6 +19,8 @@ const reducer = createReducer(
             max: null
         },
         status: statuses.CREATING,
+        page: 1,
+        amountPages: 0,
     },
     (builder) => {
         builder
@@ -53,6 +55,13 @@ const reducer = createReducer(
             })
             .addCase(setStatus, (state, action) => {
                state.status = action.payload.status;
+            })
+            .addCase(setPage, (state, action) => {
+               state.page = action.payload.page;
+            })
+            .addCase(setAmountPages, (state, action) => {
+                console.log(action.payload.amount, itemsPerPage)
+               state.amountPages = Math.ceil(action.payload.amount / itemsPerPage);
             });
     }
 );

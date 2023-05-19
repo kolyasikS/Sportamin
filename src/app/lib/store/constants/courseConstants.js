@@ -5,9 +5,5 @@ export const SET_STATUS = 'SET_STATUS';
 export const SET_WEEKS = 'SET_WEEKS';
 export const SET_DAYS = 'SET_DAYS';
 export const SET_EXERCISES = 'SET_EXERCISES';
-export const statuses = {
-    CREATING: 'CREATING',
-    FETCHING: 'FETCHING',
-    CREATED: 'CREATED',
-};
+
 

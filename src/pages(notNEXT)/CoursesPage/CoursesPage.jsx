@@ -8,20 +8,23 @@ import {getBase64FromImage, getImageFromBase64} from "@/app/lib/features/image";
 import {getCourses} from "@/app/lib/controllers/courseController";
 import SearchedCourse from "@/shared/ui/SearchItems/SearchedCourse/SearchedCourse";
 import erenJaeger from '@assets/eren.jpg';
-import {getTrainers} from "@/app/lib/controllers/userController";
+import {getTrainers, getUsers} from "@/app/lib/controllers/userController";
 import FiltrationCoursesHeader from "@/pages(notNEXT)/CoursesPage/FiltrationCoursesHeader";
 const CoursesPage = () => {
     const [query, setQuery] = useState({})
     const [sort, setSort] = useState({})
     const filterState = useSelector(state => state.filterReducer);
     const [trainers, setTrainers] = useState([]);
-    const fetchCourses = async (query, sort) => {
-        return await getCourses(query, sort);
+    const fetchCourses = async (query, sort, limit, skip) => {
+        if (filterState.price.min && filterState.price.max) {
+            query.range = filterState.price;
+        }
+        return await getCourses(query, sort, limit, skip);
     }
     useEffect(() => {
-        getTrainers()
+        getUsers({'trainer.isTrainer': true})
             .then(res => {
-                setTrainers(res);
+                setTrainers(res.items);
             })
             .catch(err => console.log(err));
     }, []);
@@ -46,7 +49,7 @@ const CoursesPage = () => {
         }
         let ratingMongoDB = null;
         if (rating) {
-            ratingMongoDB = {rating: {$gte: 0}}; //testing
+            ratingMongoDB = {'rating.avgValue': {$gte: 0}}; //testing
         }
         setQuery(prev => {
             if (!ratingMongoDB) {

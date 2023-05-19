@@ -1,14 +1,18 @@
 import $api from "@/app/lib/http";
+import {newSubscriber} from "@/app/lib/controllers/courseController";
 
 export default class CourseService {
     static async create(course, trainerID) {
         return $api.post('/course/create', {course, trainerID});
     }
-    static async get(query, sort) {
-        let newQuery = {};
-
+    static async get(query, sort, limit, skip) {
+        let newQuery = {
+            limit,
+            skip
+        };
         if (query.title) {
             newQuery = {
+                ...newQuery,
                 regex: query.title.$regex,
                 options: query.title.$options,
             }
@@ -25,7 +29,8 @@ export default class CourseService {
         if (query.trainer) {
             newQuery.trainer = query.trainer;
         }
-        if (newQuery.range) {
+        console.log('nq', query);
+        if (query.range) {
             newQuery.range = [query.range.min, query.range.max].join(',');
         }
         if (sort) {
@@ -48,6 +53,11 @@ export default class CourseService {
             data: {
                 id
             }
+        });
+    }
+    static async newSubscriber(id) {
+        return $api.put('/course/subscribe', {
+            id
         });
     }
 }

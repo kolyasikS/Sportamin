@@ -5,22 +5,36 @@ import mailService from "@/app/server/services/mail-service";
 import tokenService from "@/app/server/services/token-service";
 import UserDto from "@/app/server/dtos/user-dto";
 import ApiError from "@/app/server/exceptions/api-error";
-import TokenModel from "@/app/server/models/token-model";
-import {func} from "joi";
 import {ObjectId} from "mongodb";
-import {atob} from "buffer";
 import ValidError from "@/app/server/exceptions/valid-error";
-class UserService {
-    async registration(email, password) {
-        const candidate = await UserModel.findOne({email});
+import {getBase64FromImage} from "@/app/lib/features/image";
+import CourseModel from "@/app/server/models/course-model";
 
+class UserService {
+
+    async registration(email, password, avatarUrl) {
+        const candidate = await UserModel.findOne({email});
         if (candidate) {
             //await UserModel.deleteOne({email});
             throw ApiError.BadRequest(`User already exists with ${email} address`);
         }
-        const hashPassword = await bcrypt.hash(password, 3);
+        let avatar = await fetch(avatarUrl)
+            .then(response => response.arrayBuffer())
+            .then(buffer => {
+                const base64 = Buffer.from(buffer).toString('base64');
+                return Buffer.from(base64, 'base64');
+            })
+            .catch(error => {
+                console.error('Error fetching image:', error);
+            });
+        let user;
+        if (password) {
+            let hashPassword = await bcrypt.hash(password, 3);
+            user = await UserModel.create({email, password: hashPassword, avatar});
+        } else {
+            user = await UserModel.create({email, avatar});
+        }
         const activationLink = v4();
-        const user = await UserModel.create({email, password: hashPassword});
         await mailService.sendActivationMail(email, `${process.env.CLIENT_URL}/api/activate/${activationLink}`);
 
         return AuthData(user);
@@ -31,16 +45,27 @@ class UserService {
             throw ApiError.BadRequest('Invalid activation link');
         }
         user.isActivated = true;
-        user.save();
+        await user.save();
+
+        return AuthData(user);
     }
-    async login(email, password) {
+    async login(email, auth) {
         const user = await UserModel.findOne({email});
         if (!user) {
-            throw ApiError.BadRequest('Trainer is undefined');
+            throw ApiError.BadRequest('User is not registered');
         }
-        const isPassEquals = await bcrypt.compare(password, user.password);
-        if (!isPassEquals) {
-            throw ApiError.BadRequest('An incorrect password');
+        if (auth.password) {
+            const isPassEquals = await bcrypt.compare(auth.password, user.password);
+            if (!isPassEquals) {
+                throw ApiError.BadRequest('An incorrect password');
+            }
+        } else {
+            if (!auth.clientId || auth.clientId !== process.env.CLIENT_ID) {
+                throw ApiError.BadRequest('An incorrect client id');
+            }
+        }
+        if (!user.isActivated) {
+            throw ApiError.BadRequest('Account is not activated');
         }
         return AuthData(user);
     }
@@ -66,7 +91,13 @@ class UserService {
             delete query.id;
         }
         const trainers = await UserModel.find({...query}).sort(sort);
-        return trainers;
+        let count = await UserModel.countDocuments(query);
+        console.log(trainers.length);
+        console.log(query);
+        return {
+            items: trainers,
+            count
+        };
     }
     async getTrainer(id) {
         const trainer = await UserModel.findOne({_id: id});
@@ -81,7 +112,6 @@ class UserService {
             updatedUser.avatar = Buffer.from(updatedUser.avatar, 'base64');
         }
         if (updatedUser.password.current) {
-            console.log(updatedUser);
             const isPassEquals = await bcrypt.compare(updatedUser.password.prev, updatedUser.password.current);
             if (!isPassEquals) {
                 throw ValidError.MismatchedData('Password do not match!');
@@ -89,9 +119,33 @@ class UserService {
                 updatedUser.password = await bcrypt.hash(updatedUser.password.new, 3)
             }
         }
-        let result = await UserModel.updateOne(query, updatedUser);
+        await UserModel.updateOne(query, updatedUser);
     }
-
+    async buyCourse(trainerId, userId, courseId) {
+        let res = await UserModel.updateOne(
+            {_id: new ObjectId(userId), boughtCourses: { $ne: new ObjectId(courseId) }},
+            {$push: { boughtCourses: {courseId: new ObjectId(courseId)}}},
+            {new: true});
+        //await this.update({id: trainerId}, {$inc: {students: 1}});
+        //console.log(res, userId, courseId);
+    }
+    async updateStatus(userId, courseId, status) {
+        let update = {
+            $set: {
+            }
+        }
+        if (status.isDone) {
+            update.$set['boughtCourses.$.isDone'] = status.isDone;
+        }
+        if (status.isRated) {
+            update.$set['boughtCourses.$.isRated'] = status.isRated;
+        }
+        await UserModel.updateOne(
+            {_id: new ObjectId(userId), boughtCourses: {$elemMatch: {courseId}}},
+            {...update},
+            {new: true});
+        //console.log(res, userId, courseId);
+    }
     async test(email) {
         return await UserModel.find({email});
     }

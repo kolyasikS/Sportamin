@@ -12,3 +12,4 @@ export {default as DoubleTitleList} from '../List/DoubleTitleList/DoubleTitleLis
 export {default as SearchItems} from '../Searching/SearchItems/SearchItems';
 export {default as SearchItemsListSection} from '../Searching/SearchItemsList/SearchItemsList';
 export {default as ComboBoxList} from '../List/ComboBoxList/ComboBoxList';
+export {default as Pagination} from '../Pagination/Pagination';

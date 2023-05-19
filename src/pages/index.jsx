@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import {HomePage} from "@/pages(notNEXT)/api/Components";
+import Test from "@/pages(notNEXT)/TEST";
 export default function Home() {
   return (
     <>

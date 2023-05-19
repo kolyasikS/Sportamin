@@ -1,24 +1,39 @@
 import AuthService from "@/app/lib/services/AuthService";
-import {setAuth, setUser} from "@/app/lib/store/actions/authActions";
+import {setAuth, setIsSigningOut, setUser} from "@/app/lib/store/actions/authActions";
 import axios from "axios";
 import {API_URL} from "@/app/lib/http";
 
-export async function login(dispatch, email, password) {
+export async function login(dispatch, email, auth, redirect) {
     try {
-        const response = await AuthService.login(email, password);
-        localStorage.setItem('token', response.data.accessToken);
+        const response = await AuthService.login(email, auth);
+        if (typeof localStorage !== 'undefined') {
+            localStorage.setItem('token', response.data.accessToken);
+        }
         dispatch(setAuth(true));
         dispatch(setUser(response.data.user));
-
-        return true;
+        dispatch(setIsSigningOut(false));
+        if (redirect) {
+            redirect();
+        }
+        return response.data;
     } catch (e) {
         console.log(e?.response?.data);
-        return false;
+        if (redirect) {
+            redirect(e?.response?.data);
+        }
+        return e?.response?.data;
     }
 }
-export async function registration(dispatch, email, password) {
+export async function sendActivationLink(email) {
     try {
-        const response = await AuthService.registration(email, password);
+        const response = await AuthService.sendActivationLink(email);
+    } catch (e) {
+        console.log(e?.response?.data);
+    }
+}
+export async function registration(dispatch, user) {
+    try {
+        const response = await AuthService.registration(user);
         localStorage.setItem('token', response.data.accessToken);
         dispatch(setAuth(true));
         dispatch(setUser(response.data.user));
@@ -34,6 +49,7 @@ export async function logout(dispatch) {
         localStorage.removeItem('token');
         dispatch(setAuth(false));
         dispatch(setUser({}));
+        dispatch(setIsSigningOut(true));
         return response;
     } catch (e) {
         console.log(e?.response?.data);
@@ -45,10 +61,13 @@ export async function checkAuth(dispatch, cb) {
         localStorage.setItem('token', response.data.accessToken);
         dispatch(setAuth(true));
         dispatch(setUser(response.data.user));
+        dispatch(setIsSigningOut(false));
     } catch (e) {
         console.log(e?.response?.data);
     } finally {
-        cb();
+        if (cb) {
+            cb();
+        }
     }
 }
 export const authenticate = async (router) => {

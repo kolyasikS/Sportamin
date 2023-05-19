@@ -3,7 +3,8 @@ import * as Accordion from '@radix-ui/react-accordion';
 import Week from "@/pages(notNEXT)/CoursePage/Content/Week";
 import {ChevronDownIcon} from "@radix-ui/react-icons";
 
-const CourseContent = ({content}) => {
+const CourseContent = ({content, isBought}) => {
+    console.log('Content', isBought);
 
     return (
         <div className='mt-4 mb-8'>
@@ -11,7 +12,8 @@ const CourseContent = ({content}) => {
                             defaultValue={['item-1']}
             >
             {content.map((week, num) =>
-                   <Week {...week} num={num + 1} key={week._id}/>
+                   <Week {...week} num={num + 1}
+                         key={week._id} isBought={num === 0 || isBought}/>
             )}
             </Accordion.Root>
         </div>

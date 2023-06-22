@@ -1,9 +1,12 @@
 import ApiError from "@/app/server/exceptions/api-error";
 import stackMiddlewares from "@/app/server/middlewares/stackMiddlewares";
 import ValidError from "@/app/server/exceptions/valid-error";
+import runMiddleware from "@/app/server/cors/cors";
 
 async function withApiErrorMiddleware(req, res, handler, middlewares) {
     try {
+        await runMiddleware(req, res);
+
         await stackMiddlewares(req, res, middlewares);
         await handler(req, res);
     } catch (err) {

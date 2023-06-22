@@ -5,6 +5,9 @@ const nextConfig = {
     locales: ['en'],
   },
   reactStrictMode: true,
+  publicRuntimeConfig: {
+    API_URL: process.env.API_URL
+  },
   webpack: (config, options) => {
     config.module.rules.push({
       test: /\.ts$/,

@@ -5,6 +5,8 @@ export default async function handler(req, res) {
     return withApiErrorMiddleware(req, res, async () => {
         const { method } = req;
         await dbConnect();
+        console.log(1);
+
         switch (method) {
             case 'POST':
                 const {query, sort} = req.body;

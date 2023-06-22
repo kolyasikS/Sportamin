@@ -1,6 +1,8 @@
 import axios from "axios";
+import getConfig from 'next/config';
 
-export const API_URL = `${process.env.API_URL}/api`;
+const { publicRuntimeConfig } = getConfig();
+export const API_URL = `${publicRuntimeConfig.API_URL}/api`;
 
 const $api = axios.create({
     withCredentials: true,
@@ -20,7 +22,6 @@ $api.interceptors.request.use((config) => {
         config.url.startsWith(`/course/delete`)) {
             config.headers.Authorization = `Bearer ${localStorage.getItem('token')}`;
     }
-    console.log(config);
     return config;
 });
 

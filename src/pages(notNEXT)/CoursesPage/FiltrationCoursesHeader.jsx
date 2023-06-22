@@ -83,7 +83,7 @@ const FiltrationCoursesHeader = ({setQuery, setSort}) => {
                 <AdaptiveFiltrationHeader search={search}
                                           isOpen={isAdaptiveMenuOpen}
                 >
-                    <MainInput bgColor={'#161b22'} color={'#c9d1d9'}
+                    <MainInput bgColor={'transparent'} color={'#c9d1d9'}
                                height={65} ref={titleRef}
                     >
                         Title

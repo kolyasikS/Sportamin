@@ -14,7 +14,7 @@ import {WarningModalW} from "@/widgets/api/Modals";
 import {useSession} from "next-auth/react";
 import {setIsSigningOut} from "@/app/lib/store/actions/authActions";
 
-const LoginPage = ({providers, csrfToken, sessionFromServer, error, signIn}) => {
+const LoginPage = ({providers, sessionFromServer, error, signIn}) => {
     const emailRef = useRef();
     const passRef = useRef();
     const dispatch = useDispatch();

@@ -27,6 +27,7 @@ export async function login(dispatch, email, auth, redirect) {
 export async function sendActivationLink(email) {
     try {
         const response = await AuthService.sendActivationLink(email);
+        return response;
     } catch (e) {
         console.log(e?.response?.data);
     }

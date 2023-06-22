@@ -10,10 +10,11 @@ import Image from "next/image";
 import cancel from "@assets/cancel2.png";
 
 const Day = ({number, week, setExercisesState, weekNum,
-                 exercisesState, removeDay, id, exercises}) => {
+                 exercisesState, removeDay, id}) => {
     const [editingExercise, setEditingExercise] = useState(null);
     const [isDayOpen, setIsDayOpen] = useState(number === 1 ? true : false);
     const [isExerciseCreating, setIsExerciseCreating] = useState(false);
+    // eslint-disable-next-line no-unused-vars
     const [stub, toggleBGShadow] = useContext(BackgroundShadowContext);
 
 

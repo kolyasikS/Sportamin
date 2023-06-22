@@ -44,10 +44,10 @@ const reducer = createReducer(
                 state.minRating = action.payload.minRating;
                 state.amountFilters = 1;
             })
-            .addCase(addFilter, (state, action) => {
+            .addCase(addFilter, (state) => {
                 state.amountFilters++;
             })
-            .addCase(removeFilter, (state, action) => {
+            .addCase(removeFilter, (state) => {
                 state.amountFilters--;
             })
             .addCase(setRange, (state, action) => {

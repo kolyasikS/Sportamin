@@ -26,10 +26,6 @@ const Menu = ({items}) => {
         </DropdownMenu.Root>
 
     );
-
-{/*            <div className={styles.dot}></div>
-            <div className={styles.dot}></div>
-            <div className={styles.dot}></div>*/}
 };
 
 export default Menu;

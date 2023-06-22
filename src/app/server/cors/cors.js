@@ -1,3 +1,4 @@
+/*
 import Cors from 'cors'
 
 const whitelist = ['http://localhost:3000', 'http://localhost:3001'];
@@ -19,9 +20,10 @@ const cors = Cors({
             callback(new Error('Not allowed by CORS'));
         }
     }
-})
+})*/
 
 function runMiddleware(req, res, fn) {
+    // eslint-disable-next-line no-undef
     return new Promise((resolve, reject) => {
         fn(req, res, (result) => {
             if (result instanceof Error) {

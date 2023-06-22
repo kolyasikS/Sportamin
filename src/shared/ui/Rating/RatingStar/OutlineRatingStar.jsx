@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 
 const OutlineRatingStar = ({size, isDark, setRating, count}) => {
+    // eslint-disable-next-line no-unused-vars
     const [stroke, setStroke] = useState(isDark ? '#161621' : '#ffce31')
     const toRateOnHover = () => {
         if (setRating) {

@@ -21,6 +21,7 @@ export const authOptions = {
         strategy: 'jwt',
     },
     callbacks: {
+        // eslint-disable-next-line no-unused-vars
         async signIn({account, profile}) {
             await dbConnect();
             let user = await UserModel.findOne({email: profile.email});
@@ -30,6 +31,7 @@ export const authOptions = {
                 throw ApiError.BadRequest('User is not registered');
             }
         },
+        // eslint-disable-next-line no-unused-vars
         async jwt({token, user, account, profile, isNewUser}) {
             if (profile) {
                 token.clientId = profile.aud;
@@ -39,6 +41,7 @@ export const authOptions = {
         async session({session, token}) {
             return {...session, clientId: token?.clientId}
         },
+        // eslint-disable-next-line no-unused-vars
         async redirect({url, baseUrl }) {
             return '/login';
         },

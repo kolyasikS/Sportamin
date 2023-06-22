@@ -3,5 +3,8 @@
     "next/core-web-vitals",
     "plugin:cypress/recommended",
     "eslint:recommended"
-  ]
+  ],
+  "rules": {
+    "no-case-declarations": "off"
+  }
 }

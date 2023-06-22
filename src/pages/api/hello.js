@@ -7,7 +7,6 @@ export default async function handler(req, res) {
     await dbConnect();
     switch (method) {
       case 'POST':
-        const {} = req.body;
         res.status(200).json('');
         break;
       case 'GET':
@@ -21,11 +20,13 @@ export default async function handler(req, res) {
           "redirect_uris":["http://localhost:3000/api/auth/user/google/callback"],
           "javascript_origins":["http://localhost:3000"]
         }
+        // eslint-disable-next-line no-unused-vars
         const scopes = [
           'https://www.googleapis.com/auth/contacts.readonly',
           'https://www.googleapis.com/auth/user.emails.read',
           'profile',
         ];
+        // eslint-disable-next-line no-unused-vars
         const oauth2Client = new google.auth.OAuth2(
             web.client_id,
             web.client_secret,

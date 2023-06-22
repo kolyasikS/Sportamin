@@ -4,6 +4,7 @@ import Link from "next/link";
 import useWindowSize from "@/app/lib/features/hooks/useWindowSize";
 
 const NavMenu = () => {
+    // eslint-disable-next-line no-unused-vars
     const [width, height] = useWindowSize(false);
     const [open, setOpen] = useState(false);
     const navRef = useRef();

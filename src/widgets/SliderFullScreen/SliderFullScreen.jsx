@@ -10,7 +10,7 @@ const TRANSITION_DURATION = 1000;
 const SliderFullScreen = ({slides}) => {
     const [CurrentSlides, setCurrentSlides] = useState([slides]);
     const isFirstRender = useRef(true);
-    const [width, height] = useWindowSize();
+    const [width] = useWindowSize();
     const [offset, setOffset] = useState(0);
     const [clones, setClones] = useState({head: 0, tail: 0});
     const [timeoutID, setTimeoutID] = useState(null);
@@ -55,7 +55,7 @@ const SliderFullScreen = ({slides}) => {
         }
     }, [width, offset, clones, CurrentSlides]);
 
-    const moveSliderForward = (setActive) => {
+    const moveSliderForward = () => {
         isFirstRender.current = false;
         if (timeoutID) {
             return;
@@ -78,7 +78,7 @@ const SliderFullScreen = ({slides}) => {
             return item;
         }));
     };
-    const moveSliderBack = (setActive) => {
+    const moveSliderBack = () => {
         isFirstRender.current = false;
         if (timeoutID) {
             return;

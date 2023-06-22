@@ -1,3 +1,4 @@
+/* eslint-disable no-case-declarations */
 import withApiErrorMiddleware from "@/app/server/middlewares/apiErrorMiddleware";
 import mailService from "@/app/server/services/mail-service";
 export default async function handler(req, res) {

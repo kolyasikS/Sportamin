@@ -1,3 +1,4 @@
+/* eslint-disable no-case-declarations */
 import dbConnect from "@/app/server/DB/dbConnect";
 import courseService from "@/app/server/services/course-service";
 import withAuthMiddleware from "@/app/server/middlewares/authMiddleware";

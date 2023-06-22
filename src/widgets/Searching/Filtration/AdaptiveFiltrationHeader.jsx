@@ -9,7 +9,7 @@ import {filtrationItems} from "@/app/Static Data/Filtration/Filtration";
 
 const AdaptiveFiltrationHeader = ({children, search,
                                       isOpen}) => {
-    const [width, height] = useWindowSize(false);
+    const [width] = useWindowSize(false);
     const isLoading = useSelector(state => state.sessionReducer.isLoading);
 
     return (

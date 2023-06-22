@@ -17,9 +17,10 @@ const SecondStepForm = ({content, courseID}) => {
     const addWeek = () => {
         setWeeksState(prev => [...prev, {id: v4()}]);
     }
-    const [createStatus, course, user] = useSelector(state => {
+    const [createStatus, course] = useSelector(state => {
         return [state.courseReducer.status, state.courseReducer, state.authReducer.user];
     })
+    // eslint-disable-next-line no-unused-vars
     const [isBGShadow, stub] = useContext(BackgroundShadowContext);
 
     const dispatch = useDispatch();

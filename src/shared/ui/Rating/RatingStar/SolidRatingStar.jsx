@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, {useState} from 'react';
 import OutlineRatingStar from "@/shared/ui/Rating/RatingStar/OutlineRatingStar";
 

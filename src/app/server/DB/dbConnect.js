@@ -8,15 +8,15 @@ if (!MONGODB_URI) {
     );
 }
 
-let cached = global.mongoose
+let cached = global.mongoose;
 if (!cached) {
-    cached = global.mongoose = { conn: null, promise: null }
+    cached = global.mongoose = { conn: null, promise: null };
 }
 
 async function dbConnect() {
     if (cached.conn) {
         return cached.conn;
-    };
+    }
 
     if (!cached.promise) {
         const opts = {

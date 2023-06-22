@@ -126,6 +126,8 @@ class UserService {
             {_id: new ObjectId(userId), boughtCourses: { $ne: new ObjectId(courseId) }},
             {$push: { boughtCourses: {courseId: new ObjectId(courseId)}}},
             {new: true});
+
+        return res;
         //await this.update({id: trainerId}, {$inc: {students: 1}});
         //console.log(res, userId, courseId);
     }

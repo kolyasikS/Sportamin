@@ -14,7 +14,7 @@ export default function Home({courses}) {
     </>
   )
 }
-export async function getServerSideProps(context) {
+export async function getServerSideProps() {
     let courses = await getCourses(null, {rating: -1}, 3, 0);
     return {
         props: {

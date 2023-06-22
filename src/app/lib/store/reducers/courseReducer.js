@@ -52,7 +52,6 @@ const reducer = createReducer(
             .addCase(setDays, (state, action) => {
                 const week = action.payload.days[0].week;
                 state.content[week + 1].days = action.payload.days.map(() => {
-                    days: []
                 });
             })
             .addCase(setExercises, (state, action) => {

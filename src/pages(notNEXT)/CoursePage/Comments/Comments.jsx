@@ -14,6 +14,7 @@ import {useSelector} from "react-redux";
 
 const Comments = memo(({avatar, postId}) => {
     const [commentBlocks, setCommentBlocks] = useState([]);
+    // eslint-disable-next-line no-unused-vars
     const [isGlobalCommentWriting, setIsGlobalCommentWriting] = useState(true);
     const [isLoading, setIsLoading] = useState(true);
     const totalComments = useRef();
@@ -21,7 +22,7 @@ const Comments = memo(({avatar, postId}) => {
         limit: 3,
         skip: 0,
     })
-    const [headerRef, inView, entry] = useInView({
+    const [headerRef, inView] = useInView({
         rootMargin: '0px 0px -50px 0px',
         triggerOnce: true,
         onChange: async (newInView) => {

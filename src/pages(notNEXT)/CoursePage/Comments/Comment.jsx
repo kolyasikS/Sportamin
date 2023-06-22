@@ -12,6 +12,7 @@ import {v4} from "uuid";
 const Comment = ({trainerId, disliked, postId, userId, createReply, deleteCommentUI,
                      liked, message, trainer, _id, avatar, initCommId,
                      publishedTime, isReplyComment, repliedUserFullname}) => {
+    // eslint-disable-next-line no-unused-vars
     const [commentAge, setCommentAge] = useState(getDateDifference(getCurrentTimeFromStamp(publishedTime)));
     const [isLiked, setIsLiked] = useState(liked.includes(userId));
     const [isDisliked, setIsDisliked] = useState(disliked.includes(userId));

@@ -21,9 +21,6 @@ const EditPasswordModal = ({children, updateUser}) => {
                 new: newPass,
                 prev: prevPass
         })
-            .then(res => {
-
-            })
             .catch((err) => {
                 console.log(err);
             });

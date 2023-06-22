@@ -13,7 +13,7 @@ const rootReducer = combineReducers({
     filterReducer,
     courseReducer,
 });
-const logger = store => next => action => {
+const logger = () => next => action => {
     let result = next(action);
     return result;
 }

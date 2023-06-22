@@ -12,7 +12,7 @@ const SearchItems = ({fetchItems, query,
                          renderSearchedItem, children}) => {
     const [filteredItems, setFilteredItems] = useState([]);
     const [isEmpty, setIsEmpty] = useState(false);
-    const [width, height] = useWindowSize(false);
+    const [width] = useWindowSize(false);
 
     const dispatch = useDispatch();
     const isLoading = useSelector(state => state.sessionReducer.isLoading);

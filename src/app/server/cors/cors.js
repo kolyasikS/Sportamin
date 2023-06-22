@@ -22,7 +22,7 @@ const cors = Cors({
     }
 })*/
 
-function runMiddleware(req, res, fn) {
+export function runMiddleware(req, res, fn) {
     // eslint-disable-next-line no-undef
     return new Promise((resolve, reject) => {
         fn(req, res, (result) => {

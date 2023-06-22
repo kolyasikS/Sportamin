@@ -5,6 +5,7 @@
       "dom.iterable",
       "esnext"
     ],
+    "baseUrl": "./",
     "paths": {
       "@/*": ["./src/*"],
       "@assets/*": ["./public/media/images/*"],

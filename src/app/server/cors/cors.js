@@ -26,7 +26,9 @@ export function runMiddleware(req, res, fn) {
     // eslint-disable-next-line no-undef
     return new Promise((resolve, reject) => {
         fn(req, res, (result) => {
+            console.log(result);
             if (result instanceof Error) {
+                console.log(result);
                 return reject(result)
             }
             return resolve(result)

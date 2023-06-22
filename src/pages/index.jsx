@@ -18,7 +18,7 @@ export async function getServerSideProps() {
     let courses = await getCourses(null, {rating: -1}, 3, 0);
     return {
         props: {
-            courses: courses.items
+            courses: courses?.items ?? []
         },
     };
 }

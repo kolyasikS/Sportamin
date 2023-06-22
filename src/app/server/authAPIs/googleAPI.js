@@ -7,8 +7,8 @@ let web = {
     "token_uri":"https://oauth2.googleapis.com/token",
     "auth_provider_x509_cert_url":"https://www.googleapis.com/oauth2/v1/certs",
     "client_secret":"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",
-    "redirect_uris":["http://localhost:3000/api/user/signup/google/callback"],
-    "javascript_origins":["http://localhost:3000"]
+    "redirect_uris":[`${process.env.API_URL}/api/user/signup/google/callback`],
+    "javascript_origins":[`${process.env.API_URL}`]
 }
 export const scopes = [
     'https://www.googleapis.com/auth/contacts.readonly',

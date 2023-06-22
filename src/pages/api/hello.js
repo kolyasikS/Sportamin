@@ -17,8 +17,8 @@ export default async function handler(req, res) {
           "token_uri":"https://oauth2.googleapis.com/token",
           "auth_provider_x509_cert_url":"https://www.googleapis.com/oauth2/v1/certs",
           "client_secret":"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",
-          "redirect_uris":["http://localhost:3000/api/auth/user/google/callback"],
-          "javascript_origins":["http://localhost:3000"]
+          "redirect_uris":[`${process.env.API_URL}/api/auth/user/google/callback`],
+          "javascript_origins":[`${process.env.API_URL}`]
         }
         // eslint-disable-next-line no-unused-vars
         const scopes = [

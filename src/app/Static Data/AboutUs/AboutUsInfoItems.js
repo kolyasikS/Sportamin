@@ -1,21 +1,25 @@
+import community from '@assets/community.png';
+import dollar from '@assets/dollar.png';
+import equipment from '@assets/equipment.png';
+
 const InfoItemsAboutUs = [
     {
         id: 1,
         title: 'Winner coaches',
         description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-        src: '@/assets/community.png'
+        src: community
     },
     {
         id: 2,
         title: 'Affordable price',
         description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-        src: '/../public/media/images/dollar.png'
+        src: dollar
     },
     {
         id: 3,
         title: 'Modern equipment',
         description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-        src: '/../public/media/images/equipment.png'
+        src: equipment
     },
 ]
 export default  InfoItemsAboutUs;

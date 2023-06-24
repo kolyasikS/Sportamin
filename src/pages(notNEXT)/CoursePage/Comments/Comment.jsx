@@ -17,6 +17,7 @@ const Comment = ({trainerId, disliked, postId, userId, createReply, deleteCommen
     const [isLiked, setIsLiked] = useState(liked.includes(userId));
     const [isDisliked, setIsDisliked] = useState(disliked.includes(userId));
     const [isWritingReply, setIsWritingReply] = useState(false);
+    console.log(getCurrentTimeFromStamp(publishedTime));
     const menuItems = useRef([
         {
             id: v4(),
@@ -63,9 +64,9 @@ const Comment = ({trainerId, disliked, postId, userId, createReply, deleteCommen
                         <Link href={`/trainers/${trainerId}`}>
                             <h1>{trainer.name} {trainer.surname}</h1>
                         </Link>
-                        {commentAge.diff === 0 && commentAge.term === 'seconds'
+                        {commentAge?.diff === 0 && commentAge?.term === 'seconds'
                             ? <span>Just now</span>
-                            : <span>{commentAge.diff} {commentAge.term} ago</span>
+                            : <span>{commentAge?.diff} {commentAge?.term} ago</span>
                         }
                     </div>
                     <p className={styles.message}>

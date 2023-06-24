@@ -6,13 +6,12 @@ import star from '@assets/star.png';
 import people from '@assets/people.png';
 import courses from '@assets/videoPlay.png';
 const SearchedTrainer = ({name, surname, _id, trainer, src}) => {
-
     return (
         <li className={styles.listItem}>
-            <Link href={`trainers/${_id}`} className={styles.listItem__name}>{name} {surname}</Link>
+            <Link href={`/trainers/${_id}`} className={styles.listItem__name}>{name} {surname}</Link>
             <h3 className={styles.listItem__activity}>{trainer.title}</h3>
             <div className={styles.listItem__inner}>
-                <Link href={`trainers/${_id}`} className={styles.listItem__avatarLink}>
+                <Link href={`/trainers/${_id}`} className={styles.listItem__avatarLink}>
                     <Image src={`data:image/jpg;base64,${src}`} alt={''} width={110} height={110}/>
                 </Link>
                 <div className={styles.listItem__characteristics}>

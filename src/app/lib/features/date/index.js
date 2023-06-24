@@ -26,7 +26,6 @@ export const getDateDifference = (dateOne, dateSecond) => {
     }
     const differenceInMilliseconds = Math.abs(dateSecond - dateOne);
     const differenceInSeconds = differenceInMilliseconds / 1000;
-
     const differenceInMinutes = differenceInSeconds / 60;
     if (Math.trunc(differenceInMinutes) < 1) {
         return {
@@ -60,9 +59,10 @@ export const getDateDifference = (dateOne, dateSecond) => {
     }
 
     const differenceInYears = differenceInMonths / 12;
-    if (Math.trunc(differenceInMonths) < 1) {
+
+    if (Math.trunc(differenceInYears) < 1) {
         return {
-            diff: Math.trunc(differenceInYears),
+            diff: Math.trunc(differenceInMonths),
             term: 'months'
         };
     }

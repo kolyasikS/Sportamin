@@ -60,12 +60,13 @@ export async function checkAuth(dispatch, cb) {
     try {
         const response = await axios.get(`${API_URL}/user/refresh`, {withCredentials: true});
         localStorage.setItem('token', response.data.accessToken);
+        console.log('response', response);
         dispatch(setAuth(true));
         dispatch(setUser(response.data.user));
         dispatch(setIsSigningOut(false));
         return response.data.user;
     } catch (e) {
-        console.log(e?.response?.data);
+        console.log('error checkAuth', e?.response?.data);
         return {error: e};
     } finally {
         if (cb) {

@@ -10,7 +10,7 @@ async function handler(req, res) {
             const {email, auth} = req.body;
             const userData = await userService.login(email, auth);
             const cookies = new Cookies(req, res);
-            console.log('cookies & userDAta', cookies, userData);
+            console.log('cookies & userDAta', {...userData, avatar: ''});
             cookies.set('refreshToken', userData.refreshToken, {
                 maxAge: 30*24*60*60*1000,
                 httpOnly: true

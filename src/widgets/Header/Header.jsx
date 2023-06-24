@@ -10,13 +10,14 @@ import ProfileMenu from "@/widgets/Header/ProfileMenu";
 import NavMenu from "@/widgets/Header/NavMenu";
 const Header = ({isLoading, avatar}) => {
     const isAuthState = useSelector(state => state.authReducer.isAuth);
+    const user = useSelector(state => state.authReducer.user);
     const isFetching = useSelector(state => state.sessionReducer.isLoading);
     const [isAuth, setIsAuth] = useState(isAuthState);
     const router = useRouter();
     useEffect(() => {
         setIsAuth(isAuthState);
     }, [isAuthState]);
-    console.log(isLoading, isAuth, avatar);
+    console.log(isLoading, isAuth, avatar, user);
     return (
         <div className={styles.introHeader}>
             {isFetching && <div className={styles.fetching}></div>}

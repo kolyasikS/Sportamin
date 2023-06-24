@@ -1,7 +1,6 @@
 import {NextResponse} from "next/server";
 
+// eslint-disable-next-line no-unused-vars
 export function middleware(request: Request) {
-    console.log(request.url, 'sdaf');
     return NextResponse.next();
-
 }

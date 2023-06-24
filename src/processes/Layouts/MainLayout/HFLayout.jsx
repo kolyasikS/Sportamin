@@ -32,6 +32,7 @@ const HFLayout = ({children}) => {
                     if (!res.error) {
                         setUserAvatar(res.avatar);
                     } else {
+                        console.log('error', res.error);
                         setIsLoading(false);
                     }
                 });
@@ -40,9 +41,11 @@ const HFLayout = ({children}) => {
     useEffect(() => {
         console.log(userAvatar);
         if (userAvatar) {
+            console.log('userAvatar');
             setIsLoading(false);
         }
     }, [userAvatar]);
+    console.log(userAvatar, isLoading);
     return (
         showLayout
         ? <>

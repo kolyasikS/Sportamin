@@ -4,7 +4,7 @@ export function getBase64FromImage(pathOrigin) {
     return fs.readFileSync(pathOrigin);
 }
 export function getImageFromBase64(image) {
-    if (!image.data) {
+    if (!image?.data) {
         return image;
     }
     let str = image.data

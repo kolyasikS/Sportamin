@@ -13,7 +13,6 @@ const Header = ({isLoading, avatar}) => {
     const isFetching = useSelector(state => state.sessionReducer.isLoading);
     const [isAuth, setIsAuth] = useState(isAuthState);
     const router = useRouter();
-
     useEffect(() => {
         setIsAuth(isAuthState);
     }, [isAuthState]);
@@ -23,7 +22,7 @@ const Header = ({isLoading, avatar}) => {
             <MainLogo/>
             <NavMenu/>
             <div className={styles.profile}>
-                {isLoading
+                {isLoading || (isAuth && !avatar)
                     ? <Loading/>
                     : isAuth
                         ? <ProfileMenu avatar={avatar}/>

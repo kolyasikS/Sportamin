@@ -38,9 +38,7 @@ export function runMiddleware(req, res) {
     // eslint-disable-next-line no-undef
     return new Promise((resolve, reject) => {
         cors(req, res, (result) => {
-            console.log(result);
             if (result instanceof Error) {
-                console.log(result);
                 return reject(result)
             }
             return resolve(result)

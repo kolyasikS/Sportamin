@@ -88,7 +88,7 @@ const LoginPage = ({providers, sessionFromServer, error, signIn}) => {
                     <h1>Log in to Sportamin</h1>
                     <div className={styles.OAuthLinks}>
                         <OAuthLink logo={google} onClick={signInGoogle}>Continue with Google</OAuthLink>
-                        <OAuthLink logo={github}>Continue with GitHub</OAuthLink>
+                        {/*<OAuthLink logo={github}>Continue with GitHub</OAuthLink>*/}
                     </div>
                     <HorizontalSeparator>or</HorizontalSeparator>
                     <div className={styles.spaceY}>

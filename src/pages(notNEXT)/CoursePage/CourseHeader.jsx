@@ -11,6 +11,7 @@ const CourseHeader = memo(({title, subtitle, price,
                           rating, students, trainer,
                           language, id,
                           isLoading, courseStatus}) => {
+    console.log(isLoading);
     return (
         <section className={styles.header}>
             <div className={styles.headerInfo}>

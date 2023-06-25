@@ -50,7 +50,7 @@ const SignUpPage = ({credentials}) => {
                     <h1>Registration</h1>
                     <div className={styles.OAuthLinks}>
                         <OAuthLink logo={googleImg} onClick={() => router.push('api/user/signup/google/')}>Sign up with Google</OAuthLink>
-                        <OAuthLink logo={github}>Sign up with GitHub</OAuthLink>
+                        {/*<OAuthLink logo={github}>Sign up with GitHub</OAuthLink>*/}
                     </div>
                     <HorizontalSeparator>or</HorizontalSeparator>
                     <p className={styles.privacy}>By registering, I accept the terms of the&nbsp;

@@ -17,7 +17,6 @@ const Comment = ({trainerId, disliked, postId, userId, createReply, deleteCommen
     const [isLiked, setIsLiked] = useState(liked.includes(userId));
     const [isDisliked, setIsDisliked] = useState(disliked.includes(userId));
     const [isWritingReply, setIsWritingReply] = useState(false);
-    console.log(getCurrentTimeFromStamp(publishedTime));
     const menuItems = useRef([
         {
             id: v4(),

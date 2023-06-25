@@ -19,6 +19,8 @@ const CoursePage = ({title, subtitle, price,
             let result = boughtCourses && boughtCourses.find(course => course.courseId === _id);
             setCourseStatus(result);
             setIsLoading(false);
+        } else if (boughtCourses === undefined) {
+            setIsLoading(false);
         }
     }, [boughtCourses, courseStatus]);
 

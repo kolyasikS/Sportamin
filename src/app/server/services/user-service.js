@@ -73,16 +73,12 @@ class UserService {
     }
     async refresh(refreshToken) {
         if (!refreshToken) {
-            console.log('refreshToken');
-            throw ApiError.BadRequest('refreshToken')
             // eslint-disable-next-line no-unreachable
             throw ApiError.UnauthorizedError();
         }
         const userData = tokenService.validateRefreshToken(refreshToken);
         const tokenFromDb = await tokenService.findToken(refreshToken);
         if (!userData || !tokenFromDb) {
-            console.log('userData', userData, 'tokenFromDb', tokenFromDb);
-            throw ApiError.BadRequest(`userData ${userData} tokenFromDb ${tokenFromDb}`);
             // eslint-disable-next-line no-unreachable
             throw ApiError.UnauthorizedError();
         }
@@ -100,7 +96,6 @@ class UserService {
         }
         const users = await UserModel.find({...query}).sort(sort);
         let count = await UserModel.countDocuments(query);
-        console.log(users, count, query, sort);
         return {
             items: users,
             count
@@ -135,8 +130,6 @@ class UserService {
             {new: true});
 
         return res;
-        //await this.update({id: trainerId}, {$inc: {students: 1}});
-        //console.log(res, userId, courseId);
     }
     async updateStatus(userId, courseId, status) {
         let update = {

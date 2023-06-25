@@ -17,7 +17,6 @@ const Header = ({isLoading, avatar}) => {
     useEffect(() => {
         setIsAuth(isAuthState);
     }, [isAuthState]);
-    console.log(isLoading, isAuth, avatar, user);
     return (
         <div className={styles.introHeader}>
             {isFetching && <div className={styles.fetching}></div>}

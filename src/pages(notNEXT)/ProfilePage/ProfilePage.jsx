@@ -111,7 +111,6 @@ const ProfilePage = ({user}) => {
         }};
         return await updateUser({id: actualUser._id}, updatedUser);
     }
-    console.log(actualUser.trainer.links);
     return (
         <main className={styles.main}>
             <div className={styles.inner}>

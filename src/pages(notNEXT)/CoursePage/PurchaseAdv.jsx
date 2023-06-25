@@ -3,11 +3,17 @@ import styles from "@/pages(notNEXT)/CoursePage/styles/PurchaseAdv.module.scss";
 import {DarkBtnWithImg} from "@/shared/ui/Buttons/api/Buttons";
 import {buyCourse} from "@/app/lib/controllers/userController";
 import {useDispatch, useSelector} from "react-redux";
+import {useRouter} from "next/router";
 
 const PurchaseAdv = ({price, courseId, trainerId}) => {
     const userId = useSelector(state => state.authReducer?.user?.id);
+    const isAuth = useSelector(state => state.authReducer.isAuth);
     const dispatch = useDispatch();
+    const router = useRouter();
     const buy = async () => {
+        if (!isAuth) {
+            await router.push('/login');
+        }
         await buyCourse(dispatch, trainerId, userId, courseId);
     }
 

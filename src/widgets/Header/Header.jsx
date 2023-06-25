@@ -10,7 +10,6 @@ import ProfileMenu from "@/widgets/Header/ProfileMenu";
 import NavMenu from "@/widgets/Header/NavMenu";
 const Header = ({isLoading, avatar}) => {
     const isAuthState = useSelector(state => state.authReducer.isAuth);
-    const user = useSelector(state => state.authReducer.user);
     const isFetching = useSelector(state => state.sessionReducer.isLoading);
     const [isAuth, setIsAuth] = useState(isAuthState);
     const router = useRouter();

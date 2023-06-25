@@ -5,7 +5,6 @@ import {registration} from "@/app/lib/controllers/authController";
 import {MainLogoInversion} from "@/shared/ui/Logos/api/Logos";
 import {OAuthLink, RBButton} from "@/shared/ui/Buttons/api/Buttons";
 import googleImg from "@assets/google.png";
-import github from "@assets/github.png";
 import {HorizontalSeparator} from "@/shared/ui/api/separators";
 import Link from "next/link";
 import {MainInput} from "@/shared/ui/Inputs/api/Inputs";

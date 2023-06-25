@@ -66,7 +66,7 @@ class UserService {
             }
         }
         if (!user.isActivated) {
-            throw ApiError.BadRequest('Account is not activated');
+            //throw ApiError.BadRequest('Account is not activated');
         }
         return AuthData(user);
     }
@@ -156,7 +156,6 @@ class UserService {
     }
 }
 async function AuthData(user) {
-    console.log(user);
     const userDto = new UserDto(user);
     const tokenUserData = {...userDto};
     delete tokenUserData.avatar;

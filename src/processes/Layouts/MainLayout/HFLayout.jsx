@@ -17,7 +17,6 @@ const HFLayout = ({children}) => {
     const showLayout = !hiddenPaths.includes(router.pathname);
     useEffect(() => {
         if (auth.isSigningOut) {
-            console.log('issignout');
             setIsLoading(true);
             return;
         }

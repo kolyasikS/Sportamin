@@ -14,6 +14,8 @@ import BackgroundShadowContext from "@/app/lib/features/contexts/BGShadowContext
 const SecondStepForm = ({content, courseID}) => {
     const [weeksState, setWeeksState] = useState([{id: v4()}]);
     const [exercisesState, setExercisesState] = useState([]);
+    const userId = useSelector(state => state.authReducer?.user?.id);
+
     const addWeek = () => {
         setWeeksState(prev => [...prev, {id: v4()}]);
     }
@@ -75,7 +77,7 @@ const SecondStepForm = ({content, courseID}) => {
             if (content) {
                 updateCourse(dispatch, courseID, course).then();
             } else {
-                createCourse(dispatch, course, '642a86b370ed3faaff3f12e0').then(); // testing id of trainer
+                createCourse(dispatch, course, userId).then(); // testing id of trainer
             }
         }
     }, [createStatus]);

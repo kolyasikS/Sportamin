@@ -18,6 +18,7 @@ class CourseService {
     async getCourses(reqQuery) {
         const query = getQueryFromReq(reqQuery);
         const sort = getSortFromReq(reqQuery);
+        console.log(query, sort);
         let pipeline = [{
                 $match: query
             }, {
@@ -39,6 +40,8 @@ class CourseService {
         }
         let courses = await CourseModel
             .aggregate(pipeline);
+        courses = await CourseModel.find({...query});
+        console.log(courses.length);
         let count = await CourseModel.countDocuments(query);
         return {
             items: courses,

@@ -1,4 +1,4 @@
-import React, {useEffect, useRef} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import styles from './styles/SignUpPage.module.scss';
 import {useDispatch, useSelector} from "react-redux";
 import {registration} from "@/app/lib/controllers/authController";
@@ -10,6 +10,7 @@ import Link from "next/link";
 import {MainInput} from "@/shared/ui/Inputs/api/Inputs";
 import {useRouter} from "next/router";
 import {setIsSigningOut} from "@/app/lib/store/actions/authActions";
+import {WarningModalW} from "@/widgets/api/Modals";
 
 const SignUpPage = ({credentials}) => {
     const emailRef = useRef();
@@ -17,15 +18,32 @@ const SignUpPage = ({credentials}) => {
     const dispatch = useDispatch();
     const router = useRouter();
     const auth = useSelector(state => state.authReducer);
+    const [warning, setWarning] = useState(null);
     const submitRegistration = async () => {
         let email = emailRef.current.value;
         let password = passRef.current.value;
-        const isSuccess = await registration(dispatch, {
+        const result = await registration(dispatch, {
             email,
-            password
+            password,
+            avatar: 'public/media/images/profile/default_avatar.png'
         });
-        if (isSuccess) {
-            await router.push('/');
+        if (!result.data) {
+            setWarning({
+                title: 'Activation',
+                description: 'Please, activate your account with a link sent on your email',
+                apply: async () => {
+                    setWarning(null);
+                    await router.push('/');
+                },
+                cancel: null,
+            })
+        } else if (result.status === 412) {
+            setWarning({
+                title: 'Incorrect password',
+                description: 'Password can contain only Latin letters and 1 digit as minimum',
+                apply: () => setWarning(null),
+                cancel: () => setWarning(null)
+            })
         }
     }
     useEffect(() => {
@@ -64,6 +82,15 @@ const SignUpPage = ({credentials}) => {
                     </div>
                     <p className={styles.signUp}>Do you have an account? <Link href="/login">Login</Link></p>
                 </div>
+                {warning &&
+                    <WarningModalW open={warning}
+                                   apply={warning.apply}
+                                   cancel={warning.cancel}
+                                   title={warning.title} applyTitle={'OK'}
+                                   description={warning.description}
+                    >
+                    </WarningModalW>
+                }
             </div>
         </main>
     );

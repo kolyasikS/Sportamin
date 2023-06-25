@@ -6,7 +6,6 @@ import {useSelector} from "react-redux";
 import {authenticate} from "@/app/lib/controllers/authController";
 import {useRouter} from "next/router";
 import ProfileMenu from "@/widgets/Header/ProfileMenu";
-
 import NavMenu from "@/widgets/Header/NavMenu";
 const Header = ({isLoading, avatar}) => {
     const isAuthState = useSelector(state => state.authReducer.isAuth);
@@ -16,6 +15,7 @@ const Header = ({isLoading, avatar}) => {
     useEffect(() => {
         setIsAuth(isAuthState);
     }, [isAuthState]);
+
     return (
         <div className={styles.introHeader}>
             {isFetching && <div className={styles.fetching}></div>}

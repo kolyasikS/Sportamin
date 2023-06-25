@@ -17,10 +17,10 @@ const WarningModalW = ({open, title, children, applyTitle,
                             {children}
                         </div>
                         <div className={styles.defaultFeatures}>
-                            <AlertDialog.Cancel className={styles.cancelBtn}
+                            {cancel && <AlertDialog.Cancel className={styles.cancelBtn}
                                                 onClick={cancel}>
                                 {cancelTitle}
-                            </AlertDialog.Cancel>
+                            </AlertDialog.Cancel>}
                             <AlertDialog.Action className={styles.actionBtn}
                                                 onClick={apply}>
                                 {applyTitle}

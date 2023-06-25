@@ -42,6 +42,7 @@ export async function registration(dispatch, user) {
         return true;
     } catch (e) {
         console.log(e?.response?.data);
+        return e.response;
     }
 }
 export async function logout(dispatch) {

@@ -1,6 +1,8 @@
 import Head from 'next/head'
 import {HomePage} from "@/pages(notNEXT)/api/Components";
 import {getCourses} from "@/app/lib/controllers/courseController";
+import {getBase64FromImage} from "@/app/lib/features/image";
+import defaultAvatar from "@assets/profile/default_avatar.png";
 export default function Home({courses}) {
   return (
     <>

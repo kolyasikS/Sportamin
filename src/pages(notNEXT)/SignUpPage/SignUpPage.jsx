@@ -11,7 +11,7 @@ import {MainInput} from "@/shared/ui/Inputs/api/Inputs";
 import {useRouter} from "next/router";
 import {setIsSigningOut} from "@/app/lib/store/actions/authActions";
 import {WarningModalW} from "@/widgets/api/Modals";
-
+import defaultImg from '@assets/profile/default_avatar.png';
 const SignUpPage = ({credentials}) => {
     const emailRef = useRef();
     const passRef = useRef();
@@ -25,7 +25,7 @@ const SignUpPage = ({credentials}) => {
         const result = await registration(dispatch, {
             email,
             password,
-            avatar: 'public/media/images/profile/default_avatar.png'
+            avatar: '.next/static/media/default_avatar.fff2e960.png'
         });
         if (!result.data) {
             setWarning({

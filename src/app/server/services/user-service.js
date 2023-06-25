@@ -156,6 +156,7 @@ class UserService {
     }
 }
 async function AuthData(user) {
+    console.log(user);
     const userDto = new UserDto(user);
     const tokenUserData = {...userDto};
     delete tokenUserData.avatar;

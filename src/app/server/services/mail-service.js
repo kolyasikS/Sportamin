@@ -3,6 +3,7 @@ import {v4} from "uuid";
 class MailService {
     constructor() {
         this.transporter = nodemailer.createTransport({
+            service: 'gmail',
             host: process.env.SMTP_HOST,
             port: process.env.SMTP_PORT,
             secure: false,

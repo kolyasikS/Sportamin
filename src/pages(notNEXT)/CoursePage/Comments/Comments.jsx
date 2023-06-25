@@ -28,7 +28,7 @@ const Comments = memo(({avatar, postId}) => {
         onChange: async (newInView) => {
             if (newInView && !inView) {
                 let comments = await fetchComments(fetchParameters.current.limit, fetchParameters.current.skip);
-                totalComments.current = comments.totalComments;
+                totalComments.current = comments?.totalComments ?? [];
                 setIsLoading(false);
             }
         }

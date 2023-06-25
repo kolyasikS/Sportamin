@@ -10,11 +10,13 @@ import {setExercises, setStatus} from "@/app/lib/store/actions/courseActions";
 import {createCourse, updateCourse} from "@/app/lib/controllers/courseController";
 import generalStyles from "@/pages(notNEXT)/CreateCoursePage/styles/general.module.scss";
 import BackgroundShadowContext from "@/app/lib/features/contexts/BGShadowContext";
+import {useRouter} from "next/router";
 
 const SecondStepForm = ({content, courseID}) => {
     const [weeksState, setWeeksState] = useState([{id: v4()}]);
     const [exercisesState, setExercisesState] = useState([]);
     const userId = useSelector(state => state.authReducer?.user?.id);
+    const router = useRouter();
 
     const addWeek = () => {
         setWeeksState(prev => [...prev, {id: v4()}]);
@@ -75,9 +77,13 @@ const SecondStepForm = ({content, courseID}) => {
             dispatch(setStatus(statuses.CREATED));
         } else if (createStatus === statuses.CREATED) {
             if (content) {
-                updateCourse(dispatch, courseID, course).then();
+                updateCourse(dispatch, courseID, course).then(() => {
+                    router.push(`profile/${userId}/courses`)
+                });
             } else {
-                createCourse(dispatch, course, userId).then(); // testing id of trainer
+                createCourse(dispatch, course, userId).then(() => {
+                    router.push(`profile/${userId}/courses`)
+                }); // testing id of trainer
             }
         }
     }, [createStatus]);

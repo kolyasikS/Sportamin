@@ -24,7 +24,6 @@ const SignUpPage = ({credentials}) => {
         const result = await registration(dispatch, {
             email,
             password,
-            avatar: '.next/static/media/default_avatar.fff2e960.png'
         });
         if (!result.data) {
             setWarning({

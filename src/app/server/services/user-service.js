@@ -7,17 +7,16 @@ import UserDto from "@/app/server/dtos/user-dto";
 import ApiError from "@/app/server/exceptions/api-error";
 import {ObjectId} from "mongodb";
 import ValidError from "@/app/server/exceptions/valid-error";
-import {getBase64FromImage} from "@/app/lib/features/image";
+import {defaultImageBase64} from "@/app/Static Data/defaultImage";
 
 class UserService {
 
-    async registration(email, password, avatarArg) {
+    async registration(email, password) {
         const candidate = await UserModel.findOne({email});
         if (candidate) {
             //await UserModel.deleteOne({email});
             throw ApiError.BadRequest(`User already exists with ${email} address`);
         }
-        let avatar = getBase64FromImage(avatarArg);
         /*let avatar = await fetch(avatarArg)
                 .then(response => response.arrayBuffer())
                 .then(buffer => {
@@ -27,7 +26,9 @@ class UserService {
                 .catch(error => {
                     console.error('Error fetching image:', error);
                 });*/
+        let avatar = Buffer.from(defaultImageBase64, 'base64');
         let user;
+
         if (password) {
             let hashPassword = await bcrypt.hash(password, 3);
             user = await UserModel.create({email, password: hashPassword, avatar});

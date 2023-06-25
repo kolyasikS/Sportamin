@@ -29,7 +29,7 @@ export async function getServerSideProps(context) {
         });
 
     let trainer;
-    await getUsers({_id: course.trainer, 'trainer.isTrainer': true})
+    await getUsers({_id: course.trainer})
         .then(res => {
             if (res && res.items.length) {
                 trainer = res.items[0];
@@ -38,6 +38,8 @@ export async function getServerSideProps(context) {
         .catch(err => {
             console.log(err);
         });
+
+    console.log(course, trainer);
     return {
         props: {
             course,

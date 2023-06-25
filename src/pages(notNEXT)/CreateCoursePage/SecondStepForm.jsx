@@ -78,11 +78,11 @@ const SecondStepForm = ({content, courseID}) => {
         } else if (createStatus === statuses.CREATED) {
             if (content) {
                 updateCourse(dispatch, courseID, course).then(() => {
-                    router.push(`profile/${userId}/courses`)
+                    router.push(`/profile/${userId}/courses`)
                 });
             } else {
                 createCourse(dispatch, course, userId).then(() => {
-                    router.push(`profile/${userId}/courses`)
+                    router.push(`/profile/${userId}/courses`)
                 }); // testing id of trainer
             }
         }
